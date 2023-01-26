@@ -1,53 +1,187 @@
+@file:Suppress("ClassName")
+
 plugins {
     kotlin("multiplatform") version "1.7.21"
+    id("com.android.library") version "7.3.0"
 }
 
 group = "io.github.hoc081098"
 version = "1.0-SNAPSHOT"
 
 repositories {
+    gradlePluginPortal()
+    google()
     mavenCentral()
 }
 
+object deps {
+    object coroutines {
+        const val version = "1.6.4"
+        const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
+        const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version"
+    }
+
+    object lifecycle {
+        const val version = "2.5.1"
+        const val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
+    }
+
+    object test {
+        const val turbine = "app.cash.turbine:turbine:0.12.1"
+    }
+}
+
 kotlin {
+    android()
+
     jvm {
         compilations.all {
-            kotlinOptions.jvmTarget = "1.8"
-        }
-        withJava()
-        testRuns["test"].executionTask.configure {
-            useJUnitPlatform()
+            kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8.toString()
         }
     }
     js(BOTH) {
-        browser {
-            commonWebpackConfig {
-                cssSupport.enabled = true
+        compilations.all {
+            kotlinOptions {
+                sourceMap = true
+                moduleKind = "umd"
+                metaInfo = true
             }
         }
-    }
-    val hostOs = System.getProperty("os.name")
-    val isMingwX64 = hostOs.startsWith("Windows")
-    val nativeTarget = when {
-        hostOs == "Mac OS X" -> macosX64("native")
-        hostOs == "Linux" -> linuxX64("native")
-        isMingwX64 -> mingwX64("native")
-        else -> throw GradleException("Host OS is not supported in Kotlin/Native.")
+        browser {
+            testTask {
+                useMocha()
+            }
+            commonWebpackConfig {
+                cssSupport {
+                    enabled = false
+                }
+            }
+        }
+        nodejs {
+            testTask {
+                useMocha()
+            }
+        }
     }
 
-    
+    iosArm64()
+    iosArm32()
+    iosX64()
+    iosSimulatorArm64()
+
+    macosX64()
+    macosArm64()
+    mingwX64()
+    linuxX64()
+
+    tvosX64()
+    tvosSimulatorArm64()
+    tvosArm64()
+
+    watchosArm32()
+    watchosArm64()
+    watchosX64()
+    watchosX86()
+    watchosSimulatorArm64()
+
     sourceSets {
-        val commonMain by getting
-        val commonTest by getting {
+        val commonMain by getting {
             dependencies {
-                implementation(kotlin("test"))
+                api(deps.coroutines.core)
             }
         }
-        val jvmMain by getting
-        val jvmTest by getting
-        val jsMain by getting
-        val jsTest by getting
-        val nativeMain by getting
-        val nativeTest by getting
+        val commonTest by getting {
+            dependencies {
+                implementation(kotlin("test-common"))
+                implementation(kotlin("test-annotations-common"))
+
+                implementation(deps.coroutines.test)
+                // implementation(deps.test.turbine)
+            }
+        }
+
+        val androidMain by getting {
+            dependsOn(commonMain)
+
+            dependencies {
+                implementation(deps.lifecycle.viewModelKtx)
+            }
+        }
+        val androidTest by getting
+
+        val nonAndroidMain by creating {
+            dependsOn(commonMain)
+
+            dependencies {
+            }
+        }
+        val nonAndroidTest by creating {
+            dependsOn(commonTest)
+        }
+
+        val jvmMain by getting {
+            dependsOn(nonAndroidMain)
+        }
+        val jvmTest by getting {
+            dependsOn(nonAndroidTest)
+
+            dependencies {
+                implementation(kotlin("test-junit"))
+            }
+        }
+
+        val jsMain by getting {
+            dependsOn(nonAndroidMain)
+        }
+        val jsTest by getting {
+            dependsOn(nonAndroidTest)
+            dependencies {
+                implementation(kotlin("test-js"))
+            }
+        }
+
+        val nativeMain by creating {
+            dependsOn(nonAndroidMain)
+        }
+        val nativeTest by creating {
+            dependsOn(nonAndroidTest)
+        }
+
+        val appleTargets = listOf(
+            "iosX64",
+            "iosSimulatorArm64",
+            "iosArm64",
+            "iosArm32",
+            "macosX64",
+            "macosArm64",
+            "tvosArm64",
+            "tvosX64",
+            "tvosSimulatorArm64",
+            "watchosArm32",
+            "watchosArm64",
+            "watchosX86",
+            "watchosSimulatorArm64",
+            "watchosX64"
+        )
+
+        (appleTargets + listOf("mingwX64", "linuxX64")).forEach {
+            getByName("${it}Main") {
+                dependsOn(nativeMain)
+            }
+            getByName("${it}Test") {
+                dependsOn(nativeTest)
+            }
+        }
+    }
+}
+
+android {
+    compileSdk = 33
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    namespace = "com.hoc081098.kmp.viewmodel"
+
+    defaultConfig {
+        minSdk = 21
+        targetSdk = 33
     }
 }
