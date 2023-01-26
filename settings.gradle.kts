@@ -1,6 +1,3 @@
-
-rootProject.name = "kmp-viewmodel"
-
 pluginManagement {
     repositories {
         gradlePluginPortal()
@@ -8,3 +5,6 @@ pluginManagement {
         mavenCentral()
     }
 }
+
+rootProject.name = "kmp-viewmodel"
+include(":library")
