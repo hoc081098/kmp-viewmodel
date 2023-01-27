@@ -34,29 +34,15 @@ kotlin {
       kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
   }
-  js(BOTH) {
+  js(IR) {
     compilations.all {
       kotlinOptions {
         sourceMap = true
-        moduleKind = "umd"
-        metaInfo = true
+        moduleKind = "commonjs"
       }
     }
-    browser {
-      testTask {
-        useMocha()
-      }
-      commonWebpackConfig {
-        cssSupport {
-          enabled = false
-        }
-      }
-    }
-    nodejs {
-      testTask {
-        useMocha()
-      }
-    }
+    browser()
+    nodejs()
   }
 
   iosArm64()
