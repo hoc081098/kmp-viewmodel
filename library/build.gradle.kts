@@ -22,7 +22,6 @@ object deps {
   }
 
   object test {
-    const val turbine = "app.cash.turbine:turbine:0.12.1"
   }
 }
 
@@ -91,7 +90,6 @@ kotlin {
         implementation(kotlin("test-annotations-common"))
 
         implementation(deps.coroutines.test)
-        // implementation(deps.test.turbine)
       }
     }
 
@@ -103,7 +101,13 @@ kotlin {
         implementation(deps.coroutines.android)
       }
     }
-    val androidTest by getting
+    val androidTest by getting {
+      dependsOn(commonTest)
+
+      dependencies {
+        implementation(kotlin("test-junit"))
+      }
+    }
 
     val nonAndroidMain by creating {
       dependsOn(commonMain)
