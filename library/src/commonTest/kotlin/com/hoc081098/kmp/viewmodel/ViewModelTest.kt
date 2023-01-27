@@ -9,7 +9,10 @@ import kotlin.test.assertNotNull
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainCoroutineDispatcher
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.count
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.resetMain
@@ -17,7 +20,18 @@ import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 
 class DemoViewModel : ViewModel() {
+  private val calls = Channel<Unit>(Channel.UNLIMITED)
   val scope get() = super.viewModelScope
+
+  override fun onCleared() {
+    super.onCleared()
+    calls.trySend(Unit).getOrThrow()
+  }
+
+  suspend fun onClearedCount(): Int {
+    calls.close()
+    return calls.receiveAsFlow().count()
+  }
 }
 
 class ViewModelTest {
@@ -49,7 +63,7 @@ class ViewModelTest {
   fun scopeMustHaveAMainDispatcher() {
     val vm = DemoViewModel()
     assertIs<MainCoroutineDispatcher>(
-      vm.scope.coroutineContext[ContinuationInterceptor]
+      vm.scope.coroutineContext[ContinuationInterceptor],
     )
   }
 }

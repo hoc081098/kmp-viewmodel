@@ -21,8 +21,7 @@ object deps {
     const val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
   }
 
-  object test {
-  }
+  object test
 }
 
 kotlin {
