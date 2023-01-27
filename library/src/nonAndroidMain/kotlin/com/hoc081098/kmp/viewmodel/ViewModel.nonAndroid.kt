@@ -19,7 +19,7 @@ public actual abstract class ViewModel public actual constructor() {
   }
 
   protected actual val viewModelScope: CoroutineScope by coroutineScopeLazy
-  protected actual open fun onCleared() {}
+  protected actual open fun onCleared(): Unit = Unit
 
   /**
    * When using it on non Android platforms (eg. `iOS`, `macOS`, ...) you'll want to make sure that
@@ -28,7 +28,7 @@ public actual abstract class ViewModel public actual constructor() {
    * This method is thread-safe, ie. it can be called from any thread.
    */
   @Suppress("unused") // Called by platform code
-  public final fun clear() {
+  public fun clear() {
     if (isCleared.compareAndSet(expectedValue = false, newValue = true)) {
       if (coroutineScopeLazy.isInitialized()) {
         coroutineScopeLazy.value.cancel()
