@@ -19,6 +19,7 @@ object deps {
         const val version = "1.6.4"
         const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
         const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version"
+        const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
     }
 
     object lifecycle {
@@ -71,8 +72,6 @@ kotlin {
 
     macosX64()
     macosArm64()
-    mingwX64()
-    linuxX64()
 
     tvosX64()
     tvosSimulatorArm64()
@@ -105,6 +104,7 @@ kotlin {
 
             dependencies {
                 implementation(deps.lifecycle.viewModelKtx)
+                implementation(deps.coroutines.android)
             }
         }
         val androidTest by getting
@@ -164,7 +164,7 @@ kotlin {
             "watchosX64"
         )
 
-        (appleTargets + listOf("mingwX64", "linuxX64")).forEach {
+        appleTargets.forEach {
             getByName("${it}Main") {
                 dependsOn(nativeMain)
             }

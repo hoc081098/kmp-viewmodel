@@ -8,15 +8,14 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 
 @Suppress("NOTHING_TO_INLINE")
-private inline val viewModelScopeDispatcher: CoroutineDispatcher
-  get() = runCatching { Dispatchers.Main.immediate }
-    .recoverCatching { Dispatchers.Main }
-    .getOrDefault(Dispatchers.Default)
+private inline fun viewModelScopeDispatcher(): CoroutineDispatcher =
+  runCatching { Dispatchers.Main.immediate }
+    .getOrDefault(Dispatchers.Main)
 
 public actual abstract class ViewModel public actual constructor() {
   private val isCleared = AtomicBoolean(false)
   private val coroutineScopeLazy = lazy {
-    CoroutineScope(SupervisorJob() + viewModelScopeDispatcher)
+    CoroutineScope(SupervisorJob() + viewModelScopeDispatcher())
   }
 
   protected actual val viewModelScope: CoroutineScope by coroutineScopeLazy
