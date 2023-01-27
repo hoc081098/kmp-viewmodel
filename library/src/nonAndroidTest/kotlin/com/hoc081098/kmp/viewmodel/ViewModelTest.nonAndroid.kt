@@ -1,7 +1,7 @@
 package com.hoc081098.kmp.viewmodel
 
-import kotlinx.coroutines.launch
 import kotlin.test.Test
+import kotlinx.coroutines.launch
 
 class DemoViewModel : ViewModel() {
   val scope get() = super.viewModelScope
