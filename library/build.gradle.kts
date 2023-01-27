@@ -173,6 +173,12 @@ kotlin {
       }
     }
   }
+
+  sourceSets.matching { it.name.endsWith("Test") }.all {
+    languageSettings {
+      optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
+    }
+  }
 }
 
 android {

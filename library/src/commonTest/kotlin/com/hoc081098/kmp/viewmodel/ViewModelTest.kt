@@ -40,13 +40,13 @@ class ViewModelTest {
   }
 
   @Test
-  fun scopeMustHasAJob() {
+  fun scopeMustHaveAJob() {
     val vm = DemoViewModel()
     assertNotNull(vm.scope.coroutineContext[Job])
   }
 
   @Test
-  fun scopeMustHasAMainDispatcher() {
+  fun scopeMustHaveAMainDispatcher() {
     val vm = DemoViewModel()
     assertIs<MainCoroutineDispatcher>(
       vm.scope.coroutineContext[ContinuationInterceptor]
