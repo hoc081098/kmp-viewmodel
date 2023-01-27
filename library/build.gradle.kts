@@ -8,12 +8,6 @@ plugins {
 group = "io.github.hoc081098"
 version = "1.0-SNAPSHOT"
 
-repositories {
-    gradlePluginPortal()
-    google()
-    mavenCentral()
-}
-
 object deps {
     object coroutines {
         const val version = "1.6.4"
@@ -33,6 +27,8 @@ object deps {
 }
 
 kotlin {
+    explicitApi()
+
     android()
 
     jvm {
