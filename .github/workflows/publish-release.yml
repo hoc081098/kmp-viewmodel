@@ -32,7 +32,7 @@ jobs:
     if: ${{ github.repository == 'hoc081098/kmp-viewmodel' }}
     strategy:
       matrix:
-        os: [ macos-latest ]
+        os: [ macos-11 ]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
