@@ -4,6 +4,7 @@ import io.gitlab.arturbosch.detekt.DetektPlugin
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension
 import kotlinx.kover.KoverPlugin
 import kotlinx.kover.api.KoverMergedConfig
+import kotlinx.validation.BinaryCompatibilityValidatorPlugin
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
 import org.jetbrains.dokka.gradle.DokkaPlugin
@@ -16,6 +17,7 @@ plugins {
   id("org.jetbrains.kotlinx.kover") version "0.6.1" apply false
   id("com.vanniktech.maven.publish") version "0.24.0" apply false
   id("org.jetbrains.dokka") version "1.7.20"
+  id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.12.1" apply false
 }
 
 val ktlintVersion = "0.48.2"
@@ -30,6 +32,7 @@ subprojects {
   }
 
   apply<DokkaPlugin>()
+  apply<BinaryCompatibilityValidatorPlugin>()
 }
 
 allprojects {

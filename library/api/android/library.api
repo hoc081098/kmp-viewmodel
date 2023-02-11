@@ -1,0 +1,6 @@
+public abstract class com/hoc081098/kmp/viewmodel/ViewModel : androidx/lifecycle/ViewModel {
+	public fun <init> ()V
+	protected final fun getViewModelScope ()Lkotlinx/coroutines/CoroutineScope;
+	protected fun onCleared ()V
+}
+

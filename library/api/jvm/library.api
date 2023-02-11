@@ -1,0 +1,7 @@
+public abstract class com/hoc081098/kmp/viewmodel/ViewModel {
+	public fun <init> ()V
+	public final fun clear ()V
+	protected final fun getViewModelScope ()Lkotlinx/coroutines/CoroutineScope;
+	protected fun onCleared ()V
+}
+
