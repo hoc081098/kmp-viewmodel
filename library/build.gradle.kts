@@ -8,9 +8,6 @@ plugins {
   id("com.vanniktech.maven.publish")
 }
 
-group = "io.github.hoc081098"
-version = "1.0-SNAPSHOT"
-
 object deps {
   object coroutines {
     const val version = "1.6.4"
