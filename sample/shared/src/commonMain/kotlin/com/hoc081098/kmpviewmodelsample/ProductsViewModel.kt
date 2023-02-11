@@ -47,14 +47,16 @@ private fun interface Reducer {
 class ProductsViewModel(
   private val getProducts: GetProducts,
 ) : ViewModel(
-  Closeable { Napier.d("Closable 1 ...") },
-  Closeable { Napier.d("Closable 2 ...") },
+  Closeable { Napier.d("[DEMO] Closable 1 ...") },
+  Closeable { Napier.d("[DEMO] Closable 2 ...") },
 ) {
   private val _action = MutableSharedFlow<ProductsAction>(Int.MAX_VALUE)
 
   val stateFlow: StateFlow<ProductsState>
 
   init {
+    addCloseable { Napier.d("[DEMO] Closable 3 ...") }
+
     stateFlow = merge(
       _action
         .filterIsInstance<ProductsAction.Load>()
