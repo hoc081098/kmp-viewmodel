@@ -15,7 +15,7 @@ private inline fun viewModelScopeDispatcher(): CoroutineDispatcher =
 
 public actual abstract class ViewModel : Lockable {
   private val isCleared = AtomicBoolean(false)
-  private val closables: MutableSet<Closeable>
+  private val closeables: MutableSet<Closeable>
 
   private val coroutineScopeLazy = lazy {
     check(!isCleared.value) { "Cannot access viewModelScope on a cleared ViewModel" }
@@ -24,11 +24,11 @@ public actual abstract class ViewModel : Lockable {
   protected actual val viewModelScope: CoroutineScope by coroutineScopeLazy
 
   public actual constructor() : super() {
-    closables = linkedSetOf()
+    closeables = linkedSetOf()
   }
 
   public actual constructor(vararg closeables: Closeable) : super() {
-    closables = linkedSetOf<Closeable>().apply { addAll(closeables) }
+    this.closeables = linkedSetOf<Closeable>().apply { addAll(closeables) }
   }
 
   protected actual open fun onCleared(): Unit = Unit
@@ -36,7 +36,7 @@ public actual abstract class ViewModel : Lockable {
   public actual fun addCloseable(closeable: Closeable) {
     synchronized(this) {
       check(!isCleared.value) { "Cannot access viewModelScope on a cleared ViewModel" }
-      closables += closeable
+      closeables += closeable
     }
   }
 
@@ -53,8 +53,8 @@ public actual abstract class ViewModel : Lockable {
         coroutineScopeLazy.value.cancel()
       }
 
-      closables.forEach { it.close() }
-      closables.clear()
+      closeables.forEach { it.close() }
+      closeables.clear()
 
       onCleared()
     }
