@@ -4,13 +4,14 @@ import io.gitlab.arturbosch.detekt.DetektPlugin
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension
 import kotlinx.kover.KoverPlugin
 import kotlinx.kover.api.KoverMergedConfig
-import kotlinx.validation.BinaryCompatibilityValidatorPlugin
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
-import org.jetbrains.dokka.gradle.DokkaPlugin
 
 plugins {
   kotlin("multiplatform") version "1.7.21" apply false
+  kotlin("android") version "1.7.21" apply false
+  kotlin("plugin.serialization") version "1.7.21" apply false
+  id("com.android.application") version "7.3.0" apply false
   id("com.android.library") version "7.3.0" apply false
   id("com.diffplug.gradle.spotless") version "6.14.0" apply false
   id("io.gitlab.arturbosch.detekt") version "1.22.0" apply false
@@ -30,9 +31,6 @@ subprojects {
     buildUponDefaultConfig = true
     allRules = true
   }
-
-  apply<DokkaPlugin>()
-  apply<BinaryCompatibilityValidatorPlugin>()
 }
 
 allprojects {
