@@ -7,6 +7,7 @@ import kotlinx.coroutines.CoroutineScope
 public actual abstract class ViewModel : ViewModel {
   public actual constructor() : super()
 
+  @Suppress("SpreadOperator")
   public actual constructor(vararg closeables: Closeable) : super(*closeables)
 
   protected actual val viewModelScope: CoroutineScope get() = androidXViewModelScope

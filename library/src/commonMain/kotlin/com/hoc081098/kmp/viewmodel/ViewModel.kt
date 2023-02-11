@@ -17,6 +17,7 @@ public expect abstract class ViewModel {
    * Construct a new ViewModel instance.
    * Any [Closeable] objects provided here will be closed directly before [onCleared] is called.
    */
+  @Suppress("UnusedPrivateMember")
   public constructor(vararg closeables: Closeable)
 
   /**
