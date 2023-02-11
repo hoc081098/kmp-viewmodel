@@ -6,6 +6,7 @@ import kotlinx.kover.KoverPlugin
 import kotlinx.kover.api.KoverMergedConfig
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
+import org.jetbrains.dokka.gradle.DokkaPlugin
 
 plugins {
   kotlin("multiplatform") version "1.7.21" apply false
@@ -14,7 +15,7 @@ plugins {
   id("io.gitlab.arturbosch.detekt") version "1.22.0" apply false
   id("org.jetbrains.kotlinx.kover") version "0.6.1" apply false
   id("com.vanniktech.maven.publish") version "0.24.0" apply false
-  id("org.jetbrains.dokka") version "1.7.20" apply false
+  id("org.jetbrains.dokka") version "1.7.20"
 }
 
 val ktlintVersion = "0.48.2"
@@ -27,6 +28,8 @@ subprojects {
     buildUponDefaultConfig = true
     allRules = true
   }
+
+  apply<DokkaPlugin>()
 }
 
 allprojects {
