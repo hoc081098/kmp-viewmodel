@@ -4,6 +4,8 @@ import io.gitlab.arturbosch.detekt.DetektPlugin
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension
 import kotlinx.kover.KoverPlugin
 import kotlinx.kover.api.KoverMergedConfig
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 plugins {
   kotlin("multiplatform") version "1.7.21" apply false
@@ -61,6 +63,23 @@ allprojects {
       trimTrailingWhitespace()
       indentWithSpaces()
       endWithNewline()
+    }
+  }
+
+  tasks.withType<AbstractTestTask> {
+    testLogging {
+      showExceptions = true
+      showCauses = true
+      showStackTraces = true
+      showStandardStreams = true
+      events = setOf(
+        TestLogEvent.PASSED,
+        TestLogEvent.FAILED,
+        TestLogEvent.SKIPPED,
+        TestLogEvent.STANDARD_OUT,
+        TestLogEvent.STANDARD_ERROR,
+      )
+      exceptionFormat = TestExceptionFormat.FULL
     }
   }
 }
