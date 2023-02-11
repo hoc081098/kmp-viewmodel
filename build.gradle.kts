@@ -13,6 +13,8 @@ plugins {
   id("com.diffplug.gradle.spotless") version "6.14.0" apply false
   id("io.gitlab.arturbosch.detekt") version "1.22.0" apply false
   id("org.jetbrains.kotlinx.kover") version "0.6.1" apply false
+  id("com.vanniktech.maven.publish") version "0.24.0" apply false
+  id("org.jetbrains.dokka") version "1.7.20" apply false
 }
 
 val ktlintVersion = "0.48.2"

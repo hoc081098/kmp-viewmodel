@@ -1,8 +1,12 @@
 @file:Suppress("ClassName")
 
+import java.net.URL
+
 plugins {
   kotlin("multiplatform")
   id("com.android.library")
+  id("com.vanniktech.maven.publish")
+  id("org.jetbrains.dokka")
 }
 
 group = "io.github.hoc081098"
@@ -27,7 +31,9 @@ object deps {
 kotlin {
   explicitApi()
 
-  android()
+  android {
+    publishAllLibraryVariants()
+  }
 
   jvm {
     compilations.all {
@@ -174,5 +180,33 @@ android {
   defaultConfig {
     minSdk = 21
     targetSdk = 33
+  }
+
+  // still needed for Android projects despite toolchain
+  compileOptions {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+  }
+}
+
+mavenPublishing {
+  publishToMavenCentral(com.vanniktech.maven.publish.SonatypeHost.S01, automaticRelease = true)
+  signAllPublications()
+}
+
+
+tasks.withType<org.jetbrains.dokka.gradle.DokkaTask>().configureEach {
+  dokkaSourceSets {
+    configureEach {
+      externalDocumentationLink {
+        url.set(URL("https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/"))
+      }
+
+      sourceLink {
+        localDirectory.set(projectDir.resolve("src"))
+        remoteUrl.set(URL("https://github.com/hoc081098/kmp-viewmodel/tree/master/library/src"))
+        remoteLineSuffix.set("#L")
+      }
+    }
   }
 }
