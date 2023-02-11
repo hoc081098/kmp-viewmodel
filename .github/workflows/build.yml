@@ -78,8 +78,7 @@ jobs:
 
   publish:
     needs: [ build ]
-#    if: ${{ github.ref == 'refs/heads/master' && github.repository == 'hoc081098/kmp-viewmodel' }}
-    if: ${{ false }}
+    if: ${{ github.ref == 'refs/heads/master' && github.repository == 'hoc081098/kmp-viewmodel' }}
     strategy:
       matrix:
         os: [ macos-11 ]
