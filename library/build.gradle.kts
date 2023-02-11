@@ -190,7 +190,6 @@ mavenPublishing {
   signAllPublications()
 }
 
-
 tasks.withType<org.jetbrains.dokka.gradle.DokkaTask>().configureEach {
   dokkaSourceSets {
     configureEach {
