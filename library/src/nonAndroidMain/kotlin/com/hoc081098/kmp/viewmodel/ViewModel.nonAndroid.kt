@@ -1,6 +1,7 @@
 package com.hoc081098.kmp.viewmodel
 
 import com.hoc081098.kmp.viewmodel.internal.AtomicBoolean
+import com.hoc081098.kmp.viewmodel.internal.synchronized
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -12,14 +13,32 @@ private inline fun viewModelScopeDispatcher(): CoroutineDispatcher =
   runCatching { Dispatchers.Main.immediate }
     .getOrDefault(Dispatchers.Main)
 
-public actual abstract class ViewModel public actual constructor() {
+public actual abstract class ViewModel : Lockable {
   private val isCleared = AtomicBoolean(false)
+  private val closables: MutableSet<Closeable>
+
   private val coroutineScopeLazy = lazy {
+    check(!isCleared.value) { "Cannot access viewModelScope on a cleared ViewModel" }
     CoroutineScope(SupervisorJob() + viewModelScopeDispatcher())
   }
-
   protected actual val viewModelScope: CoroutineScope by coroutineScopeLazy
+
+  public actual constructor() : super() {
+    closables = linkedSetOf()
+  }
+
+  public actual constructor(vararg closeables: Closeable) : super() {
+    closables = linkedSetOf<Closeable>().apply { addAll(closeables) }
+  }
+
   protected actual open fun onCleared(): Unit = Unit
+
+  public actual fun addCloseable(closeable: Closeable) {
+    synchronized(this) {
+      check(!isCleared.value) { "Cannot access viewModelScope on a cleared ViewModel" }
+      closables += closeable
+    }
+  }
 
   /**
    * When using it on non Android platforms (eg. `iOS`, `macOS`, ...) you'll want to make sure that
@@ -28,11 +47,15 @@ public actual abstract class ViewModel public actual constructor() {
    * This method is thread-safe, ie. it can be called from any thread.
    */
   @Suppress("unused") // Called by platform code
-  public fun clear() {
+  public fun clear(): Unit = synchronized(this) {
     if (isCleared.compareAndSet(expectedValue = false, newValue = true)) {
       if (coroutineScopeLazy.isInitialized()) {
         coroutineScopeLazy.value.cancel()
       }
+
+      closables.forEach { it.close() }
+      closables.clear()
+
       onCleared()
     }
   }

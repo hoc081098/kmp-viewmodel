@@ -9,6 +9,10 @@ plugins {
 }
 
 object deps {
+  object stately {
+    const val concurrency = "co.touchlab:stately-concurrency:1.2.0"
+  }
+
   object coroutines {
     const val version = "1.6.4"
     const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
@@ -129,6 +133,9 @@ kotlin {
 
     val nativeMain by creating {
       dependsOn(nonAndroidMain)
+      dependencies {
+        implementation(deps.stately.concurrency)
+      }
     }
     val nativeTest by creating {
       dependsOn(nonAndroidTest)

@@ -7,7 +7,18 @@ import kotlinx.coroutines.CoroutineScope
  * It exposes state to the UI and encapsulates related business logic.
  * Its principal advantage is that it caches state and persists it through configuration changes (on Android).
  */
-public expect abstract class ViewModel() {
+public expect abstract class ViewModel {
+  /**
+   * Construct a new ViewModel instance.
+   */
+  public constructor()
+
+  /**
+   * Construct a new ViewModel instance.
+   * Any [Closeable] objects provided here will be closed directly before [onCleared] is called.
+   */
+  public constructor(vararg closeables: Closeable)
+
   /**
    * [CoroutineScope] tied to this [ViewModel].
    * This scope will be canceled when ViewModel will be cleared, i.e [ViewModel.onCleared] is called.
@@ -38,4 +49,9 @@ public expect abstract class ViewModel() {
    * - You should not call this method manually.
    */
   protected open fun onCleared()
+
+  /**
+   * Add a new [Closeable] object that will be closed directly before [onCleared] is called.
+   */
+  public fun addCloseable(closeable: Closeable)
 }
