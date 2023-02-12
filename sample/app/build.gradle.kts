@@ -40,13 +40,18 @@ android {
 
 dependencies {
   implementation(project(":sample:shared"))
-  implementation("androidx.compose.ui:ui:1.3.1")
-  implementation("androidx.compose.ui:ui-tooling:1.3.1")
-  implementation("androidx.compose.ui:ui-tooling-preview:1.3.1")
-  implementation("androidx.compose.foundation:foundation:1.3.1")
-  implementation("androidx.compose.material:material:1.3.1")
+  implementation(platform("androidx.compose:compose-bom:2023.01.00"))
+
+  implementation("androidx.compose.ui:ui")
+  implementation("androidx.compose.ui:ui-tooling")
+  implementation("androidx.compose.ui:ui-tooling-preview")
+  implementation("androidx.compose.foundation:foundation")
+  implementation("androidx.compose.material:material")
+  implementation("androidx.compose.runtime:runtime")
   implementation("androidx.activity:activity-compose:1.6.1")
 
   implementation("io.insert-koin:koin-androidx-compose:3.2.0")
   implementation("io.coil-kt:coil-compose:2.2.2")
+
+  implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5")
 }
