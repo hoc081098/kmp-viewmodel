@@ -42,7 +42,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -52,12 +51,9 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImagePainter
 import coil.compose.SubcomposeAsyncImage
 import coil.compose.SubcomposeAsyncImageContent
-import com.hoc081098.flowext.select
 import com.hoc081098.kmpviewmodelsample.ProductItem
 import com.hoc081098.kmpviewmodelsample.ProductsAction
 import com.hoc081098.kmpviewmodelsample.ProductsViewModel
-import kotlinx.collections.immutable.toImmutableList
-import kotlinx.coroutines.flow.map
 import org.koin.androidx.compose.koinViewModel
 
 class MainActivity : ComponentActivity() {
@@ -112,21 +108,25 @@ fun ProductsContent(
 
   val state by viewModel.stateFlow.collectAsState()
 
-
   if (state.isLoading) {
-    return LoadingIndicator(modifier = modifier)
+    LoadingIndicator(modifier = modifier)
+    return
   }
 
   state.error?.let { error ->
-    return ErrorMessageAndRetryButton(
+    ErrorMessageAndRetryButton(
       modifier = modifier,
       onRetry = { viewModel.dispatch(ProductsAction.Load) },
       errorMessage = error.message ?: "Unknown error",
     )
+    return
   }
 
-  val products =state.products
-  products.ifEmpty { return EmptyProducts(modifier = modifier) }
+  val products = state.products
+  products.ifEmpty {
+    EmptyProducts(modifier = modifier)
+    return
+  }
   ProductItemsList(
     modifier = modifier,
     products = products,
@@ -159,7 +159,7 @@ private fun LoadingIndicator(modifier: Modifier) {
 private fun ErrorMessageAndRetryButton(
   errorMessage: String,
   onRetry: () -> Unit,
-  modifier: Modifier = Modifier
+  modifier: Modifier = Modifier,
 ) {
   Box(
     modifier = modifier.fillMaxSize(),
@@ -168,6 +168,7 @@ private fun ErrorMessageAndRetryButton(
     Column(
       modifier = Modifier.fillMaxWidth(),
       verticalArrangement = Arrangement.Center,
+      horizontalAlignment = Alignment.CenterHorizontally,
     ) {
       Text(text = errorMessage)
 
@@ -189,13 +190,13 @@ private fun ProductItemsList(
 ) {
   LazyColumn(
     modifier = modifier
-      .fillMaxSize(),
-//      .pullRefresh(
-//        state = rememberPullRefreshState(
-//          refreshing = isRefreshing,
-//          onRefresh = onRefresh
-//        )
-//      ),
+      .fillMaxSize()
+      .pullRefresh(
+        state = rememberPullRefreshState(
+          refreshing = isRefreshing,
+          onRefresh = onRefresh,
+        ),
+      ),
     verticalArrangement = Arrangement.spacedBy(16.dp),
     contentPadding = PaddingValues(16.dp),
   ) {

@@ -15,7 +15,8 @@ class GetProducts {
     delay(2_000)
 
     if (i++ % 2 == 0) {
-      throw Exception("Fake error")
+      @Suppress("TooGenericExceptionThrown")
+      throw RuntimeException("Fake error")
     }
 
     return Json.decodeFromString<List<ProductItem>>(FakeProductsJson).shuffled()

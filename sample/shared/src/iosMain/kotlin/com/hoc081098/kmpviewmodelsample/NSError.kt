@@ -25,7 +25,7 @@ fun Throwable.asNSError(): NSError {
   return NSError.errorWithDomain(
     domain = "KotlinException",
     code = 0.convert(),
-    userInfo = userInfo
+    userInfo = userInfo,
   )
 }
 
@@ -57,7 +57,7 @@ fun NSError.asThrowable(): Throwable {
 
     ObjCErrorException(
       message = localizedDescription,
-      error = this
+      error = this,
     )
   }
 }

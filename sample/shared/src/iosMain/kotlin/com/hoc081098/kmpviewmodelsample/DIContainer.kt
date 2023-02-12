@@ -19,7 +19,7 @@ object DIContainer : KoinComponent {
   fun get(
     type: ObjCObject,
     qualifier: Qualifier? = null,
-    parameters: ParametersDefinition? = null
+    parameters: ParametersDefinition? = null,
   ): Any? = getKoin().get(
     clazz = when (type) {
       is ObjCProtocol -> getOriginalKotlinClass(type)!!

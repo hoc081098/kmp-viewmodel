@@ -115,7 +115,7 @@ class ProductsViewModel(
                 isLoading = false,
                 error = error,
               )
-            }
+            },
           )
         }
         .startWith {
