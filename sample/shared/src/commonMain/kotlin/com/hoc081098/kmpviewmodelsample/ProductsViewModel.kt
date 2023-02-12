@@ -92,8 +92,8 @@ class ProductsViewModel(
             )
           }
         }
-        .catch { Reducer { it.copy(isRefreshing = false) } }
-        .startWith { Reducer { it.copy(isRefreshing = false) } }
+        .catch { emit(Reducer { it.copy(isRefreshing = false) }) }
+        .startWith { Reducer { it.copy(isRefreshing = true) } }
     }
 
   private fun Flow<ProductsAction.Load>.loadFlow(): Flow<Reducer> =
@@ -109,12 +109,14 @@ class ProductsViewModel(
           }
         }
         .catch { error ->
-          Reducer {
-            it.copy(
-              isLoading = false,
-              error = error,
-            )
-          }
+          emit(
+            Reducer {
+              it.copy(
+                isLoading = false,
+                error = error,
+              )
+            }
+          )
         }
         .startWith {
           Reducer {

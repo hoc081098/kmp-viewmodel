@@ -25,6 +25,9 @@ kotlin {
     podfile = project.file("../iosApp/Podfile")
     framework {
       baseName = "shared"
+      export(project(":library"))
+      export("io.github.aakira:napier:2.6.1")
+      export("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
     }
   }
 
