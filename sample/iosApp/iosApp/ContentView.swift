@@ -8,52 +8,48 @@ struct ContentView: View {
   var body: some View {
     let state = self.viewModel.state
 
-    return NavigationView {
-      VStack {
-        ZStack(alignment: .center) {
-          if state.isLoading {
-            ProgressView("Loading...")
-          }
-          else if let error = state.error {
-            VStack(alignment: .center) {
-              Text("Error: \(error.message ?? "unknown")")
-                .font(.title3)
-                .multilineTextAlignment(.center)
-                .padding(10)
+    return VStack {
+      ZStack(alignment: .center) {
+        if state.isLoading {
+          ProgressView("Loading...")
+        }
+        else if let error = state.error {
+          VStack(alignment: .center) {
+            Text("Error: \(error.message ?? "unknown")")
+              .font(.title3)
+              .multilineTextAlignment(.center)
+              .padding(10)
 
-              Button("Retry") { self.viewModel.dispatch(action: ProductsActionLoad()) }
-            }.frame(maxWidth: .infinity)
-          }
-          else if state.products.isEmpty {
-            VStack(alignment: .center) {
-              Text("Products is empty")
-                .font(.title3)
-                .multilineTextAlignment(.center)
-                .padding(10)
-            }.frame(maxWidth: .infinity)
-          } else {
-            List {
-              ForEach(state.products, id: \.id) { item in
-                ProductItemRow(item: item)
-              }
-            }.refreshable {
-              self.viewModel.dispatch(action: ProductsActionRefresh())
-
-              try? await Task.sleep(nanoseconds: 1_000_000) // 1ms
-
-              // await the first state where isRefreshing is false.
-              let _: ProductsState? = await self.viewModel
-                .$state
-                .first(where: { !$0.isRefreshing })
-                .values
-                .first(where: { _ in true })
+            Button("Retry") { self.viewModel.dispatch(action: ProductsActionLoad()) }
+          }.frame(maxWidth: .infinity)
+        }
+        else if state.products.isEmpty {
+          VStack(alignment: .center) {
+            Text("Products is empty")
+              .font(.title3)
+              .multilineTextAlignment(.center)
+              .padding(10)
+          }.frame(maxWidth: .infinity)
+        } else {
+          List {
+            ForEach(state.products, id: \.id) { item in
+              ProductItemRow(item: item)
             }
+          }.refreshable {
+            self.viewModel.dispatch(action: ProductsActionRefresh())
+
+            try? await Task.sleep(nanoseconds: 1_000_000) // 1ms
+
+            // await the first state where isRefreshing is false.
+            let _: ProductsState? = await self.viewModel
+              .$state
+              .first(where: { !$0.isRefreshing })
+              .values
+              .first(where: { _ in true })
           }
-        }.frame(maxHeight: .infinity)
-      }.navigationTitle("KMP ViewModel sample")
-    }
-      .navigationViewStyle(.stack)
-      .onAppear { self.viewModel.dispatch(action: ProductsActionLoad()) }
+        }
+      }.frame(maxHeight: .infinity)
+    }.onAppear { self.viewModel.dispatch(action: ProductsActionLoad()) }
   }
 }
 
