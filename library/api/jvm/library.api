@@ -3,7 +3,7 @@ public abstract class com/hoc081098/kmp/viewmodel/ViewModel {
 	public fun <init> ([Ljava/io/Closeable;)V
 	public final fun addCloseable (Ljava/io/Closeable;)V
 	public final fun clear ()V
-	protected final fun getViewModelScope ()Lkotlinx/coroutines/CoroutineScope;
+	public final fun getViewModelScope ()Lkotlinx/coroutines/CoroutineScope;
 	protected fun onCleared ()V
 }
 
