@@ -39,7 +39,7 @@ kotlin {
         api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
         implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
         api("io.github.hoc081098:FlowExt:0.5.0")
-        api("io.insert-koin:koin-core:3.2.0")
+        api("io.insert-koin:koin-core:3.3.3")
       }
     }
     val commonTest by getting {
@@ -49,7 +49,7 @@ kotlin {
     }
     val androidMain by getting {
       dependencies {
-        api("io.insert-koin:koin-android:3.2.0")
+        api("io.insert-koin:koin-android:3.3.3")
       }
     }
     val androidTest by getting

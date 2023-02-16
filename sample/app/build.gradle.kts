@@ -53,7 +53,7 @@ dependencies {
   implementation("androidx.compose.runtime:runtime")
   implementation("androidx.activity:activity-compose:1.6.1")
 
-  implementation("io.insert-koin:koin-androidx-compose:3.2.0")
+  implementation("io.insert-koin:koin-androidx-compose:3.4.2")
   implementation("io.coil-kt:coil-compose:2.2.2")
 
   implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5")
