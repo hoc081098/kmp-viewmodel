@@ -83,6 +83,7 @@ internal val Teal40 = Color(0xFF3A656F)
 internal val Teal80 = Color(0xFFA2CED9)
 internal val Teal90 = Color(0xFFBEEAF6)
 
+@Suppress("LongMethod")
 @Composable
 fun MyApplicationTheme(
   darkTheme: Boolean = isSystemInDarkTheme(),
