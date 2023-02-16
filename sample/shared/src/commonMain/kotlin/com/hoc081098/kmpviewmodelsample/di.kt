@@ -11,13 +11,11 @@ private val commonModule = module {
 
 internal expect val platformModule: Module
 
-internal expect fun setupNapier()
+expect fun setupNapier()
 
 fun startKoinCommon(
   appDeclaration: KoinAppDeclaration = {},
 ) {
-  setupNapier()
-
   startKoin {
     appDeclaration()
     modules(commonModule, platformModule)

@@ -10,6 +10,6 @@ internal actual val platformModule: Module = module {
   factoryOf(::ProductsViewModel)
 }
 
-internal actual fun setupNapier() {
+actual fun setupNapier() {
   Napier.base(DebugAntilog())
 }

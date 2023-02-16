@@ -10,7 +10,7 @@ internal actual val platformModule: Module = module {
   viewModelOf(::ProductsViewModel)
 }
 
-internal actual fun setupNapier() {
+actual fun setupNapier() {
   if (BuildConfig.DEBUG) {
     Napier.base(DebugAntilog())
   }
