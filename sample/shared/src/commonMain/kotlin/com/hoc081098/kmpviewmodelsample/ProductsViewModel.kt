@@ -6,6 +6,7 @@ import com.hoc081098.flowext.startWith
 import com.hoc081098.kmp.viewmodel.Closeable
 import com.hoc081098.kmp.viewmodel.ViewModel
 import io.github.aakira.napier.Napier
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -16,6 +17,7 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.scan
 import kotlinx.coroutines.flow.stateIn
 
@@ -35,6 +37,13 @@ data class ProductsState(
   }
 }
 
+sealed interface ProductSingleEvent {
+  sealed interface Refresh : ProductSingleEvent {
+    object Success : Refresh
+    data class Failure(val error: Throwable) : Refresh
+  }
+}
+
 sealed interface ProductsAction {
   object Load : ProductsAction
   object Refresh : ProductsAction
@@ -50,18 +59,21 @@ class ProductsViewModel(
   Closeable { Napier.d("[DEMO] Closable 1 ...") },
   Closeable { Napier.d("[DEMO] Closable 2 ...") },
 ) {
-  private val _action = MutableSharedFlow<ProductsAction>(Int.MAX_VALUE)
+  private val _eventChannel = Channel<ProductSingleEvent>(Int.MAX_VALUE)
+  private val _actionFlow = MutableSharedFlow<ProductsAction>(Int.MAX_VALUE)
 
   val stateFlow: StateFlow<ProductsState>
+  val eventFlow: Flow<ProductSingleEvent> = _eventChannel.receiveAsFlow()
 
   init {
     addCloseable { Napier.d("[DEMO] Closable 3 ...") }
+    addCloseable(_eventChannel::close)
 
     stateFlow = merge(
-      _action
+      _actionFlow
         .filterIsInstance<ProductsAction.Load>()
         .loadFlow(),
-      _action
+      _actionFlow
         .filterIsInstance<ProductsAction.Refresh>()
         .refreshFlow(),
     )
@@ -84,6 +96,8 @@ class ProductsViewModel(
     flatMapFirst {
       flowFromSuspend { getProducts() }
         .map { products ->
+          _eventChannel.trySend(ProductSingleEvent.Refresh.Success)
+
           Reducer {
             it.copy(
               products = products,
@@ -92,7 +106,10 @@ class ProductsViewModel(
             )
           }
         }
-        .catch { emit(Reducer { it.copy(isRefreshing = false) }) }
+        .catch {
+          _eventChannel.trySend(ProductSingleEvent.Refresh.Failure(it))
+          emit(Reducer { it.copy(isRefreshing = false) })
+        }
         .startWith { Reducer { it.copy(isRefreshing = true) } }
     }
 
@@ -130,6 +147,6 @@ class ProductsViewModel(
   //endregion
 
   fun dispatch(action: ProductsAction) {
-    _action.tryEmit(action)
+    _actionFlow.tryEmit(action)
   }
 }
