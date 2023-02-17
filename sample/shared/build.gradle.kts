@@ -61,6 +61,9 @@ kotlin {
       iosX64Main.dependsOn(this)
       iosArm64Main.dependsOn(this)
       iosSimulatorArm64Main.dependsOn(this)
+
+      dependencies {
+      }
     }
     val iosX64Test by getting
     val iosArm64Test by getting
@@ -83,5 +86,23 @@ android {
   }
   buildFeatures {
     buildConfig = true
+  }
+}
+
+workaroundForIssueKT51970()
+
+// Workaround for https://youtrack.jetbrains.com/issue/KT-51970
+fun Project.workaroundForIssueKT51970() {
+  afterEvaluate {
+    afterEvaluate {
+      tasks.configureEach {
+        if (
+          name.startsWith("compile") &&
+          name.endsWith("KotlinMetadata")
+        ) {
+          enabled = false
+        }
+      }
+    }
   }
 }

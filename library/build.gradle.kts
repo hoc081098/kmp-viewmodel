@@ -8,6 +8,7 @@ plugins {
   id("com.vanniktech.maven.publish")
   id("org.jetbrains.dokka")
   id("org.jetbrains.kotlinx.binary-compatibility-validator")
+  id("org.jetbrains.kotlinx.kover")
 }
 
 object deps {
@@ -90,8 +91,8 @@ kotlin {
       dependsOn(commonMain)
 
       dependencies {
-        implementation(deps.lifecycle.viewModelKtx)
-        implementation(deps.coroutines.android)
+        api(deps.lifecycle.viewModelKtx)
+        api(deps.coroutines.android)
       }
     }
     val androidTest by getting {
