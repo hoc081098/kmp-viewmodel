@@ -1,15 +1,16 @@
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-  kotlin("multiplatform")
-  kotlin("native.cocoapods")
-  kotlin("plugin.serialization")
-  id("com.android.library")
+  alias(libs.plugins.kotlin.multiplatform)
+  alias(libs.plugins.kotlin.cocoapods)
+  alias(libs.plugins.kotlin.serialization)
+  alias(libs.plugins.android.library)
 }
 
 kotlin {
   android {
     compilations.all {
       kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
       }
     }
   }
@@ -25,9 +26,10 @@ kotlin {
     podfile = project.file("../iosApp/Podfile")
     framework {
       baseName = "shared"
+
       export(project(":library"))
-      export("io.github.aakira:napier:2.6.1")
-      export("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+      export(libs.napier)
+      export(libs.coroutines.core)
     }
   }
 
@@ -35,11 +37,12 @@ kotlin {
     val commonMain by getting {
       dependencies {
         api(project(":library"))
-        api("io.github.aakira:napier:2.6.1")
-        api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
-        implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
-        api("io.github.hoc081098:FlowExt:0.5.0")
-        api("io.insert-koin:koin-core:3.3.3")
+        api(libs.napier)
+        api(libs.coroutines.core)
+
+        implementation(libs.kotlinx.serialization.json)
+        implementation(libs.flowExt)
+        api(libs.koin.core)
       }
     }
     val commonTest by getting {
@@ -49,7 +52,7 @@ kotlin {
     }
     val androidMain by getting {
       dependencies {
-        api("io.insert-koin:koin-android:3.3.3")
+        api(libs.koin.android)
       }
     }
     val androidTest by getting

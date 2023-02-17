@@ -1,0 +1,54 @@
+[versions]
+kotlin = "1.7.21"
+coroutines = "1.6.4"
+kotlinx-serialization-json = "1.4.1"
+
+touchlab-stately = "1.2.2"
+napier = "2.6.1"
+flowExt = "0.5.0"
+koin = "3.3.3"
+
+androidx-lifecycle = "2.5.1"
+android-gradle = "7.3.0"
+
+spotless = "6.14.0"
+detekt = "1.22.0"
+
+kotlinx-kover = "0.6.1"
+dokka = "1.7.20"
+kotlinx-binary-compatibility-validator = "0.12.1"
+
+vanniktech-maven-publish = "0.24.0"
+ktlint = "0.48.2"
+
+[libraries]
+coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
+coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
+
+touchlab-stately-concurrency = { module = "co.touchlab:stately-concurrency", version.ref = "touchlab-stately" }
+napier = { module = "io.github.aakira:napier", version.ref = "napier" }
+flowExt = { module = "io.github.hoc081098:FlowExt", version.ref = "flowExt" }
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+
+androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidx-lifecycle" }
+
+[plugins]
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+
+android-app = { id = "com.android.application", version.ref = "android-gradle" }
+android-library = { id = "com.android.library", version.ref = "android-gradle" }
+
+gradle-spotless = { id = "com.diffplug.gradle.spotless", version.ref = "spotless" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+
+kotlinx-kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kotlinx-kover" }
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
+kotlinx-binary-compatibility-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "kotlinx-binary-compatibility-validator" }
+
+vanniktech-maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "vanniktech-maven-publish" }
