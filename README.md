@@ -4,6 +4,10 @@ Shared ViewModel in Kotlin Multiplatform - A Kotlin Multiplatform library that p
 for UI applications.
 Components are lifecycle-aware on Android.
 
+The ViewModel class is a business logic or screen level state holder.
+It exposes state to the UI and encapsulates related business logic.
+Its principal advantage is that it caches state and persists it through configuration changes (on Android).
+
 [![maven-central](https://img.shields.io/maven-central/v/io.github.hoc081098/kmp-viewmodel)](https://search.maven.org/search?q=g:io.github.hoc081098%20kmp-viewmodel)
 [![codecov](https://codecov.io/gh/hoc081098/kmp-viewmodel/branch/master/graph/badge.svg?token=jBFg12osvP)](https://codecov.io/gh/hoc081098/kmp-viewmodel)
 [![Build and publish snapshot](https://github.com/hoc081098/kmp-viewmodel/actions/workflows/build.yml/badge.svg)](https://github.com/hoc081098/kmp-viewmodel/actions/workflows/build.yml)
