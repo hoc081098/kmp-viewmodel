@@ -154,7 +154,7 @@ public expect abstract class ViewModel {
 
 - `onCleared` is called when the ViewModel is cleared, you can override this method to do some clean
   up work.
-  But prefer to use `addCloseable` method instead of overriding this method.
+  But it is recommended to use the `addCloseable` method instead of overriding `onCleared` method.
 
 ### 3. Create your `ViewModel` in `commonMain` source set.
 
