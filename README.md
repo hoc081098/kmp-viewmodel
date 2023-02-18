@@ -49,7 +49,7 @@ Liked some of my work? Buy me a coffee (or more likely a beer)
 
 #### 1. Add dependency
 
-- Add `mavenCentral()` to `repositories` block in `build.gradle.kts`/`settings.gradle.kts`
+- Add `mavenCentral()` to `repositories` list in `build.gradle.kts`/`settings.gradle.kts`.
 
 ```kotlin
 // settings.gradle.kts
@@ -62,7 +62,7 @@ dependencyResolutionManagement {
 }
 ```
 
-- Add dependency to your `build.gradle.kts` of your module (must use `api`)
+- Add dependency to `build.gradle.kts` of your shared module (must use `api` configuration).
 
 ```kotlin
 kotlin {
@@ -79,11 +79,27 @@ kotlin {
 - Expose `kmp-viewmodel` to `Darwin` native side.
 
 ```kotlin
+// Cocoapods
 kotlin {
   cocoapods {
     [...]
     framework {
-      export("io.github.hoc081098:kmp-viewmodel:0.0.2")
+      baseName = "shared"
+      export("io.github.hoc081098:kmp-viewmodel:0.0.2") // required to expose the classes to iOS.
+    }
+  }
+}
+
+// -- OR --
+
+// Kotlin/Native as an Apple framework – tutorial
+kotlin {
+  ios {
+    binaries {
+      framework {
+        baseName = "shared"
+        export("io.github.hoc081098:kmp-viewmodel:0.0.2") // required to expose the classes to iOS.
+      }
     }
   }
 }
