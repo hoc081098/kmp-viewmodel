@@ -1,0 +1,23 @@
+PODS:
+  - Kingfisher (7.4.0)
+  - shared (1.0)
+
+DEPENDENCIES:
+  - Kingfisher (~> 7.0)
+  - shared (from `../shared`)
+
+SPEC REPOS:
+  trunk:
+    - Kingfisher
+
+EXTERNAL SOURCES:
+  shared:
+    :path: "../shared"
+
+SPEC CHECKSUMS:
+  Kingfisher: 596b207973051aae5e4c54a1c1cb39837ea10d36
+  shared: 590f56c2e6596d2bf475c0e71233e385feb4a13e
+
+PODFILE CHECKSUM: c91647c0c604e240457f8f59715c4a07f175608d
+
+COCOAPODS: 1.11.3

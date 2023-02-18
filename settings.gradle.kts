@@ -17,3 +17,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "kmp-viewmodel"
 include(":library")
+include(":sample:app", ":sample:shared")

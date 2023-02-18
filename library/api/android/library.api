@@ -2,7 +2,7 @@ public abstract class com/hoc081098/kmp/viewmodel/ViewModel : androidx/lifecycle
 	public fun <init> ()V
 	public fun <init> ([Ljava/io/Closeable;)V
 	public fun addCloseable (Ljava/io/Closeable;)V
-	protected final fun getViewModelScope ()Lkotlinx/coroutines/CoroutineScope;
+	public final fun getViewModelScope ()Lkotlinx/coroutines/CoroutineScope;
 	protected fun onCleared ()V
 }
 

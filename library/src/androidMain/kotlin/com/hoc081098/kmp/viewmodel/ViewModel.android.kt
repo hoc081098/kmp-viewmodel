@@ -10,7 +10,7 @@ public actual abstract class ViewModel : ViewModel {
   @Suppress("SpreadOperator")
   public actual constructor(vararg closeables: Closeable) : super(*closeables)
 
-  protected actual val viewModelScope: CoroutineScope get() = androidXViewModelScope
+  public actual val viewModelScope: CoroutineScope get() = androidXViewModelScope
 
   protected actual override fun onCleared(): Unit = super.onCleared()
 

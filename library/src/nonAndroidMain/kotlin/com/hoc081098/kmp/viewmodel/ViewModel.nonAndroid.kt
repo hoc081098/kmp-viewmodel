@@ -21,7 +21,7 @@ public actual abstract class ViewModel : Lockable {
     check(!isCleared.value) { "Cannot access viewModelScope on a cleared ViewModel" }
     CoroutineScope(SupervisorJob() + viewModelScopeDispatcher())
   }
-  protected actual val viewModelScope: CoroutineScope by coroutineScopeLazy
+  public actual val viewModelScope: CoroutineScope by coroutineScopeLazy
 
   public actual constructor() : super() {
     closeables = linkedSetOf()

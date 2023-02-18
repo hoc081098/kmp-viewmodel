@@ -39,7 +39,7 @@ public expect abstract class ViewModel {
    *   (eg. `kotlinx-coroutines-swing`, `kotlinx-coroutines-javafx`, ...).
    * - This scope is created lazily, and can be accessed from any thread (it is thread-safe).
    */
-  protected val viewModelScope: CoroutineScope
+  public val viewModelScope: CoroutineScope
 
   /**
    * This method will be called when this ViewModel is no longer used and will be destroyed.

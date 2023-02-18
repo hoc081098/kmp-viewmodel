@@ -2,30 +2,16 @@
 
 import java.net.URL
 
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-  kotlin("multiplatform")
-  id("com.android.library")
-  id("com.vanniktech.maven.publish")
-}
+  alias(libs.plugins.kotlin.multiplatform)
+  alias(libs.plugins.android.library)
 
-object deps {
-  object stately {
-    const val concurrency = "co.touchlab:stately-concurrency:1.2.0"
-  }
+  alias(libs.plugins.vanniktech.maven.publish)
 
-  object coroutines {
-    const val version = "1.6.4"
-    const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
-    const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version"
-    const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
-  }
-
-  object lifecycle {
-    const val version = "2.5.1"
-    const val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
-  }
-
-  object test
+  alias(libs.plugins.dokka)
+  alias(libs.plugins.kotlinx.binary.compatibility.validator)
+  alias(libs.plugins.kotlinx.kover)
 }
 
 kotlin {
@@ -72,7 +58,7 @@ kotlin {
   sourceSets {
     val commonMain by getting {
       dependencies {
-        api(deps.coroutines.core)
+        api(libs.coroutines.core)
       }
     }
     val commonTest by getting {
@@ -80,7 +66,7 @@ kotlin {
         implementation(kotlin("test-common"))
         implementation(kotlin("test-annotations-common"))
 
-        implementation(deps.coroutines.test)
+        implementation(libs.coroutines.test)
       }
     }
 
@@ -88,8 +74,8 @@ kotlin {
       dependsOn(commonMain)
 
       dependencies {
-        implementation(deps.lifecycle.viewModelKtx)
-        implementation(deps.coroutines.android)
+        api(libs.androidx.lifecycle.viewmodel)
+        api(libs.coroutines.android)
       }
     }
     val androidTest by getting {
@@ -134,7 +120,7 @@ kotlin {
     val nativeMain by creating {
       dependsOn(nonAndroidMain)
       dependencies {
-        implementation(deps.stately.concurrency)
+        implementation(libs.touchlab.stately.concurrency)
       }
     }
     val nativeTest by creating {

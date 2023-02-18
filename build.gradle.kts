@@ -2,25 +2,27 @@ import com.diffplug.gradle.spotless.SpotlessExtension
 import com.diffplug.gradle.spotless.SpotlessPlugin
 import io.gitlab.arturbosch.detekt.DetektPlugin
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension
-import kotlinx.kover.KoverPlugin
-import kotlinx.kover.api.KoverMergedConfig
-import kotlinx.validation.BinaryCompatibilityValidatorPlugin
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
-import org.jetbrains.dokka.gradle.DokkaPlugin
 
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-  kotlin("multiplatform") version "1.7.21" apply false
-  id("com.android.library") version "7.3.0" apply false
-  id("com.diffplug.gradle.spotless") version "6.14.0" apply false
-  id("io.gitlab.arturbosch.detekt") version "1.22.0" apply false
-  id("org.jetbrains.kotlinx.kover") version "0.6.1" apply false
-  id("com.vanniktech.maven.publish") version "0.24.0" apply false
-  id("org.jetbrains.dokka") version "1.7.20"
-  id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.12.1" apply false
-}
+  alias(libs.plugins.kotlin.multiplatform) apply false
+  alias(libs.plugins.kotlin.android) apply false
+  alias(libs.plugins.kotlin.serialization) apply false
+  alias(libs.plugins.kotlin.cocoapods) apply false
 
-val ktlintVersion = "0.48.2"
+  alias(libs.plugins.android.app) apply false
+  alias(libs.plugins.android.library) apply false
+
+  alias(libs.plugins.gradle.spotless) apply false
+  alias(libs.plugins.detekt) apply false
+  alias(libs.plugins.kotlinx.binary.compatibility.validator) apply false
+  alias(libs.plugins.kotlinx.kover)
+  alias(libs.plugins.dokka)
+
+  alias(libs.plugins.vanniktech.maven.publish) apply false
+}
 
 subprojects {
   apply<DetektPlugin>()
@@ -30,17 +32,21 @@ subprojects {
     buildUponDefaultConfig = true
     allRules = true
   }
-
-  apply<DokkaPlugin>()
-  apply<BinaryCompatibilityValidatorPlugin>()
 }
 
-allprojects {
-  apply<KoverPlugin>()
-  configure<KoverMergedConfig> {
-    enable()
-  }
+koverMerged {
+  enable()
 
+  filters {
+    projects {
+      excludes += listOf(":sample:shared", ":sample:app")
+    }
+  }
+}
+
+val ktlintVersion = libs.versions.ktlint.get()
+
+allprojects {
   apply<SpotlessPlugin>()
   configure<SpotlessExtension> {
     kotlin {
