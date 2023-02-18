@@ -201,6 +201,11 @@ class IosProductsViewModel: ObservableObject {
 }
 ```
 
+## Roadmap
+
+- [ ] support `SaveStateHandle`.
+- [ ] add extensions for `Flow`/`StateFlow`, to use the ViewModel easily on `ios`/`macOS`/`tvOS`/`watchOS` platforms.
+
 ## License
 
 ```license
