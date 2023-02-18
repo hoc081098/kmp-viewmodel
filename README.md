@@ -130,7 +130,33 @@ dependencies {
 </p>
 </details>
 
-### 2. Create your `ViewModel` in `commonMain` source set.
+### 2. Overview
+
+```kotlin
+public expect abstract class ViewModel {
+  public constructor()
+  public constructor(vararg closeables: Closeable)
+
+  public val viewModelScope: CoroutineScope
+  public fun addCloseable(closeable: Closeable)
+
+  protected open fun onCleared()
+}
+```
+
+- The ViewModel has a `viewModelScope` which is a `CoroutineScope` that is cancelled when the
+  ViewModel
+  is cleared. Once the ViewModel is cleared, all coroutines launched in this scope will be
+  cancelled.
+
+- `addCloseable` method is used to add `Closeable` that will be closed directly before `onCleared`
+  is called.
+
+- `onCleared` is called when the ViewModel is cleared, you can override this method to do some clean
+  up work.
+  But prefer to use `addCloseable` method instead of overriding this method.
+
+### 3. Create your `ViewModel` in `commonMain` source set.
 
 ```kotlin
 class ProductsViewModel(
@@ -164,7 +190,7 @@ class ProductsViewModel(
 }
 ```
 
-### 3. Use common `ViewModel` in each platform.
+### 4. Use common `ViewModel` in each platform.
 
 - `Android`: use the `ViewModel` as a normal `AndroidX Lifecycle ViewModel`.
 - `non-Android`:
