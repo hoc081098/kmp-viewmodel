@@ -30,18 +30,85 @@ Liked some of my work? Buy me a coffee (or more likely a beer)
 ## Supported targets
 
 - `android`.
-- `jvm`.
+- `jvm` (must add `kotlinx-coroutines-swing`/`kotlinx-coroutines-javafx` to your dependencies to
+  make sure `Dispatchers.Main` available).
 - `js` (`IR`).
-- `iosArm64`, `iosArm32`, `iosX64`, `iosSimulatorArm64`.
-- `watchosArm32`, `watchosArm64`, `watchosX64`, `watchosX86`, `watchosSimulatorArm64`.
-- `tvosX64`, `tvosSimulatorArm64`, `tvosArm64`.
-- `macosX64`, `macosArm64`.
+- `Darwin` targets:
+  - `iosArm64`, `iosArm32`, `iosX64`, `iosSimulatorArm64`.
+  - `watchosArm32`, `watchosArm64`, `watchosX64`, `watchosX86`, `watchosSimulatorArm64`.
+  - `tvosX64`, `tvosSimulatorArm64`, `tvosArm64`.
+  - `macosX64`, `macosArm64`.
 
 ## API
 
 ### 0.x release docs: https://hoc081098.github.io/kmp-viewmodel/docs/0.x
 
 ### Snapshot docs: https://hoc081098.github.io/kmp-viewmodel/docs/latest
+
+### Getting started
+
+#### 1. Add dependency
+
+- Add `mavenCentral()` to `repositories` block in `build.gradle.kts`/`settings.gradle.kts`
+
+```kotlin
+// settings.gradle.kts
+dependencyResolutionManagement {
+  [...]
+  repositories {
+    mavenCentral()
+    [...]
+  }
+}
+```
+
+- Add dependency to your `build.gradle.kts` of your module (must use `api`)
+
+```kotlin
+kotlin {
+  sourceSets {
+    val commonMain by getting {
+      dependencies {
+        api("io.github.hoc081098:kmp-viewmodel:0.0.2")
+      }
+    }
+  }
+}
+```
+
+- Expose `kmp-viewmodel` to `Darwin` native side.
+
+```kotlin
+kotlin {
+  cocoapods {
+    [...]
+    framework {
+      export("io.github.hoc081098:kmp-viewmodel:0.0.2")
+    }
+  }
+}
+```
+
+<details>
+<summary>Snapshots of the development version are available in Sonatype's snapshots repository.</summary>
+<p>
+
+```kotlin
+dependencyResolutionManagement {
+  repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
+  repositories {
+    maven(url = "https://s01.oss.sonatype.org/content/repositories/snapshots/")
+    [...]
+  }
+}
+
+dependencies {
+  api("io.github.hoc081098:kmp-viewmodel:0.0.3-SNAPSHOT")
+}
+```
+
+</p>
+</details>
 
 ### License
 
