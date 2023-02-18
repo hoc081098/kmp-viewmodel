@@ -13,8 +13,8 @@ import shared
 import Combine
 
 private let emptyOnComplete = { }
-private let defaultOnError = { (error: KotlinThrowable) in
-  Napier.e(error: error.asError(), "Unhandled error")
+private let defaultOnError = { (error: Error) in
+  Napier.e(error: error, "Unhandled error")
   fatalError("Unhandled error = \(error)")
 }
 
@@ -30,13 +30,15 @@ extension Flow {
     _ type: T.Type = T.self,
     scope: CoroutineScope,
     onValue: @escaping (T) -> Void,
-    onError: ((KotlinThrowable) -> Void)? = nil,
+    onError: ((Error) -> Void)? = nil,
     onComplete: (() -> Void)? = nil
   ) -> Closeable {
     NonNullFlowWrapper<T>(flow: self).subscribe(
       scope: scope,
       onValue: onValue,
-      onError: onError ?? defaultOnError,
+      onError: { throwable in
+        (onError ?? defaultOnError)(throwable.asNSError())
+      },
       onComplete: onComplete ?? emptyOnComplete
     )
   }
@@ -76,7 +78,7 @@ private class NonNullFlowSubscription<T: AnyObject, S: Subscriber>: Subscription
     subscriber: S
   ) {
     self.subscriber = subscriber
-    
+
     let scope = CoroutineScopeKt.MainScope()
 
     self.closable = flow.subscribeNonNullFlow(
@@ -85,7 +87,7 @@ private class NonNullFlowSubscription<T: AnyObject, S: Subscriber>: Subscription
         _ = subscriber.receive($0)
       },
       onError: {
-        subscriber.receive(completion: .failure($0.asError()))
+        subscriber.receive(completion: .failure($0))
       },
       onComplete: {
         subscriber.receive(completion: .finished)

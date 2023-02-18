@@ -1,3 +1,5 @@
+@file:Suppress("unused") // Called from platform code
+
 package com.hoc081098.kmpviewmodelsample
 
 import kotlinx.cinterop.ObjCClass

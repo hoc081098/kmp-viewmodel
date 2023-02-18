@@ -1,3 +1,6 @@
+
+@file:Suppress("unused") // Called from platform code
+
 package com.hoc081098.kmpviewmodelsample
 
 import com.hoc081098.flowext.Event

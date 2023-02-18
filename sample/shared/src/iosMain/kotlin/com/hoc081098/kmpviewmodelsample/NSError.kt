@@ -1,3 +1,5 @@
+@file:Suppress("unused") // Called from platform code
+
 package com.hoc081098.kmpviewmodelsample
 
 import io.github.aakira.napier.Napier
@@ -21,6 +23,7 @@ fun Throwable.asNSError(): NSError {
     message?.let {
       this[NSLocalizedDescriptionKey] = it
     }
+    this["KotlinExceptionOrigin"] = ""
   }
   return NSError.errorWithDomain(
     domain = "KotlinException",
@@ -36,7 +39,8 @@ val NSError.isKotlinThrowable: Boolean
   get() {
     return domain == "KotlinException" &&
       code == 0.convert<NSInteger>() &&
-      userInfo["KotlinException"] is Throwable
+      userInfo["KotlinException"] is Throwable &&
+      userInfo["KotlinExceptionOrigin"] != null
   }
 
 /**

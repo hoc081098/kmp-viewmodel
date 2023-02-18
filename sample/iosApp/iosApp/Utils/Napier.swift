@@ -128,7 +128,7 @@ extension Napier {
     function: String
   ) {
     let message = items.map { "\($0)" }.joined(separator: separator)
-    
+
     let throwable: KotlinThrowable?
     if let error = error {
       throwable = NSErrorKt.asThrowable(error)
