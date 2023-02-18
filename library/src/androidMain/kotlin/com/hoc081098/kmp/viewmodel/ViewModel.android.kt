@@ -1,10 +1,10 @@
 package com.hoc081098.kmp.viewmodel
 
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel as AndroidXViewModel
 import androidx.lifecycle.viewModelScope as androidXViewModelScope
 import kotlinx.coroutines.CoroutineScope
 
-public actual abstract class ViewModel : ViewModel {
+public actual abstract class ViewModel : AndroidXViewModel {
   public actual constructor() : super()
 
   @Suppress("SpreadOperator")

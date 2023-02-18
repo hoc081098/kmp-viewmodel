@@ -13,7 +13,8 @@ private inline fun viewModelScopeDispatcher(): CoroutineDispatcher =
   runCatching { Dispatchers.Main.immediate }
     .getOrDefault(Dispatchers.Main)
 
-public actual abstract class ViewModel : Lockable {
+public actual abstract class ViewModel : Any {
+  private val lockable = Lockable()
   private val isCleared = AtomicBoolean(false)
   private val closeables: MutableSet<Closeable>
 
@@ -33,11 +34,9 @@ public actual abstract class ViewModel : Lockable {
 
   protected actual open fun onCleared(): Unit = Unit
 
-  public actual fun addCloseable(closeable: Closeable) {
-    synchronized(this) {
-      check(!isCleared.value) { "Cannot access viewModelScope on a cleared ViewModel" }
-      closeables += closeable
-    }
+  public actual fun addCloseable(closeable: Closeable): Unit = synchronized(lockable) {
+    check(!isCleared.value) { "Cannot addCloseable on a cleared ViewModel" }
+    closeables += closeable
   }
 
   /**
@@ -47,7 +46,7 @@ public actual abstract class ViewModel : Lockable {
    * This method is thread-safe, ie. it can be called from any thread.
    */
   @Suppress("unused") // Called by platform code
-  public fun clear(): Unit = synchronized(this) {
+  public fun clear(): Unit = synchronized(lockable) {
     if (isCleared.compareAndSet(expectedValue = false, newValue = true)) {
       if (coroutineScopeLazy.isInitialized()) {
         coroutineScopeLazy.value.cancel()
