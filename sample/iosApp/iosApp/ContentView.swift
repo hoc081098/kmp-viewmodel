@@ -1,8 +1,11 @@
 import SwiftUI
 import shared
 import Kingfisher
+import Combine
 
 struct ContentView: View {
+  @Environment(\.scenePhase) var scenePhase
+
   @ObservedObject var viewModel = IosProductsViewModel(commonVm: DIContainer.shared.get())
 
   var body: some View {
@@ -49,7 +52,22 @@ struct ContentView: View {
           }
         }
       }.frame(maxHeight: .infinity)
-    }.onAppear { self.viewModel.dispatch(action: ProductsActionLoad()) }
+    }.onAppear {
+      self.viewModel.dispatch(action: ProductsActionLoad())
+      self.viewModel.onActive()
+    }
+      .onChange(of: scenePhase) { newPhase in
+      switch newPhase {
+      case .inactive:
+        self.viewModel.onInactive()
+      case .active:
+        self.viewModel.onActive()
+      case .background:
+        ()
+      @unknown default:
+        fatalError()
+      }
+    }
   }
 }
 

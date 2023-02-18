@@ -2,10 +2,13 @@ package com.hoc081098.kmpviewmodelsample
 
 import com.hoc081098.flowext.flatMapFirst
 import com.hoc081098.flowext.flowFromSuspend
+import com.hoc081098.flowext.interval
 import com.hoc081098.flowext.startWith
 import com.hoc081098.kmp.viewmodel.Closeable
 import com.hoc081098.kmp.viewmodel.ViewModel
 import io.github.aakira.napier.Napier
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -149,4 +152,22 @@ class ProductsViewModel(
   fun dispatch(action: ProductsAction) {
     _actionFlow.tryEmit(action)
   }
+
+  /**
+   * Demo purpose only
+   */
+  @Suppress("unused") // Called from platform code
+  val tickerFlow: StateFlow<String?> = interval(initialDelay = Duration.ZERO, period = 1.seconds)
+    .map {
+      if (it % 2 == 0L) {
+        it.toString()
+      } else {
+        null
+      }
+    }
+    .stateIn(
+      scope = viewModelScope,
+      started = SharingStarted.WhileSubscribed(@Suppress("MagicNumber") 5_000),
+      initialValue = null,
+    )
 }
