@@ -96,7 +96,7 @@ kotlin {
 
 // -- OR --
 
-// Kotlin/Native as an Apple framework – tutorial
+// Kotlin/Native as an Apple framework
 kotlin {
   ios {
     binaries {
