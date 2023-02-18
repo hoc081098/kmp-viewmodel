@@ -138,7 +138,7 @@ jobs:
           ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.MAVEN_SIGNING_PASSWORD }}
 
       - name: Generate docs
-        run: ./gradlew dokkaHtml --no-parallel --stacktrace
+        run: ./gradlew :dokkaHtmlMultiModule --no-parallel --stacktrace
 
       - name: Deploy docs 🚀 to website
         if: ${{ contains(matrix.os, 'macos') }}
