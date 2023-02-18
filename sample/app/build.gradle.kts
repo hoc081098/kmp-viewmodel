@@ -1,6 +1,7 @@
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-  id("com.android.application")
-  kotlin("android")
+  alias(libs.plugins.android.app)
+  alias(libs.plugins.kotlin.android)
 }
 
 android {
@@ -17,7 +18,7 @@ android {
     compose = true
   }
   composeOptions {
-    kotlinCompilerExtensionVersion = "1.4.0-alpha02"
+    kotlinCompilerExtensionVersion = libs.versions.androidx.compose.compiler.get()
   }
   packagingOptions {
     resources {
@@ -34,27 +35,27 @@ android {
     targetCompatibility = JavaVersion.VERSION_1_8
   }
   kotlinOptions {
-    jvmTarget = "1.8"
+    jvmTarget = JavaVersion.VERSION_1_8.toString()
   }
 }
 
 dependencies {
   implementation(project(":sample:shared"))
-  implementation(platform("androidx.compose:compose-bom:2023.01.00"))
+  implementation(platform(libs.androidx.compose.bom))
 
-  implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.0-alpha04")
+  implementation(libs.androidx.lifecycle.runtime.compose)
 
-  implementation("androidx.compose.ui:ui")
-  implementation("androidx.compose.ui:ui-tooling")
-  implementation("androidx.compose.ui:ui-tooling-preview")
-  implementation("androidx.compose.foundation:foundation")
-  implementation("androidx.compose.material3:material3")
-  implementation("androidx.compose.material:material")
-  implementation("androidx.compose.runtime:runtime")
-  implementation("androidx.activity:activity-compose:1.6.1")
+  implementation(libs.androidx.compose.ui.ui)
+  debugImplementation(libs.androidx.compose.ui.tooling)
+  implementation(libs.androidx.compose.ui.tooling.preview)
+  implementation(libs.androidx.compose.foundation)
+  implementation(libs.androidx.compose.material3)
+  implementation(libs.androidx.compose.material)
+  implementation(libs.androidx.compose.runtime)
+  implementation(libs.androidx.activity.compose)
 
-  implementation("io.insert-koin:koin-androidx-compose:3.4.2")
-  implementation("io.coil-kt:coil-compose:2.2.2")
+  implementation(libs.koin.androidx.compose)
+  implementation(libs.coil.compose)
 
-  implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5")
+  implementation(libs.kotlinx.collections.immutable)
 }
