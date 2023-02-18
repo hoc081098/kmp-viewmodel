@@ -45,9 +45,9 @@ Liked some of my work? Buy me a coffee (or more likely a beer)
 
 ### Snapshot docs: https://hoc081098.github.io/kmp-viewmodel/docs/latest
 
-### Getting started
+## Getting started
 
-#### 1. Add dependency
+### 1. Add dependency
 
 - Add `mavenCentral()` to `repositories` list in `build.gradle.kts`/`settings.gradle.kts`.
 
@@ -126,18 +126,94 @@ dependencies {
 </p>
 </details>
 
-### License
+### 2. Create your `ViewModel` in `commonMain` source set.
 
-```License
+```kotlin
+class ProductsViewModel(
+  private val getProducts: GetProducts,
+) : ViewModel() {
+  private val _eventChannel = Channel<ProductSingleEvent>(Int.MAX_VALUE)
+  private val _actionFlow = MutableSharedFlow<ProductsAction>(Int.MAX_VALUE)
+
+  val stateFlow: StateFlow<ProductsState>
+  val eventFlow: Flow<ProductSingleEvent> = _eventChannel.receiveAsFlow()
+
+  init {
+    // Close _eventChannel when ViewModel is cleared.
+    addCloseable(_eventChannel::close)
+
+    stateFlow = _actionFlow
+      .transformToStateFlow()
+      .stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.Eagerly,
+        initialValue = ProductsState.INITIAL,
+      )
+  }
+
+  // Do business logic here, to convert `ProductsAction`s to `ProductsState`s.
+  private fun SharedFlow<ProductsAction>.transformToStateFlow(): Flow<ProductsState> = TODO()
+
+  fun dispatch(action: ProductsAction) {
+    _actionFlow.tryEmit(action)
+  }
+}
+```
+
+### 3. Use common `ViewModel` in each platform.
+
+- `Android`: use the `ViewModel` as a normal `AndroidX Lifecycle ViewModel`.
+- `non-Android`:
+  - Make sure that you call `clear()` on your ViewModel when it's no longer needed,
+    to properly cancel the `CoroutineScope` and close resources.
+  - For example, you should call `clear()` in `deinit` block when using `ViewModel` in `Darwin`
+    targets (`ios`, `macos`, `tvos`, `watchos`).
+  - In addition, you should a wrapper of the common `ViewModel` in each platform, to consume the
+    common `ViewModel` easily and safely.
+
+> For more details, please
+> check [kmp viewmodel sample](https://github.com/hoc081098/kmp-viewmodel/tree/master/sample).
+
+```Swift
+@MainActor
+class IosProductsViewModel: ObservableObject {
+  private let commonVm: ProductsViewModel
+
+  @Published private(set) var state: ProductsState
+
+  init(commonVm: ProductsViewModel) {
+    self.commonVm = commonVm
+
+    self.state = self.commonVm.stateFlow.typedValue()
+    self.commonVm.stateFlow.subscribeNonNullFlow(
+      scope: self.commonVm.viewModelScope,
+      onValue: { [weak self] in self?.state = $0 }
+    )
+  }
+
+  func dispatch(action: ProductsAction) { self.commonVm.dispatch(action: action) }
+
+  deinit { self.commonVm.clear() }
+}
+```
+
+## License
+
+```license
 MIT License
 Copyright (c) 2023 Petrus Nguyễn Thái Học
 ```
 
 [badge-android]: http://img.shields.io/badge/android-6EDB8D.svg?style=flat
+
 [badge-ios]: http://img.shields.io/badge/ios-CDCDCD.svg?style=flat
+
 [badge-js]: http://img.shields.io/badge/js-F8DB5D.svg?style=flat
+
 [badge-jvm]: http://img.shields.io/badge/jvm-DB413D.svg?style=flat
+
 [badge-linux]: http://img.shields.io/badge/linux-2D3F6C.svg?style=flat
+
 [badge-windows]: http://img.shields.io/badge/windows-4D76CD.svg?style=flat
 [badge-mac]: http://img.shields.io/badge/macos-111111.svg?style=flat
 [badge-watchos]: http://img.shields.io/badge/watchos-C0C0C0.svg?style=flat
