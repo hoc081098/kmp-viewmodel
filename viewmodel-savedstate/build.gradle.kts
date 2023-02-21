@@ -6,6 +6,7 @@ import java.net.URL
 plugins {
   alias(libs.plugins.kotlin.multiplatform)
   alias(libs.plugins.android.library)
+  alias(libs.plugins.kotlin.parcelize)
 
   alias(libs.plugins.vanniktech.maven.publish)
 
@@ -74,8 +75,7 @@ kotlin {
       dependsOn(commonMain)
 
       dependencies {
-        api(libs.androidx.lifecycle.viewmodel)
-        api(libs.coroutines.android)
+        api(libs.androidx.lifecycle.viewmodel.savedstate)
       }
     }
     val androidTest by getting {
@@ -120,7 +120,6 @@ kotlin {
     val nativeMain by creating {
       dependsOn(nonAndroidMain)
       dependencies {
-        implementation(libs.touchlab.stately.concurrency)
       }
     }
     val nativeTest by creating {
@@ -186,13 +185,11 @@ mavenPublishing {
 tasks.withType<org.jetbrains.dokka.gradle.DokkaTask>().configureEach {
   dokkaSourceSets {
     configureEach {
-      externalDocumentationLink {
-        url.set(URL("https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/"))
-      }
+      externalDocumentationLink("https://kotlinlang.org/api/kotlinx.coroutines/")
 
       sourceLink {
         localDirectory.set(projectDir.resolve("src"))
-        remoteUrl.set(URL("https://github.com/hoc081098/kmp-viewmodel/tree/master/library/src"))
+        remoteUrl.set(URL("https://github.com/hoc081098/kmp-viewmodel/tree/master/viewmodel-savedstate/src"))
         remoteLineSuffix.set("#L")
       }
     }
