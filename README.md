@@ -198,7 +198,7 @@ class ProductsViewModel(
     to properly cancel the `CoroutineScope` and close resources.
   - For example, you should call `clear()` in `deinit` block when using `ViewModel` in `Darwin`
     targets (`ios`, `macos`, `tvos`, `watchos`).
-  - In addition, you should a wrapper of the common `ViewModel` in each platform, to consume the
+  - In addition, you should create a wrapper of the common `ViewModel` in each platform, to consume the
     common `ViewModel` easily and safely.
 
 > For more details, please
