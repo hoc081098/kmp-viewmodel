@@ -1,4 +1,4 @@
-package com.hoc081098.kmpviewmodelsample.android
+package com.hoc081098.kmpviewmodelsample.android.common
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect

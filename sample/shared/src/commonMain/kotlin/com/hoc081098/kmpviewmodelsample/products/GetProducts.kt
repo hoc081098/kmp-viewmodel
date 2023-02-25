@@ -1,5 +1,7 @@
-package com.hoc081098.kmpviewmodelsample
+package com.hoc081098.kmpviewmodelsample.products
 
+import com.hoc081098.kmpviewmodelsample.FakeProductsJson
+import com.hoc081098.kmpviewmodelsample.ProductItem
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock

@@ -16,7 +16,7 @@ androidx-activity = "1.6.1"
 androidx-compose-compiler = "1.4.0-alpha02"
 android-gradle = "7.3.0"
 
-spotless = "6.14.0"
+spotless = "6.15.0"
 detekt = "1.22.0"
 
 kotlinx-kover = "0.6.1"

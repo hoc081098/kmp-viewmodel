@@ -1,5 +1,7 @@
 package com.hoc081098.kmpviewmodelsample
 
+import com.hoc081098.kmpviewmodelsample.products.GetProducts
+import com.hoc081098.kmpviewmodelsample.search_products.SearchProducts
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
 import org.koin.dsl.KoinAppDeclaration
@@ -7,6 +9,7 @@ import org.koin.dsl.module
 
 private val commonModule = module {
   factory { GetProducts() }
+  factory { SearchProducts() }
 }
 
 internal expect val platformModule: Module

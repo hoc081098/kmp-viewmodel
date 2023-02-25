@@ -1,4 +1,4 @@
-package com.hoc081098.kmpviewmodelsample
+package com.hoc081098.kmpviewmodelsample.products
 
 import com.hoc081098.flowext.flatMapFirst
 import com.hoc081098.flowext.flowFromSuspend
@@ -6,6 +6,7 @@ import com.hoc081098.flowext.interval
 import com.hoc081098.flowext.startWith
 import com.hoc081098.kmp.viewmodel.Closeable
 import com.hoc081098.kmp.viewmodel.ViewModel
+import com.hoc081098.kmpviewmodelsample.ProductItem
 import io.github.aakira.napier.Napier
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
