@@ -106,7 +106,7 @@ private class NonNullFlowSubscription<T: AnyObject, S: Subscriber>: Subscription
   ) {
     self.subscriber = subscriber
 
-    let scope = CoroutineScopeKt.MainScope()
+    let scope = ImmediateMainScopeKt.ImmediateMainScope()
 
     self.closable = flow.subscribeNonNullFlow(
       scope: scope,
@@ -164,7 +164,7 @@ private class NullableFlowSubscription<T: AnyObject, S: Subscriber>: Subscriptio
   ) {
     self.subscriber = subscriber
 
-    let scope = CoroutineScopeKt.MainScope()
+    let scope = ImmediateMainScopeKt.ImmediateMainScope()
 
     self.closable = flow.subscribeNonNullFlow(
       scope: scope,

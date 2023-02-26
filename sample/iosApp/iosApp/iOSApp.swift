@@ -11,7 +11,11 @@ struct iOSApp: App {
     WindowGroup {
       NavigationView {
         VStack(alignment: .center) {
-          NavigationLink("START", destination: LazyView(ContentView()))
+          NavigationLink("Products screen", destination: LazyView(ProductsView()))
+          
+          Spacer().frame(height: 16)
+          
+          NavigationLink("Search products screen", destination: LazyView(SearchProductsView()))
         }
           .frame(maxWidth: .infinity)
           .navigationTitle("KMP ViewModel sample")
