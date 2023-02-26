@@ -12,7 +12,6 @@ import Foundation
 import Foundation
 import shared
 import Combine
-import SwiftUI
 
 @MainActor
 class IosSearchProductsViewModel: ObservableObject {
