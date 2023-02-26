@@ -37,6 +37,7 @@ public expect class SavedStateHandle {
    *
    * @return true if there is value associated with the given key.
    */
+  @MainThread
   public operator fun contains(key: String): Boolean
 
   /**
@@ -44,6 +45,7 @@ public expect class SavedStateHandle {
    *
    * @param key a key used to retrieve a value.
    */
+  @MainThread
   public operator fun <T> get(key: String): T?
 
   /**
@@ -63,11 +65,13 @@ public expect class SavedStateHandle {
    * @param initialValue If no value exists with the given `key`, a new one is created
    * with the given `initialValue`.
    */
+  @MainThread
   public fun <T> getStateFlow(key: String, initialValue: T): StateFlow<T>
 
   /**
    * Returns all keys contained in this [SavedStateHandle].
    */
+  @MainThread
   public fun keys(): Set<String>
 
   /**
@@ -81,6 +85,7 @@ public expect class SavedStateHandle {
    * @param key a key
    * @return a value that was previously associated with the given key.
    */
+  @MainThread
   public fun <T> remove(key: String): T?
 
   /**
@@ -95,5 +100,6 @@ public expect class SavedStateHandle {
    *
    * @throws IllegalArgumentException value cannot be saved in saved state
    */
+  @MainThread
   public operator fun <T> set(key: String, value: T?): Unit
 }
