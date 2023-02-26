@@ -1,26 +1,32 @@
 package com.hoc081098.kmpviewmodelsample.products
 
+import com.hoc081098.kmpviewmodelsample.AppDispatchers
 import com.hoc081098.kmpviewmodelsample.FakeProductsJson
 import com.hoc081098.kmpviewmodelsample.ProductItem
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
+import kotlinx.coroutines.withContext
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
-class GetProducts {
+class GetProducts(
+  private val appDispatchers: AppDispatchers,
+) {
   private val mutex = Mutex()
   private var i = 0
 
   suspend operator fun invoke(): List<ProductItem> = mutex.withLock {
-    @Suppress("MagicNumber")
-    delay(2_000)
+    withContext(appDispatchers.io) {
+      @Suppress("MagicNumber")
+      delay(2_000)
 
-    if (i++ % 2 == 0) {
-      @Suppress("TooGenericExceptionThrown")
-      throw RuntimeException("Fake error")
+      if (i++ % 2 == 0) {
+        @Suppress("TooGenericExceptionThrown")
+        throw RuntimeException("Fake error")
+      }
+
+      Json.decodeFromString<List<ProductItem>>(FakeProductsJson).shuffled()
     }
-
-    return Json.decodeFromString<List<ProductItem>>(FakeProductsJson).shuffled()
   }
 }
