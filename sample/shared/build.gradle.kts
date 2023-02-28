@@ -27,7 +27,8 @@ kotlin {
     framework {
       baseName = "shared"
 
-      export(project(":library"))
+      export(projects.viewmodel)
+      export(projects.viewmodelSavedstate)
       export(libs.napier)
       export(libs.coroutines.core)
     }
@@ -36,7 +37,8 @@ kotlin {
   sourceSets {
     val commonMain by getting {
       dependencies {
-        api(project(":library"))
+        api(projects.viewmodel)
+        api(projects.viewmodelSavedstate)
         api(libs.napier)
         api(libs.coroutines.core)
 

@@ -1,3 +1,5 @@
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 pluginManagement {
   repositories {
     gradlePluginPortal()
@@ -16,5 +18,6 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "kmp-viewmodel"
-include(":library")
+include(":viewmodel")
+include(":viewmodel-savedstate")
 include(":sample:app", ":sample:shared")

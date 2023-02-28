@@ -1,6 +1,6 @@
 @file:Suppress("MagicNumber")
 
-package com.hoc081098.kmpviewmodelsample.android
+package com.hoc081098.kmpviewmodelsample.android.common
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape

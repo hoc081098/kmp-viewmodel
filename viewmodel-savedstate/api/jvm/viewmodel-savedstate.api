@@ -1,0 +1,36 @@
+public abstract interface annotation class com/hoc081098/kmp/viewmodel/MainThread : java/lang/annotation/Annotation {
+}
+
+public final class com/hoc081098/kmp/viewmodel/SavedStateHandle {
+	public fun <init> ()V
+	public fun <init> (Ljava/util/Map;)V
+	public final fun contains (Ljava/lang/String;)Z
+	public final fun get (Ljava/lang/String;)Ljava/lang/Object;
+	public final fun getStateFlow (Ljava/lang/String;Ljava/lang/Object;)Lkotlinx/coroutines/flow/StateFlow;
+	public final fun keys ()Ljava/util/Set;
+	public final fun remove (Ljava/lang/String;)Ljava/lang/Object;
+	public final fun set (Ljava/lang/String;Ljava/lang/Object;)V
+}
+
+public abstract interface annotation class com/hoc081098/kmp/viewmodel/parcelable/IgnoredOnParcel : java/lang/annotation/Annotation {
+}
+
+public abstract interface class com/hoc081098/kmp/viewmodel/parcelable/Parcelable {
+}
+
+public abstract interface class com/hoc081098/kmp/viewmodel/parcelable/Parceler {
+}
+
+public abstract interface annotation class com/hoc081098/kmp/viewmodel/parcelable/Parcelize : java/lang/annotation/Annotation {
+}
+
+public abstract interface annotation class com/hoc081098/kmp/viewmodel/parcelable/TypeParceler : java/lang/annotation/Annotation {
+}
+
+public abstract interface annotation class com/hoc081098/kmp/viewmodel/parcelable/TypeParceler$Container : java/lang/annotation/Annotation {
+	public abstract fun value ()[Lcom/hoc081098/kmp/viewmodel/parcelable/TypeParceler;
+}
+
+public abstract interface annotation class com/hoc081098/kmp/viewmodel/parcelable/WriteWith : java/lang/annotation/Annotation {
+}
+
