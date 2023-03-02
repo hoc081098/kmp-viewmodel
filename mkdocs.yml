@@ -1,0 +1,45 @@
+site_name: KMP ViewModel
+site_url: https://hoc081098.github.io/kmp-viewmodel/docs/0.x
+repo_name: kmp-viewmodel
+repo_url: https://github.com/hoc081098/kmp-viewmodel
+site_description: "Shared ViewModel in Kotlin Multiplatform - A Kotlin Multiplatform library that provides shared MVVM for UI applications. Components are lifecycle-aware on Android. Supports AndroidX SavedStateHandle for restoring state after process death."
+site_author: Petrus Nguyễn Thái Học
+remote_branch: gh-pages
+edit_uri: edit/master/docs/
+
+copyright: 'Copyright &copy; 2023 Petrus Nguyễn Thái Học.'
+
+theme:
+  name: 'material'
+  favicon: images/icon-freeletics.png
+  logo: images/icon-freeletics.png
+  palette:
+    primary: 'deep purple'
+    accent: 'white'
+  features:
+    - toc.integrate
+
+markdown_extensions:
+  - smarty
+  - codehilite:
+      guess_lang: false
+  - footnotes
+  - meta
+  - toc:
+      permalink: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tilde
+  - tables
+
+nav:
+  - 'Overview': index.md
+  - 'Multiplatform': multiplatform.md
+  - 'ViewModel': viewmodel.md
+  - 'ViewModel SavedState': viewmodel-savedstate.md
+  - 'API': API
