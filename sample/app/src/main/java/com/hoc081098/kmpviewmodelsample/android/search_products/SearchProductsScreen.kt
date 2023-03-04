@@ -6,90 +6,35 @@
 
 package com.hoc081098.kmpviewmodelsample.android.search_products
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.consumedWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.hoc081098.kmpviewmodelsample.ProductItem
 import com.hoc081098.kmpviewmodelsample.android.common.EmptyProducts
 import com.hoc081098.kmpviewmodelsample.android.common.ErrorMessageAndRetryButton
 import com.hoc081098.kmpviewmodelsample.android.common.LoadingIndicator
-import com.hoc081098.kmpviewmodelsample.android.common.MyApplicationTheme
 import com.hoc081098.kmpviewmodelsample.android.common.ProductItemsList
 import com.hoc081098.kmpviewmodelsample.search_products.SearchProductsState
 import com.hoc081098.kmpviewmodelsample.search_products.SearchProductsViewModel
 import org.koin.androidx.compose.koinViewModel
 
-@OptIn(ExperimentalLayoutApi::class)
-class SearchProductsActivity : ComponentActivity() {
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-
-    setContent {
-      MyApplicationTheme {
-        Surface(
-          modifier = Modifier.fillMaxSize(),
-          color = MaterialTheme.colorScheme.background,
-        ) {
-          Scaffold(
-            modifier = Modifier.fillMaxSize(),
-            topBar = {
-              TopAppBar(
-                title = {
-                  Text(
-                    text = "Search products screen",
-                  )
-                },
-                navigationIcon = {
-                  IconButton(onClick = { finish() }) {
-                    Icon(
-                      imageVector = Icons.Default.ArrowBack,
-                      contentDescription = null,
-                    )
-                  }
-                },
-              )
-            },
-          ) { innerPadding ->
-            SearchProductsContent(
-              modifier = Modifier
-                .padding(innerPadding)
-                .consumedWindowInsets(innerPadding),
-            )
-          }
-        }
-      }
-    }
-  }
-}
-
 @Suppress("ReturnCount")
 @Composable
-private fun SearchProductsContent(
+fun SearchProductsScreen(
+  navigateToProductDetail: (Int) -> Unit,
   modifier: Modifier = Modifier,
   viewModel: SearchProductsViewModel = koinViewModel(),
 ) {
@@ -125,6 +70,7 @@ private fun SearchProductsContent(
       ListContent(
         modifier = Modifier.fillMaxSize(),
         state = state,
+        onItemClick = { navigateToProductDetail(it.id) },
       )
     }
   }
@@ -133,6 +79,7 @@ private fun SearchProductsContent(
 @Suppress("ReturnCount")
 @Composable
 private fun ListContent(
+  onItemClick: (ProductItem) -> Unit,
   modifier: Modifier = Modifier,
   state: SearchProductsState,
 ) {
@@ -164,5 +111,6 @@ private fun ListContent(
     products = products,
     isRefreshing = false,
     pullRefreshState = null,
+    onItemClick = onItemClick,
   )
 }

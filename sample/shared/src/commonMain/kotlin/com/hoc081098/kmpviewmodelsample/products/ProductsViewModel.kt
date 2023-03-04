@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalCoroutinesApi::class)
+
 package com.hoc081098.kmpviewmodelsample.products
 
 import com.hoc081098.flowext.flatMapFirst
@@ -10,6 +12,7 @@ import com.hoc081098.kmpviewmodelsample.ProductItem
 import io.github.aakira.napier.Napier
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -31,6 +34,8 @@ data class ProductsState(
   val error: Throwable?,
   val isRefreshing: Boolean,
 ) {
+  val hasContent: Boolean get() = products.isNotEmpty() && error == null
+
   companion object {
     val INITIAL = ProductsState(
       products = emptyList(),
@@ -110,8 +115,8 @@ class ProductsViewModel(
             )
           }
         }
-        .catch {
-          _eventChannel.trySend(ProductSingleEvent.Refresh.Failure(it))
+        .catch { throwable ->
+          _eventChannel.trySend(ProductSingleEvent.Refresh.Failure(throwable))
           emit(Reducer { it.copy(isRefreshing = false) })
         }
         .startWith { Reducer { it.copy(isRefreshing = true) } }

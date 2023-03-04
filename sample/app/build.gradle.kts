@@ -53,6 +53,7 @@ dependencies {
   implementation(libs.androidx.compose.material)
   implementation(libs.androidx.compose.runtime)
   implementation(libs.androidx.activity.compose)
+  implementation(libs.androidx.navigation.compose)
 
   implementation(libs.koin.androidx.compose)
   implementation(libs.coil.compose)

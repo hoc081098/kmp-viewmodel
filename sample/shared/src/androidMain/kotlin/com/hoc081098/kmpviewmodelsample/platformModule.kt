@@ -1,5 +1,6 @@
 package com.hoc081098.kmpviewmodelsample
 
+import com.hoc081098.kmpviewmodelsample.product_detail.ProductDetailViewModel
 import com.hoc081098.kmpviewmodelsample.products.ProductsViewModel
 import com.hoc081098.kmpviewmodelsample.search_products.SearchProductsViewModel
 import io.github.aakira.napier.DebugAntilog
@@ -15,6 +16,8 @@ internal actual val platformModule: Module = module {
   viewModelOf(::ProductsViewModel)
 
   viewModelOf(::SearchProductsViewModel)
+
+  viewModelOf(::ProductDetailViewModel)
 
   singleOf(::AndroidAppDispatchers) { bind<AppDispatchers>() }
 }

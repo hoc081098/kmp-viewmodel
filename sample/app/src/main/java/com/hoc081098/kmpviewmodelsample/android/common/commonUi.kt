@@ -2,6 +2,7 @@
 
 package com.hoc081098.kmpviewmodelsample.android.common
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -89,11 +90,13 @@ internal fun ErrorMessageAndRetryButton(
   }
 }
 
+@Suppress("LongParameterList")
 @Composable
 internal fun ProductItemsList(
   pullRefreshState: PullRefreshState?,
   products: List<ProductItem>,
   isRefreshing: Boolean,
+  onItemClick: (ProductItem) -> Unit,
   modifier: Modifier = Modifier,
   lazyListState: LazyListState = rememberLazyListState(),
 ) {
@@ -121,6 +124,7 @@ internal fun ProductItemsList(
         ProductItemRow(
           modifier = Modifier.fillParentMaxWidth(),
           product = it,
+          onClick = { onItemClick(it) },
         )
       }
     }
@@ -140,10 +144,11 @@ internal fun ProductItemsList(
 @Composable
 internal fun ProductItemRow(
   product: ProductItem,
+  onClick: () -> Unit,
   modifier: Modifier = Modifier,
 ) {
   Row(
-    modifier = modifier,
+    modifier = modifier.clickable(onClick = onClick),
   ) {
     SubcomposeAsyncImage(
       model = product.images.firstOrNull(),
