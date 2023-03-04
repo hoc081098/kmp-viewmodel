@@ -126,26 +126,25 @@ On other platforms, it is simply a wrapper of the normal `Map<String, Any?>`.
 Because the limitation of Android platform, the data stored in `SavedStateHandle` must be one of the
 following types:
 
-// table in markdown
-| Type/Class support | Array support |
-| ------------------ | ------------- |
-| double | double[] |
-| int | int[] |
-| long | long[] |
-| String | String[] |
-| byte | byte[] |
-| char | char[] |
-| CharSequence | CharSequence[] |
-| float | float[] |
-| Parcelable | Parcelable[] |
-| Serializable | Serializable[] |
-| short | short[] |
-| SparseArray | |
-| Binder | |
-| Bundle | |
-| ArrayList | |
-| Size (only in API 21+) | |
-| SizeF (only in API 21+) | |
+| Type/Class support      | Array support  |
+|-------------------------|----------------|
+| double                  | double[]       |
+| int                     | int[]          |
+| long                    | long[]         |
+| String                  | String[]       |
+| byte                    | byte[]         |
+| char                    | char[]         |
+| CharSequence            | CharSequence[] |
+| float                   | float[]        |
+| Parcelable              | Parcelable[]   |
+| Serializable            | Serializable[] |
+| short                   | short[]        |
+| SparseArray             |                |
+| Binder                  |                |
+| Bundle                  |                |
+| ArrayList               |                |
+| Size (only in API 21+)  |                |
+| SizeF (only in API 21+) |                |
 
 If the class does not extend one of those in the above list, consider making the class parcelable
 by adding the `@Parcelize` annotation.
