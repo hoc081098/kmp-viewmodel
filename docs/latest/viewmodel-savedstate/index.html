@@ -386,7 +386,8 @@ and <a href="https://developer.android.com/topic/libraries/architecture/viewmode
 <ul>
 <li>Add dependency to <code>build.gradle.kts</code> of your shared module (must use <code>api</code> configuration).</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="n">kotlin</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// build.gradle.kts</span>
+<span class="n">kotlin</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">sourceSets</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">commonMain</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">getting</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
@@ -428,7 +429,8 @@ and <a href="https://developer.android.com/topic/libraries/architecture/viewmode
 <li><em>Optional</em>: apply <code>kotlin-parcelize</code> if you want to use <code>@Parcelize</code> annotation to
   generate <code>Parcelable</code> implementation for Android.</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="n">plugins</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// build.gradle.kts</span>
+<span class="n">plugins</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">id</span><span class="p">(</span><span class="s">&quot;kotlin-parcelize&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// Apply the plugin for Android</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -436,7 +438,8 @@ and <a href="https://developer.android.com/topic/libraries/architecture/viewmode
 <summary>Snapshots of the development version are available in Sonatype's snapshots repository.</summary>
 <p>
 
-<div class="highlight"><pre><span></span><code><span class="n">dependencyResolutionManagement</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// settings.gradle.kts</span>
+<span class="n">dependencyResolutionManagement</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">repositoriesMode</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">RepositoriesMode</span><span class="p">.</span><span class="na">PREFER_PROJECT</span><span class="p">)</span>
 <span class="w">  </span><span class="n">repositories</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">maven</span><span class="p">(</span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;https://s01.oss.sonatype.org/content/repositories/snapshots/&quot;</span><span class="p">)</span>
@@ -444,6 +447,7 @@ and <a href="https://developer.android.com/topic/libraries/architecture/viewmode
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 
+<span class="c1">// build.gradle.kts</span>
 <span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">api</span><span class="p">(</span><span class="s">&quot;io.github.hoc081098:kmp-viewmodel-savedstate:0.1.1-SNAPSHOT&quot;</span><span class="p">)</span>
 <span class="p">}</span>
@@ -471,26 +475,84 @@ On Android, it is a type alias of <code>androidx.lifecycle.SavedStateHandle</cod
 On other platforms, it is simply a wrapper of the normal <code>Map&lt;String, Any?&gt;</code>.</p>
 <p>Because the limitation of Android platform, the data stored in <code>SavedStateHandle</code> must be one of the
 following types:</p>
-<p>// table in markdown
-| Type/Class support | Array support |
-| ------------------ | ------------- |
-| double | double[] |
-| int | int[] |
-| long | long[] |
-| String | String[] |
-| byte | byte[] |
-| char | char[] |
-| CharSequence | CharSequence[] |
-| float | float[] |
-| Parcelable | Parcelable[] |
-| Serializable | Serializable[] |
-| short | short[] |
-| SparseArray | |
-| Binder | |
-| Bundle | |
-| ArrayList | |
-| Size (only in API 21+) | |
-| SizeF (only in API 21+) | |</p>
+<table>
+<thead>
+<tr>
+<th>Type/Class support</th>
+<th>Array support</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>double</td>
+<td>double[]</td>
+</tr>
+<tr>
+<td>int</td>
+<td>int[]</td>
+</tr>
+<tr>
+<td>long</td>
+<td>long[]</td>
+</tr>
+<tr>
+<td>String</td>
+<td>String[]</td>
+</tr>
+<tr>
+<td>byte</td>
+<td>byte[]</td>
+</tr>
+<tr>
+<td>char</td>
+<td>char[]</td>
+</tr>
+<tr>
+<td>CharSequence</td>
+<td>CharSequence[]</td>
+</tr>
+<tr>
+<td>float</td>
+<td>float[]</td>
+</tr>
+<tr>
+<td>Parcelable</td>
+<td>Parcelable[]</td>
+</tr>
+<tr>
+<td>Serializable</td>
+<td>Serializable[]</td>
+</tr>
+<tr>
+<td>short</td>
+<td>short[]</td>
+</tr>
+<tr>
+<td>SparseArray</td>
+<td></td>
+</tr>
+<tr>
+<td>Binder</td>
+<td></td>
+</tr>
+<tr>
+<td>Bundle</td>
+<td></td>
+</tr>
+<tr>
+<td>ArrayList</td>
+<td></td>
+</tr>
+<tr>
+<td>Size (only in API 21+)</td>
+<td></td>
+</tr>
+<tr>
+<td>SizeF (only in API 21+)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <p>If the class does not extend one of those in the above list, consider making the class parcelable
 by adding the <code>@Parcelize</code> annotation.
 See <a href="https://developer.android.com/topic/libraries/architecture/viewmodel/viewmodel-savedstate#types">SavedStateHandle supported types docs</a>
