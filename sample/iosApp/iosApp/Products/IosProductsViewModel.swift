@@ -12,13 +12,11 @@ import Combine
 
 @MainActor
 class IosProductsViewModel: ObservableObject {
-  private let commonVm: ProductsViewModel
+  private let commonVm: ProductsViewModel = DIContainer.shared.get()
 
   @Published private(set) var state: ProductsState
 
-  init(commonVm: ProductsViewModel) {
-    self.commonVm = commonVm
-
+  init() {
     self.state = self.commonVm.stateFlow.typedValue()
     self.commonVm.stateFlow.subscribeNonNullFlow(
       scope: self.commonVm.viewModelScope,

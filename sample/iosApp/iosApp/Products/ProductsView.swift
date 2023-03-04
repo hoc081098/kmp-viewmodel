@@ -6,7 +6,7 @@ import Combine
 struct ProductsView: View {
   @Environment(\.scenePhase) var scenePhase
 
-  @ObservedObject var viewModel = IosProductsViewModel(commonVm: DIContainer.shared.get())
+  @ObservedObject var viewModel = IosProductsViewModel()
 
   var body: some View {
     let state = self.viewModel.state
@@ -27,7 +27,9 @@ struct ProductsView: View {
         } else {
           List {
             ForEach(state.products, id: \.id) { item in
-              ProductItemRow(item: item)
+              NavigationLink(destination: LazyView(ProductDetailView(id: item.id))) {
+                ProductItemRow(item: item)
+              }
             }
           }.refreshable {
             self.viewModel.dispatch(action: ProductsActionRefresh())
@@ -43,10 +45,16 @@ struct ProductsView: View {
           }
         }
       }.frame(maxHeight: .infinity)
+        .navigationTitle("Products")
     }.onAppear {
-      self.viewModel.dispatch(action: ProductsActionLoad())
+      if !state.hasContent {
+        self.viewModel.dispatch(action: ProductsActionLoad())
+      }
       self.viewModel.onActive()
     }
+      .onDisappear {
+        self.viewModel.onInactive()
+      }
       .onChange(of: scenePhase) { newPhase in
       switch newPhase {
       case .inactive:

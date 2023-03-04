@@ -1,3 +1,5 @@
+@file:Suppress("PackageNaming")
+
 package com.hoc081098.kmpviewmodelsample.product_detail
 
 import com.hoc081098.flowext.flatMapFirst
@@ -89,7 +91,16 @@ class ProductDetailViewModel(
   }
 
   companion object {
-    // This key is used by non-Android platforms to set id to SavedStateHandle.
+    // This key is used by non-Android platforms to set id to SavedStateHandle,
+    // used by Android platform to set id to Bundle (handled by Compose-Navigation).
     const val ID_KEY = "id"
+
+    /**
+     * This factory method is used by non-Android platforms to create an instance of [ProductDetailViewModel].
+     */
+    fun create(id: Int, getProductById: GetProductById): ProductDetailViewModel = ProductDetailViewModel(
+      savedStateHandle = SavedStateHandle(mapOf(ID_KEY to id)),
+      getProductById = getProductById,
+    )
   }
 }

@@ -17,6 +17,9 @@
 		35F5E36329AA18EC00EE8FF8 /* SearchProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F5E36229AA18EC00EE8FF8 /* SearchProductsView.swift */; };
 		35F5E36529AA191F00EE8FF8 /* CommonUi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F5E36429AA191F00EE8FF8 /* CommonUi.swift */; };
 		35F5E36729AA19D700EE8FF8 /* IosSearchProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F5E36629AA19D700EE8FF8 /* IosSearchProductsViewModel.swift */; };
+		35F5E36A29B397B000EE8FF8 /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F5E36929B397B000EE8FF8 /* ProductDetailView.swift */; };
+		35F5E36C29B3996500EE8FF8 /* IosProductDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F5E36B29B3996500EE8FF8 /* IosProductDetailViewModel.swift */; };
+		35F5E36E29B3B6EB00EE8FF8 /* String+toDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F5E36D29B3B6EB00EE8FF8 /* String+toDate.swift */; };
 		7555FF83242A565900829871 /* ProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ProductsView.swift */; };
 		E3B44A2B96136F85674A845A /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7082CE4F9EA37C0502E779B /* Pods_iosApp.framework */; };
 /* End PBXBuildFile section */
@@ -33,6 +36,9 @@
 		35F5E36229AA18EC00EE8FF8 /* SearchProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProductsView.swift; sourceTree = "<group>"; };
 		35F5E36429AA191F00EE8FF8 /* CommonUi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonUi.swift; sourceTree = "<group>"; };
 		35F5E36629AA19D700EE8FF8 /* IosSearchProductsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IosSearchProductsViewModel.swift; sourceTree = "<group>"; };
+		35F5E36929B397B000EE8FF8 /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
+		35F5E36B29B3996500EE8FF8 /* IosProductDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IosProductDetailViewModel.swift; sourceTree = "<group>"; };
+		35F5E36D29B3B6EB00EE8FF8 /* String+toDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+toDate.swift"; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -66,6 +72,7 @@
 				352D59EF2998EDD3008142AF /* kotlinxCoroutinesFlowExtensions.swift */,
 				352D59F12998EE6C008142AF /* Napier.swift */,
 				352D59F62998F1A4008142AF /* DIContainer+get.swift */,
+				35F5E36D29B3B6EB00EE8FF8 /* String+toDate.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -86,6 +93,15 @@
 				35F5E36629AA19D700EE8FF8 /* IosSearchProductsViewModel.swift */,
 			);
 			path = "Search Products";
+			sourceTree = "<group>";
+		};
+		35F5E36829B3979700EE8FF8 /* Product Detail */ = {
+			isa = PBXGroup;
+			children = (
+				35F5E36929B397B000EE8FF8 /* ProductDetailView.swift */,
+				35F5E36B29B3996500EE8FF8 /* IosProductDetailViewModel.swift */,
+			);
+			path = "Product Detail";
 			sourceTree = "<group>";
 		};
 		7555FF72242A565900829871 = {
@@ -109,6 +125,7 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				35F5E36829B3979700EE8FF8 /* Product Detail */,
 				35F5E36129AA18D600EE8FF8 /* Search Products */,
 				35F5E36029AA17FD00EE8FF8 /* Products */,
 				352D59F52998F130008142AF /* Utils */,
@@ -253,6 +270,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				35F5E36729AA19D700EE8FF8 /* IosSearchProductsViewModel.swift in Sources */,
+				35F5E36E29B3B6EB00EE8FF8 /* String+toDate.swift in Sources */,
+				35F5E36A29B397B000EE8FF8 /* ProductDetailView.swift in Sources */,
 				35F5E36529AA191F00EE8FF8 /* CommonUi.swift in Sources */,
 				35F5E36329AA18EC00EE8FF8 /* SearchProductsView.swift in Sources */,
 				352D59F02998EDD3008142AF /* kotlinxCoroutinesFlowExtensions.swift in Sources */,
@@ -260,6 +279,7 @@
 				352D59F22998EE6C008142AF /* Napier.swift in Sources */,
 				352D59F72998F1A4008142AF /* DIContainer+get.swift in Sources */,
 				352D59F42998F119008142AF /* IosProductsViewModel.swift in Sources */,
+				35F5E36C29B3996500EE8FF8 /* IosProductDetailViewModel.swift in Sources */,
 				7555FF83242A565900829871 /* ProductsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

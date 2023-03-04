@@ -15,14 +15,12 @@ import Combine
 
 @MainActor
 class IosSearchProductsViewModel: ObservableObject {
-  private let commonVm: SearchProductsViewModel
+  private let commonVm: SearchProductsViewModel = DIContainer.shared.get()
 
   @Published private(set) var state: SearchProductsState
   @Published private(set) var term: String = ""
 
-  init(commonVm: SearchProductsViewModel) {
-    self.commonVm = commonVm
-
+  init() {
     self.state = self.commonVm.stateFlow.typedValue()
     self.commonVm.stateFlow.subscribeNonNullFlow(
       scope: self.commonVm.viewModelScope,

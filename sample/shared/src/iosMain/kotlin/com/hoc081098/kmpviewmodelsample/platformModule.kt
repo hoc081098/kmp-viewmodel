@@ -16,7 +16,12 @@ import org.koin.dsl.module
 internal actual val platformModule: Module = module {
   factoryOf(::ProductsViewModel)
   factoryOf(::SearchProductsViewModel)
-  factoryOf(::ProductDetailViewModel)
+  factory { params ->
+    ProductDetailViewModel.create(
+      id = params.get(),
+      getProductById = get(),
+    )
+  }
   factory { SavedStateHandle() }
   singleOf(::IosAppDispatchers) { bind<AppDispatchers>() }
 }

@@ -13,7 +13,7 @@ struct iOSApp: App {
         VStack(alignment: .center) {
           NavigationLink("Products screen", destination: LazyView(ProductsView()))
           
-          Spacer().frame(height: 16)
+          Spacer().frame(height: 32)
           
           NavigationLink("Search products screen", destination: LazyView(SearchProductsView()))
         }

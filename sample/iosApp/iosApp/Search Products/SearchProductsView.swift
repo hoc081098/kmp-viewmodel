@@ -10,7 +10,7 @@ import SwiftUI
 import shared
 
 struct SearchProductsView: View {
-  @ObservedObject var viewModel = IosSearchProductsViewModel(commonVm: DIContainer.shared.get())
+  @ObservedObject var viewModel = IosSearchProductsViewModel()
 
   var body: some View {
     let state = self.viewModel.state
@@ -41,11 +41,14 @@ struct SearchProductsView: View {
         } else {
           List {
             ForEach(state.products, id: \.id) { item in
-              ProductItemRow(item: item)
+              NavigationLink(destination: LazyView(ProductDetailView(id: item.id))) {
+                ProductItemRow(item: item)
+              }
             }
           }
         }
       }.frame(maxHeight: .infinity)
+        .navigationTitle("Search products")
     }.frame(maxWidth: .infinity, maxHeight: .infinity)
   }
 }
