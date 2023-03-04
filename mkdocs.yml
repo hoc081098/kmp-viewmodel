@@ -11,8 +11,8 @@ copyright: 'Copyright &copy; 2023 Petrus Nguyễn Thái Học.'
 
 theme:
   name: 'material'
-  favicon: images/icon-freeletics.png
-  logo: images/icon-freeletics.png
+  favicon: images/logo.jpeg
+  logo: images/logo.jpeg
   palette:
     primary: 'deep purple'
     accent: 'white'
@@ -20,6 +20,8 @@ theme:
     - toc.integrate
 
 markdown_extensions:
+  - attr_list
+  - md_in_html
   - smarty
   - codehilite:
       guess_lang: false
