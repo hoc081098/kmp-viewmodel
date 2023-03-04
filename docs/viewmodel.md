@@ -18,6 +18,7 @@ dependencyResolutionManagement {
 - Add dependency to `build.gradle.kts` of your shared module (must use `api` configuration).
 
 ```kotlin
+// build.gradle.kts
 kotlin {
   sourceSets {
     val commonMain by getting {
@@ -63,6 +64,7 @@ kotlin {
 <p>
 
 ```kotlin
+// settings.gradle.kts
 dependencyResolutionManagement {
   repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
   repositories {
@@ -71,6 +73,7 @@ dependencyResolutionManagement {
   }
 }
 
+// build.gradle.kts
 dependencies {
   api("io.github.hoc081098:kmp-viewmodel:0.1.1-SNAPSHOT")
 }

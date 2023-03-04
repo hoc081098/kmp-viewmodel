@@ -32,6 +32,7 @@ dependencyResolutionManagement {
 - Add dependency to `build.gradle.kts` of your shared module (must use `api` configuration).
 
 ```kotlin
+// build.gradle.kts
 kotlin {
   sourceSets {
     val commonMain by getting {
@@ -76,6 +77,7 @@ kotlin {
   generate `Parcelable` implementation for Android.
 
 ```kotlin
+// build.gradle.kts
 plugins {
   id("kotlin-parcelize") // Apply the plugin for Android
 }
@@ -86,6 +88,7 @@ plugins {
 <p>
 
 ```kotlin
+// settings.gradle.kts
 dependencyResolutionManagement {
   repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
   repositories {
@@ -94,6 +97,7 @@ dependencyResolutionManagement {
   }
 }
 
+// build.gradle.kts
 dependencies {
   api("io.github.hoc081098:kmp-viewmodel-savedstate:0.1.1-SNAPSHOT")
 }
