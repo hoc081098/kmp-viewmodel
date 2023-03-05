@@ -88,14 +88,31 @@ jobs:
           ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.MAVEN_SIGNING_PRIVATE_KEY }}
           ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.MAVEN_SIGNING_PASSWORD }}
 
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+
+      - name: Install MkDocs Material
+        run: pip install mkdocs-material
+
       - name: Generate docs
         run: ./gradlew :dokkaHtmlMultiModule --no-parallel --stacktrace
+
+      - name: Copy docs
+        run: |
+          cp README.md docs/index.md
+          mkdir -p docs/API
+          cp -R build/dokka/htmlMultiModule/. docs/API
+
+      - name: Build MkDocs
+        run: mkdocs build
 
       - name: Deploy docs 🚀 to website
         if: ${{ contains(matrix.os, 'macos') }}
         uses: JamesIves/github-pages-deploy-action@v4.4.1
         with:
           branch: gh-pages # The branch the action should deploy to.
-          folder: build/dokka/htmlMultiModule/ # The folder the action should deploy.
+          folder: site # The folder the action should deploy.
           target-folder: docs/0.x/
           clean: true
