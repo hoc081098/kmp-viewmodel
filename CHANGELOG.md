@@ -41,7 +41,7 @@
 
 - Initial release.
 
-[Unreleased]: https://github.com/hoc081098/FlowExt/compare/0.2.0...HEAD
+[Unreleased]: https://github.com/hoc081098/kmp-viewmodel/compare/0.2.0...HEAD
 [0.2.0]: https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.2.0
 [0.1.0]: https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.1.0
 [0.0.1]: https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.0.1
