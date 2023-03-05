@@ -127,6 +127,13 @@ kotlin {
       dependsOn(nonAndroidTest)
     }
 
+    val darwinMain by creating {
+      dependsOn(nativeMain)
+    }
+    val darwinTest by creating {
+      dependsOn(nonAndroidTest)
+    }
+
     val appleTargets = listOf(
       "iosX64",
       "iosSimulatorArm64",
@@ -146,10 +153,10 @@ kotlin {
 
     appleTargets.forEach {
       getByName("${it}Main") {
-        dependsOn(nativeMain)
+        dependsOn(darwinMain)
       }
       getByName("${it}Test") {
-        dependsOn(nativeTest)
+        dependsOn(darwinTest)
       }
     }
   }
