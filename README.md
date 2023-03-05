@@ -3,7 +3,7 @@
 Shared ViewModel in Kotlin Multiplatform - A Kotlin Multiplatform library that provides shared MVVM
 for UI applications.
 Components are lifecycle-aware on Android.
-Supports AndroidX SavedStateHandle for restoring state after process death.
+Supports Android Parcelable, Kotlin Parcelize, AndroidX SavedStateHandle for restoring state after process death.
 
 The ViewModel class is a business logic or screen level state holder.
 It exposes state to the UI and encapsulates related business logic.
