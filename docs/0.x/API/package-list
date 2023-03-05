@@ -1,0 +1,8 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+
+module:viewmodel
+com.hoc081098.kmp.viewmodel
+module:viewmodel-savedstate
+com.hoc081098.kmp.viewmodel
+com.hoc081098.kmp.viewmodel.parcelable
