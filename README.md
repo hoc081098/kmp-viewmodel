@@ -89,5 +89,5 @@ Copyright (c) 2023 Petrus Nguyễn Thái Học
 [badge-wasm]: https://img.shields.io/badge/wasm-624FE8.svg?style=flat
 [badge-nodejs]: https://img.shields.io/badge/nodejs-68a063.svg?style=flat
 
-[1]: /viewmodel
-[2]: /viewmodel-savedstate
+[1]: /kmp-viewmodel/docs/0.x/viewmodel/
+[2]: /kmp-viewmodel/docs/0.x/viewmodel-savedstate/
