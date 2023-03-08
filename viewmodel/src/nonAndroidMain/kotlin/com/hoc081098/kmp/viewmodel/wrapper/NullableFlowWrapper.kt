@@ -1,52 +1,11 @@
 package com.hoc081098.kmp.viewmodel.wrapper
 
-import com.hoc081098.kmp.viewmodel.Closeable
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 
-// FIXME(overloads): https://youtrack.jetbrains.com/issue/KT-38685/Generate-overloaded-obj-c-functions-for-functions-with-default-parameter-values
-public class NullableFlowWrapper<T : Any>(private val flow: Flow<T?>) : Flow<T?> by flow {
-  public fun subscribe(
-    scope: CoroutineScope,
-    onValue: (value: T?) -> Unit,
-    onError: (throwable: Throwable) -> Unit,
-    onComplete: () -> Unit,
-  ): Closeable = flow.subscribe(
-    scope = scope,
-    onValue = onValue,
-    onError = onError,
-    onComplete = onComplete,
-  )
-
-  public fun subscribe(
-    scope: CoroutineScope,
-    onValue: (value: T?) -> Unit,
-  ): Closeable = flow.subscribe(
-    scope = scope,
-    onValue = onValue,
-    onError = null,
-    onComplete = null,
-  )
-
-  public fun subscribe(
-    scope: CoroutineScope,
-    onValue: (value: T?) -> Unit,
-    onError: (throwable: Throwable) -> Unit,
-  ): Closeable = flow.subscribe(
-    scope = scope,
-    onValue = onValue,
-    onError = onError,
-    onComplete = null,
-  )
-
-  public fun subscribe(
-    scope: CoroutineScope,
-    onValue: (value: T?) -> Unit,
-    onComplete: () -> Unit,
-  ): Closeable = flow.subscribe(
-    scope = scope,
-    onValue = onValue,
-    onError = null,
-    onComplete = onComplete,
-  )
-}
+/**
+ * A wrapper for [Flow] that provides a more convenient API for subscribing to the flow
+ * when using Flow on native platforms.
+ *
+ * @param T the type of the flow's values, it is nullable.
+ */
+public class NullableFlowWrapper<out T : Any>(flow: Flow<T?>) : FlowWrapper<T?>(flow)

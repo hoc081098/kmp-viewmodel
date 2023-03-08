@@ -1,24 +1,29 @@
+@file:Suppress("SpellCheckingInspection")
+
 package com.hoc081098.kmp.viewmodel.wrapper
 
-import com.hoc081098.kmp.viewmodel.Closeable
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
 
+/**
+ * @suppress
+ */
 internal fun <T> Flow<T>.subscribe(
   scope: CoroutineScope,
   onValue: (value: T) -> Unit,
   onError: ((throwable: Throwable) -> Unit)? = null,
   onComplete: (() -> Unit)? = null,
-): Closeable {
+): JoinableAndCloseable {
   val job = this
     .onEach(onValue)
     .run {
       if (onComplete !== null) {
-        onCompletion { if (it === null) onComplete() }
+        onCompletion { if (it === null) onComplete() else throw it }
       } else {
         this
       }
@@ -32,5 +37,10 @@ internal fun <T> Flow<T>.subscribe(
     }
     .launchIn(scope)
 
-  return Closeable { job.cancel() }
+  return JoinableAndCloseableJobImpl(job)
+}
+
+private class JoinableAndCloseableJobImpl(private val job: Job) : JoinableAndCloseable {
+  override fun close() = job.cancel()
+  override suspend fun join() = job.join()
 }
