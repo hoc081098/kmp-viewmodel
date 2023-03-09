@@ -537,7 +537,7 @@ style:
     values:
       - 'FIXME:'
       - 'STOPSHIP:'
-      - 'TODO:'
+#      - 'TODO:'
     allowedPatterns: ''
     customMessage: ''
   ForbiddenImport:
