@@ -145,14 +145,32 @@ class ProductsViewModel(
 
 ## 4. Use common `ViewModel` in each platform.
 
-- `Android`: use the `ViewModel` as a normal `AndroidX Lifecycle ViewModel`.
-- `non-Android`:
-  - Make sure that you call `clear()` on your ViewModel when it's no longer needed,
-    to properly cancel the `CoroutineScope` and close resources.
-  - For example, you should call `clear()` in `deinit` block when using `ViewModel` in `Darwin`
-    targets (`ios`, `macos`, `tvos`, `watchos`).
-  - In addition, you should create a wrapper of the common `ViewModel` in each platform, to consume the
-    common `ViewModel` easily and safely.
+### 4.1. Android
+
+Use the `ViewModel` as a normal `AndroidX Lifecycle ViewModel`.
+
+```kotlin
+import androidx.lifecycle.viewmodel.compose.viewModel
+
+@Composable
+fun ProductsScreen(
+  viewModel: ProductsViewModel = viewModel(),
+) {
+  val state by viewModel.stateFlow.collectAsStateWithLifecycle()
+  // Render UI based on state.
+}
+```
+
+### 4.2. non-Android
+
+- Make sure that you call `clear()` on your ViewModel when it's no longer needed,
+  to properly cancel the `CoroutineScope` and close resources.
+  For example, you should call `clear()` in `deinit` block when using `ViewModel` in `Darwin`
+  targets (`ios`, `macos`, `tvos`, `watchos`).
+
+- In addition, you should create a wrapper of the common `ViewModel` in each platform and use
+  flow wrappers provided by this library (`NonNullFlowWrapper`, `NullableFlowWrapper`), to consume
+  the common `ViewModel` easily and safely.
 
 > For more details, please
 > check [kmp viewmodel sample](https://github.com/hoc081098/kmp-viewmodel/tree/master/sample).
@@ -167,10 +185,10 @@ class IosProductsViewModel: ObservableObject {
   init(commonVm: ProductsViewModel) {
     self.commonVm = commonVm
 
-    self.state = self.commonVm.stateFlow.typedValue()
-    self.commonVm.stateFlow.subscribeNonNullFlow(
+    self.state = self.commonVm.stateFlow.value as! ProductsState
+    NonNullFlowWrapper<ProductsState>(flow: self.commonVm.stateFlow).subscribe(
       scope: self.commonVm.viewModelScope,
-      onValue: { [weak self] in self?.state = $0 }
+      onValue: { [weak self] in self?.state = $0 } // use weak self to avoid retain cycle.
     )
   }
 

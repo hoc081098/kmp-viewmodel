@@ -19,9 +19,7 @@ private let defaultOnError = { (error: Error) in
 }
 
 extension StateFlow {
-  func typedValue<T>(_ type: T.Type = T.self) -> T {
-    value as! T
-  }
+  func typedValue<T>(_ type: T.Type = T.self) -> T { value as! T }
 }
 
 extension Flow {
@@ -34,7 +32,7 @@ extension Flow {
     onValue: @escaping (T) -> Void,
     onError: ((Error) -> Void)? = nil,
     onComplete: (() -> Void)? = nil
-  ) -> Closeable {
+  ) -> JoinableAndCloseable {
     NonNullFlowWrapper<T>(flow: self).subscribe(
       scope: scope,
       onValue: onValue,
@@ -58,7 +56,7 @@ extension Flow {
     onValue: @escaping (T?) -> Void,
     onError: ((Error) -> Void)? = nil,
     onComplete: (() -> Void)? = nil
-  ) -> Closeable {
+  ) -> JoinableAndCloseable {
     NullableFlowWrapper<T>(flow: self).subscribe(
       scope: scope,
       onValue: onValue,
