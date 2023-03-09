@@ -553,6 +553,8 @@
 <p>For more details, please
 check <a href="https://github.com/hoc081098/kmp-viewmodel/tree/master/sample">kmp viewmodel sample</a>.</p>
 </blockquote>
+<p>The below example is using <code>NonNullFlowWrapper</code> to consume the <code>Flow</code>s in <code>Darwin</code> targets (Swift
+language).
 <div class="highlight"><pre><span></span><code><span class="p">@</span><span class="n">MainActor</span>
 <span class="kd">class</span> <span class="nc">IosProductsViewModel</span><span class="p">:</span> <span class="n">ObservableObject</span> <span class="p">{</span>
   <span class="kd">private</span> <span class="kd">let</span> <span class="nv">commonVm</span><span class="p">:</span> <span class="n">ProductsViewModel</span>
@@ -573,7 +575,7 @@ check <a href="https://github.com/hoc081098/kmp-viewmodel/tree/master/sample">km
 
   <span class="kd">deinit</span> <span class="p">{</span> <span class="kc">self</span><span class="p">.</span><span class="n">commonVm</span><span class="p">.</span><span class="n">clear</span><span class="p">()</span> <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div>
+</code></pre></div></p>
 
 
 

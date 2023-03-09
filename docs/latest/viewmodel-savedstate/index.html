@@ -313,6 +313,26 @@
     3. Usage example
   </a>
   
+    <nav class="md-nav" aria-label="3. Usage example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-common-code" class="md-nav__link">
+    3.1. Common code
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-darwin-native-code" class="md-nav__link">
+    3.2. Darwin native code
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -558,6 +578,7 @@ by adding the <code>@Parcelize</code> annotation.
 See <a href="https://developer.android.com/topic/libraries/architecture/viewmodel/viewmodel-savedstate#types">SavedStateHandle supported types docs</a>
 for more details.</p>
 <h2 id="3-usage-example">3. Usage example<a class="headerlink" href="#3-usage-example" title="Permanent link">&para;</a></h2>
+<h3 id="31-common-code">3.1. Common code<a class="headerlink" href="#31-common-code" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nn">com.hoc081098.kmp.viewmodel.SavedStateHandle</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">com.hoc081098.kmp.viewmodel.ViewModel</span>
 <span class="k">import</span><span class="w"> </span><span class="nn">com.hoc081098.kmp.viewmodel.parcelable.Parcelable</span>
@@ -568,17 +589,18 @@ for more details.</p>
 
 <span class="kd">class</span><span class="w"> </span><span class="nc">UserViewModel</span><span class="p">(</span>
 <span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">savedStateHandle</span><span class="p">:</span><span class="w"> </span><span class="n">SavedStateHandle</span><span class="p">,</span>
-<span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">getUserUseCase</span><span class="p">:</span><span class="w"> </span><span class="n">suspend</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">User</span><span class="p">,</span>
+<span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">getUserUseCase</span><span class="p">:</span><span class="w"> </span><span class="n">suspend</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">User?,</span>
 <span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ViewModel</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">val</span><span class="w"> </span><span class="nv">user</span><span class="p">:</span><span class="w"> </span><span class="n">StateFlow</span><span class="o">&lt;</span><span class="n">User?&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">savedStateHandle</span><span class="p">.</span><span class="na">getStateFlow</span><span class="o">&lt;</span><span class="n">User?&gt;</span><span class="p">(</span><span class="n">USER_KEY</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span>
+<span class="w">  </span><span class="kd">val</span><span class="w"> </span><span class="nv">userStateFlow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">savedStateHandle</span><span class="p">.</span><span class="na">getStateFlow</span><span class="o">&lt;</span><span class="n">User?&gt;</span><span class="p">(</span><span class="n">USER_KEY</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span>
 
 <span class="w">  </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getUser</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">viewModelScope</span><span class="p">.</span><span class="na">launch</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">savedStateHandle</span><span class="o">[</span><span class="n">USER_KEY</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getUserUseCase</span><span class="p">()</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getUserUseCase</span><span class="p">()</span>
+<span class="w">        </span><span class="n">savedStateHandle</span><span class="o">[</span><span class="n">USER_KEY</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">user</span>
 <span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">:</span><span class="w"> </span><span class="n">CancellationException</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="n">e</span>
-<span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">:</span><span class="w"> </span><span class="n">Exception</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nd">@Suppress</span><span class="p">(</span><span class="s">&quot;TooGenericExceptionCaught&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">e</span><span class="p">:</span><span class="w"> </span><span class="n">Exception</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">()</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
@@ -587,6 +609,50 @@ for more details.</p>
 <span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="kd">companion</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="err">{</span>
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">USER_KEY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;user_key&quot;</span>
 <span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="32-darwin-native-code">3.2. Darwin native code<a class="headerlink" href="#32-darwin-native-code" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">import</span> <span class="nc">Foundation</span>
+<span class="kd">import</span> <span class="nc">Combine</span>
+<span class="kd">import</span> <span class="nc">shared</span>
+
+<span class="kd">private</span> <span class="kd">class</span> <span class="nc">FakeGetUserUseCase</span><span class="p">:</span> <span class="n">KotlinSuspendFunction0</span> <span class="p">{</span>
+  <span class="kd">private</span> <span class="kd">var</span> <span class="nv">count</span> <span class="p">=</span> <span class="mi">0</span>
+
+  <span class="kd">func</span> <span class="nf">invoke</span><span class="p">()</span> <span class="k">async</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="nb">Any</span><span class="p">?</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="k">await</span> <span class="n">Task</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">nanoseconds</span><span class="p">:</span> <span class="mi">1</span> <span class="o">*</span> <span class="mi">1_000_000_000</span><span class="p">)</span>
+
+    <span class="bp">count</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="bp">count</span><span class="p">.</span><span class="n">isMultiple</span><span class="p">(</span><span class="n">of</span><span class="p">:</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="kc">nil</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="n">User</span><span class="p">(</span><span class="n">id</span><span class="p">:</span> <span class="nb">Int64</span><span class="p">(</span><span class="bp">count</span><span class="p">),</span> <span class="n">name</span><span class="p">:</span> <span class="s">&quot;hoc081098&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="p">@</span><span class="n">MainActor</span>
+<span class="kd">class</span> <span class="nc">IosUserViewModel</span><span class="p">:</span> <span class="n">ObservableObject</span> <span class="p">{</span>
+  <span class="kd">private</span> <span class="kd">let</span> <span class="nv">commonVm</span><span class="p">:</span> <span class="n">UserViewModel</span> <span class="p">=</span> <span class="n">UserViewModel</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span>
+    <span class="n">savedStateHandle</span><span class="p">:</span> <span class="p">.</span><span class="kd">init</span><span class="p">(),</span>
+    <span class="n">getUserUseCase</span><span class="p">:</span> <span class="n">FakeGetUserUseCase</span><span class="p">()</span>
+  <span class="p">)</span>
+
+  <span class="p">@</span><span class="n">Published</span> <span class="kd">private</span><span class="p">(</span><span class="kr">set</span><span class="p">)</span> <span class="kd">var</span> <span class="nv">user</span><span class="p">:</span> <span class="n">User</span><span class="p">?</span>
+
+  <span class="kd">init</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">NullableFlowWrapper</span><span class="p">&lt;</span><span class="n">User</span><span class="p">&gt;(</span><span class="n">flow</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">commonVm</span><span class="p">.</span><span class="n">userStateFlow</span><span class="p">).</span><span class="n">subscribe</span><span class="p">(</span>
+      <span class="n">scope</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">commonVm</span><span class="p">.</span><span class="n">viewModelScope</span><span class="p">,</span>
+      <span class="n">onValue</span><span class="p">:</span> <span class="p">{</span> <span class="p">[</span><span class="kr">weak</span> <span class="kc">self</span><span class="p">]</span> <span class="k">in</span> <span class="kc">self</span><span class="p">?.</span><span class="n">user</span> <span class="p">=</span> <span class="nv">$0</span> <span class="p">}</span>
+    <span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="kd">func</span> <span class="nf">getUser</span><span class="p">()</span> <span class="p">{</span> <span class="kc">self</span><span class="p">.</span><span class="n">commonVm</span><span class="p">.</span><span class="n">getUser</span><span class="p">()</span> <span class="p">}</span>
+
+  <span class="kd">deinit</span> <span class="p">{</span>
+    <span class="kc">self</span><span class="p">.</span><span class="n">commonVm</span><span class="p">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="n">Napier</span><span class="p">.</span><span class="n">d</span><span class="p">(</span><span class="s">&quot;</span><span class="si">\(</span><span class="kc">self</span><span class="si">)</span><span class="s">::deinit&quot;</span><span class="p">)</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <blockquote>
