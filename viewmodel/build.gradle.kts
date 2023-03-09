@@ -131,7 +131,7 @@ kotlin {
       dependsOn(nativeMain)
     }
     val darwinTest by creating {
-      dependsOn(nonAndroidTest)
+      dependsOn(nativeTest)
     }
 
     val appleTargets = listOf(

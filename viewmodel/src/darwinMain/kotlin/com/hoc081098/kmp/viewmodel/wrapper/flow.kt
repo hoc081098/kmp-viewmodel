@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
 
 /**
- * @suppress
+ * RxJava-like subscribe for Kotlin Flow.
  */
 internal fun <T> Flow<T>.subscribe(
   scope: CoroutineScope,

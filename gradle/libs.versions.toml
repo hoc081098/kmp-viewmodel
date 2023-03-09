@@ -21,7 +21,7 @@ spotless = "6.15.0"
 detekt = "1.22.0"
 
 kotlinx-kover = "0.6.1"
-dokka = "1.7.20"
+dokka = "1.8.10"
 kotlinx-binary-compatibility-validator = "0.12.1"
 
 vanniktech-maven-publish = "0.24.0"
