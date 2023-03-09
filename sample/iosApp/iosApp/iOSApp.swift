@@ -16,6 +16,10 @@ struct iOSApp: App {
           Spacer().frame(height: 32)
           
           NavigationLink("Search products screen", destination: LazyView(SearchProductsView()))
+          
+          Spacer().frame(height: 32)
+          
+          NavigationLink("Snippets", destination: LazyView(SnippetsView()))
         }
           .frame(maxWidth: .infinity)
           .navigationTitle("KMP ViewModel sample")

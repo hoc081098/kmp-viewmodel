@@ -17,14 +17,15 @@ data class User(
 
 class UserViewModel(
   private val savedStateHandle: SavedStateHandle,
-  private val getUserUseCase: suspend () -> User,
+  private val getUserUseCase: suspend () -> User?,
 ) : ViewModel() {
-  val user = savedStateHandle.getStateFlow<User?>(USER_KEY, null)
+  val userStateFlow = savedStateHandle.getStateFlow<User?>(USER_KEY, null)
 
   fun getUser() {
     viewModelScope.launch {
       try {
-        savedStateHandle[USER_KEY] = getUserUseCase()
+        val user = getUserUseCase()
+        savedStateHandle[USER_KEY] = user
       } catch (e: CancellationException) {
         throw e
       } catch (@Suppress("TooGenericExceptionCaught") e: Exception) {

@@ -157,6 +157,7 @@ for more details.
 
 ## 3. Usage example
 
+### 3.1. Common code
 ```kotlin
 import com.hoc081098.kmp.viewmodel.SavedStateHandle
 import com.hoc081098.kmp.viewmodel.ViewModel
@@ -168,17 +169,18 @@ data class User(val id: Long, val name: String) : Parcelable
 
 class UserViewModel(
   private val savedStateHandle: SavedStateHandle,
-  private val getUserUseCase: suspend () -> User,
+  private val getUserUseCase: suspend () -> User?,
 ) : ViewModel() {
-  val user: StateFlow<User?> = savedStateHandle.getStateFlow<User?>(USER_KEY, null)
+  val userStateFlow = savedStateHandle.getStateFlow<User?>(USER_KEY, null)
 
   fun getUser() {
     viewModelScope.launch {
       try {
-        savedStateHandle[USER_KEY] = getUserUseCase()
+        val user = getUserUseCase()
+        savedStateHandle[USER_KEY] = user
       } catch (e: CancellationException) {
         throw e
-      } catch (e: Exception) {
+      } catch (@Suppress("TooGenericExceptionCaught") e: Exception) {
         e.printStackTrace()
       }
     }
@@ -186,6 +188,53 @@ class UserViewModel(
 
   private companion object {
     private const val USER_KEY = "user_key"
+  }
+}
+```
+
+### 3.2. Darwin native code
+
+```swift
+import Foundation
+import Combine
+import shared
+
+private class FakeGetUserUseCase: KotlinSuspendFunction0 {
+  private var count = 0
+
+  func invoke() async throws -> Any? {
+    try await Task.sleep(nanoseconds: 1 * 1_000_000_000)
+
+    count += 1
+    if count.isMultiple(of: 2) {
+      return nil
+    } else {
+      return User(id: Int64(count), name: "hoc081098")
+    }
+  }
+}
+
+@MainActor
+class IosUserViewModel: ObservableObject {
+  private let commonVm: UserViewModel = UserViewModel.init(
+    savedStateHandle: .init(),
+    getUserUseCase: FakeGetUserUseCase()
+  )
+
+  @Published private(set) var user: User?
+
+  init() {
+    NullableFlowWrapper<User>(flow: self.commonVm.userStateFlow).subscribe(
+      scope: self.commonVm.viewModelScope,
+      onValue: { [weak self] in self?.user = $0 }
+    )
+  }
+
+  func getUser() { self.commonVm.getUser() }
+
+  deinit {
+    self.commonVm.clear()
+    Napier.d("\(self)::deinit")
   }
 }
 ```

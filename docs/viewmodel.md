@@ -175,6 +175,8 @@ fun ProductsScreen(
 > For more details, please
 > check [kmp viewmodel sample](https://github.com/hoc081098/kmp-viewmodel/tree/master/sample).
 
+The below example is using `NonNullFlowWrapper` to consume the `Flow`s in `Darwin` targets (Swift
+language).
 ```Swift
 @MainActor
 class IosProductsViewModel: ObservableObject {
