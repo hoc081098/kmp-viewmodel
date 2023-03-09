@@ -10,10 +10,10 @@ public abstract class com/hoc081098/kmp/viewmodel/ViewModel {
 public abstract class com/hoc081098/kmp/viewmodel/wrapper/FlowWrapper : kotlinx/coroutines/flow/Flow {
 	public fun <init> (Lkotlinx/coroutines/flow/Flow;)V
 	public fun collect (Lkotlinx/coroutines/flow/FlowCollector;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun subscribe (Lkotlinx/coroutines/CoroutineScope;Lkotlin/jvm/functions/Function1;)Lcom/hoc081098/kmp/viewmodel/wrapper/JoinableAndCloseable;
-	public final fun subscribe (Lkotlinx/coroutines/CoroutineScope;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;)Lcom/hoc081098/kmp/viewmodel/wrapper/JoinableAndCloseable;
-	public final fun subscribe (Lkotlinx/coroutines/CoroutineScope;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;)Lcom/hoc081098/kmp/viewmodel/wrapper/JoinableAndCloseable;
-	public final fun subscribe (Lkotlinx/coroutines/CoroutineScope;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;)Lcom/hoc081098/kmp/viewmodel/wrapper/JoinableAndCloseable;
+	public fun subscribe (Lkotlinx/coroutines/CoroutineScope;Lkotlin/jvm/functions/Function1;)Lcom/hoc081098/kmp/viewmodel/wrapper/JoinableAndCloseable;
+	public fun subscribe (Lkotlinx/coroutines/CoroutineScope;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;)Lcom/hoc081098/kmp/viewmodel/wrapper/JoinableAndCloseable;
+	public fun subscribe (Lkotlinx/coroutines/CoroutineScope;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;)Lcom/hoc081098/kmp/viewmodel/wrapper/JoinableAndCloseable;
+	public fun subscribe (Lkotlinx/coroutines/CoroutineScope;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;)Lcom/hoc081098/kmp/viewmodel/wrapper/JoinableAndCloseable;
 }
 
 public abstract interface class com/hoc081098/kmp/viewmodel/wrapper/Joinable {
@@ -25,6 +25,10 @@ public abstract interface class com/hoc081098/kmp/viewmodel/wrapper/JoinableAndC
 
 public final class com/hoc081098/kmp/viewmodel/wrapper/NonNullFlowWrapper : com/hoc081098/kmp/viewmodel/wrapper/FlowWrapper {
 	public fun <init> (Lkotlinx/coroutines/flow/Flow;)V
+	public fun subscribe (Lkotlinx/coroutines/CoroutineScope;Lkotlin/jvm/functions/Function1;)Lcom/hoc081098/kmp/viewmodel/wrapper/JoinableAndCloseable;
+	public fun subscribe (Lkotlinx/coroutines/CoroutineScope;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;)Lcom/hoc081098/kmp/viewmodel/wrapper/JoinableAndCloseable;
+	public fun subscribe (Lkotlinx/coroutines/CoroutineScope;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;)Lcom/hoc081098/kmp/viewmodel/wrapper/JoinableAndCloseable;
+	public fun subscribe (Lkotlinx/coroutines/CoroutineScope;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;)Lcom/hoc081098/kmp/viewmodel/wrapper/JoinableAndCloseable;
 }
 
 public final class com/hoc081098/kmp/viewmodel/wrapper/NullableFlowWrapper : com/hoc081098/kmp/viewmodel/wrapper/FlowWrapper {
