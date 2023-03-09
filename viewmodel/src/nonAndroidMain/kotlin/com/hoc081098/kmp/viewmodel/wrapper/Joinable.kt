@@ -7,8 +7,8 @@ import com.hoc081098.kmp.viewmodel.Closeable
 /**
  * Has the same meaning as [kotlinx.coroutines.Job.join].
  */
-public interface Joinable {
+public sealed interface Joinable {
   public suspend fun join()
 }
 
-public interface JoinableAndCloseable : Joinable, Closeable
+public sealed interface JoinableAndCloseable : Joinable, Closeable
