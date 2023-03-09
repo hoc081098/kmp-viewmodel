@@ -11,26 +11,28 @@ import kotlinx.coroutines.flow.Flow
  */
 @Suppress("RedundantOverride")
 // TODO: Override to make generated Objective-C code has the non-optional generic parameter.
-public class NonNullFlowWrapper<out T : Any>(flow: Flow<T>) : FlowWrapper<T>(flow) {
+public class NonNullFlowWrapper<out T : Any>(flow: Flow<T>) : AbstractFlowWrapper<T>(flow) {
   override fun subscribe(
     scope: CoroutineScope,
-    onValue: (value: T) -> Unit,
-    onError: (throwable: Throwable) -> Unit,
-    onComplete: () -> Unit,
+    onValue: OnValue<T>,
+    onError: OnError,
+    onComplete: OnComplete,
   ): JoinableAndCloseable = super.subscribe(scope, onValue, onError, onComplete)
 
-  override fun subscribe(scope: CoroutineScope, onValue: (value: T) -> Unit): JoinableAndCloseable =
-    super.subscribe(scope, onValue)
+  override fun subscribe(
+    scope: CoroutineScope,
+    onValue: OnValue<T>,
+  ): JoinableAndCloseable = super.subscribe(scope, onValue)
 
   override fun subscribe(
     scope: CoroutineScope,
-    onValue: (value: T) -> Unit,
-    onError: (throwable: Throwable) -> Unit,
+    onValue: OnValue<T>,
+    onError: OnError,
   ): JoinableAndCloseable = super.subscribe(scope, onValue, onError)
 
   override fun subscribe(
     scope: CoroutineScope,
-    onValue: (value: T) -> Unit,
-    onComplete: () -> Unit,
+    onValue: OnValue<T>,
+    onComplete: OnComplete,
   ): JoinableAndCloseable = super.subscribe(scope, onValue, onComplete)
 }

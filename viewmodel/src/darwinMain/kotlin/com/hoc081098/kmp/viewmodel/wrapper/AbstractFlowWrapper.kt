@@ -8,12 +8,12 @@ import kotlinx.coroutines.flow.Flow
  * when using Flow on native platforms.
  */
 // FIXME(overloads): https://youtrack.jetbrains.com/issue/KT-38685/Generate-overloaded-obj-c-functions-for-functions-with-default-parameter-values
-public abstract class FlowWrapper<out T>(private val flow: Flow<T>) : Flow<T> by flow {
+public abstract class AbstractFlowWrapper<out T>(private val flow: Flow<T>) : Flow<T> by flow {
   public open fun subscribe(
     scope: CoroutineScope,
-    onValue: (value: T) -> Unit,
-    onError: (throwable: Throwable) -> Unit,
-    onComplete: () -> Unit,
+    onValue: OnValue<T>,
+    onError: OnError,
+    onComplete: OnComplete,
   ): JoinableAndCloseable = flow.subscribe(
     scope = scope,
     onValue = onValue,
@@ -23,7 +23,7 @@ public abstract class FlowWrapper<out T>(private val flow: Flow<T>) : Flow<T> by
 
   public open fun subscribe(
     scope: CoroutineScope,
-    onValue: (value: T) -> Unit,
+    onValue: OnValue<T>,
   ): JoinableAndCloseable = flow.subscribe(
     scope = scope,
     onValue = onValue,
@@ -33,8 +33,8 @@ public abstract class FlowWrapper<out T>(private val flow: Flow<T>) : Flow<T> by
 
   public open fun subscribe(
     scope: CoroutineScope,
-    onValue: (value: T) -> Unit,
-    onError: (throwable: Throwable) -> Unit,
+    onValue: OnValue<T>,
+    onError: OnError,
   ): JoinableAndCloseable = flow.subscribe(
     scope = scope,
     onValue = onValue,
@@ -44,8 +44,8 @@ public abstract class FlowWrapper<out T>(private val flow: Flow<T>) : Flow<T> by
 
   public open fun subscribe(
     scope: CoroutineScope,
-    onValue: (value: T) -> Unit,
-    onComplete: () -> Unit,
+    onValue: OnValue<T>,
+    onComplete: OnComplete,
   ): JoinableAndCloseable = flow.subscribe(
     scope = scope,
     onValue = onValue,

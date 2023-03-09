@@ -8,4 +8,4 @@ import kotlinx.coroutines.flow.Flow
  *
  * @param T the type of the flow's values, it is nullable.
  */
-public class NullableFlowWrapper<out T : Any>(flow: Flow<T?>) : FlowWrapper<T?>(flow)
+public class NullableFlowWrapper<out T : Any?>(flow: Flow<T>) : AbstractFlowWrapper<T>(flow)

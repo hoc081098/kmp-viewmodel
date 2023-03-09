@@ -10,14 +10,18 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
 
+internal typealias OnValue<T> = (value: T) -> Unit
+internal typealias OnError = (throwable: Throwable) -> Unit
+internal typealias OnComplete = () -> Unit
+
 /**
  * RxJava-like subscribe for Kotlin Flow.
  */
 internal fun <T> Flow<T>.subscribe(
   scope: CoroutineScope,
-  onValue: (value: T) -> Unit,
-  onError: ((throwable: Throwable) -> Unit)? = null,
-  onComplete: (() -> Unit)? = null,
+  onValue: OnValue<T>,
+  onError: OnError?,
+  onComplete: OnComplete?,
 ): JoinableAndCloseable {
   val job = this
     .onEach(onValue)
