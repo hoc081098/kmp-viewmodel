@@ -19,7 +19,7 @@
         <link rel="next" href="multiplatform/">
       
       <link rel="icon" href="images/logo.jpeg">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.0">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.1">
     
     
       
@@ -421,7 +421,7 @@
 <p>Shared ViewModel in Kotlin Multiplatform - A Kotlin Multiplatform library that provides shared MVVM
 for UI applications.
 Components are lifecycle-aware on Android.
-Supports AndroidX SavedStateHandle for restoring state after process death.</p>
+Supports Android Parcelable, Kotlin Parcelize, AndroidX SavedStateHandle for restoring state after process death.</p>
 <p>The ViewModel class is a business logic or screen level state holder.
 It exposes state to the UI and encapsulates related business logic.
 Its principal advantage is that it caches state and persists it through configuration changes (on Android).</p>
@@ -466,7 +466,7 @@ Its principal advantage is that it caches state and persists it through configur
 <p>For more information check out the <a href="/kmp-viewmodel/docs/latest/viewmodel-savedstate/">docs</a>.</p>
 <h2 id="roadmap">Roadmap<a class="headerlink" href="#roadmap" title="Permanent link">&para;</a></h2>
 <ul>
-<li>[ ] support <code>SaveStateHandle</code>.</li>
+<li>[x] support <code>SaveStateHandle</code> (since <a href="https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.2.0">0.2.0</a>).</li>
 <li>[ ] add extensions for <code>Flow</code>/<code>StateFlow</code>, to use the ViewModel easily on <code>ios</code>/<code>macOS</code>/<code>tvOS</code>/<code>watchOS</code> platforms.</li>
 </ul>
 <h2 id="license">License<a class="headerlink" href="#license" title="Permanent link">&para;</a></h2>
@@ -517,7 +517,7 @@ Copyright (c) 2023 Petrus Nguyễn Thái Học
     <script id="__config" type="application/json">{"base": ".", "features": ["toc.integrate"], "search": "assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.ce72ebac.min.js"></script>
+      <script src="assets/javascripts/bundle.b78d2936.min.js"></script>
       
     
   </body>
