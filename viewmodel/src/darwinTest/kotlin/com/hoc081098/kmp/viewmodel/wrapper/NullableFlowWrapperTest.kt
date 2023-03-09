@@ -12,14 +12,14 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 
-class NonNullFlowWrapperTest {
+class NullableFlowWrapperTest {
   @Test
-  fun both_normal() = runTest {
-    val values = mutableListOf<Int>()
+  fun full_normal() = runTest {
+    val values = mutableListOf<Int?>()
     var error = null as Throwable?
     var completed = false
 
-    NonNullFlowWrapper(flowOf(1, 2, 3))
+    NullableFlowWrapper(flowOf(1, 2, 3, null))
       .subscribe(
         scope = this,
         onValue = { values += it },
@@ -28,21 +28,22 @@ class NonNullFlowWrapperTest {
       )
       .join()
 
-    assertContentEquals(expected = listOf(1, 2, 3), actual = values)
+    assertContentEquals(expected = listOf(1, 2, 3, null), actual = values)
     assertNull(error)
     assertTrue(completed)
   }
 
   @Test
-  fun both_error() = runTest {
-    val values = mutableListOf<Int>()
+  fun full_error() = runTest {
+    val values = mutableListOf<Int?>()
     var error = null as Throwable?
     var completed = false
 
-    NonNullFlowWrapper(
-      flow<Int> {
+    NullableFlowWrapper(
+      flow<Int?> {
         emit(1)
         emit(2)
+        emit(null)
         throw RuntimeException()
       },
     )
@@ -54,17 +55,17 @@ class NonNullFlowWrapperTest {
       )
       .join()
 
-    assertContentEquals(expected = listOf(1, 2), actual = values)
+    assertContentEquals(expected = listOf(1, 2, null), actual = values)
     assertIs<RuntimeException>(error)
     assertFalse(completed)
   }
 
   @Test
-  fun onErrorOnly_normal() = runTest {
-    val values = mutableListOf<Int>()
+  fun onValue_onError_normal() = runTest {
+    val values = mutableListOf<Int?>()
     var error = null as Throwable?
 
-    NonNullFlowWrapper(flowOf(1, 2, 3))
+    NullableFlowWrapper(flowOf(1, 2, 3, null))
       .subscribe(
         scope = this,
         onValue = { values += it },
@@ -72,19 +73,20 @@ class NonNullFlowWrapperTest {
       )
       .join()
 
-    assertContentEquals(expected = listOf(1, 2, 3), actual = values)
+    assertContentEquals(expected = listOf(1, 2, 3, null), actual = values)
     assertNull(error)
   }
 
   @Test
-  fun onErrorOnly_error() = runTest {
-    val values = mutableListOf<Int>()
+  fun onValue_onError_error() = runTest {
+    val values = mutableListOf<Int?>()
     var error = null as Throwable?
 
-    NonNullFlowWrapper(
-      flow<Int> {
+    NullableFlowWrapper(
+      flow<Int?> {
         emit(1)
         emit(2)
+        emit(null)
         throw RuntimeException()
       },
     )
@@ -95,16 +97,16 @@ class NonNullFlowWrapperTest {
       )
       .join()
 
-    assertContentEquals(expected = listOf(1, 2), actual = values)
+    assertContentEquals(expected = listOf(1, 2, null), actual = values)
     assertIs<RuntimeException>(error)
   }
 
   @Test
-  fun onCompleteOnly_normal() = runTest {
-    val values = mutableListOf<Int>()
+  fun onValue_onComplete_normal() = runTest {
+    val values = mutableListOf<Int?>()
     var completed = false
 
-    NonNullFlowWrapper(flowOf(1, 2, 3))
+    NullableFlowWrapper(flowOf(1, 2, 3, null))
       .subscribe(
         scope = this,
         onValue = { values += it },
@@ -112,20 +114,21 @@ class NonNullFlowWrapperTest {
       )
       .join()
 
-    assertContentEquals(expected = listOf(1, 2, 3), actual = values)
+    assertContentEquals(expected = listOf(1, 2, 3, null), actual = values)
     assertTrue(completed)
   }
 
   @Test
-  fun onCompleteOnly_error() = runTest {
+  fun onValue_onComplete_error() = runTest {
     var error = null as Throwable?
-    val values = mutableListOf<Int>()
+    val values = mutableListOf<Int?>()
     var completed = false
 
-    NonNullFlowWrapper(
-      flow<Int> {
+    NullableFlowWrapper(
+      flow<Int?> {
         emit(1)
         emit(2)
+        emit(null)
         throw RuntimeException()
       },
     )
@@ -137,7 +140,44 @@ class NonNullFlowWrapperTest {
       .join()
 
     assertIs<RuntimeException>(error)
-    assertContentEquals(expected = listOf(1, 2), actual = values)
+    assertContentEquals(expected = listOf(1, 2, null), actual = values)
     assertFalse(completed)
+  }
+
+  @Test
+  fun onValue_normal() = runTest {
+    val values = mutableListOf<Int?>()
+
+    NullableFlowWrapper(flowOf(1, 2, 3, null))
+      .subscribe(
+        scope = this,
+        onValue = { values += it },
+      )
+      .join()
+
+    assertContentEquals(expected = listOf(1, 2, 3, null), actual = values)
+  }
+
+  @Test
+  fun onValue_error() = runTest {
+    val values = mutableListOf<Int?>()
+    var error = null as Throwable?
+
+    NullableFlowWrapper(
+      flow<Int?> {
+        emit(1)
+        emit(2)
+        emit(null)
+        throw RuntimeException()
+      },
+    )
+      .subscribe(
+        scope = CoroutineScope(CoroutineExceptionHandler { _, t -> error = t }),
+        onValue = { values += it },
+      )
+      .join()
+
+    assertIs<RuntimeException>(error)
+    assertContentEquals(expected = listOf(1, 2, null), actual = values)
   }
 }
