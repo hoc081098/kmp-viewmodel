@@ -2,11 +2,12 @@ package com.hoc081098.kmp.viewmodel.wrapper
 
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
-import kotlin.test.assertFailsWith
 import kotlin.test.assertFalse
 import kotlin.test.assertIs
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
@@ -18,7 +19,7 @@ class NullableFlowWrapperTest {
     var error = null as Throwable?
     var completed = false
 
-    NullableFlowWrapper(flowOf(1, 2, 3))
+    NullableFlowWrapper(flowOf(1, 2, 3, null))
       .subscribe(
         scope = this,
         onValue = { values += it },
@@ -27,7 +28,7 @@ class NullableFlowWrapperTest {
       )
       .join()
 
-    assertContentEquals(expected = listOf(1, 2, 3), actual = values)
+    assertContentEquals(expected = listOf(1, 2, 3, null), actual = values)
     assertNull(error)
     assertTrue(completed)
   }
@@ -39,9 +40,10 @@ class NullableFlowWrapperTest {
     var completed = false
 
     NullableFlowWrapper(
-      flow<Int> {
+      flow<Int?> {
         emit(1)
         emit(2)
+        emit(null)
         throw RuntimeException()
       },
     )
@@ -53,7 +55,7 @@ class NullableFlowWrapperTest {
       )
       .join()
 
-    assertContentEquals(expected = listOf(1, 2), actual = values)
+    assertContentEquals(expected = listOf(1, 2, null), actual = values)
     assertIs<RuntimeException>(error)
     assertFalse(completed)
   }
@@ -63,7 +65,7 @@ class NullableFlowWrapperTest {
     val values = mutableListOf<Int?>()
     var error = null as Throwable?
 
-    NullableFlowWrapper(flowOf(1, 2, 3))
+    NullableFlowWrapper(flowOf(1, 2, 3, null))
       .subscribe(
         scope = this,
         onValue = { values += it },
@@ -71,7 +73,7 @@ class NullableFlowWrapperTest {
       )
       .join()
 
-    assertContentEquals(expected = listOf(1, 2, 3), actual = values)
+    assertContentEquals(expected = listOf(1, 2, 3, null), actual = values)
     assertNull(error)
   }
 
@@ -81,9 +83,10 @@ class NullableFlowWrapperTest {
     var error = null as Throwable?
 
     NullableFlowWrapper(
-      flow<Int> {
+      flow<Int?> {
         emit(1)
         emit(2)
+        emit(null)
         throw RuntimeException()
       },
     )
@@ -94,7 +97,7 @@ class NullableFlowWrapperTest {
       )
       .join()
 
-    assertContentEquals(expected = listOf(1, 2), actual = values)
+    assertContentEquals(expected = listOf(1, 2, null), actual = values)
     assertIs<RuntimeException>(error)
   }
 
@@ -103,7 +106,7 @@ class NullableFlowWrapperTest {
     val values = mutableListOf<Int?>()
     var completed = false
 
-    NullableFlowWrapper(flowOf(1, 2, 3))
+    NullableFlowWrapper(flowOf(1, 2, 3, null))
       .subscribe(
         scope = this,
         onValue = { values += it },
@@ -111,32 +114,33 @@ class NullableFlowWrapperTest {
       )
       .join()
 
-    assertContentEquals(expected = listOf(1, 2, 3), actual = values)
+    assertContentEquals(expected = listOf(1, 2, 3, null), actual = values)
     assertTrue(completed)
   }
 
   @Test
   fun onCompleteOnly_error() = runTest {
+    var error = null as Throwable?
     val values = mutableListOf<Int?>()
     var completed = false
 
-    assertFailsWith<RuntimeException> {
-      NullableFlowWrapper(
-        flow<Int> {
-          emit(1)
-          emit(2)
-          throw RuntimeException()
-        },
+    NullableFlowWrapper(
+      flow<Int?> {
+        emit(1)
+        emit(2)
+        emit(null)
+        throw RuntimeException()
+      },
+    )
+      .subscribe(
+        scope = CoroutineScope(CoroutineExceptionHandler { _, throwable -> error = throwable }),
+        onValue = { values += it },
+        onComplete = { completed = true },
       )
-        .subscribe(
-          scope = this,
-          onValue = { values += it },
-          onComplete = { completed = true },
-        )
-        .join()
-    }
+      .join()
 
-    assertContentEquals(expected = emptyList(), actual = values)
+    assertIs<RuntimeException>(error)
+    assertContentEquals(expected = listOf(1, 2, null), actual = values)
     assertFalse(completed)
   }
 }
