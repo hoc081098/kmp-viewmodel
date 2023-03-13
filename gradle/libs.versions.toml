@@ -1,5 +1,5 @@
 [versions]
-kotlin = "1.7.21"
+kotlin = "1.8.10"
 coroutines = "1.6.4"
 kotlinx-serialization-json = "1.4.1"
 kotlinx-collections-immutable = "0.3.5"
