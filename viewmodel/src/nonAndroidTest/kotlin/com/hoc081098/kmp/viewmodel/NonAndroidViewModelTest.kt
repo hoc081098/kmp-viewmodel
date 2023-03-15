@@ -87,6 +87,24 @@ class NonAndroidViewModelTest {
   }
 
   @Test
+  fun constructor_addCloseablesThatWillBeClosedWhenClear() = runTest {
+    val closeables = List(100) {
+      object : Closeable {
+        var closed = AtomicBoolean(false)
+        override fun close() {
+          closed.value = true
+        }
+      }
+    }
+
+    val vm = DemoViewModel(closeables)
+    delay(1)
+    vm.clear()
+
+    closeables.forEach { assertTrue { it.closed.value } }
+  }
+
+  @Test
   fun addCloseablesThatWillBeClosedWhenClear_multiThreads() = runTest {
     val vm = DemoViewModel()
 
