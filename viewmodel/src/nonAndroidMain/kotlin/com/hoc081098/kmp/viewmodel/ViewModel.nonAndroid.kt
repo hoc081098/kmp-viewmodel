@@ -29,7 +29,7 @@ public actual abstract class ViewModel : Any {
   }
 
   public actual constructor(vararg closeables: Closeable) : super() {
-    this.closeables = linkedSetOf<Closeable>().apply { addAll(closeables) }
+    this.closeables = LinkedHashSet(closeables.asList())
   }
 
   protected actual open fun onCleared(): Unit = Unit
