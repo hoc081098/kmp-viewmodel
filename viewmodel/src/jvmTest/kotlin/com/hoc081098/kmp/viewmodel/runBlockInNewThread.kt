@@ -1,18 +1,17 @@
 package com.hoc081098.kmp.viewmodel
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.cancelAndJoin
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.newSingleThreadContext
+import java.util.concurrent.Executors
+import kotlinx.coroutines.suspendCancellableCoroutine
 
-@OptIn(DelicateCoroutinesApi::class)
-actual suspend fun runBlockInNewThread(block: () -> Unit) {
-  newSingleThreadContext("runBlockInNewThread").use { dispatcher ->
-    CoroutineScope(dispatcher).run {
-      launch { block() }.join()
-      coroutineContext[Job]!!.cancelAndJoin()
+actual suspend fun runBlockInNewThread(block: () -> Unit) = suspendCancellableCoroutine { cont ->
+  val executor = Executors.newSingleThreadExecutor()
+
+  cont.invokeOnCancellation { executor.shutdown() }
+
+  executor.execute {
+    if (cont.isActive) {
+      cont.resumeWith(runCatching(block))
+      executor.shutdown()
     }
   }
 }
