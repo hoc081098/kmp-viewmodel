@@ -199,19 +199,25 @@ import Foundation
 import Combine
 import shared
 
-private class FakeGetUserUseCase: KotlinSuspendFunction0 {
+private actor FakeGetUserUseCaseActor {
   private var count = 0
 
-  func invoke() async throws -> Any? {
+  func call() async throws -> User? {
     try await Task.sleep(nanoseconds: 1 * 1_000_000_000)
 
-    count += 1
-    if count.isMultiple(of: 2) {
+    self.count += 1
+    if self.count.isMultiple(of: 2) {
       return nil
     } else {
       return User(id: Int64(count), name: "hoc081098")
     }
   }
+}
+
+private class FakeGetUserUseCase: KotlinSuspendFunction0 {
+  private let actor = FakeGetUserUseCaseActor()
+
+  func invoke() async throws -> Any? { try await self.`actor`.call() }
 }
 
 @MainActor
@@ -234,7 +240,6 @@ class IosUserViewModel: ObservableObject {
 
   deinit {
     self.commonVm.clear()
-    Napier.d("\(self)::deinit")
   }
 }
 ```
