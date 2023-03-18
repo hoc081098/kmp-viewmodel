@@ -78,7 +78,7 @@ kotlin {
         api(libs.coroutines.android)
       }
     }
-    val androidTest by getting {
+    val androidUnitTest by getting {
       dependsOn(commonTest)
 
       dependencies {
@@ -161,7 +161,7 @@ kotlin {
     }
   }
 
-  sourceSets.matching { it.name.endsWith("Test") }.all {
+  sourceSets.matching { it.name.contains("Test") }.all {
     languageSettings {
       optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
     }
