@@ -37,7 +37,7 @@ kotlin {
   sourceSets {
     val commonMain by getting {
       dependencies {
-        api("io.github.hoc081098:kmp-viewmodel-savedstate:0.2.0")
+        api("io.github.hoc081098:kmp-viewmodel-savedstate:0.3.0")
       }
     }
   }
@@ -53,7 +53,7 @@ kotlin {
     [...]
     framework {
       baseName = "shared"
-      export("io.github.hoc081098:kmp-viewmodel-savedstate:0.2.0") // required to expose the classes to iOS.
+      export("io.github.hoc081098:kmp-viewmodel-savedstate:0.3.0") // required to expose the classes to iOS.
     }
   }
 }
@@ -66,7 +66,7 @@ kotlin {
     binaries {
       framework {
         baseName = "shared"
-        export("io.github.hoc081098:kmp-viewmodel-savedstate:0.2.0") // required to expose the classes to iOS.
+        export("io.github.hoc081098:kmp-viewmodel-savedstate:0.3.0") // required to expose the classes to iOS.
       }
     }
   }
@@ -99,7 +99,7 @@ dependencyResolutionManagement {
 
 // build.gradle.kts
 dependencies {
-  api("io.github.hoc081098:kmp-viewmodel-savedstate:0.2.1-SNAPSHOT")
+  api("io.github.hoc081098:kmp-viewmodel-savedstate:0.3.1-SNAPSHOT")
 }
 ```
 
@@ -157,7 +157,7 @@ for more details.
 
 ## 3. Usage example
 
-### 3.1. Common code
+### 3.1. Kotlin common code
 ```kotlin
 import com.hoc081098.kmp.viewmodel.SavedStateHandle
 import com.hoc081098.kmp.viewmodel.ViewModel
@@ -192,26 +192,32 @@ class UserViewModel(
 }
 ```
 
-### 3.2. Darwin native code
+### 3.2. Darwin targets (Swift code)
 
 ```swift
 import Foundation
 import Combine
 import shared
 
-private class FakeGetUserUseCase: KotlinSuspendFunction0 {
+private actor FakeGetUserUseCaseActor {
   private var count = 0
 
-  func invoke() async throws -> Any? {
+  func call() async throws -> User? {
     try await Task.sleep(nanoseconds: 1 * 1_000_000_000)
 
-    count += 1
-    if count.isMultiple(of: 2) {
+    self.count += 1
+    if self.count.isMultiple(of: 2) {
       return nil
     } else {
       return User(id: Int64(count), name: "hoc081098")
     }
   }
+}
+
+private class FakeGetUserUseCase: KotlinSuspendFunction0 {
+  private let actor = FakeGetUserUseCaseActor()
+
+  func invoke() async throws -> Any? { try await self.`actor`.call() }
 }
 
 @MainActor
@@ -234,7 +240,6 @@ class IosUserViewModel: ObservableObject {
 
   deinit {
     self.commonVm.clear()
-    Napier.d("\(self)::deinit")
   }
 }
 ```

@@ -19,7 +19,11 @@ import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 
-class DemoViewModel : ViewModel() {
+class DemoViewModel : ViewModel {
+  constructor() : super()
+
+  constructor(closeables: List<Closeable>) : super(*closeables.toTypedArray())
+
   private val calls = Channel<Unit>(Channel.UNLIMITED)
   val scope get() = super.viewModelScope
 

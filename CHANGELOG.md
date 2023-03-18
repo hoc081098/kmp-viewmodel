@@ -2,6 +2,32 @@
 
 ## [Unreleased]
 
+## [0.3.0] - Mar 18, 2023
+
+### Added
+
+- Add `NonNullFlowWrapper` and `NullableFlowWrapper`, that are wrappers for `Flow`s
+  that provides a more convenient API for subscribing to the `Flow`s on `Darwin targets` (`iOS`, `macOS`, `tvOS`, `watchOS`)
+  ```kotlin
+  // Kotlin code
+  val flow: StateFlow<Int>
+  ```
+  ```swift
+  // Swift code
+  NonNullFlowWrapper<KotlinInt>(flow: flow).subscribe(
+    scope: scope,
+    onValue: { print("Received ", $0) }
+  )
+  ```
+
+### Changed
+
+- Add more example, refactor example code.
+- Add more docs: [0.x docs](https://hoc081098.github.io/kmp-viewmodel/docs/0.x).
+- Add more tests.
+- Gradle `8.0.2`.
+- Dokka `1.8.10`.
+
 ## [0.2.0] - Mar 5, 2023
 
 ### Added
@@ -41,7 +67,8 @@
 
 - Initial release.
 
-[Unreleased]: https://github.com/hoc081098/kmp-viewmodel/compare/0.2.0...HEAD
+[Unreleased]: https://github.com/hoc081098/kmp-viewmodel/compare/0.3.0...HEAD
+[0.3.0]: https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.3.0
 [0.2.0]: https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.2.0
 [0.1.0]: https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.1.0
 [0.0.1]: https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.0.1

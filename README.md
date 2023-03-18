@@ -63,7 +63,8 @@ For more information check out the [docs][2].
 ## Roadmap
 
 - [x] support `SaveStateHandle` (since [0.2.0](https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.2.0)).
-- [ ] add extensions for `Flow`/`StateFlow`, to use the ViewModel easily on `ios`/`macOS`/`tvOS`/`watchOS` platforms.
+- [x] add extensions for `Flow`/`StateFlow`, to use the ViewModel easily on `ios`/`macOS`/`tvOS`/`watchOS` platforms
+  (since [0.3.0](https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.3.0).
 
 ## License
 
