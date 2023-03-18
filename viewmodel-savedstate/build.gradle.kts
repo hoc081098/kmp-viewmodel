@@ -18,13 +18,18 @@ plugins {
 kotlin {
   explicitApi()
 
+  jvmToolchain {
+    languageVersion.set(JavaLanguageVersion.of(libs.versions.java.get()))
+    vendor.set(JvmVendorSpec.AZUL)
+  }
+
   android {
     publishAllLibraryVariants()
   }
 
   jvm {
     compilations.all {
-      kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8.toString()
+      kotlinOptions.jvmTarget = JavaVersion.toVersion(libs.versions.java.get()).toString()
     }
   }
   js(IR) {
@@ -78,7 +83,7 @@ kotlin {
         api(libs.androidx.lifecycle.viewmodel.savedstate)
       }
     }
-    val androidTest by getting {
+    val androidUnitTest by getting {
       dependsOn(commonTest)
 
       dependencies {
@@ -153,7 +158,7 @@ kotlin {
     }
   }
 
-  sourceSets.matching { it.name.endsWith("Test") }.all {
+  sourceSets.matching { it.name.contains("Test") }.all {
     languageSettings {
       optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
     }
@@ -172,8 +177,8 @@ android {
 
   // still needed for Android projects despite toolchain
   compileOptions {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.toVersion(libs.versions.java.get())
+    targetCompatibility = JavaVersion.toVersion(libs.versions.java.get())
   }
 }
 

@@ -8,10 +8,15 @@ plugins {
 }
 
 kotlin {
+  jvmToolchain {
+    languageVersion.set(JavaLanguageVersion.of(libs.versions.java.get()))
+    vendor.set(JvmVendorSpec.AZUL)
+  }
+
   android {
     compilations.all {
       kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = JavaVersion.toVersion(libs.versions.java.get()).toString()
       }
     }
   }
@@ -58,7 +63,7 @@ kotlin {
         api(libs.koin.android)
       }
     }
-    val androidTest by getting
+    val androidUnitTest by getting
     val iosX64Main by getting
     val iosArm64Main by getting
     val iosSimulatorArm64Main by getting
@@ -92,6 +97,12 @@ android {
   }
   buildFeatures {
     buildConfig = true
+  }
+
+  // still needed for Android projects despite toolchain
+  compileOptions {
+    sourceCompatibility = JavaVersion.toVersion(libs.versions.java.get())
+    targetCompatibility = JavaVersion.toVersion(libs.versions.java.get())
   }
 }
 
