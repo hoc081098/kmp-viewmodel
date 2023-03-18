@@ -2,6 +2,14 @@
 
 ## [Unreleased]
 
+### Changed
+
+- Kotlin `1.8.10`.
+- Target `Java 11`.
+- Touchlab Stately `1.2.5`.
+- AndroidX Lifecycle `2.6.0`.
+- Android Gradle Plugin `7.4.2`.
+
 ## [0.3.0] - Mar 18, 2023
 
 ### Added
