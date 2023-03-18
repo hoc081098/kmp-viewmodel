@@ -157,7 +157,7 @@ for more details.
 
 ## 3. Usage example
 
-### 3.1. Common code
+### 3.1. Kotlin common code
 ```kotlin
 import com.hoc081098.kmp.viewmodel.SavedStateHandle
 import com.hoc081098.kmp.viewmodel.ViewModel
@@ -192,7 +192,7 @@ class UserViewModel(
 }
 ```
 
-### 3.2. Darwin native code
+### 3.2. Darwin targets (Swift code)
 
 ```swift
 import Foundation
