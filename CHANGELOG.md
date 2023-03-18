@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [0.3.0] - Mar 18, 2023
+
 ### Added
 
 - Add `NonNullFlowWrapper` and `NullableFlowWrapper`, that are wrappers for `Flow`s
@@ -65,7 +67,8 @@
 
 - Initial release.
 
-[Unreleased]: https://github.com/hoc081098/kmp-viewmodel/compare/0.2.0...HEAD
+[Unreleased]: https://github.com/hoc081098/kmp-viewmodel/compare/0.3.0...HEAD
+[0.3.0]: https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.3.0
 [0.2.0]: https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.2.0
 [0.1.0]: https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.1.0
 [0.0.1]: https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.0.1
