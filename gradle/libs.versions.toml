@@ -8,7 +8,7 @@ kotlinx-collections-immutable = "0.3.5"
 touchlab-stately = "1.2.5"
 napier = "2.6.1"
 flowExt = "0.5.0"
-koin = "3.3.3"
+koin = "3.4.0"
 koin-androidx-compose = "3.4.2"
 coil = "2.3.0"
 
