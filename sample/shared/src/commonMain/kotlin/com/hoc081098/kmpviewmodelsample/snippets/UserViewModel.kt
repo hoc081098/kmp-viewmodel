@@ -6,6 +6,7 @@ import com.hoc081098.kmp.viewmodel.SavedStateHandle
 import com.hoc081098.kmp.viewmodel.ViewModel
 import com.hoc081098.kmp.viewmodel.parcelable.Parcelable
 import com.hoc081098.kmp.viewmodel.parcelable.Parcelize
+import com.hoc081098.kmp.viewmodel.wrapper.wrap
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.launch
 
@@ -19,7 +20,7 @@ class UserViewModel(
   private val savedStateHandle: SavedStateHandle,
   private val getUserUseCase: suspend () -> User?,
 ) : ViewModel() {
-  val userStateFlow = savedStateHandle.getStateFlow<User?>(USER_KEY, null)
+  val userStateFlow = savedStateHandle.getStateFlow<User?>(USER_KEY, null).wrap()
 
   fun getUser() {
     viewModelScope.launch {

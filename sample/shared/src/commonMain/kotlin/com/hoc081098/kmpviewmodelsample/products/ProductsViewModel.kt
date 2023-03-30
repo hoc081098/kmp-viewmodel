@@ -8,6 +8,9 @@ import com.hoc081098.flowext.interval
 import com.hoc081098.flowext.startWith
 import com.hoc081098.kmp.viewmodel.Closeable
 import com.hoc081098.kmp.viewmodel.ViewModel
+import com.hoc081098.kmp.viewmodel.wrapper.NonNullFlowWrapper
+import com.hoc081098.kmp.viewmodel.wrapper.NonNullStateFlowWrapper
+import com.hoc081098.kmp.viewmodel.wrapper.wrap
 import com.hoc081098.kmpviewmodelsample.ProductItem
 import io.github.aakira.napier.Napier
 import kotlin.time.Duration
@@ -71,8 +74,8 @@ class ProductsViewModel(
   private val _eventChannel = Channel<ProductSingleEvent>(Int.MAX_VALUE)
   private val _actionFlow = MutableSharedFlow<ProductsAction>(Int.MAX_VALUE)
 
-  val stateFlow: StateFlow<ProductsState>
-  val eventFlow: Flow<ProductSingleEvent> = _eventChannel.receiveAsFlow()
+  val stateFlow: NonNullStateFlowWrapper<ProductsState>
+  val eventFlow: NonNullFlowWrapper<ProductSingleEvent> = _eventChannel.receiveAsFlow().wrap()
 
   init {
     addCloseable { Napier.d("[DEMO] Closable 3 ...") }
@@ -98,6 +101,7 @@ class ProductsViewModel(
         started = SharingStarted.Eagerly,
         initialValue = ProductsState.INITIAL,
       )
+      .wrap()
   }
 
   //region Handlers

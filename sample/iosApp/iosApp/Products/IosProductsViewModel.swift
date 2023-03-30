@@ -18,7 +18,7 @@ class IosProductsViewModel: ObservableObject {
 
   init() {
     self.state = self.commonVm.stateFlow.typedValue()
-    self.commonVm.stateFlow.subscribeNonNullFlow(
+    self.commonVm.stateFlow.subscribe(
       scope: self.commonVm.viewModelScope,
       onValue: { [weak self] in self?.state = $0 }
     )

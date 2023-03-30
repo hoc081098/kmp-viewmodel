@@ -1,5 +1,7 @@
 package com.hoc081098.kmp.viewmodel.wrapper
 
+import kotlin.experimental.ExperimentalObjCName
+import kotlin.native.ObjCName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 
@@ -11,28 +13,36 @@ import kotlinx.coroutines.flow.Flow
  */
 @Suppress("RedundantOverride")
 // TODO: Override to make generated Objective-C code has the non-optional generic parameter.
-public class NonNullFlowWrapper<out T : Any>(flow: Flow<T>) : AbstractFlowWrapper<T>(flow) {
-  override fun subscribe(
+public open class NonNullFlowWrapper<out T : Any>
+@OptIn(ExperimentalObjCName::class)
+constructor(
+  @ObjCName("_")
+  flow: Flow<T>,
+) : AbstractFlowWrapper<T>(flow) {
+  final override fun subscribe(
     scope: CoroutineScope,
     onValue: OnValue<T>,
     onError: OnError,
     onComplete: OnComplete,
   ): JoinableAndCloseable = super.subscribe(scope, onValue, onError, onComplete)
 
-  override fun subscribe(
+  final override fun subscribe(
     scope: CoroutineScope,
     onValue: OnValue<T>,
   ): JoinableAndCloseable = super.subscribe(scope, onValue)
 
-  override fun subscribe(
+  final override fun subscribe(
     scope: CoroutineScope,
     onValue: OnValue<T>,
     onError: OnError,
   ): JoinableAndCloseable = super.subscribe(scope, onValue, onError)
 
-  override fun subscribe(
+  final override fun subscribe(
     scope: CoroutineScope,
     onValue: OnValue<T>,
     onComplete: OnComplete,
   ): JoinableAndCloseable = super.subscribe(scope, onValue, onComplete)
 }
+
+public fun <T : Any> Flow<T>.wrap(): NonNullFlowWrapper<T> =
+  this as? NonNullFlowWrapper<T> ?: NonNullFlowWrapper(this)

@@ -7,12 +7,13 @@ import com.hoc081098.flowext.flowFromSuspend
 import com.hoc081098.flowext.startWith
 import com.hoc081098.kmp.viewmodel.SavedStateHandle
 import com.hoc081098.kmp.viewmodel.ViewModel
+import com.hoc081098.kmp.viewmodel.wrapper.NonNullStateFlowWrapper
+import com.hoc081098.kmp.viewmodel.wrapper.wrap
 import com.hoc081098.kmpviewmodelsample.ProductItem
 import io.github.aakira.napier.Napier
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
@@ -47,7 +48,7 @@ class ProductDetailViewModel(
     .onStart { Napier.d("getProductById id=$id") }
     .map { ProductDetailState.Success(it) }
 
-  val stateFlow: StateFlow<ProductDetailState> = merge(
+  val stateFlow: NonNullStateFlowWrapper<ProductDetailState> = merge(
     // initial load & retry
     retryFlow
       .startWith(Unit)
@@ -69,6 +70,7 @@ class ProductDetailViewModel(
       started = SharingStarted.Lazily,
       initialValue = ProductDetailState.Loading,
     )
+    .wrap()
 
   fun refresh() {
     viewModelScope.launch {

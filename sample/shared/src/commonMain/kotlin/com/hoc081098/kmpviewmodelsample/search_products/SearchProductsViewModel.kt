@@ -6,12 +6,14 @@ import com.hoc081098.flowext.flowFromSuspend
 import com.hoc081098.flowext.startWith
 import com.hoc081098.kmp.viewmodel.SavedStateHandle
 import com.hoc081098.kmp.viewmodel.ViewModel
+import com.hoc081098.kmp.viewmodel.wrapper.NonNullStateFlowWrapper
+import com.hoc081098.kmp.viewmodel.wrapper.NullableFlowWrapper
+import com.hoc081098.kmp.viewmodel.wrapper.wrap
 import com.hoc081098.kmpviewmodelsample.ProductItem
 import io.github.aakira.napier.Napier
 import kotlin.time.Duration.Companion.milliseconds
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -40,10 +42,10 @@ class SearchProductsViewModel(
   private val searchProducts: SearchProducts,
   private val savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
-  val searchTermStateFlow =
-    savedStateHandle.getStateFlow<String?>(SEARCH_TERM_KEY, null)
+  val searchTermStateFlow: NullableFlowWrapper<String?> =
+    savedStateHandle.getStateFlow<String?>(SEARCH_TERM_KEY, null).wrap()
 
-  val stateFlow: StateFlow<SearchProductsState> = searchTermStateFlow
+  val stateFlow: NonNullStateFlowWrapper<SearchProductsState> = searchTermStateFlow
     .debounce(400.milliseconds)
     .map { it.orEmpty().trim() }
     .distinctUntilChanged()
@@ -53,6 +55,7 @@ class SearchProductsViewModel(
       started = SharingStarted.Lazily,
       initialValue = SearchProductsState.INITIAL,
     )
+    .wrap()
 
   fun search(term: String) {
     savedStateHandle[SEARCH_TERM_KEY] = term

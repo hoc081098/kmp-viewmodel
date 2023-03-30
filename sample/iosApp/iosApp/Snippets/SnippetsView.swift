@@ -42,7 +42,7 @@ class IosUserViewModel: ObservableObject {
   @Published private(set) var user: User?
 
   init() {
-    NullableFlowWrapper<User>(flow: self.commonVm.userStateFlow).subscribe(
+    self.commonVm.userStateFlow.subscribe(
       scope: self.commonVm.viewModelScope,
       onValue: { [weak self] in self?.user = $0 }
     )
