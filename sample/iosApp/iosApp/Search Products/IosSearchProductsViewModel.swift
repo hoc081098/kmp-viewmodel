@@ -20,9 +20,9 @@ class IosSearchProductsViewModel: ObservableObject {
   @Published private(set) var state: SearchProductsState
   @Published private(set) var term: String = ""
 
-  init() {
+  init() {    
     self.state = self.commonVm.stateFlow.typedValue()
-    self.commonVm.stateFlow.subscribeNonNullFlow(
+    self.commonVm.stateFlow.subscribe(
       scope: self.commonVm.viewModelScope,
       onValue: { [weak self] in self?.state = $0 }
     )

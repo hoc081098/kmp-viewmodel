@@ -12,60 +12,18 @@ import Foundation
 import shared
 import Combine
 
-private let emptyOnComplete = { }
-private let defaultOnError = { (error: Error) in
-  Napier.e(error: error, "Unhandled error")
-  fatalError("Unhandled error = \(error)")
-}
-
 extension StateFlow {
   func typedValue<T>(_ type: T.Type = T.self) -> T { value as! T }
 }
 
 extension Flow {
-  // MARK: Flow<T>
-
-  @discardableResult
-  func subscribeNonNullFlow<T: AnyObject>(
-    _ type: T.Type = T.self,
-    scope: CoroutineScope,
-    onValue: @escaping (T) -> Void,
-    onError: ((Error) -> Void)? = nil,
-    onComplete: (() -> Void)? = nil
-  ) -> JoinableAndCloseable {
-    NonNullFlowWrapper<T>(flow: self).subscribe(
-      scope: scope,
-      onValue: onValue,
-      onError: { throwable in
-        (onError ?? defaultOnError)(throwable.asNSError())
-      },
-      onComplete: onComplete ?? emptyOnComplete
-    )
-  }
+  // MARK: - Flow<T>
 
   func asNonNullPublisher<T: AnyObject>(_ type: T.Type = T.self) -> AnyPublisher<T, Error> {
     NonNullFlowPublisher(flow: self).eraseToAnyPublisher()
   }
 
   // MARK: - Flow<T?>
-
-  @discardableResult
-  func subscribeNullableFlow<T: AnyObject>(
-    _ type: T.Type = T.self,
-    scope: CoroutineScope,
-    onValue: @escaping (T?) -> Void,
-    onError: ((Error) -> Void)? = nil,
-    onComplete: (() -> Void)? = nil
-  ) -> JoinableAndCloseable {
-    NullableFlowWrapper<T>(flow: self).subscribe(
-      scope: scope,
-      onValue: onValue,
-      onError: { throwable in
-        (onError ?? defaultOnError)(throwable.asNSError())
-      },
-      onComplete: onComplete ?? emptyOnComplete
-    )
-  }
 
   func asNullablePublisher<T: AnyObject>(_ type: T.Type = T.self) -> AnyPublisher<T?, Error> {
     NullableFlowPublisher(flow: self).eraseToAnyPublisher()
@@ -106,13 +64,13 @@ private class NonNullFlowSubscription<T: AnyObject, S: Subscriber>: Subscription
 
     let scope = ImmediateMainScopeKt.ImmediateMainScope()
 
-    self.closable = flow.subscribeNonNullFlow(
+    self.closable = NonNullFlowWrapper<T>(flow).subscribe(
       scope: scope,
       onValue: {
         _ = subscriber.receive($0)
       },
       onError: {
-        subscriber.receive(completion: .failure($0))
+        subscriber.receive(completion: .failure($0.asNSError()))
       },
       onComplete: {
         subscriber.receive(completion: .finished)
@@ -164,13 +122,13 @@ private class NullableFlowSubscription<T: AnyObject, S: Subscriber>: Subscriptio
 
     let scope = ImmediateMainScopeKt.ImmediateMainScope()
 
-    self.closable = flow.subscribeNonNullFlow(
+    self.closable = NullableFlowWrapper<T>(flow).subscribe(
       scope: scope,
       onValue: {
         _ = subscriber.receive($0)
       },
       onError: {
-        subscriber.receive(completion: .failure($0))
+        subscriber.receive(completion: .failure($0.asNSError()))
       },
       onComplete: {
         subscriber.receive(completion: .finished)

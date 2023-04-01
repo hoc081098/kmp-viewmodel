@@ -1,16 +1,10 @@
-@file:OptIn(
-  ExperimentalLayoutApi::class,
-  ExperimentalMaterial3Api::class,
-  ExperimentalMaterialApi::class,
-)
+@file:OptIn(ExperimentalMaterialApi::class)
 
 package com.hoc081098.kmpviewmodelsample.android.products
 
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue

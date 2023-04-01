@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage", "UNUSED_VARIABLE")
+
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
   alias(libs.plugins.kotlin.multiplatform)
@@ -35,6 +37,7 @@ kotlin {
 
       export(projects.viewmodel)
       export(projects.viewmodelSavedstate)
+
       export(libs.napier)
       export(libs.coroutines.core)
     }
@@ -45,12 +48,14 @@ kotlin {
       dependencies {
         api(projects.viewmodel)
         api(projects.viewmodelSavedstate)
+
         api(libs.napier)
         api(libs.coroutines.core)
+        api(libs.koin.core)
+        api(libs.kotlinx.collections.immutable)
 
         implementation(libs.kotlinx.serialization.json)
         implementation(libs.flowExt)
-        api(libs.koin.core)
       }
     }
     val commonTest by getting {
@@ -97,12 +102,20 @@ android {
   }
   buildFeatures {
     buildConfig = true
+    compose = true
   }
-
+  composeOptions {
+    kotlinCompilerExtensionVersion = libs.versions.androidx.compose.compiler.get()
+  }
   // still needed for Android projects despite toolchain
   compileOptions {
     sourceCompatibility = JavaVersion.toVersion(libs.versions.java.get())
     targetCompatibility = JavaVersion.toVersion(libs.versions.java.get())
+  }
+
+  dependencies {
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.runtime)
   }
 }
 

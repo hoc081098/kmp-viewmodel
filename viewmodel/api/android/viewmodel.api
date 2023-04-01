@@ -6,3 +6,61 @@ public abstract class com/hoc081098/kmp/viewmodel/ViewModel : androidx/lifecycle
 	protected fun onCleared ()V
 }
 
+public abstract class com/hoc081098/kmp/viewmodel/wrapper/AbstractFlowWrapper : kotlinx/coroutines/flow/Flow {
+	public fun <init> (Lkotlinx/coroutines/flow/Flow;)V
+	public fun collect (Lkotlinx/coroutines/flow/FlowCollector;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun subscribe (Lkotlinx/coroutines/CoroutineScope;Lkotlin/jvm/functions/Function1;)Lcom/hoc081098/kmp/viewmodel/wrapper/JoinableAndCloseable;
+	public fun subscribe (Lkotlinx/coroutines/CoroutineScope;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;)Lcom/hoc081098/kmp/viewmodel/wrapper/JoinableAndCloseable;
+	public fun subscribe (Lkotlinx/coroutines/CoroutineScope;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;)Lcom/hoc081098/kmp/viewmodel/wrapper/JoinableAndCloseable;
+	public fun subscribe (Lkotlinx/coroutines/CoroutineScope;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;)Lcom/hoc081098/kmp/viewmodel/wrapper/JoinableAndCloseable;
+}
+
+public abstract interface class com/hoc081098/kmp/viewmodel/wrapper/Joinable {
+	public abstract fun join (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class com/hoc081098/kmp/viewmodel/wrapper/JoinableAndCloseable : com/hoc081098/kmp/viewmodel/wrapper/Joinable, java/io/Closeable {
+}
+
+public class com/hoc081098/kmp/viewmodel/wrapper/NonNullFlowWrapper : com/hoc081098/kmp/viewmodel/wrapper/AbstractFlowWrapper {
+	public fun <init> (Lkotlinx/coroutines/flow/Flow;)V
+	public final fun subscribe (Lkotlinx/coroutines/CoroutineScope;Lkotlin/jvm/functions/Function1;)Lcom/hoc081098/kmp/viewmodel/wrapper/JoinableAndCloseable;
+	public final fun subscribe (Lkotlinx/coroutines/CoroutineScope;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;)Lcom/hoc081098/kmp/viewmodel/wrapper/JoinableAndCloseable;
+	public final fun subscribe (Lkotlinx/coroutines/CoroutineScope;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;)Lcom/hoc081098/kmp/viewmodel/wrapper/JoinableAndCloseable;
+	public final fun subscribe (Lkotlinx/coroutines/CoroutineScope;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;)Lcom/hoc081098/kmp/viewmodel/wrapper/JoinableAndCloseable;
+}
+
+public final class com/hoc081098/kmp/viewmodel/wrapper/NonNullFlowWrapperKt {
+	public static final fun wrap (Lkotlinx/coroutines/flow/Flow;)Lcom/hoc081098/kmp/viewmodel/wrapper/NonNullFlowWrapper;
+}
+
+public final class com/hoc081098/kmp/viewmodel/wrapper/NonNullStateFlowWrapper : com/hoc081098/kmp/viewmodel/wrapper/NonNullFlowWrapper, kotlinx/coroutines/flow/StateFlow {
+	public fun <init> (Lkotlinx/coroutines/flow/StateFlow;)V
+	public fun collect (Lkotlinx/coroutines/flow/FlowCollector;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun getReplayCache ()Ljava/util/List;
+	public fun getValue ()Ljava/lang/Object;
+}
+
+public final class com/hoc081098/kmp/viewmodel/wrapper/NonNullStateFlowWrapperKt {
+	public static final fun wrap (Lkotlinx/coroutines/flow/StateFlow;)Lcom/hoc081098/kmp/viewmodel/wrapper/NonNullStateFlowWrapper;
+}
+
+public class com/hoc081098/kmp/viewmodel/wrapper/NullableFlowWrapper : com/hoc081098/kmp/viewmodel/wrapper/AbstractFlowWrapper {
+	public fun <init> (Lkotlinx/coroutines/flow/Flow;)V
+}
+
+public final class com/hoc081098/kmp/viewmodel/wrapper/NullableFlowWrapperKt {
+	public static final fun wrap (Lkotlinx/coroutines/flow/Flow;)Lcom/hoc081098/kmp/viewmodel/wrapper/NullableFlowWrapper;
+}
+
+public final class com/hoc081098/kmp/viewmodel/wrapper/NullableStateFlowWrapper : com/hoc081098/kmp/viewmodel/wrapper/NullableFlowWrapper, kotlinx/coroutines/flow/StateFlow {
+	public fun <init> (Lkotlinx/coroutines/flow/StateFlow;)V
+	public fun collect (Lkotlinx/coroutines/flow/FlowCollector;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun getReplayCache ()Ljava/util/List;
+	public fun getValue ()Ljava/lang/Object;
+}
+
+public final class com/hoc081098/kmp/viewmodel/wrapper/NullableStateFlowWrapperKt {
+	public static final fun wrap (Lkotlinx/coroutines/flow/StateFlow;)Lcom/hoc081098/kmp/viewmodel/wrapper/NullableStateFlowWrapper;
+}
+

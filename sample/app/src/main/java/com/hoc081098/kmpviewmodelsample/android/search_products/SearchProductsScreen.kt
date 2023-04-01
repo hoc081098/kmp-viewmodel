@@ -22,7 +22,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.hoc081098.kmpviewmodelsample.ProductItem
+import com.hoc081098.kmpviewmodelsample.ProductItemUi
 import com.hoc081098.kmpviewmodelsample.android.common.EmptyProducts
 import com.hoc081098.kmpviewmodelsample.android.common.ErrorMessageAndRetryButton
 import com.hoc081098.kmpviewmodelsample.android.common.LoadingIndicator
@@ -79,7 +79,7 @@ fun SearchProductsScreen(
 @Suppress("ReturnCount")
 @Composable
 private fun ListContent(
-  onItemClick: (ProductItem) -> Unit,
+  onItemClick: (ProductItemUi) -> Unit,
   modifier: Modifier = Modifier,
   state: SearchProductsState,
 ) {

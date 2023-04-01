@@ -12,10 +12,10 @@ import shared
 import Kingfisher
 
 struct ProductItemRow: View {
-  private let item: ProductItem
+  private let item: ProductItemUi
   private let url: URL?
 
-  init(item: ProductItem) {
+  init(item: ProductItemUi) {
     self.item = item
     self.url = self.item.images.first.flatMap(URL.init(string:))
   }

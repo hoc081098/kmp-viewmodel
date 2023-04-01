@@ -58,11 +58,11 @@ struct ProductDetailView_Previews: PreviewProvider {
 
 
 private struct DetailContentView: View {
-  let product: ProductItem
+  let product: ProductItemUi
 
   private let tuples: [(String, String)]
 
-  init(product: ProductItem) {
+  init(product: ProductItemUi) {
     self.product = product
 
     self.tuples = [

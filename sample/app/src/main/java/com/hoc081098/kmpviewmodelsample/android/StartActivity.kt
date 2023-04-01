@@ -9,7 +9,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.consumedWindowInsets
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -92,7 +92,7 @@ class StartActivity : ComponentActivity() {
             AppNavHost(
               modifier = Modifier
                 .padding(innerPadding)
-                .consumedWindowInsets(innerPadding)
+                .consumeWindowInsets(innerPadding)
                 .fillMaxSize(),
               navController = navController,
             )

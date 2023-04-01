@@ -42,7 +42,8 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImagePainter
 import coil.compose.SubcomposeAsyncImage
 import coil.compose.SubcomposeAsyncImageContent
-import com.hoc081098.kmpviewmodelsample.ProductItem
+import com.hoc081098.kmpviewmodelsample.ProductItemUi
+import kotlinx.collections.immutable.ImmutableList
 
 @Composable
 internal fun EmptyProducts(modifier: Modifier) {
@@ -94,9 +95,9 @@ internal fun ErrorMessageAndRetryButton(
 @Composable
 internal fun ProductItemsList(
   pullRefreshState: PullRefreshState?,
-  products: List<ProductItem>,
+  products: ImmutableList<ProductItemUi>,
   isRefreshing: Boolean,
-  onItemClick: (ProductItem) -> Unit,
+  onItemClick: (ProductItemUi) -> Unit,
   modifier: Modifier = Modifier,
   lazyListState: LazyListState = rememberLazyListState(),
 ) {
@@ -143,7 +144,7 @@ internal fun ProductItemsList(
 
 @Composable
 internal fun ProductItemRow(
-  product: ProductItem,
+  product: ProductItemUi,
   onClick: () -> Unit,
   modifier: Modifier = Modifier,
 ) {
