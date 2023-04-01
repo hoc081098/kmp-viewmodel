@@ -26,6 +26,12 @@ Its principal advantage is that it caches state and persists it through configur
 ![badge][badge-tvos]
 ![badge][badge-watchos]
 
+
+<p align="center">
+    <img src="https://github.com/hoc081098/kmp-viewmodel/raw/master/logo.png" width="400">
+</p>
+
+
 ## Author: [Petrus Nguyễn Thái Học](https://github.com/hoc081098)
 
 Liked some of my work? Buy me a coffee (or more likely a beer)
