@@ -35,7 +35,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImagePainter
 import coil.compose.SubcomposeAsyncImage
 import coil.compose.SubcomposeAsyncImageContent
-import com.hoc081098.kmpviewmodelsample.ProductItem
+import com.hoc081098.kmpviewmodelsample.ProductItemUi
 import com.hoc081098.kmpviewmodelsample.android.common.ErrorMessageAndRetryButton
 import com.hoc081098.kmpviewmodelsample.android.common.LoadingIndicator
 import com.hoc081098.kmpviewmodelsample.android.common.OnLifecycleEvent
@@ -79,7 +79,7 @@ fun ProductDetailScreen(
 @Composable
 private fun ProductDetailContent(
   modifier: Modifier = Modifier,
-  product: ProductItem,
+  product: ProductItemUi,
 ) {
   val pairs = remember(product) {
     persistentListOf(

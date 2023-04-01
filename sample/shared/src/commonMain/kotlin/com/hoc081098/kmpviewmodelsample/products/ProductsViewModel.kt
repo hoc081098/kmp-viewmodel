@@ -11,10 +11,15 @@ import com.hoc081098.kmp.viewmodel.ViewModel
 import com.hoc081098.kmp.viewmodel.wrapper.NonNullFlowWrapper
 import com.hoc081098.kmp.viewmodel.wrapper.NonNullStateFlowWrapper
 import com.hoc081098.kmp.viewmodel.wrapper.wrap
-import com.hoc081098.kmpviewmodelsample.ProductItem
+import com.hoc081098.kmpviewmodelsample.Immutable
+import com.hoc081098.kmpviewmodelsample.ProductItemUi
+import com.hoc081098.kmpviewmodelsample.toProductItemUi
 import io.github.aakira.napier.Napier
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
@@ -31,8 +36,9 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.scan
 import kotlinx.coroutines.flow.stateIn
 
+@Immutable
 data class ProductsState(
-  val products: List<ProductItem>,
+  val products: ImmutableList<ProductItemUi>,
   val isLoading: Boolean,
   val error: Throwable?,
   val isRefreshing: Boolean,
@@ -41,7 +47,7 @@ data class ProductsState(
 
   companion object {
     val INITIAL = ProductsState(
-      products = emptyList(),
+      products = persistentListOf(),
       isLoading = true,
       error = null,
       isRefreshing = false,
@@ -111,9 +117,11 @@ class ProductsViewModel(
         .map { products ->
           _eventChannel.trySend(ProductSingleEvent.Refresh.Success)
 
-          Reducer {
-            it.copy(
-              products = products,
+          Reducer { state ->
+            state.copy(
+              products = products
+                .map { it.toProductItemUi() }
+                .toImmutableList(),
               isRefreshing = false,
               error = null,
             )
@@ -130,9 +138,11 @@ class ProductsViewModel(
     flatMapLatest {
       flowFromSuspend { getProducts() }
         .map { products ->
-          Reducer {
-            it.copy(
-              products = products,
+          Reducer { state ->
+            state.copy(
+              products = products
+                .map { it.toProductItemUi() }
+                .toImmutableList(),
               isLoading = false,
               error = null,
             )

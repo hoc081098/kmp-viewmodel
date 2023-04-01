@@ -7,11 +7,18 @@ import com.hoc081098.flowext.startWith
 import com.hoc081098.kmp.viewmodel.SavedStateHandle
 import com.hoc081098.kmp.viewmodel.ViewModel
 import com.hoc081098.kmp.viewmodel.wrapper.NonNullStateFlowWrapper
-import com.hoc081098.kmp.viewmodel.wrapper.NullableFlowWrapper
+import com.hoc081098.kmp.viewmodel.wrapper.NullableStateFlowWrapper
 import com.hoc081098.kmp.viewmodel.wrapper.wrap
-import com.hoc081098.kmpviewmodelsample.ProductItem
+import com.hoc081098.kmpviewmodelsample.Immutable
+import com.hoc081098.kmpviewmodelsample.ProductItemUi
+import com.hoc081098.kmpviewmodelsample.toProductItemUi
 import io.github.aakira.napier.Napier
 import kotlin.time.Duration.Companion.milliseconds
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toImmutableList
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.catch
@@ -22,15 +29,16 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
 
+@Immutable
 data class SearchProductsState(
-  val products: List<ProductItem>,
+  val products: ImmutableList<ProductItemUi>,
   val isLoading: Boolean,
   val error: Throwable?,
   val submittedTerm: String?,
 ) {
   companion object {
     val INITIAL = SearchProductsState(
-      products = emptyList(),
+      products = persistentListOf(),
       isLoading = false,
       error = null,
       submittedTerm = null,
@@ -38,11 +46,12 @@ data class SearchProductsState(
   }
 }
 
+@OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
 class SearchProductsViewModel(
   private val searchProducts: SearchProducts,
   private val savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
-  val searchTermStateFlow: NullableFlowWrapper<String?> =
+  val searchTermStateFlow: NullableStateFlowWrapper<String?> =
     savedStateHandle.getStateFlow<String?>(SEARCH_TERM_KEY, null).wrap()
 
   val stateFlow: NonNullStateFlowWrapper<SearchProductsState> = searchTermStateFlow
@@ -71,7 +80,9 @@ private fun SearchProducts.executeSearching(term: String): Flow<SearchProductsSt
     .onStart { Napier.d("search products term=$term") }
     .map { products ->
       SearchProductsState(
-        products = products,
+        products = products
+          .map { it.toProductItemUi() }
+          .toImmutableList(),
         isLoading = false,
         error = null,
         submittedTerm = term,
@@ -82,7 +93,7 @@ private fun SearchProducts.executeSearching(term: String): Flow<SearchProductsSt
         isLoading = true,
         error = null,
         submittedTerm = term,
-        products = emptyList(),
+        products = persistentListOf(),
       )
     }
     .catch { error ->
@@ -92,7 +103,7 @@ private fun SearchProducts.executeSearching(term: String): Flow<SearchProductsSt
           isLoading = false,
           error = error,
           submittedTerm = term,
-          products = emptyList(),
+          products = persistentListOf(),
         ),
       )
     }

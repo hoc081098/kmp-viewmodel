@@ -9,7 +9,9 @@ import com.hoc081098.kmp.viewmodel.SavedStateHandle
 import com.hoc081098.kmp.viewmodel.ViewModel
 import com.hoc081098.kmp.viewmodel.wrapper.NonNullStateFlowWrapper
 import com.hoc081098.kmp.viewmodel.wrapper.wrap
-import com.hoc081098.kmpviewmodelsample.ProductItem
+import com.hoc081098.kmpviewmodelsample.Immutable
+import com.hoc081098.kmpviewmodelsample.ProductItemUi
+import com.hoc081098.kmpviewmodelsample.toProductItemUi
 import io.github.aakira.napier.Napier
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -24,8 +26,9 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.yield
 
+@Immutable
 sealed interface ProductDetailState {
-  data class Success(val product: ProductItem) : ProductDetailState
+  data class Success(val product: ProductItemUi) : ProductDetailState
   object Loading : ProductDetailState
   data class Error(val error: Throwable) : ProductDetailState
 }
@@ -46,7 +49,7 @@ class ProductDetailViewModel(
   private val retryFlow = MutableSharedFlow<Unit>(extraBufferCapacity = 1)
   private val productItemFlow = flowFromSuspend { getProductById(id) }
     .onStart { Napier.d("getProductById id=$id") }
-    .map { ProductDetailState.Success(it) }
+    .map { ProductDetailState.Success(it.toProductItemUi()) }
 
   val stateFlow: NonNullStateFlowWrapper<ProductDetailState> = merge(
     // initial load & retry
