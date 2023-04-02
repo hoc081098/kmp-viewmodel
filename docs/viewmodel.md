@@ -112,14 +112,20 @@ public expect abstract class ViewModel {
 ## 3. Create your `ViewModel` in `commonMain` source set.
 
 ```kotlin
+import com.hoc081098.kmp.viewmodel.Closeable
+import com.hoc081098.kmp.viewmodel.ViewModel
+import com.hoc081098.kmp.viewmodel.wrapper.NonNullFlowWrapper
+import com.hoc081098.kmp.viewmodel.wrapper.NonNullStateFlowWrapper
+import com.hoc081098.kmp.viewmodel.wrapper.wrap
+
 class ProductsViewModel(
   private val getProducts: GetProducts,
 ) : ViewModel() {
   private val _eventChannel = Channel<ProductSingleEvent>(Int.MAX_VALUE)
   private val _actionFlow = MutableSharedFlow<ProductsAction>(Int.MAX_VALUE)
 
-  val stateFlow: StateFlow<ProductsState>
-  val eventFlow: Flow<ProductSingleEvent> = _eventChannel.receiveAsFlow()
+  val stateFlow: NonNullStateFlowWrapper<ProductsState>
+  val eventFlow: NonNullFlowWrapper<ProductSingleEvent> = _eventChannel.receiveAsFlow().wrap()
 
   init {
     // Close _eventChannel when ViewModel is cleared.
@@ -132,6 +138,7 @@ class ProductsViewModel(
         started = SharingStarted.Eagerly,
         initialValue = ProductsState.INITIAL,
       )
+      .wrap()
   }
 
   // Do business logic here, to convert `ProductsAction`s to `ProductsState`s.
@@ -169,14 +176,16 @@ fun ProductsScreen(
   targets (`ios`, `macos`, `tvos`, `watchos`).
 
 - In addition, you should create a wrapper of the common `ViewModel` in each platform and use
-  flow wrappers provided by this library (`NonNullFlowWrapper`, `NullableFlowWrapper`), to consume
+  flow wrappers provided by this library (`NonNullFlowWrapper`, `NullableFlowWrapper`
+  , `NonNullStateFlowWrapper`, `NullableStateFlowWrapper`), to consume
   the common `ViewModel` easily and safely.
 
 > For more details, please
 > check [kmp viewmodel sample](https://github.com/hoc081098/kmp-viewmodel/tree/master/sample).
 
-The below example is using `NonNullFlowWrapper` to consume the `Flow`s in `Darwin` targets (Swift
-language).
+The below example is using `NonNullStateFlowWrapper.subscribe(scope:onValue:)` method
+to consume the `Flow`s in `Darwin` targets (Swift language).
+
 ```Swift
 @MainActor
 class IosProductsViewModel: ObservableObject {
@@ -187,8 +196,8 @@ class IosProductsViewModel: ObservableObject {
   init(commonVm: ProductsViewModel) {
     self.commonVm = commonVm
 
-    self.state = self.commonVm.stateFlow.value as! ProductsState
-    NonNullFlowWrapper<ProductsState>(flow: self.commonVm.stateFlow).subscribe(
+    self.state = self.commonVm.stateFlow.value
+    self.commonVm.stateFlow.subscribe(
       scope: self.commonVm.viewModelScope,
       onValue: { [weak self] in self?.state = $0 } // use weak self to avoid retain cycle.
     )

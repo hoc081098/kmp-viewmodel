@@ -21,7 +21,7 @@ class IosSearchProductsViewModel: ObservableObject {
   @Published private(set) var term: String = ""
 
   init() {    
-    self.state = self.commonVm.stateFlow.typedValue()
+    self.state = self.commonVm.stateFlow.value
     self.commonVm.stateFlow.subscribe(
       scope: self.commonVm.viewModelScope,
       onValue: { [weak self] in self?.state = $0 }
