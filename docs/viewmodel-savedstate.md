@@ -171,7 +171,7 @@ class UserViewModel(
   private val savedStateHandle: SavedStateHandle,
   private val getUserUseCase: suspend () -> User?,
 ) : ViewModel() {
-  val userStateFlow = savedStateHandle.getStateFlow<User?>(USER_KEY, null)
+  val userStateFlow = savedStateHandle.getStateFlow<User?>(USER_KEY, null).wrap()
 
   fun getUser() {
     viewModelScope.launch {
@@ -230,7 +230,7 @@ class IosUserViewModel: ObservableObject {
   @Published private(set) var user: User?
 
   init() {
-    NullableFlowWrapper<User>(flow: self.commonVm.userStateFlow).subscribe(
+    self.commonVm.userStateFlow.subscribe(
       scope: self.commonVm.viewModelScope,
       onValue: { [weak self] in self?.user = $0 }
     )
