@@ -66,6 +66,10 @@ For more information check out the [docs][1].
 
 For more information check out the [docs][2].
 
+### 3. `kmp-viewmodel` and `Swift` interoperability
+
+For more information check out the [docs][3].
+
 ## Roadmap
 
 - [x] support `SaveStateHandle` (since [0.2.0](https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.2.0)).
@@ -98,3 +102,4 @@ Copyright (c) 2023 Petrus Nguyễn Thái Học
 
 [1]: /kmp-viewmodel/docs/0.x/viewmodel/
 [2]: /kmp-viewmodel/docs/0.x/viewmodel-savedstate/
+[3]: /kmp-viewmodel/docs/0.x/swift-interop/
