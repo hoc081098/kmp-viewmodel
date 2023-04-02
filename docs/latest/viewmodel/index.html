@@ -492,14 +492,20 @@
 </li>
 </ul>
 <h2 id="3-create-your-viewmodel-in-commonmain-source-set">3. Create your <code>ViewModel</code> in <code>commonMain</code> source set.<a class="headerlink" href="#3-create-your-viewmodel-in-commonmain-source-set" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">ProductsViewModel</span><span class="p">(</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nn">com.hoc081098.kmp.viewmodel.Closeable</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">com.hoc081098.kmp.viewmodel.ViewModel</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">com.hoc081098.kmp.viewmodel.wrapper.NonNullFlowWrapper</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">com.hoc081098.kmp.viewmodel.wrapper.NonNullStateFlowWrapper</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">com.hoc081098.kmp.viewmodel.wrapper.wrap</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">ProductsViewModel</span><span class="p">(</span>
 <span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">getProducts</span><span class="p">:</span><span class="w"> </span><span class="n">GetProducts</span><span class="p">,</span>
 <span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ViewModel</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">_eventChannel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Channel</span><span class="o">&lt;</span><span class="n">ProductSingleEvent</span><span class="o">&gt;</span><span class="p">(</span><span class="kt">Int</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">)</span>
 <span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">_actionFlow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MutableSharedFlow</span><span class="o">&lt;</span><span class="n">ProductsAction</span><span class="o">&gt;</span><span class="p">(</span><span class="kt">Int</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">)</span>
 
-<span class="w">  </span><span class="kd">val</span><span class="w"> </span><span class="nv">stateFlow</span><span class="p">:</span><span class="w"> </span><span class="n">StateFlow</span><span class="o">&lt;</span><span class="n">ProductsState</span><span class="o">&gt;</span>
-<span class="w">  </span><span class="kd">val</span><span class="w"> </span><span class="nv">eventFlow</span><span class="p">:</span><span class="w"> </span><span class="n">Flow</span><span class="o">&lt;</span><span class="n">ProductSingleEvent</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_eventChannel</span><span class="p">.</span><span class="na">receiveAsFlow</span><span class="p">()</span>
+<span class="w">  </span><span class="kd">val</span><span class="w"> </span><span class="nv">stateFlow</span><span class="p">:</span><span class="w"> </span><span class="n">NonNullStateFlowWrapper</span><span class="o">&lt;</span><span class="n">ProductsState</span><span class="o">&gt;</span>
+<span class="w">  </span><span class="kd">val</span><span class="w"> </span><span class="nv">eventFlow</span><span class="p">:</span><span class="w"> </span><span class="n">NonNullFlowWrapper</span><span class="o">&lt;</span><span class="n">ProductSingleEvent</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_eventChannel</span><span class="p">.</span><span class="na">receiveAsFlow</span><span class="p">().</span><span class="na">wrap</span><span class="p">()</span>
 
 <span class="w">  </span><span class="k">init</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// Close _eventChannel when ViewModel is cleared.</span>
@@ -512,6 +518,7 @@
 <span class="w">        </span><span class="n">started</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SharingStarted</span><span class="p">.</span><span class="na">Eagerly</span><span class="p">,</span>
 <span class="w">        </span><span class="n">initialValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ProductsState</span><span class="p">.</span><span class="na">INITIAL</span><span class="p">,</span>
 <span class="w">      </span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="na">wrap</span><span class="p">()</span>
 <span class="w">  </span><span class="p">}</span>
 
 <span class="w">  </span><span class="c1">// Do business logic here, to convert `ProductsAction`s to `ProductsState`s.</span>
@@ -545,7 +552,8 @@
 </li>
 <li>
 <p>In addition, you should create a wrapper of the common <code>ViewModel</code> in each platform and use
-  flow wrappers provided by this library (<code>NonNullFlowWrapper</code>, <code>NullableFlowWrapper</code>), to consume
+  flow wrappers provided by this library (<code>NonNullFlowWrapper</code>, <code>NullableFlowWrapper</code>
+  , <code>NonNullStateFlowWrapper</code>, <code>NullableStateFlowWrapper</code>), to consume
   the common <code>ViewModel</code> easily and safely.</p>
 </li>
 </ul>
@@ -553,8 +561,8 @@
 <p>For more details, please
 check <a href="https://github.com/hoc081098/kmp-viewmodel/tree/master/sample">kmp viewmodel sample</a>.</p>
 </blockquote>
-<p>The below example is using <code>NonNullFlowWrapper</code> to consume the <code>Flow</code>s in <code>Darwin</code> targets (Swift
-language).
+<p>The below example is using <code>NonNullStateFlowWrapper.subscribe(scope:onValue:)</code> method
+to consume the <code>Flow</code>s in <code>Darwin</code> targets (Swift language).</p>
 <div class="highlight"><pre><span></span><code><span class="p">@</span><span class="n">MainActor</span>
 <span class="kd">class</span> <span class="nc">IosProductsViewModel</span><span class="p">:</span> <span class="n">ObservableObject</span> <span class="p">{</span>
   <span class="kd">private</span> <span class="kd">let</span> <span class="nv">commonVm</span><span class="p">:</span> <span class="n">ProductsViewModel</span>
@@ -564,8 +572,8 @@ language).
   <span class="kd">init</span><span class="p">(</span><span class="n">commonVm</span><span class="p">:</span> <span class="n">ProductsViewModel</span><span class="p">)</span> <span class="p">{</span>
     <span class="kc">self</span><span class="p">.</span><span class="n">commonVm</span> <span class="p">=</span> <span class="n">commonVm</span>
 
-    <span class="kc">self</span><span class="p">.</span><span class="n">state</span> <span class="p">=</span> <span class="kc">self</span><span class="p">.</span><span class="n">commonVm</span><span class="p">.</span><span class="n">stateFlow</span><span class="p">.</span><span class="n">value</span> <span class="k">as</span><span class="p">!</span> <span class="n">ProductsState</span>
-    <span class="n">NonNullFlowWrapper</span><span class="p">&lt;</span><span class="n">ProductsState</span><span class="p">&gt;(</span><span class="n">flow</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">commonVm</span><span class="p">.</span><span class="n">stateFlow</span><span class="p">).</span><span class="n">subscribe</span><span class="p">(</span>
+    <span class="kc">self</span><span class="p">.</span><span class="n">state</span> <span class="p">=</span> <span class="kc">self</span><span class="p">.</span><span class="n">commonVm</span><span class="p">.</span><span class="n">stateFlow</span><span class="p">.</span><span class="n">value</span>
+    <span class="kc">self</span><span class="p">.</span><span class="n">commonVm</span><span class="p">.</span><span class="n">stateFlow</span><span class="p">.</span><span class="n">subscribe</span><span class="p">(</span>
       <span class="n">scope</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">commonVm</span><span class="p">.</span><span class="n">viewModelScope</span><span class="p">,</span>
       <span class="n">onValue</span><span class="p">:</span> <span class="p">{</span> <span class="p">[</span><span class="kr">weak</span> <span class="kc">self</span><span class="p">]</span> <span class="k">in</span> <span class="kc">self</span><span class="p">?.</span><span class="n">state</span> <span class="p">=</span> <span class="nv">$0</span> <span class="p">}</span> <span class="c1">// use weak self to avoid retain cycle.</span>
     <span class="p">)</span>
@@ -575,7 +583,7 @@ language).
 
   <span class="kd">deinit</span> <span class="p">{</span> <span class="kc">self</span><span class="p">.</span><span class="n">commonVm</span><span class="p">.</span><span class="n">clear</span><span class="p">()</span> <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div></p>
+</code></pre></div>
 
 
 
