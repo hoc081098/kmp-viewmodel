@@ -12,10 +12,6 @@ import Foundation
 import shared
 import Combine
 
-extension StateFlow {
-  func typedValue<T>(_ type: T.Type = T.self) -> T { value as! T }
-}
-
 extension Flow {
   // MARK: - Flow<T>
 
