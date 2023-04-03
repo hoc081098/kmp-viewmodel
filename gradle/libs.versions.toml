@@ -1,5 +1,5 @@
 [versions]
-kotlin = "1.8.10"
+kotlin = "1.8.20"
 java = "11"
 coroutines = "1.6.4"
 kotlinx-serialization-json = "1.5.0"
