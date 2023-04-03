@@ -45,4 +45,5 @@ nav:
   - 'Multiplatform': multiplatform.md
   - 'ViewModel': viewmodel.md
   - 'ViewModel SavedState': viewmodel-savedstate.md
+  - 'Swift Interop': swift-interop.md
   - 'API': API
