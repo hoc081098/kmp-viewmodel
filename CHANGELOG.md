@@ -51,6 +51,8 @@
         onValue: { [weak self] v in self?.state = v }
       )
     }
+
+    deinit { vm.clear() }
   }
   ```
 
