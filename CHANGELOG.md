@@ -1,8 +1,10 @@
 # Change Log
 
-## [Unreleased]
+## [0.4.0] - Apr 6, 2023
 
 ### Changed
+
+#### Update dependencies
 
 - Kotlin `1.8.10`.
 - Target `Java 11`.
@@ -10,12 +12,61 @@
 - AndroidX Lifecycle `2.6.0`.
 - Android Gradle Plugin `7.4.2`.
 
+#### Flow wrappers
+
+- Add `NonNullStateFlowWrapper` and `NullableFlowWrapper` to common source set.
+
+- Move all `Flow` wrappers to common source set.
+  Previously, they were only available for `Darwin targets` (`iOS`, `macOS`, `tvOS`, `watchOS`).
+
+- Add `Flow.wrap()` extension methods to wrap `Flow`s sources:
+  - `Flow<T: Any>.wrap(): NonNullFlowWrapper<T>`.
+  - `Flow<T>.wrap(): NullableFlowWrapper<T>`.
+  - `StateFlow<T: Any>.wrap(): NonNullStateFlowWrapper<T>`.
+  - `StateFlow<T>.wrap(): NullableStateFlowWrapper<T>`.
+
+  In common code, you can use these methods to wrap `Flow` sources and use them in Swift code easily.
+  ```kotlin
+  // Kotlin code
+  data class State(...)
+
+  class SharedViewModel : ViewModel() {
+    private val _state = MutableStateFlow(State(...))
+    val stateFlow: NonNullStateFlowWrapper<State> = _state.wrap()
+  }
+  ```
+  ```swift
+  // Swift code
+  @MainActor class IosViewModel: ObservableObject {
+    private let vm: SharedViewModel
+
+    @Published private(set) var state: State
+
+    init(viewModel: SharedViewModel) {
+      vm = viewModel
+
+      state = vm.stateFlow.value       //  <--- Use `value` getter with type safety (do not need to cast).
+      vm.stateFlow.subscribe(          //  <--- Use `subscribe(scope:onValue:)` method directly.
+        scope: vm.viewModelScope,
+        onValue: { [weak self] v in self?.state = v }
+      )
+    }
+  }
+  ```
+
+#### Example, docs and tests
+
+- Refactor example code.
+- Add more docs: [0.x docs](https://hoc081098.github.io/kmp-viewmodel/docs/0.x).
+- Add more tests.
+
 ## [0.3.0] - Mar 18, 2023
 
 ### Added
 
 - Add `NonNullFlowWrapper` and `NullableFlowWrapper`, that are wrappers for `Flow`s
-  that provides a more convenient API for subscribing to the `Flow`s on `Darwin targets` (`iOS`, `macOS`, `tvOS`, `watchOS`)
+  that provides a more convenient API for subscribing to the `Flow`s on `Darwin targets` (`iOS`
+  , `macOS`, `tvOS`, `watchOS`)
   ```kotlin
   // Kotlin code
   val flow: StateFlow<Int>
@@ -75,7 +126,8 @@
 
 - Initial release.
 
-[Unreleased]: https://github.com/hoc081098/kmp-viewmodel/compare/0.3.0...HEAD
+[Unreleased]: https://github.com/hoc081098/kmp-viewmodel/compare/0.4.0...HEAD
+[0.4.0]: https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.4.0
 [0.3.0]: https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.3.0
 [0.2.0]: https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.2.0
 [0.1.0]: https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.1.0
