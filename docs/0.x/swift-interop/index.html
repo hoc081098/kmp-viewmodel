@@ -12,20 +12,18 @@
         <meta name="author" content="Petrus Nguyễn Thái Học">
       
       
-        <link rel="canonical" href="https://hoc081098.github.io/kmp-viewmodel/docs/0.x/multiplatform/">
+        <link rel="canonical" href="https://hoc081098.github.io/kmp-viewmodel/docs/0.x/swift-interop/">
       
       
-        <link rel="prev" href="..">
+        <link rel="prev" href="../viewmodel-savedstate/">
       
-      
-        <link rel="next" href="../viewmodel/">
       
       <link rel="icon" href="../images/logo.jpeg">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.5">
     
     
       
-        <title>Multiplatform - KMP ViewModel</title>
+        <title>Swift Interop - KMP ViewModel</title>
       
     
     
@@ -73,7 +71,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#multiplatform" class="md-skip">
+        <a href="#kmp-viewmodel-and-swift-interoperability" class="md-skip">
           Skip to content
         </a>
       
@@ -107,7 +105,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Multiplatform
+              Swift Interop
             
           </span>
         </div>
@@ -231,52 +229,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Multiplatform
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../multiplatform/" class="md-nav__link">
         Multiplatform
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#supported-targets" class="md-nav__link">
-    Supported targets
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -317,11 +274,75 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../swift-interop/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Swift Interop
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Swift Interop
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#kmp-viewmodel-and-swift-interoperability" class="md-nav__link">
+    kmp-viewmodel and Swift interoperability
+  </a>
+  
+    <nav class="md-nav" aria-label="kmp-viewmodel and Swift interoperability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exposing-kmp-viewmodel-sources-to-swift" class="md-nav__link">
+    Exposing kmp-viewmodel sources to Swift
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-wrappers-in-swift" class="md-nav__link">
+    Using wrappers in Swift
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#combine-interop" class="md-nav__link">
+    Combine interop
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -359,19 +380,49 @@
   
 
 
-<h1 id="multiplatform">Multiplatform<a class="headerlink" href="#multiplatform" title="Permanent link">&para;</a></h1>
-<h2 id="supported-targets">Supported targets<a class="headerlink" href="#supported-targets" title="Permanent link">&para;</a></h2>
+  <h1>Swift Interop</h1>
+
+<h2 id="kmp-viewmodel-and-swift-interoperability"><code>kmp-viewmodel</code> and <code>Swift</code> interoperability<a class="headerlink" href="#kmp-viewmodel-and-swift-interoperability" title="Permanent link">&para;</a></h2>
+<p><code>kmp-viewmodel</code> can be exported and used in <code>Swift</code> as usual, however there are few limitations.</p>
+<h3 id="exposing-kmp-viewmodel-sources-to-swift">Exposing <code>kmp-viewmodel</code> sources to Swift<a class="headerlink" href="#exposing-kmp-viewmodel-sources-to-swift" title="Permanent link">&para;</a></h3>
+<p>KotlinX Coroutines Flow are Kotlin interfaces with generic types.
+Since generics for interfaces
+are <a href="https://kotlinlang.org/docs/reference/native/objc_interop.html#generics">not exported</a>
+to <code>Swift</code>,
+<code>kmp-viewmodel</code> provides <code>Flow</code> wrapper classes.</p>
+<p>You can wrap <code>Flow</code>s sources using corresponding <code>wrap()</code> extension functions:</p>
 <ul>
-<li><code>android</code>.</li>
-<li><code>jvm</code> (must add <code>kotlinx-coroutines-swing</code>/<code>kotlinx-coroutines-javafx</code> to your dependencies to
-  make sure <code>Dispatchers.Main</code> available).</li>
-<li><code>js</code> (<code>IR</code>).</li>
-<li><code>Darwin</code> targets:</li>
-<li><code>iosArm64</code>, <code>iosArm32</code>, <code>iosX64</code>, <code>iosSimulatorArm64</code>.</li>
-<li><code>watchosArm32</code>, <code>watchosArm64</code>, <code>watchosX64</code>, <code>watchosX86</code>, <code>watchosSimulatorArm64</code>.</li>
-<li><code>tvosX64</code>, <code>tvosSimulatorArm64</code>, <code>tvosArm64</code>.</li>
-<li><code>macosX64</code>, <code>macosArm64</code>.</li>
+<li><code>Flow&lt;T: Any&gt;.wrap(): NonNullFlowWrapper&lt;T&gt;</code></li>
+<li><code>Flow&lt;T&gt;.wrap(): NullableFlowWrapper&lt;T&gt;</code></li>
+<li><code>StateFlow&lt;T: Any&gt;.wrap(): NonNullStateFlowWrapper&lt;T&gt;</code></li>
+<li><code>StateFlow&lt;T&gt;.wrap(): NullableStateFlowWrapper&lt;T&gt;</code></li>
 </ul>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">SharedViewModel</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ViewModel</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MutableStateFlow</span><span class="p">(</span><span class="n">State</span><span class="p">())</span>
+<span class="w">  </span><span class="kd">val</span><span class="w"> </span><span class="nv">stateFlow</span><span class="p">:</span><span class="w"> </span><span class="n">NonNullStateFlowWrapper</span><span class="o">&lt;</span><span class="n">State</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_state</span><span class="p">.</span><span class="na">wrap</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="using-wrappers-in-swift">Using wrappers in Swift<a class="headerlink" href="#using-wrappers-in-swift" title="Permanent link">&para;</a></h3>
+<p>Flow wrappers can be used in Swift as usual:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nv">viewModel</span> <span class="p">=</span> <span class="n">SharedViewModel</span><span class="p">()</span>
+
+  <span class="n">val</span> <span class="n">closable</span> <span class="p">=</span> <span class="n">viewModel</span><span class="p">.</span><span class="n">stateFlow</span><span class="p">.</span><span class="n">subscribe</span><span class="p">(</span>
+    <span class="n">scope</span><span class="p">:</span> <span class="n">viewModel</span><span class="p">.</span><span class="n">viewModelScope</span><span class="p">,</span>
+    <span class="n">onValue</span><span class="p">:</span> <span class="p">{</span> <span class="n">state</span> <span class="k">in</span>
+      <span class="c1">// do something with state</span>
+    <span class="p">}</span>
+  <span class="p">)</span>
+
+  <span class="c1">// At some point later</span>
+  <span class="n">closable</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="combine-interop">Combine interop<a class="headerlink" href="#combine-interop" title="Permanent link">&para;</a></h3>
+<p>Please
+check <a href="https://github.com/hoc081098/kmp-viewmodel/blob/master/sample/iosApp/iosApp/Utils/kotlinxCoroutinesFlowExtensions.swift">kotlinxCoroutinesFlowExtensions.swift</a>
+.</p>
 
 
 
