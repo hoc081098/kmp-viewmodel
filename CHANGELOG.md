@@ -1,6 +1,8 @@
 # Change Log
 
-## [0.4.0] - Apr 6, 2023
+## [Unreleased]
+
+## [0.4.0] - Apr 7, 2023
 
 ### Changed
 
@@ -45,10 +47,10 @@
     init(viewModel: SharedViewModel) {
       vm = viewModel
 
-      state = vm.stateFlow.value       //  <--- Use `value` getter with type safety (do not need to cast).
+      state = vm.stateFlow.value       //  <--- Use `value` property with type safety (do not need to cast).
       vm.stateFlow.subscribe(          //  <--- Use `subscribe(scope:onValue:)` method directly.
         scope: vm.viewModelScope,
-        onValue: { [weak self] v in self?.state = v }
+        onValue: { [weak self] in self?.state = $0 }
       )
     }
 
