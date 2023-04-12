@@ -123,7 +123,7 @@ jobs:
           cd sample/iosApp
           pod install
 
-      - name: Build iosApp
+      - name: Build iosApp scheme
         uses: sersoft-gmbh/xcodebuild-action@v2
         with:
           workspace: sample/iosApp/iosApp.xcworkspace
@@ -134,7 +134,7 @@ jobs:
           configuration: Debug
           build-settings: CODE_SIGNING_REQUIRED=NO
 
-      - name: Build
+      - name: Build iosApp-RxSwift scheme
         uses: sersoft-gmbh/xcodebuild-action@v2
         with:
           workspace: sample/iosApp/iosApp.xcworkspace
