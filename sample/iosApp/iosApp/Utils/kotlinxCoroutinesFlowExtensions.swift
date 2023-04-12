@@ -7,8 +7,6 @@
 //
 
 import Foundation
-
-import Foundation
 import shared
 import Combine
 
@@ -24,6 +22,14 @@ extension Flow {
   func asNullablePublisher<T: AnyObject>(_ type: T.Type = T.self) -> AnyPublisher<T?, Error> {
     NullableFlowPublisher(flow: self).eraseToAnyPublisher()
   }
+}
+
+private func unconfinedScope() -> CoroutineScope {
+  CoroutineScopeKt.CoroutineScope(
+    context: Dispatchers.shared
+      .Unconfined
+      .plus(context: SupervisorKt.SupervisorJob(parent: nil))
+  )
 }
 
 // MARK: - NonNullFlowPublisher
@@ -57,11 +63,10 @@ private class NonNullFlowSubscription<T: AnyObject, S: Subscriber>: Subscription
     subscriber: S
   ) {
     self.subscriber = subscriber
-
-    let scope = ImmediateMainScopeKt.ImmediateMainScope()
-
-    self.closable = NonNullFlowWrapper<T>(flow).subscribe(
-      scope: scope,
+    
+    let wrapper = NonNullFlowWrapperKt.wrap(flow) as! NonNullFlowWrapper<T>
+    self.closable = wrapper.subscribe(
+      scope: unconfinedScope(),
       onValue: {
         _ = subscriber.receive($0)
       },
@@ -115,11 +120,10 @@ private class NullableFlowSubscription<T: AnyObject, S: Subscriber>: Subscriptio
     subscriber: S
   ) {
     self.subscriber = subscriber
-
-    let scope = ImmediateMainScopeKt.ImmediateMainScope()
-
-    self.closable = NullableFlowWrapper<T>(flow).subscribe(
-      scope: scope,
+    
+    let wrapper = NullableFlowWrapperKt.wrap(flow) as! NullableFlowWrapper<T>
+    self.closable = wrapper.subscribe(
+      scope: unconfinedScope(),
       onValue: {
         _ = subscriber.receive($0)
       },
