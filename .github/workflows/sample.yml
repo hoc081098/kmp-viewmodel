@@ -65,7 +65,7 @@ jobs:
       matrix:
         os: [ macos-12 ]
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 25
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v3
 
@@ -123,11 +123,22 @@ jobs:
           cd sample/iosApp
           pod install
 
-      - name: Build
+      - name: Build iosApp scheme
         uses: sersoft-gmbh/xcodebuild-action@v2
         with:
           workspace: sample/iosApp/iosApp.xcworkspace
           scheme: iosApp
+          action: build
+          sdk: iphonesimulator
+          destination: platform=iOS Simulator,name=iphone-12-pro
+          configuration: Debug
+          build-settings: CODE_SIGNING_REQUIRED=NO
+
+      - name: Build iosApp-RxSwift scheme
+        uses: sersoft-gmbh/xcodebuild-action@v2
+        with:
+          workspace: sample/iosApp/iosApp.xcworkspace
+          scheme: iosApp-RxSwift
           action: build
           sdk: iphonesimulator
           destination: platform=iOS Simulator,name=iphone-12-pro
