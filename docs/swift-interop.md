@@ -20,6 +20,7 @@ You can wrap `Flow`s sources using corresponding `wrap()` extension functions:
 Example:
 
 ```kotlin
+// Kotlin code
 class SharedViewModel : ViewModel() {
   private val _state = MutableStateFlow(State())
   val stateFlow: NonNullStateFlowWrapper<State> = _state.wrap()
@@ -31,6 +32,7 @@ class SharedViewModel : ViewModel() {
 Flow wrappers can be used in Swift as usual:
 
 ```Swift
+// Swift code
 func foo() {
   let viewModel = SharedViewModel()
 
@@ -46,8 +48,22 @@ func foo() {
 }
 ```
 
+If Kotlin Code does not wrap `Flow`s to `FlowWrapper`s, we can also wrap them in Swift code.
+
+```Swift
+// Swift code
+let nonNull = NonNullFlowWrapperKt.wrap(self) as! NonNullFlowWrapper<T>
+let nullable = NullableFlowWrapperKt.wrap(self) as! NullableFlowWrapper<T>
+...
+```
+
 ### Combine interop
 
 Please
 check [kotlinxCoroutinesFlowExtensions.swift](https://github.com/hoc081098/kmp-viewmodel/blob/master/sample/iosApp/iosApp/Utils/kotlinxCoroutinesFlowExtensions.swift)
 .
+
+### RxSwift interop
+
+Please
+check [kotlinxCoroutinesFlow+RxSwift.swift](https://github.com/hoc081098/kmp-viewmodel/blob/master/sample/iosApp/iosApp-RxSwift/Utils/kotlinxCoroutinesFlow%2BRxSwift.swift).
