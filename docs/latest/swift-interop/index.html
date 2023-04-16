@@ -334,6 +334,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#rxswift-interop" class="md-nav__link">
+    RxSwift interop
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -398,14 +405,16 @@ to <code>Swift</code>,
 <li><code>StateFlow&lt;T&gt;.wrap(): NullableStateFlowWrapper&lt;T&gt;</code></li>
 </ul>
 <p>Example:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">SharedViewModel</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ViewModel</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// Kotlin code</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">SharedViewModel</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ViewModel</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MutableStateFlow</span><span class="p">(</span><span class="n">State</span><span class="p">())</span>
 <span class="w">  </span><span class="kd">val</span><span class="w"> </span><span class="nv">stateFlow</span><span class="p">:</span><span class="w"> </span><span class="n">NonNullStateFlowWrapper</span><span class="o">&lt;</span><span class="n">State</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_state</span><span class="p">.</span><span class="na">wrap</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></div>
 <h3 id="using-wrappers-in-swift">Using wrappers in Swift<a class="headerlink" href="#using-wrappers-in-swift" title="Permanent link">&para;</a></h3>
 <p>Flow wrappers can be used in Swift as usual:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// Swift code</span>
+<span class="kd">func</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">let</span> <span class="nv">viewModel</span> <span class="p">=</span> <span class="n">SharedViewModel</span><span class="p">()</span>
 
   <span class="n">val</span> <span class="n">closable</span> <span class="p">=</span> <span class="n">viewModel</span><span class="p">.</span><span class="n">stateFlow</span><span class="p">.</span><span class="n">subscribe</span><span class="p">(</span>
@@ -419,10 +428,19 @@ to <code>Swift</code>,
   <span class="n">closable</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></div>
+<p>If Kotlin Code does not wrap <code>Flow</code>s to <code>FlowWrapper</code>s, we can also wrap them in Swift code.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Swift code</span>
+<span class="kd">let</span> <span class="nv">nonNull</span> <span class="p">=</span> <span class="n">NonNullFlowWrapperKt</span><span class="p">.</span><span class="n">wrap</span><span class="p">(</span><span class="kc">self</span><span class="p">)</span> <span class="k">as</span><span class="p">!</span> <span class="n">NonNullFlowWrapper</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span>
+<span class="kd">let</span> <span class="nv">nullable</span> <span class="p">=</span> <span class="n">NullableFlowWrapperKt</span><span class="p">.</span><span class="n">wrap</span><span class="p">(</span><span class="kc">self</span><span class="p">)</span> <span class="k">as</span><span class="p">!</span> <span class="n">NullableFlowWrapper</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span>
+<span class="p">...</span>
+</code></pre></div>
 <h3 id="combine-interop">Combine interop<a class="headerlink" href="#combine-interop" title="Permanent link">&para;</a></h3>
 <p>Please
 check <a href="https://github.com/hoc081098/kmp-viewmodel/blob/master/sample/iosApp/iosApp/Utils/kotlinxCoroutinesFlowExtensions.swift">kotlinxCoroutinesFlowExtensions.swift</a>
 .</p>
+<h3 id="rxswift-interop">RxSwift interop<a class="headerlink" href="#rxswift-interop" title="Permanent link">&para;</a></h3>
+<p>Please
+check <a href="https://github.com/hoc081098/kmp-viewmodel/blob/master/sample/iosApp/iosApp-RxSwift/Utils/kotlinxCoroutinesFlow%2BRxSwift.swift">kotlinxCoroutinesFlow+RxSwift.swift</a>.</p>
 
 
 
