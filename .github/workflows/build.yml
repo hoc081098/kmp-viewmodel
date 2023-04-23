@@ -149,7 +149,7 @@ jobs:
         run: pip install mkdocs-material
 
       - name: Generate docs
-        run: ./gradlew :dokkaHtmlMultiModule --no-parallel --stacktrace
+        run: ./gradlew :dokkaHtmlMultiModule --stacktrace
 
       - name: Copy docs
         run: |
