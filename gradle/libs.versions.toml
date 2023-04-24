@@ -9,7 +9,7 @@ touchlab-stately = "1.2.5"
 napier = "2.6.1"
 flowExt = "0.6.0"
 koin = "3.4.0"
-koin-androidx-compose = "3.4.3"
+koin-androidx-compose = "3.4.4"
 coil = "2.3.0"
 
 androidx-lifecycle = "2.6.0"
