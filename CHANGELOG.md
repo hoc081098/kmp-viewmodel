@@ -2,12 +2,6 @@
 
 ## [Unreleased]
 
-### Changed
-
-#### Update dependencies
-
-- KotlinX Coroutines `1.7.10-RC`.
-
 ## [0.4.0] - Apr 7, 2023
 
 ### Changed
