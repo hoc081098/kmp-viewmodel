@@ -1,7 +1,7 @@
 [versions]
 kotlin = "1.8.10"
 java = "11"
-coroutines = "1.6.4"
+coroutines = "1.7.1"
 kotlinx-serialization-json = "1.5.0"
 kotlinx-collections-immutable = "0.3.5"
 
