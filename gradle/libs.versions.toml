@@ -2,7 +2,7 @@
 kotlin = "1.8.10"
 java = "11"
 coroutines = "1.7.1"
-kotlinx-serialization-json = "1.5.0"
+kotlinx-serialization-json = "1.5.1"
 kotlinx-collections-immutable = "0.3.5"
 
 touchlab-stately = "1.2.5"
