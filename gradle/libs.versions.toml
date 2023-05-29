@@ -19,7 +19,7 @@ androidx-navigation = "2.5.3"
 android-gradle = "7.4.2"
 
 spotless = "6.18.0"
-detekt = "1.22.0"
+detekt = "1.23.0"
 
 kotlinx-kover = "0.6.1"
 dokka = "1.8.10"
