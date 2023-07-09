@@ -168,7 +168,7 @@ kotlin {
 android {
   compileSdk = 33
   sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-  namespace = "com.hoc081098.kmp.viewmodel"
+  namespace = "com.hoc081098.kmp.viewmodel.savedstate"
 
   defaultConfig {
     minSdk = 21

@@ -11,6 +11,7 @@ pluginManagement {
 dependencyResolutionManagement {
   repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
   repositories {
+    maven(url = "https://androidx.dev/storage/compose-compiler/repository/")
     google()
     mavenCentral()
     gradlePluginPortal()
