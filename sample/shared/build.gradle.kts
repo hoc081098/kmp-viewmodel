@@ -15,7 +15,7 @@ kotlin {
     vendor.set(JvmVendorSpec.AZUL)
   }
 
-  android {
+  androidTarget {
     compilations.all {
       kotlinOptions {
         jvmTarget = JavaVersion.toVersion(libs.versions.java.get()).toString()
@@ -98,7 +98,6 @@ android {
   compileSdk = 33
   defaultConfig {
     minSdk = 26
-    targetSdk = 33
   }
   buildFeatures {
     buildConfig = true

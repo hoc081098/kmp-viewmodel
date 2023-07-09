@@ -2,6 +2,7 @@ import com.diffplug.gradle.spotless.SpotlessExtension
 import com.diffplug.gradle.spotless.SpotlessPlugin
 import io.gitlab.arturbosch.detekt.DetektPlugin
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension
+import kotlinx.kover.gradle.plugin.KoverGradlePlugin
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
 
@@ -28,21 +29,16 @@ plugins {
 subprojects {
   apply<DetektPlugin>()
   configure<DetektExtension> {
-    source = files("src/")
-    config = files("${project.rootDir}/detekt.yml")
+    source.from(files("src/"))
+    config.from(files("${project.rootDir}/detekt.yml"))
     buildUponDefaultConfig = true
     allRules = true
   }
 }
 
-koverMerged {
-  enable()
-
-  filters {
-    projects {
-      excludes += listOf(":sample:shared", ":sample:app")
-    }
-  }
+dependencies {
+  kover(project(":viewmodel"))
+  kover(project(":viewmodel-savedstate"))
 }
 
 val ktlintVersion = libs.versions.ktlint.get()

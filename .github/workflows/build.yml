@@ -67,7 +67,7 @@ jobs:
         run: ./gradlew :viewmodel:build :viewmodel-savedstate:build --stacktrace
 
       - name: Kover Xml Report
-        run: ./gradlew koverXmlReport
+        run: ./gradlew :koverXmlReport
 
       - name: Upload Test Report
         uses: codecov/codecov-action@v3.1.4

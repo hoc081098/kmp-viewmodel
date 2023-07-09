@@ -22,7 +22,7 @@ kotlin {
     vendor.set(JvmVendorSpec.AZUL)
   }
 
-  android {
+  androidTarget {
     publishAllLibraryVariants()
   }
 
@@ -180,7 +180,6 @@ android {
 
   defaultConfig {
     minSdk = 21
-    targetSdk = 33
   }
 
   // still needed for Android projects despite toolchain
