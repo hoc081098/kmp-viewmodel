@@ -1,6 +1,6 @@
 package com.hoc081098.kmp.viewmodel.internal
 
-import kotlin.native.concurrent.AtomicInt
+import kotlin.concurrent.AtomicInt
 
 internal actual class AtomicBoolean actual constructor(value: Boolean) {
   private val atomic = AtomicInt(value.asInt)

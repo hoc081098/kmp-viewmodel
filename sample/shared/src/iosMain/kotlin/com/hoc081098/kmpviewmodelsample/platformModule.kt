@@ -7,6 +7,7 @@ import com.hoc081098.kmpviewmodelsample.search_products.SearchProductsViewModel
 import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.bind
 import org.koin.core.module.dsl.factoryOf
@@ -33,6 +34,6 @@ actual fun setupNapier() {
 internal class IosAppDispatchers : AppDispatchers {
   override val main get() = Dispatchers.Main
   override val immediateMain get() = Dispatchers.Main.immediate
-  override val io get() = Dispatchers.Default
+  override val io get() = Dispatchers.IO
   override val default get() = Dispatchers.Default
 }

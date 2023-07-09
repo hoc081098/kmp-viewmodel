@@ -1,7 +1,10 @@
 @file:Suppress("unused") // Called from platform code
+@file:OptIn(ExperimentalNativeApi::class, BetaInteropApi::class)
 
 package com.hoc081098.kmpviewmodelsample
 
+import kotlin.experimental.ExperimentalNativeApi
+import kotlinx.cinterop.BetaInteropApi
 import kotlinx.cinterop.ObjCClass
 import kotlinx.cinterop.ObjCObject
 import kotlinx.cinterop.ObjCProtocol

@@ -1,9 +1,11 @@
 @file:Suppress("unused") // Called from platform code
+@file:OptIn(ExperimentalForeignApi::class)
 
 package com.hoc081098.kmpviewmodelsample
 
 import io.github.aakira.napier.Napier
 import kotlin.native.internal.ObjCErrorException
+import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.convert
 import platform.Foundation.NSError
 import platform.Foundation.NSLocalizedDescriptionKey
