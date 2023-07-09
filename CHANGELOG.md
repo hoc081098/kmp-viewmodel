@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+#### Update dependencies
+
+- Kotlin `1.9.0`.
+- AndroidX Lifecycle `2.6.1`.
+- KotlinX Coroutines `1.7.2`.
+
 ## [0.4.0] - Apr 7, 2023
 
 ### Changed
