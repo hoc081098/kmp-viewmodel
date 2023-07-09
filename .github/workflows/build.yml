@@ -70,7 +70,7 @@ jobs:
         run: ./gradlew koverXmlReport
 
       - name: Upload Test Report
-        uses: codecov/codecov-action@v3.1.1
+        uses: codecov/codecov-action@v3.1.4
 
       - name: Upload test report artifact
         if: ${{ failure() }}
@@ -163,7 +163,7 @@ jobs:
 
       - name: Deploy docs 🚀 to website
         if: ${{ contains(matrix.os, 'macos') }}
-        uses: JamesIves/github-pages-deploy-action@v4.4.1
+        uses: JamesIves/github-pages-deploy-action@v4.4.2
         with:
           branch: gh-pages # The branch the action should deploy to.
           folder: site # The folder the action should deploy.
