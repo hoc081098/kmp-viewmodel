@@ -92,4 +92,14 @@ allprojects {
       exceptionFormat = TestExceptionFormat.FULL
     }
   }
+
+  // Workaround for https://github.com/Kotlin/dokka/issues/2977.
+  tasks.withType<org.jetbrains.dokka.gradle.AbstractDokkaTask> {
+    val className = "org.jetbrains.kotlin.gradle.targets.native.internal.CInteropMetadataDependencyTransformationTask"
+
+    @Suppress("UNCHECKED_CAST")
+    val taskClass = Class.forName(className) as Class<Task>
+
+    parent?.subprojects?.forEach { dependsOn(it.tasks.withType(taskClass)) }
+  }
 }
