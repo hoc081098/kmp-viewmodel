@@ -1,7 +1,9 @@
+
 package com.hoc081098.kmp.viewmodel
 
 import com.hoc081098.kmp.viewmodel.internal.synchronized
 import kotlin.native.concurrent.AtomicInt
+import kotlin.native.concurrent.ObsoleteWorkersApi
 import kotlin.native.concurrent.TransferMode
 import kotlin.native.concurrent.Worker
 import kotlin.test.Test
@@ -12,6 +14,7 @@ private const val NWorkers = 4
 private const val Increments = 500
 private const val NLocks = 5
 
+@OptIn(ObsoleteWorkersApi::class)
 class SynchronizedTest {
   @Test
   fun stressCounterTest() {
