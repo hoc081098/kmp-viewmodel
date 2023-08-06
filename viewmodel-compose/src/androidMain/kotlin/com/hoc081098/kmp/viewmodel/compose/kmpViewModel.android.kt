@@ -3,6 +3,7 @@ package com.hoc081098.kmp.viewmodel.compose
 import android.content.Context
 import android.content.ContextWrapper
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
@@ -17,7 +18,7 @@ public actual inline fun <reified VM : ViewModel> kmpViewModel(
   factory: ViewModelFactory<VM>,
 ): VM = viewModel(
   key = key,
-  factory = factory.toAndroidXFactory(),
+  factory = remember(factory) { factory.toAndroidXFactory() },
   viewModelStoreOwner = checkNotNull(
     LocalViewModelStoreOwner.current
       ?: findViewModelStoreOwner(LocalContext.current),
