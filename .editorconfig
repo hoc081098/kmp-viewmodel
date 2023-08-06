@@ -9,7 +9,9 @@ insert_final_newline=true
 ij_kotlin_imports_layout=*
 ij_continuation_indent_size=4
 ktlint_standard_filename=disabled
-ktlint_standard_package-name = disabled
+ktlint_standard_package-name=disabled
+ktlint_standard_property-naming=disabled
+ktlint_standard_function-naming=disabled
 filename=disabled
 ktlint_experimental=enabled
 [*.xml]

@@ -22,6 +22,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.hoc081098.kmpviewmodelsample.AppDispatchers
 import com.hoc081098.kmpviewmodelsample.ProductItemUi
 import com.hoc081098.kmpviewmodelsample.android.common.EmptyProducts
 import com.hoc081098.kmpviewmodelsample.android.common.ErrorMessageAndRetryButton
@@ -30,6 +31,9 @@ import com.hoc081098.kmpviewmodelsample.android.common.ProductItemsList
 import com.hoc081098.kmpviewmodelsample.search_products.SearchProductsState
 import com.hoc081098.kmpviewmodelsample.search_products.SearchProductsViewModel
 import org.koin.androidx.compose.koinViewModel
+import org.koin.compose.koinInject
+import org.koin.compose.rememberKoinInject
+import org.koin.compose.scope.rememberKoinScope
 
 @Suppress("ReturnCount")
 @Composable
@@ -39,7 +43,9 @@ fun SearchProductsScreen(
   viewModel: SearchProductsViewModel = koinViewModel(),
 ) {
   val state by viewModel.stateFlow.collectAsStateWithLifecycle()
-  val searchTerm by viewModel.searchTermStateFlow.collectAsStateWithLifecycle()
+  val searchTerm by viewModel.searchTermStateFlow.collectAsStateWithLifecycle(
+    context = rememberKoinInject<AppDispatchers>().immediateMain
+  )
 
   Column(
     modifier = modifier.fillMaxSize(),
