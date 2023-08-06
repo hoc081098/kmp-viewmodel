@@ -11,5 +11,6 @@ ij_continuation_indent_size=4
 ktlint_standard_filename=disabled
 ktlint_standard_package-name = disabled
 filename=disabled
+ktlint_experimental=enabled
 [*.xml]
 indent_size=4

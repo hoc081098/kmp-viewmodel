@@ -49,7 +49,6 @@ allprojects {
       target("**/*.kt")
 
       ktlint(ktlintVersion)
-        .setUseExperimental(true)
 
       trimTrailingWhitespace()
       indentWithSpaces()
@@ -68,7 +67,6 @@ allprojects {
       target("**/*.gradle.kts", "*.gradle.kts")
 
       ktlint(ktlintVersion)
-        .setUseExperimental(true)
 
       trimTrailingWhitespace()
       indentWithSpaces()
