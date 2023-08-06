@@ -12,7 +12,7 @@ import org.koin.core.module.dsl.bind
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 
-internal actual val platformModule: Module = module {
+internal actual val PlatformModule: Module = module {
   viewModelOf(::ProductsViewModel)
 
   viewModelOf(::SearchProductsViewModel)

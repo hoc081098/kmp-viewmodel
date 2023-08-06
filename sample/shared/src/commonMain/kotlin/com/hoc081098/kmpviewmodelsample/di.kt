@@ -9,13 +9,13 @@ import org.koin.core.module.dsl.factoryOf
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
 
-private val commonModule = module {
+private val CommonModule = module {
   factoryOf(::GetProducts)
   factoryOf(::SearchProducts)
   factoryOf(::GetProductById)
 }
 
-internal expect val platformModule: Module
+internal expect val PlatformModule: Module
 
 expect fun setupNapier()
 
@@ -24,6 +24,6 @@ fun startKoinCommon(
 ) {
   startKoin {
     appDeclaration()
-    modules(commonModule, platformModule)
+    modules(CommonModule, PlatformModule)
   }
 }

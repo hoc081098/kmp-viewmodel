@@ -1,32 +1,32 @@
 [versions]
 kotlin = "1.9.0"
 java = "11"
-coroutines = "1.7.2"
+coroutines = "1.7.3"
 kotlinx-serialization-json = "1.5.1"
 kotlinx-collections-immutable = "0.3.5"
 
 touchlab-stately = "1.2.5"
 napier = "2.6.1"
-flowExt = "0.6.1"
-koin = "3.4.2"
-koin-androidx-compose = "3.4.5"
+flowExt = "0.7.1"
+koin = "3.4.3"
+koin-androidx-compose = "3.4.6"
 coil = "2.4.0"
 
 androidx-lifecycle = "2.6.1"
 androidx-activity = "1.7.2"
-androidx-compose-compiler = "1.5.0-dev-k1.9.0-6a60475e07f"
+androidx-compose-compiler = "1.5.1"
 androidx-navigation = "2.6.0"
-android-gradle = "7.4.2"
+android-gradle = "8.1.0"
 
-spotless = "6.19.0"
-detekt = "1.23.0"
+spotless = "6.20.0"
+detekt = "1.23.1"
 
-kotlinx-kover = "0.7.2"
+kotlinx-kover = "0.7.3"
 dokka = "1.8.20"
 kotlinx-binary-compatibility-validator = "0.13.2"
 
 vanniktech-maven-publish = "0.25.3"
-ktlint = "0.48.2"
+ktlint = "0.50.0"
 
 [libraries]
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }

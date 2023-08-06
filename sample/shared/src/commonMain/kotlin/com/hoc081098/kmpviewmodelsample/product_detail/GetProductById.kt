@@ -20,7 +20,8 @@ class GetProductById(
     Json
       .decodeFromString<List<ProductItem>>(FakeProductsJson)
       .find { it.id == id }
-      ?: @Suppress("TooGenericExceptionThrown")
+      ?:
+      @Suppress("TooGenericExceptionThrown")
       throw RuntimeException("Product with id = $id not found")
   }
 }
