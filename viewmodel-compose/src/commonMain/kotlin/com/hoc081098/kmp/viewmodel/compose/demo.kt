@@ -29,7 +29,11 @@ public fun DemoScreen(
   ),
   viewModel2: DemoViewModel = kmpViewModel(
     key = "DemoViewModel2",
-    factory = viewModelFactory(::DemoViewModel),
+    factory = rememberViewModelFactory(::DemoViewModel),
+  ),
+  viewModel3: DemoViewModel = kmpViewModel(
+    key = "DemoViewModel3",
+    factory = rememberViewModelFactory("key", ::DemoViewModel),
   ),
 ) {
   viewModel1.stateFlow.collectAsState().value

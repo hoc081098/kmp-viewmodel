@@ -1,8 +1,6 @@
 package com.hoc081098.kmp.viewmodel.compose
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisallowComposableCalls
-import androidx.compose.runtime.remember
 import com.hoc081098.kmp.viewmodel.ViewModel
 
 @Composable
@@ -14,8 +12,8 @@ public expect inline fun <reified VM : ViewModel> kmpViewModel(
 @Composable
 public inline fun <reified VM : ViewModel> kmpViewModel(
   key: String? = null,
-  crossinline factory: @DisallowComposableCalls () -> VM,
+  noinline factory: () -> VM,
 ): VM = kmpViewModel(
   key = key,
-  factory = remember { viewModelFactory(factory) },
+  factory = rememberViewModelFactory(factory),
 )

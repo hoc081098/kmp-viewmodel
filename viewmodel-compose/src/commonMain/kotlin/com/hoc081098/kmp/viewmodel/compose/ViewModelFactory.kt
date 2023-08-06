@@ -2,12 +2,15 @@ package com.hoc081098.kmp.viewmodel.compose
 
 import com.hoc081098.kmp.viewmodel.ViewModel
 
-public interface ViewModelFactory<VM : ViewModel> {
+public sealed interface ViewModelFactory<VM : ViewModel> {
   public fun create(): VM
 }
 
-public inline fun <VM : ViewModel> viewModelFactory(
-  crossinline builder: () -> VM,
-): ViewModelFactory<VM> = object : ViewModelFactory<VM> {
+internal class DefaultViewModelFactory<VM : ViewModel>(
+  private val builder: () -> VM,
+) : ViewModelFactory<VM> {
   override fun create(): VM = builder()
 }
+
+public fun <VM : ViewModel> viewModelFactory(builder: () -> VM): ViewModelFactory<VM> =
+  DefaultViewModelFactory(builder)
