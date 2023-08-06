@@ -31,9 +31,7 @@ import com.hoc081098.kmpviewmodelsample.android.common.ProductItemsList
 import com.hoc081098.kmpviewmodelsample.search_products.SearchProductsState
 import com.hoc081098.kmpviewmodelsample.search_products.SearchProductsViewModel
 import org.koin.androidx.compose.koinViewModel
-import org.koin.compose.koinInject
 import org.koin.compose.rememberKoinInject
-import org.koin.compose.scope.rememberKoinScope
 
 @Suppress("ReturnCount")
 @Composable
