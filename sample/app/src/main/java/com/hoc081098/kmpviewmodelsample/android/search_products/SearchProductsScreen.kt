@@ -42,7 +42,7 @@ fun SearchProductsScreen(
 ) {
   val state by viewModel.stateFlow.collectAsStateWithLifecycle()
   val searchTerm by viewModel.searchTermStateFlow.collectAsStateWithLifecycle(
-    context = rememberKoinInject<AppDispatchers>().immediateMain
+    context = rememberKoinInject<AppDispatchers>().immediateMain,
   )
 
   Column(

@@ -6,7 +6,8 @@
 
 - Kotlin `1.9.0`.
 - AndroidX Lifecycle `2.6.1`.
-- KotlinX Coroutines `1.7.2`.
+- KotlinX Coroutines `1.7.3`.
+- Android Gradle Plugin `8.1.0`.
 
 ## [0.4.0] - Apr 7, 2023
 
