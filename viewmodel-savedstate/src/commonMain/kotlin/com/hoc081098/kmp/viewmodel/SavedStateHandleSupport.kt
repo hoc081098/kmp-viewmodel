@@ -1,13 +1,22 @@
 package com.hoc081098.kmp.viewmodel
 
+import kotlin.jvm.JvmField
+
 /**
- * Creates `SavedStateHandle` that can be used in your ViewModels.
+ * Creates [SavedStateHandle] that can be used in your [ViewModel]s.
  *
- * ### Other platforms
+ * ### On all platforms
+ *
+ * If this [CreationExtras] contains [SAVED_STATE_HANDLE_KEY], then this function will
+ * return the value associated with this key.
+ *
+ * ### Otherwise
+ *
+ * #### Other platforms
  *
  * This function simply returns an empty [SavedStateHandle].
  *
- * ### On Android
+ * #### On Android
  *
  * This function requires `enableSavedStateHandles` call during the component
  * initialization. Latest versions of androidx components like `ComponentActivity`, `Fragment`,
@@ -22,3 +31,11 @@ package com.hoc081098.kmp.viewmodel
  */
 @MainThread
 public expect fun CreationExtras.createSavedStateHandle(): SavedStateHandle
+
+/**
+ * A key for [SavedStateHandle] that should be passed to [SavedStateHandle] if needed.
+ */
+@JvmField
+public val SAVED_STATE_HANDLE_KEY: CreationExtrasKey<SavedStateHandle> = object : CreationExtrasKey<SavedStateHandle> {
+  override fun toString(): String = "SAVED_STATE_HANDLE_KEY"
+}
