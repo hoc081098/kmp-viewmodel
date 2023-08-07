@@ -43,12 +43,12 @@ internal fun <VM : ViewModel> rememberViewModelKey(key: String?, kClass: KClass<
     val canonicalName = kClass.qualifiedName
       ?: throw IllegalArgumentException("Local and anonymous classes can not be ViewModels")
 
-    "$DEFAULT_KEY:$canonicalName"
+    "$DefaultKey:$canonicalName"
   }
 }
 
 // Copied from androidx.lifecycle.ViewModelProvider.kt
-private const val DEFAULT_KEY = "androidx.lifecycle.ViewModelProvider.DefaultKey"
+private const val DefaultKey = "androidx.lifecycle.ViewModelProvider.DefaultKey"
 
 @PublishedApi
 internal class CompositionViewModel<VM : ViewModel>(
