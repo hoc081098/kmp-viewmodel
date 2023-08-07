@@ -7,10 +7,10 @@ public fun creationExtrasOf(vararg pairs: Pair<Key<Any?>, Any?>): MutableCreatio
     }
   }
 
-public fun buildCreationExtras(builderAction: MutableCreationExtras.() -> Unit): CreationExtras =
-  MutableCreationExtras().apply {
-    builderAction()
-  }
+public fun buildCreationExtras(
+  initialExtras: CreationExtras = EmptyCreationExtras,
+  builderAction: MutableCreationExtras.() -> Unit,
+): CreationExtras = MutableCreationExtras(initialExtras).apply(builderAction)
 
 public operator fun CreationExtras.plus(other: CreationExtras): CreationExtras = when {
   this is EmptyCreationExtras -> other

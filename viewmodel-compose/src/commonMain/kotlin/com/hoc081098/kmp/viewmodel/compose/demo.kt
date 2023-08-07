@@ -3,6 +3,7 @@ package com.hoc081098.kmp.viewmodel.compose
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import com.hoc081098.kmp.viewmodel.VIEW_MODEL_KEY
 import com.hoc081098.kmp.viewmodel.ViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.SharingStarted
@@ -25,15 +26,24 @@ public class DemoViewModel : ViewModel() {
 public fun DemoScreen(
   viewModel1: DemoViewModel = kmpViewModel(
     key = "DemoViewModel1",
-    factory = { DemoViewModel() },
+    factory = {
+      val key = checkNotNull(this[VIEW_MODEL_KEY])
+      DemoViewModel()
+    },
   ),
   viewModel2: DemoViewModel = kmpViewModel(
     key = "DemoViewModel2",
-    factory = rememberViewModelFactory { DemoViewModel() },
+    factory = rememberViewModelFactory {
+      val key = checkNotNull(this[VIEW_MODEL_KEY])
+      DemoViewModel()
+    },
   ),
   viewModel3: DemoViewModel = kmpViewModel(
     key = "DemoViewModel3",
-    factory = rememberViewModelFactory("key") { DemoViewModel() },
+    factory = rememberViewModelFactory("key") {
+      val key = checkNotNull(this[VIEW_MODEL_KEY])
+      DemoViewModel()
+    },
   ),
 ) {
   viewModel1.stateFlow.collectAsState().value

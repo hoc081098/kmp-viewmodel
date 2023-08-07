@@ -13,3 +13,5 @@ public expect object EmptyCreationExtras : CreationExtras
 public expect class MutableCreationExtras(initialExtras: CreationExtras = EmptyCreationExtras) : CreationExtras {
   public operator fun <T> set(key: Key<T>, t: T)
 }
+
+public expect val VIEW_MODEL_KEY: Key<String>

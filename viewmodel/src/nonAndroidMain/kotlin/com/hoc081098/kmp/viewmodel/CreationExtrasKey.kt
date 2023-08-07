@@ -1,5 +1,7 @@
 package com.hoc081098.kmp.viewmodel
 
+import kotlin.jvm.JvmField
+
 public actual interface CreationExtrasKey<T>
 
 public actual abstract class CreationExtras internal actual constructor() {
@@ -29,3 +31,6 @@ public actual class MutableCreationExtras actual constructor(initialExtras: Crea
     return map[key] as T?
   }
 }
+
+@JvmField
+public actual val VIEW_MODEL_KEY: Key<String> = object : Key<String> {}
