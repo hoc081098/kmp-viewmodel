@@ -5,6 +5,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import com.hoc081098.kmp.viewmodel.VIEW_MODEL_KEY
 import com.hoc081098.kmp.viewmodel.ViewModel
+import com.hoc081098.kmp.viewmodel.createSavedStateHandle
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -28,6 +29,7 @@ public fun DemoScreen(
     key = "DemoViewModel1",
     factory = {
       val key = checkNotNull(this[VIEW_MODEL_KEY])
+      val savedStateHandle = createSavedStateHandle()
       DemoViewModel()
     },
   ),
@@ -35,6 +37,7 @@ public fun DemoScreen(
     key = "DemoViewModel2",
     factory = rememberViewModelFactory {
       val key = checkNotNull(this[VIEW_MODEL_KEY])
+      val savedStateHandle = createSavedStateHandle()
       DemoViewModel()
     },
   ),
@@ -42,6 +45,7 @@ public fun DemoScreen(
     key = "DemoViewModel3",
     factory = rememberViewModelFactory("key") {
       val key = checkNotNull(this[VIEW_MODEL_KEY])
+      val savedStateHandle = createSavedStateHandle()
       DemoViewModel()
     },
   ),

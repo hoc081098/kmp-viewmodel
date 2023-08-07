@@ -65,6 +65,7 @@ kotlin {
     val commonMain by getting {
       dependencies {
         api(libs.coroutines.core)
+        api(projects.viewmodel)
       }
     }
     val commonTest by getting {

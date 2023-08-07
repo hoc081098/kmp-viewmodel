@@ -67,6 +67,7 @@ kotlin {
       dependencies {
         api("org.jetbrains.compose.runtime:runtime:1.4.3")
         api(projects.viewmodel)
+        api(projects.viewmodelSavedstate)
       }
     }
     val commonTest by getting {
