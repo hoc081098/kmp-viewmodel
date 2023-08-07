@@ -25,15 +25,15 @@ public class DemoViewModel : ViewModel() {
 public fun DemoScreen(
   viewModel1: DemoViewModel = kmpViewModel(
     key = "DemoViewModel1",
-    factory = ::DemoViewModel,
+    factory = { DemoViewModel() },
   ),
   viewModel2: DemoViewModel = kmpViewModel(
     key = "DemoViewModel2",
-    factory = rememberViewModelFactory(::DemoViewModel),
+    factory = rememberViewModelFactory { DemoViewModel() },
   ),
   viewModel3: DemoViewModel = kmpViewModel(
     key = "DemoViewModel3",
-    factory = rememberViewModelFactory("key", ::DemoViewModel),
+    factory = rememberViewModelFactory("key") { DemoViewModel() },
   ),
 ) {
   viewModel1.stateFlow.collectAsState().value

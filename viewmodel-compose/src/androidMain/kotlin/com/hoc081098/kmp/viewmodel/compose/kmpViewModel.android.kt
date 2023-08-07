@@ -5,34 +5,50 @@ import android.content.ContextWrapper
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.HasDefaultViewModelProviderFactory
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
-import androidx.lifecycle.viewmodel.CreationExtras
+import androidx.lifecycle.viewmodel.CreationExtras.Empty
 import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.hoc081098.kmp.viewmodel.CreationExtras
 import com.hoc081098.kmp.viewmodel.ViewModel
+import com.hoc081098.kmp.viewmodel.ViewModelFactory
+import com.hoc081098.kmp.viewmodel.plus
 
 @Composable
 public actual inline fun <reified VM : ViewModel> kmpViewModel(
   key: String?,
+  extras: CreationExtras,
   factory: ViewModelFactory<VM>,
-): VM = viewModel(
-  key = key,
-  factory = remember(factory) { factory.toAndroidXFactory() },
-  viewModelStoreOwner = checkNotNull(
+): VM {
+  val viewModelStoreOwner = checkNotNull(
     LocalViewModelStoreOwner.current
       ?: findViewModelStoreOwner(LocalContext.current),
   ) {
     "No ViewModelStoreOwner was provided via LocalViewModelStoreOwner"
-  },
-)
+  }
+
+  val defaultExtras = if (viewModelStoreOwner is HasDefaultViewModelProviderFactory) {
+    viewModelStoreOwner.defaultViewModelCreationExtras
+  } else {
+    Empty
+  }
+
+  return viewModel(
+    key = key,
+    factory = remember(factory, factory::toAndroidXFactory),
+    extras = defaultExtras + extras,
+    viewModelStoreOwner = viewModelStoreOwner,
+  )
+}
 
 @PublishedApi
 internal inline fun <reified VM : ViewModel> ViewModelFactory<VM>.toAndroidXFactory(): ViewModelProvider.Factory =
   object : ViewModelProvider.Factory {
     override fun <T : androidx.lifecycle.ViewModel> create(modelClass: Class<T>, extras: CreationExtras): T {
       @Suppress("UNCHECKED_CAST")
-      return this@toAndroidXFactory.create() as T
+      return this@toAndroidXFactory.create(extras) as T
     }
   }
 
