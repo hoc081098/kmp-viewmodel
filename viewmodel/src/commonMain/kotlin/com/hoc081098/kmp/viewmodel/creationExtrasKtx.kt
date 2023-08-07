@@ -12,13 +12,15 @@ public fun buildCreationExtras(builderAction: MutableCreationExtras.() -> Unit):
     builderAction()
   }
 
-public operator fun CreationExtras.plus(other: CreationExtras): CreationExtras =
-  if (other === EmptyCreationExtras) {
-    this
-  } else {
-    (
-      this as? MutableCreationExtras
-        ?: MutableCreationExtras(this)
-      )
-      .apply { map.putAll(other.map) }
-  }
+public operator fun CreationExtras.plus(other: CreationExtras): CreationExtras = when {
+  this is EmptyCreationExtras -> other
+  other is EmptyCreationExtras -> this
+  else -> CombinedCreationExtras(this, other)
+}
+
+private class CombinedCreationExtras(
+  private val left: CreationExtras,
+  private val right: CreationExtras,
+) : CreationExtras() {
+  override fun <T> get(key: Key<T>): T? = left[key] ?: right[key]
+}

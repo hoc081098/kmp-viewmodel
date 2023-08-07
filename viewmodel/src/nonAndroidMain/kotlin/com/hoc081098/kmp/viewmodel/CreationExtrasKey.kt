@@ -3,7 +3,7 @@ package com.hoc081098.kmp.viewmodel
 public actual interface CreationExtrasKey<T>
 
 public actual abstract class CreationExtras internal actual constructor() {
-  internal actual val map: MutableMap<Key<*>, Any?> = mutableMapOf()
+  internal val map: MutableMap<Key<*>, Any?> = mutableMapOf()
 
   public actual abstract operator fun <T> get(key: Key<T>): T?
 }
