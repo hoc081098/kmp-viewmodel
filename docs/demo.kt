@@ -54,7 +54,6 @@ public fun DemoScreen(
     },
   ),
   viewModel3: DemoViewModel = kmpViewModel(
-    key = "DemoViewModel3",
     factory = rememberViewModelFactory(key = "key") {
       val key = checkNotNull(this[VIEW_MODEL_KEY])
       val savedStateHandle = createSavedStateHandle()
