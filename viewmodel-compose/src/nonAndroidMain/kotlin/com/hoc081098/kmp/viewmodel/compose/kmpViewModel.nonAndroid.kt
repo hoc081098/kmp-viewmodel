@@ -17,7 +17,7 @@ public actual inline fun <reified VM : ViewModel> kmpViewModel(
   factory: ViewModelFactory<VM>,
 ): VM {
   val kClass = VM::class
-  val nonNullKey = rememberViewModelKey(key, kClass)
+  val nonNullKey = key ?: rememberViewModelKey(kClass)
 
   return remember(nonNullKey, kClass, factory, extras) {
     CompositionViewModel(
@@ -32,19 +32,13 @@ public actual inline fun <reified VM : ViewModel> kmpViewModel(
 
 @PublishedApi
 @Composable
-internal fun <VM : ViewModel> rememberViewModelKey(key: String?, kClass: KClass<VM>): String {
-  if (key != null) {
-    return key
-  }
+internal fun <VM : ViewModel> rememberViewModelKey(kClass: KClass<VM>): String = remember(kClass) {
+  // Copied from androidx.lifecycle.ViewModelProvider.kt
 
-  return remember(kClass) {
-    // Copied from androidx.lifecycle.ViewModelProvider.kt
+  val canonicalName = kClass.qualifiedName
+    ?: throw IllegalArgumentException("Local and anonymous classes can not be ViewModels")
 
-    val canonicalName = kClass.qualifiedName
-      ?: throw IllegalArgumentException("Local and anonymous classes can not be ViewModels")
-
-    "$DefaultKey:$canonicalName"
-  }
+  "$DefaultKey:$canonicalName"
 }
 
 // Copied from androidx.lifecycle.ViewModelProvider.kt
