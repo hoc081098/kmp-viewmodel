@@ -1,0 +1,8 @@
+public final class com/hoc081098/kmp/viewmodel/SavedStateHandleSupportKt {
+	public static final field SAVED_STATE_HANDLE_KEY Landroidx/lifecycle/viewmodel/CreationExtras$Key;
+}
+
+public final class com/hoc081098/kmp/viewmodel/SavedStateHandleSupport_androidKt {
+	public static final fun createSavedStateHandle (Landroidx/lifecycle/viewmodel/CreationExtras;)Landroidx/lifecycle/SavedStateHandle;
+}
+

@@ -1,3 +1,36 @@
+public abstract class com/hoc081098/kmp/viewmodel/CreationExtras {
+	public abstract fun get (Lcom/hoc081098/kmp/viewmodel/CreationExtrasKey;)Ljava/lang/Object;
+}
+
+public abstract interface class com/hoc081098/kmp/viewmodel/CreationExtrasKey {
+}
+
+public final class com/hoc081098/kmp/viewmodel/CreationExtrasKey_nonAndroidKt {
+	public static final field VIEW_MODEL_KEY Lcom/hoc081098/kmp/viewmodel/CreationExtrasKey;
+}
+
+public final class com/hoc081098/kmp/viewmodel/CreationExtrasKtxKt {
+	public static final fun buildCreationExtras (Lcom/hoc081098/kmp/viewmodel/CreationExtras;Lkotlin/jvm/functions/Function1;)Lcom/hoc081098/kmp/viewmodel/CreationExtras;
+	public static synthetic fun buildCreationExtras$default (Lcom/hoc081098/kmp/viewmodel/CreationExtras;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/CreationExtras;
+	public static final fun creationExtrasOf ([Lkotlin/Pair;)Lcom/hoc081098/kmp/viewmodel/MutableCreationExtras;
+}
+
+public final class com/hoc081098/kmp/viewmodel/EmptyCreationExtras : com/hoc081098/kmp/viewmodel/CreationExtras {
+	public static final field INSTANCE Lcom/hoc081098/kmp/viewmodel/EmptyCreationExtras;
+	public fun get (Lcom/hoc081098/kmp/viewmodel/CreationExtrasKey;)Ljava/lang/Object;
+}
+
+public abstract interface annotation class com/hoc081098/kmp/viewmodel/MainThread : java/lang/annotation/Annotation {
+}
+
+public final class com/hoc081098/kmp/viewmodel/MutableCreationExtras : com/hoc081098/kmp/viewmodel/CreationExtras {
+	public fun <init> ()V
+	public fun <init> (Lcom/hoc081098/kmp/viewmodel/CreationExtras;)V
+	public synthetic fun <init> (Lcom/hoc081098/kmp/viewmodel/CreationExtras;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun get (Lcom/hoc081098/kmp/viewmodel/CreationExtrasKey;)Ljava/lang/Object;
+	public final fun set (Lcom/hoc081098/kmp/viewmodel/CreationExtrasKey;Ljava/lang/Object;)V
+}
+
 public abstract class com/hoc081098/kmp/viewmodel/ViewModel {
 	public fun <init> ()V
 	public fun <init> ([Ljava/io/Closeable;)V
@@ -5,6 +38,14 @@ public abstract class com/hoc081098/kmp/viewmodel/ViewModel {
 	public final fun clear ()V
 	public final fun getViewModelScope ()Lkotlinx/coroutines/CoroutineScope;
 	protected fun onCleared ()V
+}
+
+public abstract interface class com/hoc081098/kmp/viewmodel/ViewModelFactory {
+	public abstract fun create (Lcom/hoc081098/kmp/viewmodel/CreationExtras;)Lcom/hoc081098/kmp/viewmodel/ViewModel;
+}
+
+public final class com/hoc081098/kmp/viewmodel/ViewModelFactoryKt {
+	public static final fun viewModelFactory (Lkotlin/jvm/functions/Function1;)Lcom/hoc081098/kmp/viewmodel/ViewModelFactory;
 }
 
 public abstract class com/hoc081098/kmp/viewmodel/wrapper/AbstractFlowWrapper : kotlinx/coroutines/flow/Flow {
