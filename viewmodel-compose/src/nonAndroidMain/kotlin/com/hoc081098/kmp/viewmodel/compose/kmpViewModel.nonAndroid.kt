@@ -16,10 +16,10 @@ public actual inline fun <reified VM : ViewModel> kmpViewModel(
   extras: CreationExtras,
   factory: ViewModelFactory<VM>,
 ): VM {
-  val kClass = VM::class
-  val nonNullKey = key ?: rememberViewModelKey(kClass)
+  val kClass = remember { VM::class }
+  val nonNullKey = key ?: rememberDefaultViewModelKey(kClass)
 
-  return remember(nonNullKey, kClass, factory, extras) {
+  return remember(kClass, nonNullKey, factory, extras) {
     CompositionViewModel(
       viewModel = factory.create(
         buildCreationExtras(extras) {
@@ -32,7 +32,7 @@ public actual inline fun <reified VM : ViewModel> kmpViewModel(
 
 @PublishedApi
 @Composable
-internal fun <VM : ViewModel> rememberViewModelKey(kClass: KClass<VM>): String = remember(kClass) {
+internal fun <VM : ViewModel> rememberDefaultViewModelKey(kClass: KClass<VM>): String = remember(kClass) {
   // Copied from androidx.lifecycle.ViewModelProvider.kt
 
   val canonicalName = kClass.qualifiedName
