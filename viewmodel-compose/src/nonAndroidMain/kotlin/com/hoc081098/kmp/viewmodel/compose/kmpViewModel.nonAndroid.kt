@@ -8,6 +8,7 @@ import com.hoc081098.kmp.viewmodel.VIEW_MODEL_KEY
 import com.hoc081098.kmp.viewmodel.ViewModel
 import com.hoc081098.kmp.viewmodel.ViewModelFactory
 import com.hoc081098.kmp.viewmodel.buildCreationExtras
+import kotlin.jvm.JvmField
 import kotlin.reflect.KClass
 
 @Composable
@@ -46,7 +47,7 @@ private const val DefaultKey = "androidx.lifecycle.ViewModelProvider.DefaultKey"
 
 @PublishedApi
 internal class CompositionViewModel<VM : ViewModel>(
-  val viewModel: VM,
+  @JvmField val viewModel: VM,
 ) : RememberObserver {
   override fun onAbandoned() {
     viewModel.clear()
