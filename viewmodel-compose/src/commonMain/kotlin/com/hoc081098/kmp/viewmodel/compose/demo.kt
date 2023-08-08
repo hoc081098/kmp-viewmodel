@@ -1,3 +1,5 @@
+@file:Suppress("MagicNumber", "TopLevelPropertyNaming")
+
 package com.hoc081098.kmp.viewmodel.compose
 
 import androidx.compose.runtime.Composable
@@ -16,7 +18,7 @@ import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 
-public val isAndroid: Boolean = false
+public const val isAndroid: Boolean = false
 
 public class DemoViewModel(
   private val savedStateHandle: SavedStateHandle,
@@ -71,17 +73,32 @@ public fun DemoScreen(
     },
   ),
 ) {
-  viewModel1.stateFlow.collectAsState().value
-  viewModel2.stateFlow.collectAsState().value
+  val a = viewModel1.stateFlow.collectAsState().value
+  val b = viewModel2.stateFlow.collectAsState().value
+  val c = viewModel3.stateFlow.collectAsState().value
+
+  LaunchedEffect(a, b, c) {
+    println(">>> $a, $b, $c")
+  }
+
+  LaunchedEffect(viewModel1, viewModel2, viewModel3) {
+    println(">>> $viewModel1, $viewModel2, $viewModel3")
+    println(">>> ${viewModel1 === viewModel2} and ${viewModel2 === viewModel3}")
+  }
 
   LaunchedEffect(viewModel1) {
     viewModel1.addCloseable {
-      println("DemoViewModel1 is cleared")
+      println(">>> DemoViewModel1 $viewModel1 is cleared")
     }
   }
   LaunchedEffect(viewModel2) {
     viewModel2.addCloseable {
-      println("DemoViewModel1 is cleared")
+      println(">>> DemoViewModel1 $viewModel2 is cleared")
+    }
+  }
+  LaunchedEffect(viewModel3) {
+    viewModel3.addCloseable {
+      println(">>> DemoViewModel1 $viewModel3 is cleared")
     }
   }
 }
