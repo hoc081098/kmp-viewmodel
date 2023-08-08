@@ -14,33 +14,38 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.hoc081098.kmp.viewmodel.CreationExtras
 import com.hoc081098.kmp.viewmodel.ViewModel
 import com.hoc081098.kmp.viewmodel.ViewModelFactory
-import com.hoc081098.kmp.viewmodel.plus
 
 @Composable
 public actual inline fun <reified VM : ViewModel> kmpViewModel(
   key: String?,
   extras: CreationExtras,
   factory: ViewModelFactory<VM>,
-): VM {
-  val viewModelStoreOwner = checkNotNull(
-    LocalViewModelStoreOwner.current
-      ?: findViewModelStoreOwner(LocalContext.current),
-  ) {
-    "No ViewModelStoreOwner was provided via LocalViewModelStoreOwner"
-  }
+): VM = viewModel(
+  key = key,
+  factory = remember(factory, factory::toAndroidXFactory),
+  extras = extras,
+  viewModelStoreOwner = getViewModelStoreOwner(),
+)
 
-  val defaultExtras = if (viewModelStoreOwner is HasDefaultViewModelProviderFactory) {
+@Suppress("NOTHING_TO_INLINE")
+@PublishedApi
+@Composable
+internal inline fun getViewModelStoreOwner(): ViewModelStoreOwner = checkNotNull(
+  LocalViewModelStoreOwner.current
+    ?: findViewModelStoreOwner(LocalContext.current),
+) {
+  "No ViewModelStoreOwner was provided via LocalViewModelStoreOwner"
+}
+
+@Composable
+public actual fun defaultCreationExtras(): CreationExtras {
+  val viewModelStoreOwner = getViewModelStoreOwner()
+
+  return if (viewModelStoreOwner is HasDefaultViewModelProviderFactory) {
     viewModelStoreOwner.defaultViewModelCreationExtras
   } else {
     Empty
   }
-
-  return viewModel(
-    key = key,
-    factory = remember(factory, factory::toAndroidXFactory),
-    extras = defaultExtras + extras,
-    viewModelStoreOwner = viewModelStoreOwner,
-  )
 }
 
 @PublishedApi

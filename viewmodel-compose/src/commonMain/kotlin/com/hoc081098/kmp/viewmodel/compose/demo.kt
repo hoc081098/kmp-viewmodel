@@ -3,7 +3,6 @@ package com.hoc081098.kmp.viewmodel.compose
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
-import com.hoc081098.kmp.viewmodel.EmptyCreationExtras
 import com.hoc081098.kmp.viewmodel.SAVED_STATE_HANDLE_KEY
 import com.hoc081098.kmp.viewmodel.SavedStateHandle
 import com.hoc081098.kmp.viewmodel.VIEW_MODEL_KEY
@@ -62,7 +61,7 @@ public fun DemoScreen(
       )
     },
     extras = if (isAndroid) {
-      EmptyCreationExtras
+      defaultCreationExtras()
     } else {
       buildCreationExtras {
         this[SAVED_STATE_HANDLE_KEY] = SavedStateHandle(

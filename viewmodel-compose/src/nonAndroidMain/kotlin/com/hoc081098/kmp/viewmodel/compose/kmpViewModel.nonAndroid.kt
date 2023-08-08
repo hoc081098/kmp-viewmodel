@@ -1,9 +1,11 @@
 package com.hoc081098.kmp.viewmodel.compose
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.RememberObserver
 import androidx.compose.runtime.remember
 import com.hoc081098.kmp.viewmodel.CreationExtras
+import com.hoc081098.kmp.viewmodel.EmptyCreationExtras
 import com.hoc081098.kmp.viewmodel.VIEW_MODEL_KEY
 import com.hoc081098.kmp.viewmodel.ViewModel
 import com.hoc081098.kmp.viewmodel.ViewModelFactory
@@ -30,6 +32,10 @@ public actual inline fun <reified VM : ViewModel> kmpViewModel(
     )
   }.viewModel
 }
+
+@ReadOnlyComposable
+@Composable
+public actual fun defaultCreationExtras(): CreationExtras = EmptyCreationExtras
 
 @PublishedApi
 @Composable
