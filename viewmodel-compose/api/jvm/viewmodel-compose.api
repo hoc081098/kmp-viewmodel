@@ -1,3 +1,7 @@
+public final class com/hoc081098/kmp/viewmodel/compose/CanonicalName_nonJsAndNonAndroidKt {
+	public static final fun getCanonicalName (Lkotlin/reflect/KClass;)Ljava/lang/String;
+}
+
 public final class com/hoc081098/kmp/viewmodel/compose/CompositionViewModel : androidx/compose/runtime/RememberObserver {
 	public final field viewModel Lcom/hoc081098/kmp/viewmodel/ViewModel;
 	public fun <init> (Lcom/hoc081098/kmp/viewmodel/ViewModel;)V
@@ -18,6 +22,9 @@ public final class com/hoc081098/kmp/viewmodel/compose/DemoViewModel : com/hoc08
 
 public final class com/hoc081098/kmp/viewmodel/compose/KmpViewModel_nonAndroidKt {
 	public static final fun defaultCreationExtras (Landroidx/compose/runtime/Composer;I)Lcom/hoc081098/kmp/viewmodel/CreationExtras;
+}
+
+public final class com/hoc081098/kmp/viewmodel/compose/RememberDefaultViewModelKeyKt {
 	public static final fun rememberDefaultViewModelKey (Lkotlin/reflect/KClass;Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
 }
 

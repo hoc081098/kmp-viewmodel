@@ -103,11 +103,21 @@ kotlin {
       dependsOn(commonTest)
     }
 
+    val nonJsAndNonAndroidMain by creating {
+      dependsOn(nonAndroidMain)
+    }
+
+    val nonJsAndNonAndroidTest by creating {
+      dependsOn(nonAndroidTest)
+    }
+
     val jvmMain by getting {
       dependsOn(nonAndroidMain)
+      dependsOn(nonJsAndNonAndroidMain)
     }
     val jvmTest by getting {
       dependsOn(nonAndroidTest)
+      dependsOn(nonJsAndNonAndroidTest)
 
       dependencies {
         implementation(kotlin("test-junit"))
@@ -126,11 +136,14 @@ kotlin {
 
     val nativeMain by creating {
       dependsOn(nonAndroidMain)
+      dependsOn(nonJsAndNonAndroidMain)
+
       dependencies {
       }
     }
     val nativeTest by creating {
       dependsOn(nonAndroidTest)
+      dependsOn(nonJsAndNonAndroidTest)
     }
 
     val appleTargets = listOf(

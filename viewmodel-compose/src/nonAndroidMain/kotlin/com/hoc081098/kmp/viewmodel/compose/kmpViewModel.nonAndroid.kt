@@ -11,7 +11,6 @@ import com.hoc081098.kmp.viewmodel.ViewModel
 import com.hoc081098.kmp.viewmodel.ViewModelFactory
 import com.hoc081098.kmp.viewmodel.buildCreationExtras
 import kotlin.jvm.JvmField
-import kotlin.reflect.KClass
 
 @Composable
 public actual inline fun <reified VM : ViewModel> kmpViewModel(
@@ -36,20 +35,6 @@ public actual inline fun <reified VM : ViewModel> kmpViewModel(
 @ReadOnlyComposable
 @Composable
 public actual fun defaultCreationExtras(): CreationExtras = EmptyCreationExtras
-
-@PublishedApi
-@Composable
-internal fun <VM : ViewModel> rememberDefaultViewModelKey(kClass: KClass<VM>): String = remember(kClass) {
-  // Copied from androidx.lifecycle.ViewModelProvider.kt
-
-  val canonicalName = kClass.qualifiedName
-    ?: throw IllegalArgumentException("Local and anonymous classes can not be ViewModels")
-
-  "$DefaultKey:$canonicalName"
-}
-
-// Copied from androidx.lifecycle.ViewModelProvider.kt
-private const val DefaultKey = "androidx.lifecycle.ViewModelProvider.DefaultKey"
 
 @PublishedApi
 internal class CompositionViewModel<VM : ViewModel>(
