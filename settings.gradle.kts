@@ -3,6 +3,7 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 pluginManagement {
   repositories {
     gradlePluginPortal()
+    maven(url = "https://maven.pkg.jetbrains.space/public/p/compose/dev")
     google()
     mavenCentral()
   }
@@ -11,9 +12,9 @@ pluginManagement {
 dependencyResolutionManagement {
   repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
   repositories {
-    maven(url = "https://androidx.dev/storage/compose-compiler/repository/")
     google()
     mavenCentral()
+    maven(url = "https://maven.pkg.jetbrains.space/public/p/compose/dev")
     gradlePluginPortal()
   }
 }
@@ -21,6 +22,7 @@ dependencyResolutionManagement {
 rootProject.name = "kmp-viewmodel"
 include(":viewmodel")
 include(":viewmodel-savedstate")
+include(":viewmodel-compose")
 include(":sample:app", ":sample:shared")
 
 plugins {

@@ -6,7 +6,8 @@ import java.net.URL
 plugins {
   alias(libs.plugins.kotlin.multiplatform)
   alias(libs.plugins.android.library)
-  alias(libs.plugins.kotlin.parcelize)
+
+  id("org.jetbrains.compose")
 
   alias(libs.plugins.vanniktech.maven.publish)
 
@@ -44,7 +45,6 @@ kotlin {
   }
 
   iosArm64()
-  iosArm32()
   iosX64()
   iosSimulatorArm64()
 
@@ -64,16 +64,15 @@ kotlin {
   sourceSets {
     val commonMain by getting {
       dependencies {
-        api(libs.coroutines.core)
+        api("org.jetbrains.compose.runtime:runtime:1.4.3")
         api(projects.viewmodel)
+        api(projects.viewmodelSavedstate)
       }
     }
     val commonTest by getting {
       dependencies {
         implementation(kotlin("test-common"))
         implementation(kotlin("test-annotations-common"))
-
-        implementation(libs.coroutines.test)
       }
     }
 
@@ -81,7 +80,8 @@ kotlin {
       dependsOn(commonMain)
 
       dependencies {
-        api(libs.androidx.lifecycle.viewmodel.savedstate)
+        implementation(libs.androidx.lifecycle.viewmodel)
+        implementation(libs.androidx.lifecycle.viewmodel.compose)
       }
     }
     val androidUnitTest by getting {
@@ -102,11 +102,21 @@ kotlin {
       dependsOn(commonTest)
     }
 
+    val nonJsAndNonAndroidMain by creating {
+      dependsOn(nonAndroidMain)
+    }
+
+    val nonJsAndNonAndroidTest by creating {
+      dependsOn(nonAndroidTest)
+    }
+
     val jvmMain by getting {
       dependsOn(nonAndroidMain)
+      dependsOn(nonJsAndNonAndroidMain)
     }
     val jvmTest by getting {
       dependsOn(nonAndroidTest)
+      dependsOn(nonJsAndNonAndroidTest)
 
       dependencies {
         implementation(kotlin("test-junit"))
@@ -125,18 +135,20 @@ kotlin {
 
     val nativeMain by creating {
       dependsOn(nonAndroidMain)
+      dependsOn(nonJsAndNonAndroidMain)
+
       dependencies {
       }
     }
     val nativeTest by creating {
       dependsOn(nonAndroidTest)
+      dependsOn(nonJsAndNonAndroidTest)
     }
 
     val appleTargets = listOf(
       "iosX64",
       "iosSimulatorArm64",
       "iosArm64",
-      "iosArm32",
       "macosX64",
       "macosArm64",
       "tvosArm64",
@@ -169,7 +181,7 @@ kotlin {
 android {
   compileSdk = 33
   sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-  namespace = "com.hoc081098.kmp.viewmodel.savedstate"
+  namespace = "com.hoc081098.kmp.viewmodel.compose"
 
   defaultConfig {
     minSdk = 21
@@ -194,7 +206,7 @@ tasks.withType<org.jetbrains.dokka.gradle.DokkaTask>().configureEach {
 
       sourceLink {
         localDirectory.set(projectDir.resolve("src"))
-        remoteUrl.set(URL("https://github.com/hoc081098/kmp-viewmodel/tree/master/viewmodel-savedstate/src"))
+        remoteUrl.set(URL("https://github.com/hoc081098/kmp-viewmodel/tree/master/viewmodel-compose/src"))
         remoteLineSuffix.set("#L")
       }
     }
