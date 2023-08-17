@@ -65,6 +65,7 @@ kotlin {
     val commonMain by getting {
       dependencies {
         api("org.jetbrains.compose.runtime:runtime:1.4.3")
+        api("org.jetbrains.compose.runtime:runtime-saveable:1.4.3")
         api(projects.viewmodel)
         api(projects.viewmodelSavedstate)
       }

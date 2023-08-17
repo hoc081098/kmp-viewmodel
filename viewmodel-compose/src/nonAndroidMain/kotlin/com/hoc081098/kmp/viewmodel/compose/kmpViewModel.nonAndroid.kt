@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.RememberObserver
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import com.hoc081098.kmp.viewmodel.CreationExtras
 import com.hoc081098.kmp.viewmodel.EmptyCreationExtras
 import com.hoc081098.kmp.viewmodel.VIEW_MODEL_KEY
@@ -22,7 +23,7 @@ public actual inline fun <reified VM : ViewModel> kmpViewModel(
   val nonNullKey = key ?: rememberDefaultViewModelKey(kClass)
 
   // NOTE: We don't use extras as a key because the its equality is not guaranteed
-  return remember(kClass, nonNullKey, factory) {
+  return rememberSaveable(kClass, nonNullKey, factory) {
     CompositionViewModel(
       viewModel = factory.create(
         extras.edit {
