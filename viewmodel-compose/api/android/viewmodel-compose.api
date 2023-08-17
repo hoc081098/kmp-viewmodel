@@ -1,6 +1,6 @@
 public final class com/hoc081098/kmp/viewmodel/compose/KmpViewModel_androidKt {
 	public static final field DefaultCreationExtrasForAndroid Landroidx/lifecycle/viewmodel/CreationExtras;
-	public static final fun defaultCreationExtras (Landroidx/compose/runtime/Composer;I)Landroidx/lifecycle/viewmodel/CreationExtras;
+	public static final fun defaultCreationExtras ()Landroidx/lifecycle/viewmodel/CreationExtras;
 	public static final fun findViewModelStoreOwner (Landroid/content/Context;)Landroidx/lifecycle/ViewModelStoreOwner;
 	public static final fun getViewModelStoreOwner (Landroidx/compose/runtime/Composer;I)Landroidx/lifecycle/ViewModelStoreOwner;
 }

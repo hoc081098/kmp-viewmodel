@@ -3,6 +3,7 @@ package com.hoc081098.kmp.viewmodel.compose
 import android.content.Context
 import android.content.ContextWrapper
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.HasDefaultViewModelProviderFactory
@@ -56,7 +57,7 @@ internal inline fun getViewModelStoreOwner(): ViewModelStoreOwner = checkNotNull
   "No ViewModelStoreOwner was provided via LocalViewModelStoreOwner"
 }
 
-@Composable
+@Stable
 public actual fun defaultCreationExtras(): CreationExtras = DefaultCreationExtrasForAndroid
 
 @PublishedApi
