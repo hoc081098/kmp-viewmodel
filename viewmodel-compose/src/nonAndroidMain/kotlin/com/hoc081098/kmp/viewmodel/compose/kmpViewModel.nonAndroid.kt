@@ -23,15 +23,15 @@ private object StoreViewModel {
   private val stores = mutableMapOf<Id, ViewModel>()
 
   @MainThread
-  internal fun provide(id: Id, factory: () -> ViewModel): ViewModel = stores.getOrPut(id, factory)
+  fun provide(id: Id, factory: () -> ViewModel): ViewModel = stores.getOrPut(id, factory)
 
   @MainThread
-  internal fun remove(id: Id, existing: ViewModel) {
+  fun remove(id: Id, existing: ViewModel) {
     val removed = stores.remove(id)
     if (removed === existing) {
       existing.clear()
     } else {
-      error("Unexpected ViewModel instance removed: $removed")
+      error("Removed ViewModel $removed does not match the existing ViewModel $existing")
     }
   }
 }
