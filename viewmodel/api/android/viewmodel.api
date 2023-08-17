@@ -2,6 +2,7 @@ public final class com/hoc081098/kmp/viewmodel/CreationExtrasKtxKt {
 	public static final fun buildCreationExtras (Landroidx/lifecycle/viewmodel/CreationExtras;Lkotlin/jvm/functions/Function1;)Landroidx/lifecycle/viewmodel/CreationExtras;
 	public static synthetic fun buildCreationExtras$default (Landroidx/lifecycle/viewmodel/CreationExtras;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Landroidx/lifecycle/viewmodel/CreationExtras;
 	public static final fun creationExtrasOf ([Lkotlin/Pair;)Landroidx/lifecycle/viewmodel/MutableCreationExtras;
+	public static final fun edit (Landroidx/lifecycle/viewmodel/CreationExtras;Lkotlin/jvm/functions/Function1;)Landroidx/lifecycle/viewmodel/CreationExtras;
 }
 
 public final class com/hoc081098/kmp/viewmodel/CreationExtras_androidKt {

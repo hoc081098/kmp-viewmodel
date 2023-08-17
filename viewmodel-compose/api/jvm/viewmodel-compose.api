@@ -10,16 +10,6 @@ public final class com/hoc081098/kmp/viewmodel/compose/CompositionViewModel : an
 	public fun onRemembered ()V
 }
 
-public final class com/hoc081098/kmp/viewmodel/compose/DemoKt {
-	public static final field isAndroid Z
-	public static final fun DemoScreen (Lcom/hoc081098/kmp/viewmodel/compose/DemoViewModel;Lcom/hoc081098/kmp/viewmodel/compose/DemoViewModel;Lcom/hoc081098/kmp/viewmodel/compose/DemoViewModel;Landroidx/compose/runtime/Composer;II)V
-}
-
-public final class com/hoc081098/kmp/viewmodel/compose/DemoViewModel : com/hoc081098/kmp/viewmodel/ViewModel {
-	public static final field $stable I
-	public fun <init> (Lcom/hoc081098/kmp/viewmodel/SavedStateHandle;)V
-}
-
 public final class com/hoc081098/kmp/viewmodel/compose/KmpViewModel_nonAndroidKt {
 	public static final fun defaultCreationExtras (Landroidx/compose/runtime/Composer;I)Lcom/hoc081098/kmp/viewmodel/CreationExtras;
 }

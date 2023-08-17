@@ -9,7 +9,7 @@ import com.hoc081098.kmp.viewmodel.EmptyCreationExtras
 import com.hoc081098.kmp.viewmodel.VIEW_MODEL_KEY
 import com.hoc081098.kmp.viewmodel.ViewModel
 import com.hoc081098.kmp.viewmodel.ViewModelFactory
-import com.hoc081098.kmp.viewmodel.buildCreationExtras
+import com.hoc081098.kmp.viewmodel.edit
 import kotlin.jvm.JvmField
 
 @Composable
@@ -21,10 +21,11 @@ public actual inline fun <reified VM : ViewModel> kmpViewModel(
   val kClass = remember { VM::class }
   val nonNullKey = key ?: rememberDefaultViewModelKey(kClass)
 
-  return remember(kClass, nonNullKey, factory, extras) {
+  // NOTE: We don't use extras as a key because the its equality is not guaranteed
+  return remember(kClass, nonNullKey, factory) {
     CompositionViewModel(
       viewModel = factory.create(
-        buildCreationExtras(extras) {
+        extras.edit {
           this[VIEW_MODEL_KEY] = nonNullKey
         },
       ),

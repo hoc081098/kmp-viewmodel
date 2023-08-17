@@ -7,7 +7,11 @@ public fun creationExtrasOf(vararg pairs: Pair<Key<Any?>, Any?>): MutableCreatio
     }
   }
 
-public fun buildCreationExtras(
+public inline fun buildCreationExtras(
   initialExtras: CreationExtras = EmptyCreationExtras,
   builderAction: MutableCreationExtras.() -> Unit,
 ): CreationExtras = MutableCreationExtras(initialExtras).apply(builderAction)
+
+public inline fun CreationExtras.edit(
+  builderAction: MutableCreationExtras.() -> Unit,
+): CreationExtras = buildCreationExtras(this, builderAction)
