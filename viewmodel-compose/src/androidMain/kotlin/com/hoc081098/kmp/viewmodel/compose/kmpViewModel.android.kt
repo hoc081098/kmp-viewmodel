@@ -25,6 +25,7 @@ internal val DefaultCreationExtrasForAndroid: CreationExtras = MutableCreationEx
 public actual inline fun <reified VM : ViewModel> kmpViewModel(
   key: String?,
   extras: CreationExtras,
+  clearViewModelRegistry: ClearViewModelRegistry?,
   factory: ViewModelFactory<VM>,
 ): VM {
   val viewModelStoreOwner = getViewModelStoreOwner()

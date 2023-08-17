@@ -14,16 +14,19 @@ public expect fun defaultCreationExtras(): CreationExtras
 public expect inline fun <reified VM : ViewModel> kmpViewModel(
   key: String? = null,
   extras: CreationExtras = defaultCreationExtras(),
+  clearViewModelRegistry: ClearViewModelRegistry? = null,
   factory: ViewModelFactory<VM>,
 ): VM
 
 @Composable
 public inline fun <reified VM : ViewModel> kmpViewModel(
   key: String? = null,
+  clearViewModelRegistry: ClearViewModelRegistry? = null,
   extras: CreationExtras = defaultCreationExtras(),
   crossinline factory: @DisallowComposableCalls CreationExtras.() -> VM,
 ): VM = kmpViewModel(
   key = key,
   extras = extras,
+  clearViewModelRegistry = clearViewModelRegistry,
   factory = rememberViewModelFactory(factory),
 )
