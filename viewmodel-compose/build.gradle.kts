@@ -33,6 +33,7 @@ kotlin {
       kotlinOptions.jvmTarget = JavaVersion.toVersion(libs.versions.java.get()).toString()
     }
   }
+
   js(IR) {
     compilations.all {
       kotlinOptions {
@@ -51,15 +52,17 @@ kotlin {
   macosX64()
   macosArm64()
 
-  tvosX64()
-  tvosSimulatorArm64()
-  tvosArm64()
+  // TODO: Supports tvos and watchos, issue https://github.com/JetBrains/compose-multiplatform/issues/3521
 
-  watchosArm32()
-  watchosArm64()
-  watchosX64()
-  watchosX86()
-  watchosSimulatorArm64()
+  //  tvosX64()
+  //  tvosSimulatorArm64()
+  //  tvosArm64()
+  //
+  //  watchosArm32()
+  //  watchosArm64()
+  //  watchosX64()
+  //  watchosX86()
+  //  watchosSimulatorArm64()
 
   sourceSets {
     val commonMain by getting {
@@ -152,14 +155,14 @@ kotlin {
       "iosArm64",
       "macosX64",
       "macosArm64",
-      "tvosArm64",
-      "tvosX64",
-      "tvosSimulatorArm64",
-      "watchosArm32",
-      "watchosArm64",
-      "watchosX86",
-      "watchosSimulatorArm64",
-      "watchosX64",
+      //      "tvosArm64",
+      //      "tvosX64",
+      //      "tvosSimulatorArm64",
+      //      "watchosArm32",
+      //      "watchosArm64",
+      //      "watchosX86",
+      //      "watchosSimulatorArm64",
+      //      "watchosX64",
     )
 
     appleTargets.forEach {
