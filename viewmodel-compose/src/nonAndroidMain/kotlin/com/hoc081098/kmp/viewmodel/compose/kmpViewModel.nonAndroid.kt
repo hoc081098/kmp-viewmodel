@@ -23,15 +23,29 @@ private object StoreViewModel {
   private val stores = mutableMapOf<Id, ViewModel>()
 
   @MainThread
-  fun provide(id: Id, factory: () -> ViewModel): ViewModel = stores.getOrPut(id, factory)
+  fun provide(id: Id, factory: () -> ViewModel): ViewModel {
+    val vm = stores.getOrPut(id, factory)
+
+    return if (vm.isCleared()) {
+      // If the ViewModel is cleared, we will create a new one, and replace the old one.
+      factory().also { stores[id] = it }
+    } else {
+      vm
+    }
+  }
 
   @MainThread
   fun remove(id: Id, existing: ViewModel) {
     val removed = stores.remove(id)
+
     if (removed === existing) {
       existing.clear()
     } else {
-      error("Removed ViewModel $removed does not match the existing ViewModel $existing")
+      if (removed != null) {
+        error("Removed ViewModel $removed does not match the existing ViewModel $existing")
+      } else {
+        // stores does not contains the ViewModel, so ignore.
+      }
     }
   }
 }

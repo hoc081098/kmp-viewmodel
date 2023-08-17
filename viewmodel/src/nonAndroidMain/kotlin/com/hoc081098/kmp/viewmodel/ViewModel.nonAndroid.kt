@@ -58,4 +58,9 @@ public actual abstract class ViewModel : Any {
       onCleared()
     }
   }
+
+  /**
+   * Returns `true` if this ViewModel has been cleared.
+   */
+  public fun isCleared(): Boolean = isCleared.value
 }
