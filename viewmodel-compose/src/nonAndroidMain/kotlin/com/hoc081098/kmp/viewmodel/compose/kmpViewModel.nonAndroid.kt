@@ -103,6 +103,7 @@ internal fun <VM : ViewModel> resolveViewModel(
 
   if (clearViewModelRegistry == null) {
     // if clearViewModelRegistry is null, we tie the lifetime of the ViewModel to the lifetime of this composable.
+
     DisposableEffect(id, vm) {
       onDispose { StoreViewModel.remove(id, vm) }
     }
