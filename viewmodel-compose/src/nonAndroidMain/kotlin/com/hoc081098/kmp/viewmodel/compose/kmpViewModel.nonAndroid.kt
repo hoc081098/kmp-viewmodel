@@ -42,16 +42,20 @@ public actual inline fun <reified VM : ViewModel> kmpViewModel(
   extras: CreationExtras,
   clearViewModelRegistry: ClearViewModelRegistry?,
   factory: ViewModelFactory<VM>,
-): VM = resolveViewModel(
-  id = rememberId(
-    key = key ?: rememberDefaultViewModelKey(remember { VM::class }),
-    kClass = remember { VM::class },
+): VM {
+  val kClass = remember { VM::class }
+
+  return resolveViewModel(
+    id = rememberId(
+      key = key ?: rememberDefaultViewModelKey(kClass),
+      kClass = kClass,
+      factory = factory,
+    ),
+    extras = extras,
+    clearViewModelRegistry = clearViewModelRegistry,
     factory = factory,
-  ),
-  extras = extras,
-  clearViewModelRegistry = clearViewModelRegistry,
-  factory = factory,
-)
+  )
+}
 
 @PublishedApi
 @Composable
