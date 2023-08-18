@@ -7,6 +7,10 @@ import com.hoc081098.kmp.viewmodel.ViewModel
 
 /**
  * A class that responsible for clearing [ViewModel]s when needed.
+ *
+ * ## On Android
+ *
+ * This class is not used because [ViewModel]s are cleared automatically by AndroidX Lifecycle.
  */
 public class ClearViewModelRegistry {
   private var isCleared = false
