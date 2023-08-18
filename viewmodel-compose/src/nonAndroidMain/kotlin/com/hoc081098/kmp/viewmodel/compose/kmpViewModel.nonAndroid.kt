@@ -13,6 +13,13 @@ import com.hoc081098.kmp.viewmodel.ViewModelFactory
 import com.hoc081098.kmp.viewmodel.edit
 import kotlin.reflect.KClass
 
+// TODO: Remove when releasing.
+private inline fun log(tag: String, message: () -> String) {
+  println("[$tag] ${message()}")
+}
+
+private const val TAG = "StoreViewModel"
+
 internal data class Id(
   val key: String,
   val kClass: KClass<*>,
@@ -24,26 +31,44 @@ private object StoreViewModel {
 
   @MainThread
   fun provide(id: Id, factory: () -> ViewModel): ViewModel {
+    log(TAG) { "provide: id=$id" }
+
     val vm = stores.getOrPut(id, factory)
+    log(TAG) { "provide: id=$id, vm=$vm" }
 
     return if (vm.isCleared()) {
+      log(TAG) { "provide: id=$id, vm=$vm -> isCleared" }
+
       // If the ViewModel is cleared, we will create a new one, and replace the old one.
-      factory().also { stores[id] = it }
+      factory().also {
+        log(TAG) { "provide: id=$id -> replace $vm with $it" }
+
+        stores[id] = it
+      }
     } else {
+      log(TAG) { "provide: id=$id, vm=$vm -> return" }
+
       vm
     }
   }
 
   @MainThread
   fun remove(id: Id, existing: ViewModel) {
+    log(TAG) { "remove: id=$id, existing=$existing" }
+
     val removed = stores.remove(id)
+    log(TAG) { "remove: id=$id, existing=$existing -> removed=$removed" }
 
     if (removed === existing) {
+      log(TAG) { "remove: id=$id, existing=$existing -> removed === existing ~> clear" }
+
       existing.clear()
     } else {
       if (removed != null) {
+        log(TAG) { "remove: id=$id, existing=$existing -> removed != null ~> error" }
         error("Removed ViewModel $removed does not match the existing ViewModel $existing")
       } else {
+        log(TAG) { "remove: id=$id, existing=$existing -> removed == null ~> ignore" }
         // stores does not contains the ViewModel, so ignore.
       }
     }
@@ -89,6 +114,8 @@ internal fun <VM : ViewModel> resolveViewModel(
   factory: ViewModelFactory<VM>,
 ): VM {
   val vm = remember(id) {
+    log(TAG) { "resolveViewModel: id=$id, extras=$extras, clearViewModelRegistry=$clearViewModelRegistry" }
+
     StoreViewModel.provide(
       id = id,
       factory = {
@@ -105,16 +132,20 @@ internal fun <VM : ViewModel> resolveViewModel(
     // if clearViewModelRegistry is null, we tie the lifetime of the ViewModel to the lifetime of this composable.
 
     DisposableEffect(id, vm) {
+      log(TAG) { "DisposableEffect: id=$id, vm=$vm" }
+
       onDispose { StoreViewModel.remove(id, vm) }
     }
   } else {
     // Otherwise, we will clear the ViewModel when the clearViewModelRegistry triggers.
 
     DisposableEffect(id, vm, clearViewModelRegistry) {
-      clearViewModelRegistry.register(
-        listOf(id, vm),
-      ) {
-        Runnable { StoreViewModel.remove(id, vm) }
+      log(TAG) { "DisposableEffect: id=$id, vm=$vm, clearViewModelRegistry=$clearViewModelRegistry" }
+
+      clearViewModelRegistry.register(listOf(id, vm)) {
+        log(TAG) { "DisposableEffect: id=$id, vm=$vm, clearViewModelRegistry=$clearViewModelRegistry -> invoke" }
+
+        return@register { StoreViewModel.remove(id, vm) }
       }
       onDispose {}
     }
