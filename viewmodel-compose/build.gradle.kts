@@ -52,23 +52,20 @@ kotlin {
   macosX64()
   macosArm64()
 
-  // TODO: Supports tvos and watchos, issue https://github.com/JetBrains/compose-multiplatform/issues/3521
+  tvosX64()
+  tvosSimulatorArm64()
+  tvosArm64()
 
-  //  tvosX64()
-  //  tvosSimulatorArm64()
-  //  tvosArm64()
-  //
-  //  watchosArm32()
-  //  watchosArm64()
-  //  watchosX64()
-  //  watchosX86()
-  //  watchosSimulatorArm64()
+  watchosArm32()
+  watchosArm64()
+  watchosX64()
+  watchosX86()
+  watchosSimulatorArm64()
 
   sourceSets {
     val commonMain by getting {
       dependencies {
         api("org.jetbrains.compose.runtime:runtime:1.4.3")
-        api("org.jetbrains.compose.runtime:runtime-saveable:1.4.3")
         api(projects.viewmodel)
         api(projects.viewmodelSavedstate)
       }
@@ -155,14 +152,14 @@ kotlin {
       "iosArm64",
       "macosX64",
       "macosArm64",
-      //      "tvosArm64",
-      //      "tvosX64",
-      //      "tvosSimulatorArm64",
-      //      "watchosArm32",
-      //      "watchosArm64",
-      //      "watchosX86",
-      //      "watchosSimulatorArm64",
-      //      "watchosX64",
+      "tvosArm64",
+      "tvosX64",
+      "tvosSimulatorArm64",
+      "watchosArm32",
+      "watchosArm64",
+      "watchosX86",
+      "watchosSimulatorArm64",
+      "watchosX64",
     )
 
     appleTargets.forEach {
