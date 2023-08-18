@@ -8,44 +8,29 @@ public fun interface Runnable {
   public fun run()
 }
 
-public fun interface Cancellable {
-  public fun cancel()
-}
-
-public interface ClearViewModelRegistry {
-  @MainThread
-  public fun register(callback: Runnable): Cancellable
-
-  @MainThread
-  public fun clear()
-}
-
-public class SingleCallbackClearViewModelRegistry : ClearViewModelRegistry {
+public class ClearViewModelRegistry {
   private var isCleared = false
-  private var callback: (Runnable)? = null
+  private val callbacks = mutableMapOf<Any, Runnable>()
 
-  override fun register(callback: Runnable): Cancellable {
+  @MainThread
+  internal fun register(key: Any, factory: () -> Runnable) {
     if (isCleared) {
-      callback.run()
-      return EmptyCancellable
+      factory().run()
+      return
     }
 
-    this.callback = callback
-    return Cancellable { this.callback = null }
+    callbacks.getOrPut(key, factory)
   }
 
-  public override fun clear() {
+  @MainThread
+  public fun clear() {
     isCleared = true
 
-    callback?.run()
-    callback = null
-  }
-
-  private companion object {
-    private val EmptyCancellable = Cancellable { }
+    callbacks.values.forEach { it.run() }
+    callbacks.clear()
   }
 }
 
 @Composable
-public fun rememberSingleCallbackClearViewModelRegistry(): ClearViewModelRegistry =
-  remember { SingleCallbackClearViewModelRegistry() }
+public fun rememberClearViewModelRegistry(): ClearViewModelRegistry =
+  remember { ClearViewModelRegistry() }

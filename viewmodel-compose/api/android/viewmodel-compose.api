@@ -1,14 +1,11 @@
-public abstract interface class com/hoc081098/kmp/viewmodel/compose/Cancellable {
-	public abstract fun cancel ()V
-}
-
-public abstract interface class com/hoc081098/kmp/viewmodel/compose/ClearViewModelRegistry {
-	public abstract fun clear ()V
-	public abstract fun register (Lcom/hoc081098/kmp/viewmodel/compose/Runnable;)Lcom/hoc081098/kmp/viewmodel/compose/Cancellable;
+public final class com/hoc081098/kmp/viewmodel/compose/ClearViewModelRegistry {
+	public static final field $stable I
+	public fun <init> ()V
+	public final fun clear ()V
 }
 
 public final class com/hoc081098/kmp/viewmodel/compose/ClearViewModelRegistryKt {
-	public static final fun rememberSingleCallbackClearViewModelRegistry (Landroidx/compose/runtime/Composer;I)Lcom/hoc081098/kmp/viewmodel/compose/ClearViewModelRegistry;
+	public static final fun rememberClearViewModelRegistry (Landroidx/compose/runtime/Composer;I)Lcom/hoc081098/kmp/viewmodel/compose/ClearViewModelRegistry;
 }
 
 public final class com/hoc081098/kmp/viewmodel/compose/KmpViewModel_androidKt {
@@ -25,12 +22,5 @@ public final class com/hoc081098/kmp/viewmodel/compose/RememberViewModelFactoryK
 
 public abstract interface class com/hoc081098/kmp/viewmodel/compose/Runnable {
 	public abstract fun run ()V
-}
-
-public final class com/hoc081098/kmp/viewmodel/compose/SingleCallbackClearViewModelRegistry : com/hoc081098/kmp/viewmodel/compose/ClearViewModelRegistry {
-	public static final field $stable I
-	public fun <init> ()V
-	public fun clear ()V
-	public fun register (Lcom/hoc081098/kmp/viewmodel/compose/Runnable;)Lcom/hoc081098/kmp/viewmodel/compose/Cancellable;
 }
 

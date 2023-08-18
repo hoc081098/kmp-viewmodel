@@ -111,9 +111,12 @@ internal fun <VM : ViewModel> resolveViewModel(
     // Otherwise, we will clear the ViewModel when the clearViewModelRegistry triggers.
 
     DisposableEffect(id, vm, clearViewModelRegistry) {
-      val cancellable = clearViewModelRegistry.register { StoreViewModel.remove(id, vm) }
-
-      onDispose(cancellable::cancel)
+      clearViewModelRegistry.register(
+        listOf(id, vm),
+      ) {
+        Runnable { StoreViewModel.remove(id, vm) }
+      }
+      onDispose {}
     }
   }
 
