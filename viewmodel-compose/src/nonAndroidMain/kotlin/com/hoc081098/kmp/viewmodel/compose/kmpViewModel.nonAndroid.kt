@@ -19,13 +19,20 @@ private inline fun log(tag: String, message: () -> String) {
   println("[$tag] ${message()}")
 }
 
+// TODO: Remove when releasing.
 private const val TAG = "StoreViewModel"
 
+// TODO: Remove when releasing.
 internal data class Id(
   val key: String,
   val kClass: KClass<*>,
-  val factory: ViewModelFactory<*>,
-)
+) {
+  override fun toString(): String = "Id{ key='$key', kClass=${kClass.simpleName} }"
+}
+
+// TODO: Remove when releasing.
+private val Any.debugString: String
+  get() = "${this::class.simpleName}@${hashCode()}"
 
 @OptIn(InternalKmpViewModelApi::class)
 private object StoreViewModel {
@@ -33,22 +40,19 @@ private object StoreViewModel {
 
   @MainThread
   fun provide(id: Id, factory: () -> ViewModel): ViewModel {
-    log(TAG) { "provide: id=$id" }
+    log(TAG) { "provide: START id=$id" }
 
     val vm = stores.getOrPut(id, factory)
-    log(TAG) { "provide: id=$id, vm=$vm" }
 
     return if (vm.isCleared()) {
-      log(TAG) { "provide: id=$id, vm=$vm -> isCleared" }
-
       // If the ViewModel is cleared, we will create a new one, and replace the old one.
       factory().also {
-        log(TAG) { "provide: id=$id -> replace $vm with $it" }
+        log(TAG) { "provide: RETURN id=$id -> replace ${vm.debugString} with ${it.debugString}" }
 
         stores[id] = it
       }
     } else {
-      log(TAG) { "provide: id=$id, vm=$vm -> return" }
+      log(TAG) { "provide: RETURN id=$id, vm=${vm.debugString} -> return" }
 
       vm
     }
@@ -56,21 +60,26 @@ private object StoreViewModel {
 
   @MainThread
   fun remove(id: Id, existing: ViewModel) {
-    log(TAG) { "remove: id=$id, existing=$existing" }
+    log(TAG) { "remove: START id=$id, existing=${existing.debugString}" }
 
     val removed = stores.remove(id)
-    log(TAG) { "remove: id=$id, existing=$existing -> removed=$removed" }
 
-    if (removed === existing) {
-      log(TAG) { "remove: id=$id, existing=$existing -> removed === existing ~> clear" }
+    when {
+      removed === existing -> {
+        log(TAG) { "remove: CLEARED id=$id, existing=${existing.debugString} -> removed === existing ~> clear" }
 
-      existing.clear()
-    } else {
-      if (removed != null) {
-        log(TAG) { "remove: id=$id, existing=$existing -> removed != null ~> error" }
-        error("Removed ViewModel $removed does not match the existing ViewModel $existing")
-      } else {
-        log(TAG) { "remove: id=$id, existing=$existing -> removed == null ~> ignore" }
+        existing.clear()
+      }
+
+      removed != null -> {
+        log(TAG) { "remove: ERROR id=$id, existing=${existing.debugString} -> removed != null ~> error" }
+
+        error("Removed ViewModel $removed does not match the existing $existing")
+      }
+
+      else -> {
+        log(TAG) { "remove: IGNORED id=$id, existing=${existing.debugString} -> removed == null ~> ignored" }
+
         // stores does not contains the ViewModel, so ignore.
       }
     }
@@ -90,7 +99,6 @@ public actual inline fun <reified VM : ViewModel> kmpViewModel(
     id = rememberId(
       key = key ?: rememberDefaultViewModelKey(kClass),
       kClass = kClass,
-      factory = factory,
     ),
     extras = extras,
     clearViewModelRegistry = clearViewModelRegistry,
@@ -103,8 +111,7 @@ public actual inline fun <reified VM : ViewModel> kmpViewModel(
 internal fun <VM : ViewModel> rememberId(
   key: String,
   kClass: KClass<VM>,
-  factory: ViewModelFactory<VM>,
-): Id = remember(key, kClass) { Id(key, kClass, factory) }
+): Id = remember(key, kClass) { Id(key, kClass) }
 
 @Suppress("UNCHECKED_CAST")
 @Composable
@@ -116,8 +123,6 @@ internal fun <VM : ViewModel> resolveViewModel(
   factory: ViewModelFactory<VM>,
 ): VM {
   val vm = remember(id) {
-    log(TAG) { "resolveViewModel: id=$id, extras=$extras, clearViewModelRegistry=$clearViewModelRegistry" }
-
     StoreViewModel.provide(
       id = id,
       factory = {
@@ -134,7 +139,7 @@ internal fun <VM : ViewModel> resolveViewModel(
     // if clearViewModelRegistry is null, we tie the lifetime of the ViewModel to the lifetime of this composable.
 
     DisposableEffect(id, vm) {
-      log(TAG) { "DisposableEffect: id=$id, vm=$vm" }
+      log(TAG) { "resolveViewModel: DISPOSABLE_EFFECT id=$id, vm=${vm.debugString}" }
 
       onDispose { StoreViewModel.remove(id, vm) }
     }
@@ -142,13 +147,13 @@ internal fun <VM : ViewModel> resolveViewModel(
     // Otherwise, we will clear the ViewModel when the clearViewModelRegistry triggers.
 
     DisposableEffect(id, vm, clearViewModelRegistry) {
-      log(TAG) { "DisposableEffect: id=$id, vm=$vm, clearViewModelRegistry=$clearViewModelRegistry" }
-
-      clearViewModelRegistry.register(listOf(id, vm)) {
-        log(TAG) { "DisposableEffect: id=$id, vm=$vm, clearViewModelRegistry=$clearViewModelRegistry -> invoke" }
-
-        return@register { StoreViewModel.remove(id, vm) }
+      log(TAG) {
+        "resolveViewModel: DISPOSABLE_EFFECT id=$id, vm=${vm.debugString}, " +
+          "clearViewModelRegistry=${clearViewModelRegistry.debugString}"
       }
+
+      clearViewModelRegistry.register(listOf(id, vm)) { { StoreViewModel.remove(id, vm) } }
+
       onDispose {}
     }
   }
