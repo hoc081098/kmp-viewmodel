@@ -21,6 +21,9 @@ public final class com/hoc081098/kmp/viewmodel/EmptyCreationExtras : com/hoc0810
 	public fun get (Lcom/hoc081098/kmp/viewmodel/CreationExtrasKey;)Ljava/lang/Object;
 }
 
+public abstract interface annotation class com/hoc081098/kmp/viewmodel/InternalKmpViewModelApi : java/lang/annotation/Annotation {
+}
+
 public abstract interface annotation class com/hoc081098/kmp/viewmodel/MainThread : java/lang/annotation/Annotation {
 }
 

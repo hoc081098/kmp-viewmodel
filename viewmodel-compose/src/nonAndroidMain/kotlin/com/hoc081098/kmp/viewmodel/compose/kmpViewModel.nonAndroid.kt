@@ -6,6 +6,7 @@ import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
 import com.hoc081098.kmp.viewmodel.CreationExtras
 import com.hoc081098.kmp.viewmodel.EmptyCreationExtras
+import com.hoc081098.kmp.viewmodel.InternalKmpViewModelApi
 import com.hoc081098.kmp.viewmodel.MainThread
 import com.hoc081098.kmp.viewmodel.VIEW_MODEL_KEY
 import com.hoc081098.kmp.viewmodel.ViewModel
@@ -26,6 +27,7 @@ internal data class Id(
   val factory: ViewModelFactory<*>,
 )
 
+@OptIn(InternalKmpViewModelApi::class)
 private object StoreViewModel {
   private val stores = mutableMapOf<Id, ViewModel>()
 
