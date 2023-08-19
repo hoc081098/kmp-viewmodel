@@ -31,8 +31,9 @@ internal data class Id(
 }
 
 // TODO: Remove when releasing.
+@OptIn(ExperimentalStdlibApi::class)
 private val Any.debugString: String
-  get() = "${this::class.simpleName}@${hashCode()}"
+  get() = "${this::class.simpleName}@${hashCode().toHexString()}"
 
 @OptIn(InternalKmpViewModelApi::class)
 private object StoreViewModel {
@@ -47,12 +48,12 @@ private object StoreViewModel {
     return if (vm.isCleared()) {
       // If the ViewModel is cleared, we will create a new one, and replace the old one.
       factory().also {
-        log(TAG) { "provide: RETURN id=$id -> replace ${vm.debugString} with ${it.debugString}" }
+        log(TAG) { "provide: RETURN [1] id=$id -> replace ${vm.debugString} with ${it.debugString}" }
 
         stores[id] = it
       }
     } else {
-      log(TAG) { "provide: RETURN id=$id, vm=${vm.debugString} -> return" }
+      log(TAG) { "provide: RETURN [2] id=$id, vm=${vm.debugString} -> return" }
 
       vm
     }
@@ -66,19 +67,19 @@ private object StoreViewModel {
 
     when {
       removed === existing -> {
-        log(TAG) { "remove: CLEARED id=$id, existing=${existing.debugString} -> removed === existing ~> clear" }
+        log(TAG) { "remove: CLEARED [1] id=$id, existing=${existing.debugString} -> removed === existing ~> clear" }
 
         existing.clear()
       }
 
       removed != null -> {
-        log(TAG) { "remove: ERROR id=$id, existing=${existing.debugString} -> removed != null ~> error" }
+        log(TAG) { "remove: ERROR [2] id=$id, existing=${existing.debugString} -> removed != null ~> error" }
 
         error("Removed ViewModel $removed does not match the existing $existing")
       }
 
       else -> {
-        log(TAG) { "remove: IGNORED id=$id, existing=${existing.debugString} -> removed == null ~> ignored" }
+        log(TAG) { "remove: IGNORED [3] id=$id, existing=${existing.debugString} -> removed == null ~> ignored" }
 
         // stores does not contains the ViewModel, so ignore.
       }
