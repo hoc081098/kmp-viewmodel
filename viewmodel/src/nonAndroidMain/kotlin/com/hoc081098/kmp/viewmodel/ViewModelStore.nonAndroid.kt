@@ -6,6 +6,7 @@ public actual open class ViewModelStore {
   /**
    * @hide
    */
+  @InternalKmpViewModelApi
   public actual fun put(key: String, viewModel: ViewModel) {
     val oldViewModel = map.put(key, viewModel)
     oldViewModel?.clear()
@@ -14,6 +15,7 @@ public actual open class ViewModelStore {
   /**
    * @hide
    */
+  @InternalKmpViewModelApi
   public actual operator fun get(key: String): ViewModel? {
     return map[key]
   }
@@ -21,6 +23,7 @@ public actual open class ViewModelStore {
   /**
    * @hide
    */
+  @InternalKmpViewModelApi
   public actual fun keys(): Set<String> {
     return HashSet(map.keys)
   }

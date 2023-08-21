@@ -17,7 +17,7 @@ public actual open class ViewModelStore
   /**
    * @hide
    */
-  @OptIn(InternalKmpViewModelApi::class)
+  @InternalKmpViewModelApi
   public actual fun put(key: String, viewModel: ViewModel) {
     platform.put(key, viewModel)
   }
@@ -25,7 +25,7 @@ public actual open class ViewModelStore
   /**
    * @hide
    */
-  @OptIn(InternalKmpViewModelApi::class)
+  @InternalKmpViewModelApi
   public actual operator fun get(key: String): ViewModel? {
     return platform[key] as ViewModel?
   }
@@ -33,7 +33,7 @@ public actual open class ViewModelStore
   /**
    * @hide
    */
-  @OptIn(InternalKmpViewModelApi::class)
+  @InternalKmpViewModelApi
   public actual fun keys(): Set<String> {
     return platform.keys()
   }

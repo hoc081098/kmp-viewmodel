@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.RememberObserver
 import androidx.compose.runtime.remember
 import com.hoc081098.kmp.viewmodel.CreationExtras
+import com.hoc081098.kmp.viewmodel.InternalKmpViewModelApi
 import com.hoc081098.kmp.viewmodel.MainThread
 import com.hoc081098.kmp.viewmodel.VIEW_MODEL_KEY
 import com.hoc081098.kmp.viewmodel.ViewModel
@@ -41,6 +42,7 @@ internal inline fun rememberDefaultViewModelStoreOwner(): ViewModelStoreOwner =
 /**
  * Returns an existing ViewModel or creates a new one in the scope of this [ViewModelStoreOwner].
  */
+@OptIn(InternalKmpViewModelApi::class)
 @Suppress("UNCHECKED_CAST")
 @MainThread
 internal fun <T : ViewModel> ViewModelStoreOwner.getOrCreateViewModel(

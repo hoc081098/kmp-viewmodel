@@ -36,6 +36,7 @@ public expect open class ViewModelStore {
   /**
    * @hide
    */
+  @InternalKmpViewModelApi
   public fun put(key: String, viewModel: ViewModel)
 
   /**
@@ -44,11 +45,13 @@ public expect open class ViewModelStore {
   /**
    * @hide
    */
+  @InternalKmpViewModelApi
   public operator fun get(key: String): ViewModel?
 
   /**
    * @hide
    */
+  @InternalKmpViewModelApi
   public fun keys(): Set<String>
 
   /**
