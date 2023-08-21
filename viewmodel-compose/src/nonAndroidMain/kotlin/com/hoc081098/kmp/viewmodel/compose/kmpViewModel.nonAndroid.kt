@@ -46,8 +46,8 @@ internal fun <VM : ViewModel> resolveViewModel(
 )
 
 @Stable
-public actual fun defaultCreationExtras(): CreationExtras = EmptyCreationExtras
+public actual fun defaultPlatformCreationExtras(): CreationExtras = EmptyCreationExtras
 
 @MainThread
 @Composable
-public actual fun defaultViewModelStoreOwner(): ViewModelStoreOwner = rememberDefaultViewModelStoreOwner()
+public actual fun defaultPlatformViewModelStoreOwner(): ViewModelStoreOwner = rememberDefaultViewModelStoreOwner()

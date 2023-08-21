@@ -10,7 +10,7 @@ import com.hoc081098.kmp.viewmodel.ViewModelStoreOwner
 import com.hoc081098.kmp.viewmodel.toKmp
 
 @Composable
-public actual fun defaultViewModelStoreOwner(): ViewModelStoreOwner = currentAndroidXViewModelStoreOwner().toKmp()
+public actual fun defaultPlatformViewModelStoreOwner(): ViewModelStoreOwner = currentAndroidXViewModelStoreOwner().toKmp()
 
 @Suppress("NOTHING_TO_INLINE")
 @Composable

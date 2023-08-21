@@ -10,18 +10,18 @@ import com.hoc081098.kmp.viewmodel.ViewModelFactory
 import com.hoc081098.kmp.viewmodel.ViewModelStoreOwner
 
 @Stable
-public expect fun defaultCreationExtras(): CreationExtras
+public expect fun defaultPlatformCreationExtras(): CreationExtras
 
 @MainThread
 @Composable
-public expect fun defaultViewModelStoreOwner(): ViewModelStoreOwner
+public expect fun defaultPlatformViewModelStoreOwner(): ViewModelStoreOwner
 
 @MainThread
 @Composable
 public expect inline fun <reified VM : ViewModel> kmpViewModel(
   key: String? = null,
-  extras: CreationExtras = defaultCreationExtras(),
-  viewModelStoreOwner: ViewModelStoreOwner = defaultViewModelStoreOwner(),
+  extras: CreationExtras = defaultPlatformCreationExtras(),
+  viewModelStoreOwner: ViewModelStoreOwner = defaultPlatformViewModelStoreOwner(),
   factory: ViewModelFactory<VM>,
 ): VM
 
@@ -29,8 +29,8 @@ public expect inline fun <reified VM : ViewModel> kmpViewModel(
 @Composable
 public inline fun <reified VM : ViewModel> kmpViewModel(
   key: String? = null,
-  viewModelStoreOwner: ViewModelStoreOwner = defaultViewModelStoreOwner(),
-  extras: CreationExtras = defaultCreationExtras(),
+  viewModelStoreOwner: ViewModelStoreOwner = defaultPlatformViewModelStoreOwner(),
+  extras: CreationExtras = defaultPlatformCreationExtras(),
   crossinline factory: @DisallowComposableCalls CreationExtras.() -> VM,
 ): VM = kmpViewModel(
   key = key,

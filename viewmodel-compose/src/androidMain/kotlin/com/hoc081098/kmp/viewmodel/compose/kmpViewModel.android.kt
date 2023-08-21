@@ -63,4 +63,4 @@ internal fun <VM : ViewModel> resolveViewModel(
 }
 
 @Stable
-public actual fun defaultCreationExtras(): CreationExtras = DefaultCreationExtrasForAndroid
+public actual fun defaultPlatformCreationExtras(): CreationExtras = DefaultCreationExtrasForAndroid
