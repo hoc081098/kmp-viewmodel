@@ -36,7 +36,7 @@ subprojects {
   }
   afterEvaluate {
     dependencies {
-      "detektPlugins"("io.nlopez.compose.rules:detekt:0.2.1")
+      "detektPlugins"(libs.compose.rules.detekt)
     }
   }
 }
