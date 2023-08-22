@@ -24,7 +24,7 @@ import com.hoc081098.kmpviewmodelsample.products.ProductsViewModel
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
-@Suppress("ReturnCount")
+@Suppress("ReturnCount", "ModifierReused")
 @Composable
 fun ProductsScreen(
   navigateToProductDetail: (Int) -> Unit,

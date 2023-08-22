@@ -50,6 +50,7 @@ fun ProductDetailScreen(
   modifier: Modifier = Modifier,
   viewModel: ProductDetailViewModel = koinViewModel(),
 ) {
+  @Suppress("ViewModelForwarding")
   OnLifecycleEvent(viewModel) {
     onResume { viewModel.refresh() }
     onPause { Napier.d("[ProductDetailScreen] paused") }
@@ -78,8 +79,8 @@ fun ProductDetailScreen(
 
 @Composable
 private fun ProductDetailContent(
-  modifier: Modifier = Modifier,
   product: ProductItemUi,
+  modifier: Modifier = Modifier,
 ) {
   val pairs = remember(product) {
     persistentListOf(

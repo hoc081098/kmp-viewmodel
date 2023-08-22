@@ -9,6 +9,9 @@ public final class com/hoc081098/kmp/viewmodel/CreationExtras_androidKt {
 	public static final fun getVIEW_MODEL_KEY ()Landroidx/lifecycle/viewmodel/CreationExtras$Key;
 }
 
+public abstract interface annotation class com/hoc081098/kmp/viewmodel/InternalKmpViewModelApi : java/lang/annotation/Annotation {
+}
+
 public abstract class com/hoc081098/kmp/viewmodel/ViewModel : androidx/lifecycle/ViewModel {
 	public fun <init> ()V
 	public fun <init> ([Ljava/io/Closeable;)V
@@ -23,6 +26,33 @@ public abstract interface class com/hoc081098/kmp/viewmodel/ViewModelFactory {
 
 public final class com/hoc081098/kmp/viewmodel/ViewModelFactoryKt {
 	public static final fun viewModelFactory (Lkotlin/jvm/functions/Function1;)Lcom/hoc081098/kmp/viewmodel/ViewModelFactory;
+}
+
+public final class com/hoc081098/kmp/viewmodel/ViewModelFactory_androidKt {
+	public static final fun toAndroidX (Lcom/hoc081098/kmp/viewmodel/ViewModelFactory;)Landroidx/lifecycle/ViewModelProvider$Factory;
+}
+
+public class com/hoc081098/kmp/viewmodel/ViewModelStore {
+	public final field platform Landroidx/lifecycle/ViewModelStore;
+	public fun <init> (Landroidx/lifecycle/ViewModelStore;)V
+	public final fun clear ()V
+	public final fun get (Ljava/lang/String;)Lcom/hoc081098/kmp/viewmodel/ViewModel;
+	public final fun keys ()Ljava/util/Set;
+	public final fun put (Ljava/lang/String;Lcom/hoc081098/kmp/viewmodel/ViewModel;)V
+}
+
+public abstract interface class com/hoc081098/kmp/viewmodel/ViewModelStoreOwner {
+	public abstract fun getViewModelStore ()Lcom/hoc081098/kmp/viewmodel/ViewModelStore;
+}
+
+public final class com/hoc081098/kmp/viewmodel/ViewModelStoreOwner_androidKt {
+	public static final fun toAndroidX (Lcom/hoc081098/kmp/viewmodel/ViewModelStoreOwner;)Landroidx/lifecycle/ViewModelStoreOwner;
+	public static final fun toKmp (Landroidx/lifecycle/ViewModelStoreOwner;)Lcom/hoc081098/kmp/viewmodel/ViewModelStoreOwner;
+}
+
+public final class com/hoc081098/kmp/viewmodel/ViewModelStore_androidKt {
+	public static final fun toAndroidX (Lcom/hoc081098/kmp/viewmodel/ViewModelStore;)Landroidx/lifecycle/ViewModelStore;
+	public static final fun toKmp (Landroidx/lifecycle/ViewModelStore;)Lcom/hoc081098/kmp/viewmodel/ViewModelStore;
 }
 
 public abstract class com/hoc081098/kmp/viewmodel/wrapper/AbstractFlowWrapper : kotlinx/coroutines/flow/Flow {

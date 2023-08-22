@@ -65,11 +65,3 @@ public actual abstract class ViewModel : Any {
   @InternalKmpViewModelApi
   public fun isCleared(): Boolean = isCleared.value
 }
-
-/**
- * Code marked with [InternalKmpViewModelApi] has no guarantees about API stability and can be changed
- * at any time.
- */
-@RequiresOptIn
-@Retention(AnnotationRetention.BINARY)
-public annotation class InternalKmpViewModelApi
