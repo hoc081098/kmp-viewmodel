@@ -57,7 +57,10 @@ internal fun <T : ViewModel> ViewModelStoreOwner.getOrCreateViewModel(
     return if (kClass.isInstance(viewModel)) {
       viewModel as T
     } else {
-      error("ViewModelStore already contains a ViewModel with the key \"$key\" and a different class: ${viewModel::class}")
+      error(
+        "ViewModelStore already contains a ViewModel with the key \"$key\" " +
+          "and a different class: ${viewModel::class}",
+      )
     }
   }
 
