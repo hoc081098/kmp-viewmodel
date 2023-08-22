@@ -14,10 +14,10 @@ import kotlin.reflect.KClass
 @MainThread
 @Composable
 public actual inline fun <reified VM : ViewModel> kmpViewModel(
+  factory: ViewModelFactory<VM>,
+  viewModelStoreOwner: ViewModelStoreOwner,
   key: String?,
   extras: CreationExtras,
-  viewModelStoreOwner: ViewModelStoreOwner,
-  factory: ViewModelFactory<VM>,
 ): VM {
   val kClass = remember { VM::class }
 

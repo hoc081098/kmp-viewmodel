@@ -46,7 +46,7 @@ import com.hoc081098.kmpviewmodelsample.ProductItemUi
 import kotlinx.collections.immutable.ImmutableList
 
 @Composable
-internal fun EmptyProducts(modifier: Modifier) {
+internal fun EmptyProducts(modifier: Modifier = Modifier) {
   Box(
     modifier = modifier.fillMaxSize(),
     contentAlignment = Alignment.Center,
@@ -56,7 +56,7 @@ internal fun EmptyProducts(modifier: Modifier) {
 }
 
 @Composable
-internal fun LoadingIndicator(modifier: Modifier) {
+internal fun LoadingIndicator(modifier: Modifier = Modifier) {
   Box(
     modifier = modifier.fillMaxSize(),
     contentAlignment = Alignment.Center,

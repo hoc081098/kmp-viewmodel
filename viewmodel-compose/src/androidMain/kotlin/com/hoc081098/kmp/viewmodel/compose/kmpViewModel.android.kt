@@ -21,10 +21,10 @@ internal val DefaultCreationExtrasForAndroid: CreationExtras = MutableCreationEx
 @MainThread
 @Composable
 public actual inline fun <reified VM : ViewModel> kmpViewModel(
+  factory: ViewModelFactory<VM>,
+  viewModelStoreOwner: ViewModelStoreOwner,
   key: String?,
   extras: CreationExtras,
-  viewModelStoreOwner: ViewModelStoreOwner,
-  factory: ViewModelFactory<VM>,
 ): VM = resolveViewModel(
   modelClass = VM::class.java,
   viewModelStoreOwner = viewModelStoreOwner,

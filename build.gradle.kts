@@ -34,6 +34,11 @@ subprojects {
     buildUponDefaultConfig = true
     allRules = true
   }
+  afterEvaluate {
+    dependencies {
+      "detektPlugins"("io.nlopez.compose.rules:detekt:0.2.1")
+    }
+  }
 }
 
 dependencies {

@@ -11,10 +11,10 @@ import com.hoc081098.kmp.viewmodel.ViewModelStoreOwner
 @MainThread
 @Composable
 public expect inline fun <reified VM : ViewModel> kmpViewModel(
+  factory: ViewModelFactory<VM>,
+  viewModelStoreOwner: ViewModelStoreOwner = defaultViewModelStoreOwner(),
   key: String? = null,
   extras: CreationExtras = defaultPlatformCreationExtras(),
-  viewModelStoreOwner: ViewModelStoreOwner = defaultViewModelStoreOwner(),
-  factory: ViewModelFactory<VM>,
 ): VM
 
 @MainThread
