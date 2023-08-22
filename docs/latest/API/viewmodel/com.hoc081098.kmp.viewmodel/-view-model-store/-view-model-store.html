@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
-    <title>InternalKmpViewModelApi</title>
+    <title>ViewModelStore</title>
 <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
     if (storage == null) {
         const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
@@ -38,7 +38,8 @@
     </div>
     <div class="pull-right d-flex">
         <div class="filter-section" id="filter-section">
-                <button class="platform-tag platform-selector common-like" data-active="" data-filter=":viewmodel:dokkaHtmlPartial/commonMain">common</button>
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":viewmodel:dokkaHtmlPartial/androidMain">android</button>
+                <button class="platform-tag platform-selector common-like" data-active="" data-filter=":viewmodel:dokkaHtmlPartial/nonAndroidMain">nonAndroid</button>
         </div>
         <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
         <div id="searchBar"></div>
@@ -49,16 +50,14 @@
         <div id="sideMenu"></div>
     </div>
     <div id="main">
-<div class="main-content" data-page-type="classlike" id="content" pageids="viewmodel::com.hoc081098.kmp.viewmodel/InternalKmpViewModelApi///PointingToDeclaration//1813279489">
-  <div class="breadcrumbs"><a href="../../index.html">viewmodel</a><span class="delimiter">/</span><a href="../index.html">com.hoc081098.kmp.viewmodel</a><span class="delimiter">/</span><span class="current">InternalKmpViewModelApi</span></div>
+<div class="main-content" data-page-type="member" id="content" pageids="viewmodel::com.hoc081098.kmp.viewmodel/ViewModelStore/ViewModelStore/#androidx.lifecycle.ViewModelStore/PointingToDeclaration//645262">
+  <div class="breadcrumbs"><a href="../../index.html">viewmodel</a><span class="delimiter">/</span><a href="../index.html">com.hoc081098.kmp.viewmodel</a><span class="delimiter">/</span><a href="index.html">ViewModelStore</a><span class="delimiter">/</span><span class="current">ViewModelStore</span></div>
   <div class="cover ">
-    <h1 class="cover"><span>Internal</span><wbr><span>Kmp</span><wbr><span>View</span><wbr><span>Model</span><wbr><span><span>Api</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":viewmodel:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-target/index.html"><span class="token annotation builtin">Target</span></a><span class="token punctuation">(</span><span>allowedTargets<span class="token operator"> = </span><span class="token punctuation">[</span><span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-annotation-target/-a-n-n-o-t-a-t-i-o-n_-c-l-a-s-s/index.html">AnnotationTarget.ANNOTATION_CLASS</a><span class="token punctuation">, </span></span><wbr><span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-annotation-target/-p-r-o-p-e-r-t-y/index.html">AnnotationTarget.PROPERTY</a><span class="token punctuation">, </span></span><wbr><span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-annotation-target/-c-o-n-s-t-r-u-c-t-o-r/index.html">AnnotationTarget.CONSTRUCTOR</a><span class="token punctuation">, </span></span><wbr><span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-annotation-target/-f-u-n-c-t-i-o-n/index.html">AnnotationTarget.FUNCTION</a></span><wbr><span class="token punctuation">]</span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">annotation class </span><a href="index.html">InternalKmpViewModelApi</a></div><p class="paragraph">Code marked with <a href="index.html">InternalKmpViewModelApi</a> has no guarantees about API stability and can be changed at any time.</p></div></div>
+    <h1 class="cover"><span>View</span><wbr><span>Model</span><wbr><span><span>Store</span></span></h1>
   </div>
-  <div class="tabbedcontent">
-    <div class="tabs-section" tabs-section="tabs-section"></div>
-    <div class="tabs-section-body"></div>
-  </div>
+  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":viewmodel:dokkaHtmlPartial/androidMain" data-filterable-set=":viewmodel:dokkaHtmlPartial/androidMain" data-active="" data-toggle=":viewmodel:dokkaHtmlPartial/androidMain">android</button><button class="platform-bookmark" data-filterable-current=":viewmodel:dokkaHtmlPartial/nonAndroidMain" data-filterable-set=":viewmodel:dokkaHtmlPartial/nonAndroidMain" data-toggle=":viewmodel:dokkaHtmlPartial/nonAndroidMain">nonAndroid</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":viewmodel:dokkaHtmlPartial/androidMain"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">platform<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/ViewModelStore.html">ViewModelStore</a></span></span><span class="token punctuation">)</span></div></div><div class="content sourceset-dependent-content" data-togglable=":viewmodel:dokkaHtmlPartial/nonAndroidMain"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div>  </div>
 </div>
       <div class="footer">
         <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>

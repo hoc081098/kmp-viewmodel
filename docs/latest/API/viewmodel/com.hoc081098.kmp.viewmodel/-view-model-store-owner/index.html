@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
-    <title>ViewModelFactory</title>
+    <title>ViewModelStoreOwner</title>
 <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
     if (storage == null) {
         const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
@@ -50,45 +50,49 @@
         <div id="sideMenu"></div>
     </div>
     <div id="main">
-<div class="main-content" data-page-type="classlike" id="content" pageids="viewmodel::com.hoc081098.kmp.viewmodel/ViewModelFactory///PointingToDeclaration//1813279489">
-  <div class="breadcrumbs"><a href="../../index.html">viewmodel</a><span class="delimiter">/</span><a href="../index.html">com.hoc081098.kmp.viewmodel</a><span class="delimiter">/</span><span class="current">ViewModelFactory</span></div>
+<div class="main-content" data-page-type="classlike" id="content" pageids="viewmodel::com.hoc081098.kmp.viewmodel/ViewModelStoreOwner///PointingToDeclaration//1813279489">
+  <div class="breadcrumbs"><a href="../../index.html">viewmodel</a><span class="delimiter">/</span><a href="../index.html">com.hoc081098.kmp.viewmodel</a><span class="delimiter">/</span><span class="current">ViewModelStoreOwner</span></div>
   <div class="cover ">
-    <h1 class="cover"><span>View</span><wbr><span>Model</span><wbr><span><span>Factory</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":viewmodel:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">interface </span><a href="index.html">ViewModelFactory</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">VM</a><span class="token operator"> : </span><a href="../-view-model/index.html">ViewModel</a><span class="token operator">&gt;</span></div><p class="paragraph">Implementations of <code class="lang-kotlin">Factory</code> interface are responsible to instantiate <a href="../-view-model/index.html">ViewModel</a>s.</p></div></div>
+    <h1 class="cover"><span>View</span><wbr><span>Model</span><wbr><span>Store</span><wbr><span><span>Owner</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":viewmodel:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">interface </span><a href="index.html">ViewModelStoreOwner</a></div><p class="paragraph">A scope that owns <a href="../-view-model-store/index.html">ViewModelStore</a>.</p><p class="paragraph">A responsibility of an implementation of this interface is to retain owned ViewModelStore during the configuration changes and call <a href="../-view-model-store/clear.html">ViewModelStore.clear</a>, when this scope is going to be destroyed.</p></div></div>
   </div>
   <div class="tabbedcontent">
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button><button class="section-tab" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION,EXTENSION_PROPERTY,EXTENSION_FUNCTION">Members &amp; Extensions</button></div>
     <div class="tabs-section-body">
-      <div data-togglable="FUNCTION">
-        <h2 class="">Functions</h2>
-        <div class="table"><a data-name="156188887%2FFunctions%2F1813279489" anchor-label="create" id="156188887%2FFunctions%2F1813279489" data-filterable-set=":viewmodel:dokkaHtmlPartial/commonMain"></a>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="223672259%2FProperties%2F1813279489" anchor-label="viewModelStore" id="223672259%2FProperties%2F1813279489" data-filterable-set=":viewmodel:dokkaHtmlPartial/commonMain"></a>
           <div class="table-row" data-filterable-current=":viewmodel:dokkaHtmlPartial/commonMain" data-filterable-set=":viewmodel:dokkaHtmlPartial/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="create.html"><span><span>create</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="156188887%2FFunctions%2F1813279489"></span>
+                  <div><a href="view-model-store.html"><span>view</span><wbr><span>Model</span><wbr><span><span>Store</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="223672259%2FProperties%2F1813279489"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":viewmodel:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="create.html"><span class="token function">create</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">extras<span class="token operator">: </span><a href="../-creation-extras/index.html">CreationExtras</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">VM</a></div><div class="brief "><p class="paragraph">Creates a new instance of <a href="index.html">VM</a>.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":viewmodel:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">val </span><a href="view-model-store.html">viewModelStore</a><span class="token operator">: </span><a href="../-view-model-store/index.html">ViewModelStore</a></div><div class="brief "><p class="paragraph">The owned <a href="../-view-model-store/index.html">ViewModelStore</a></p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-560479208%2FFunctions%2F623708857" anchor-label="toAndroidX" id="-560479208%2FFunctions%2F623708857" data-filterable-set=":viewmodel:dokkaHtmlPartial/androidMain"></a>
+        </div>
+      </div>
+      <div data-togglable="EXTENSION_FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-1522162815%2FFunctions%2F623708857" anchor-label="toAndroidX" id="-1522162815%2FFunctions%2F623708857" data-filterable-set=":viewmodel:dokkaHtmlPartial/androidMain"></a>
           <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":viewmodel:dokkaHtmlPartial/androidMain" data-filterable-set=":viewmodel:dokkaHtmlPartial/androidMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../to-android-x.html"><span>to</span><wbr><span>Android</span><wbr><span><span>X</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-560479208%2FFunctions%2F623708857"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1522162815%2FFunctions%2F623708857"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
                   <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
                     <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":viewmodel:dokkaHtmlPartial/androidMain" data-filterable-set=":viewmodel:dokkaHtmlPartial/androidMain" data-active="" data-toggle=":viewmodel:dokkaHtmlPartial/androidMain">android</button></div>
-<div class="content sourceset-dependent-content" data-active="" data-togglable=":viewmodel:dokkaHtmlPartial/androidMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../to-android-x.html">VM</a><span class="token operator"> : </span><a href="../-view-model/index.html">ViewModel</a><span class="token operator">&gt; </span><a href="index.html">ViewModelFactory</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../to-android-x.html">VM</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="../to-android-x.html"><span class="token function">toAndroidX</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/ViewModelProvider.Factory.html">ViewModelProvider.Factory</a></div></div>                  </div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":viewmodel:dokkaHtmlPartial/androidMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="index.html">ViewModelStoreOwner</a><span class="token punctuation">.</span><a href="../to-android-x.html"><span class="token function">toAndroidX</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/ViewModelStoreOwner.html">ViewModelStoreOwner</a></div></div>                  </div>
                 </div>
               </div>
             </div>
