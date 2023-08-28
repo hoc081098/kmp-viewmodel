@@ -101,7 +101,6 @@ android {
   }
   buildFeatures {
     buildConfig = true
-    compose = true
   }
   composeOptions {
     kotlinCompilerExtensionVersion = libs.versions.androidx.compose.compiler.get()
@@ -114,7 +113,7 @@ android {
 
   dependencies {
     implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.compose.runtime)
+    compileOnly(libs.androidx.compose.runtime)
   }
 }
 

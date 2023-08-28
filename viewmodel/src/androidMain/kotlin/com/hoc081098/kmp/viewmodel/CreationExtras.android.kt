@@ -13,4 +13,7 @@ public actual typealias EmptyCreationExtras = AndroidXCreationExtras.Empty
 
 public actual typealias MutableCreationExtras = AndroidXMutableCreationExtras
 
+/**
+ * @see [ViewModelProvider.NewInstanceFactory.VIEW_MODEL_KEY]
+ */
 public actual val VIEW_MODEL_KEY: Key<String> get() = ViewModelProvider.NewInstanceFactory.VIEW_MODEL_KEY

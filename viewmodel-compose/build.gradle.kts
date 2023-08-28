@@ -7,7 +7,7 @@ plugins {
   alias(libs.plugins.kotlin.multiplatform)
   alias(libs.plugins.android.library)
 
-  id("org.jetbrains.compose")
+  alias(libs.plugins.jetbrains.compose)
 
   alias(libs.plugins.vanniktech.maven.publish)
 
@@ -65,7 +65,7 @@ kotlin {
   sourceSets {
     val commonMain by getting {
       dependencies {
-        api("org.jetbrains.compose.runtime:runtime:1.4.3")
+        api(libs.jetbrains.compose.runtime)
         api(projects.viewmodel)
         api(projects.viewmodelSavedstate)
       }
