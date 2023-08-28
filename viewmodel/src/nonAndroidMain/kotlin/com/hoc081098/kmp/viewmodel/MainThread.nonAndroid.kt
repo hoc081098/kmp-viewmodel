@@ -4,8 +4,11 @@ package com.hoc081098.kmp.viewmodel
 @Retention(AnnotationRetention.SOURCE)
 @Target(
   AnnotationTarget.FUNCTION,
+  AnnotationTarget.PROPERTY_GETTER,
+  AnnotationTarget.PROPERTY_SETTER,
   AnnotationTarget.CONSTRUCTOR,
-  AnnotationTarget.TYPE,
-  AnnotationTarget.TYPE_PARAMETER,
+  AnnotationTarget.ANNOTATION_CLASS,
+  AnnotationTarget.CLASS,
+  AnnotationTarget.VALUE_PARAMETER,
 )
 public actual annotation class MainThread actual constructor()
