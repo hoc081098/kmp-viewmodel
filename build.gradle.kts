@@ -13,6 +13,8 @@ plugins {
   alias(libs.plugins.kotlin.cocoapods) apply false
   alias(libs.plugins.kotlin.parcelize) apply false
 
+  alias(libs.plugins.jetbrains.compose) apply false
+
   alias(libs.plugins.android.app) apply false
   alias(libs.plugins.android.library) apply false
 
@@ -23,7 +25,6 @@ plugins {
   alias(libs.plugins.dokka)
 
   alias(libs.plugins.vanniktech.maven.publish) apply false
-  id("org.jetbrains.compose") version "1.4.3" apply false
 }
 
 subprojects {

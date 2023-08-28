@@ -81,7 +81,7 @@ kotlin {
       dependencies {
         api(libs.androidx.lifecycle.viewmodel)
         api(libs.coroutines.android)
-        api("androidx.annotation:annotation:1.6.0")
+        api(libs.androidx.annotation)
       }
     }
     val androidUnitTest by getting {
