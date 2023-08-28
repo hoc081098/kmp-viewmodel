@@ -2,23 +2,19 @@ public final class com/hoc081098/kmp/viewmodel/compose/CanonicalName_nonJsAndNon
 	public static final fun getCanonicalName (Lkotlin/reflect/KClass;)Ljava/lang/String;
 }
 
-public final class com/hoc081098/kmp/viewmodel/compose/ClearViewModelRegistry {
-	public static final field $stable I
-	public fun <init> ()V
-	public final fun clear ()V
-}
-
-public final class com/hoc081098/kmp/viewmodel/compose/ClearViewModelRegistryKt {
-	public static final fun ClearViewModelRegistryProvider (Lcom/hoc081098/kmp/viewmodel/compose/ClearViewModelRegistry;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;I)V
-	public static final fun currentClearViewModelRegistry (Landroidx/compose/runtime/Composer;I)Lcom/hoc081098/kmp/viewmodel/compose/ClearViewModelRegistry;
-	public static final fun getLocalClearViewModelRegistry ()Landroidx/compose/runtime/ProvidableCompositionLocal;
-	public static final fun rememberClearViewModelRegistry (Landroidx/compose/runtime/Composer;I)Lcom/hoc081098/kmp/viewmodel/compose/ClearViewModelRegistry;
+public final class com/hoc081098/kmp/viewmodel/compose/DefaultsKt {
+	public static final fun defaultViewModelStoreOwner (Landroidx/compose/runtime/Composer;I)Lcom/hoc081098/kmp/viewmodel/ViewModelStoreOwner;
 }
 
 public final class com/hoc081098/kmp/viewmodel/compose/KmpViewModel_nonAndroidKt {
-	public static final fun defaultCreationExtras ()Lcom/hoc081098/kmp/viewmodel/CreationExtras;
-	public static final fun rememberId (Ljava/lang/String;Lkotlin/reflect/KClass;Landroidx/compose/runtime/Composer;I)Lcom/hoc081098/kmp/viewmodel/compose/Id;
-	public static final fun resolveViewModel (Lcom/hoc081098/kmp/viewmodel/compose/Id;Lcom/hoc081098/kmp/viewmodel/CreationExtras;Lcom/hoc081098/kmp/viewmodel/compose/ClearViewModelRegistry;Lcom/hoc081098/kmp/viewmodel/ViewModelFactory;Landroidx/compose/runtime/Composer;I)Lcom/hoc081098/kmp/viewmodel/ViewModel;
+	public static final fun defaultPlatformCreationExtras ()Lcom/hoc081098/kmp/viewmodel/CreationExtras;
+	public static final fun defaultPlatformViewModelStoreOwner (Landroidx/compose/runtime/Composer;I)Lcom/hoc081098/kmp/viewmodel/ViewModelStoreOwner;
+	public static final fun resolveViewModel (Ljava/lang/String;Lkotlin/reflect/KClass;Lcom/hoc081098/kmp/viewmodel/CreationExtras;Lcom/hoc081098/kmp/viewmodel/ViewModelFactory;Lcom/hoc081098/kmp/viewmodel/ViewModelStoreOwner;)Lcom/hoc081098/kmp/viewmodel/ViewModel;
+}
+
+public final class com/hoc081098/kmp/viewmodel/compose/LocalViewModelStoreOwnerKt {
+	public static final fun ViewModelStoreOwnerProvider (Lcom/hoc081098/kmp/viewmodel/ViewModelStoreOwner;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;I)V
+	public static final fun getLocalViewModelStoreOwner ()Landroidx/compose/runtime/ProvidableCompositionLocal;
 }
 
 public final class com/hoc081098/kmp/viewmodel/compose/RememberDefaultViewModelKeyKt {

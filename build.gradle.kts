@@ -34,6 +34,11 @@ subprojects {
     buildUponDefaultConfig = true
     allRules = true
   }
+  afterEvaluate {
+    dependencies {
+      "detektPlugins"(libs.compose.rules.detekt)
+    }
+  }
 }
 
 dependencies {

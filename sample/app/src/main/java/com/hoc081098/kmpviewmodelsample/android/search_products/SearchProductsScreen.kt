@@ -80,12 +80,12 @@ fun SearchProductsScreen(
   }
 }
 
-@Suppress("ReturnCount")
+@Suppress("ReturnCount", "ModifierReused")
 @Composable
 private fun ListContent(
+  state: SearchProductsState,
   onItemClick: (ProductItemUi) -> Unit,
   modifier: Modifier = Modifier,
-  state: SearchProductsState,
 ) {
   if (state.isLoading) {
     LoadingIndicator(
