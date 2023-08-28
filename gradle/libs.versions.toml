@@ -5,7 +5,7 @@ coroutines = "1.7.3"
 kotlinx-serialization-json = "1.5.1"
 kotlinx-collections-immutable = "0.3.5"
 
-jetbrains-compose = "1.4.3"
+jetbrains-compose = "1.5.0"
 
 touchlab-stately = "1.2.5"
 napier = "2.6.1"
