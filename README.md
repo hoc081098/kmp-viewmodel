@@ -1,5 +1,8 @@
 # kmp-viewmodel 🔆
 
+Kotlin Multiplatform ViewModel.
+Kotlin Multiplatform MVVM.
+
 Shared ViewModel in Kotlin Multiplatform - A Kotlin Multiplatform library that provides shared MVVM
 for UI applications.
 Components are lifecycle-aware on Android.
@@ -80,7 +83,7 @@ For more information check out the [docs][4].
 
 - [x] support `SaveStateHandle` (since [0.2.0](https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.2.0)).
 - [x] add extensions for `Flow`/`StateFlow`, to use the ViewModel easily on `ios`/`macOS`/`tvOS`/`watchOS` platforms
-  (since [0.3.0](https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.3.0).
+  (since [0.3.0](https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.3.0)).
 - [ ] support `Compose Multiplatform Framework`.
 
 ## License
