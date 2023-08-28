@@ -6,11 +6,11 @@ plugins {
 
 android {
   namespace = "com.hoc081098.kmpviewmodelsample.android"
-  compileSdk = 33
+  compileSdk = 34
   defaultConfig {
     applicationId = "com.hoc081098.kmpviewmodelsample.android"
     minSdk = 26
-    targetSdk = 33
+    targetSdk = 34
     versionCode = 1
     versionName = "1.0"
   }

@@ -2,7 +2,7 @@
 kotlin = "1.9.0"
 java = "11"
 coroutines = "1.7.3"
-kotlinx-serialization-json = "1.5.1"
+kotlinx-serialization-json = "1.6.0"
 kotlinx-collections-immutable = "0.3.5"
 
 jetbrains-compose = "1.4.3"
@@ -19,8 +19,8 @@ androidx-lifecycle = "2.6.1"
 androidx-annotation = "1.6.0"
 androidx-activity = "1.7.2"
 androidx-compose-compiler = "1.5.1"
-androidx-navigation = "2.6.0"
-android-gradle = "8.1.0"
+androidx-navigation = "2.7.0"
+android-gradle = "8.1.1"
 
 spotless = "6.20.0"
 detekt = "1.23.1"
@@ -57,7 +57,7 @@ androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-ru
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version = "androidx-lifecycle" }
 androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "androidx-annotation" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
-androidx-compose-bom = { module = "androidx.compose:compose-bom", version = "2023.06.01" }
+androidx-compose-bom = { module = "androidx.compose:compose-bom", version = "2023.08.00" }
 androidx-compose-ui-ui = { module = "androidx.compose.ui:ui" }
 androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
