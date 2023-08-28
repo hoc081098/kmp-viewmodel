@@ -107,7 +107,7 @@ Copyright (c) 2023 Petrus Nguyễn Thái Học
 [badge-wasm]: https://img.shields.io/badge/wasm-624FE8.svg?style=flat
 [badge-nodejs]: https://img.shields.io/badge/nodejs-68a063.svg?style=flat
 
-[1]: /kmp-viewmodel/docs/0.x/viewmodel/
-[2]: /kmp-viewmodel/docs/0.x/viewmodel-savedstate/
-[3]: /kmp-viewmodel/docs/0.x/swift-interop/
-[3]: /kmp-viewmodel/docs/0.x/viewmodel-compose/
+[1]: https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel/
+[2]: https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-savedstate/
+[3]: https://hoc081098.github.io/kmp-viewmodel/docs/0.x/swift-interop/
+[3]: https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-compose/
