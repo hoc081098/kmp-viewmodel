@@ -4,6 +4,8 @@ Shared ViewModel in Kotlin Multiplatform - A Kotlin Multiplatform library that p
 for UI applications.
 Components are lifecycle-aware on Android.
 Supports Android Parcelable, Kotlin Parcelize, AndroidX SavedStateHandle for restoring state after process death.
+Easy interoperability with Swift/Objective-C and SwiftUI.
+Supports Compose Multiplatform Framework (Desktop, Web, iOS, macOS, tvOS, watchOS).
 
 The ViewModel class is a business logic or screen level state holder.
 It exposes state to the UI and encapsulates related business logic.
@@ -70,6 +72,10 @@ For more information check out the [docs][2].
 
 For more information check out the [docs][3].
 
+### 4. `kmp-viewmodel-compose` library
+
+For more information check out the [docs][4].
+
 ## Roadmap
 
 - [x] support `SaveStateHandle` (since [0.2.0](https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.2.0)).
@@ -103,3 +109,4 @@ Copyright (c) 2023 Petrus Nguyễn Thái Học
 [1]: /kmp-viewmodel/docs/0.x/viewmodel/
 [2]: /kmp-viewmodel/docs/0.x/viewmodel-savedstate/
 [3]: /kmp-viewmodel/docs/0.x/swift-interop/
+[3]: /kmp-viewmodel/docs/0.x/viewmodel-compose/
