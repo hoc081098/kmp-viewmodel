@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="images/logo.jpeg">
-      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.2.1">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.2.5">
     
     
       
@@ -341,6 +341,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#4-kmp-viewmodel-compose-library" class="md-nav__link">
+    4. kmp-viewmodel-compose library
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -485,7 +492,9 @@
 <p>Shared ViewModel in Kotlin Multiplatform - A Kotlin Multiplatform library that provides shared MVVM
 for UI applications.
 Components are lifecycle-aware on Android.
-Supports Android Parcelable, Kotlin Parcelize, AndroidX SavedStateHandle for restoring state after process death.</p>
+Supports Android Parcelable, Kotlin Parcelize, AndroidX SavedStateHandle for restoring state after process death.
+Easy interoperability with Swift/Objective-C and SwiftUI.
+Supports Compose Multiplatform Framework (Android, Desktop, Web, iOS, macOS, tvOS, watchOS).</p>
 <p>The ViewModel class is a business logic or screen level state holder.
 It exposes state to the UI and encapsulates related business logic.
 Its principal advantage is that it caches state and persists it through configuration changes (on Android).</p>
@@ -529,16 +538,19 @@ Its principal advantage is that it caches state and persists it through configur
 <h3 id="snapshot-docs-httpshoc081098githubiokmp-viewmodeldocslatest">Snapshot docs: <a href="https://hoc081098.github.io/kmp-viewmodel/docs/latest">https://hoc081098.github.io/kmp-viewmodel/docs/latest</a><a class="headerlink" href="#snapshot-docs-httpshoc081098githubiokmp-viewmodeldocslatest" title="Permanent link">&para;</a></h3>
 <h2 id="getting-started">Getting started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h2>
 <h3 id="1-kmp-viewmodel-library">1. <code>kmp-viewmodel</code> library<a class="headerlink" href="#1-kmp-viewmodel-library" title="Permanent link">&para;</a></h3>
-<p>For more information check out the <a href="/kmp-viewmodel/docs/latest/viewmodel/">docs</a>.</p>
+<p>For more information check out the <a href="https://hoc081098.github.io/kmp-viewmodel/docs/latest/viewmodel/">docs</a>.</p>
 <h3 id="2-kmp-viewmodel-savedstate-library">2. <code>kmp-viewmodel-savedstate</code> library<a class="headerlink" href="#2-kmp-viewmodel-savedstate-library" title="Permanent link">&para;</a></h3>
-<p>For more information check out the <a href="/kmp-viewmodel/docs/latest/viewmodel-savedstate/">docs</a>.</p>
+<p>For more information check out the <a href="https://hoc081098.github.io/kmp-viewmodel/docs/latest/viewmodel-savedstate/">docs</a>.</p>
 <h3 id="3-kmp-viewmodel-and-swift-interoperability">3. <code>kmp-viewmodel</code> and <code>Swift</code> interoperability<a class="headerlink" href="#3-kmp-viewmodel-and-swift-interoperability" title="Permanent link">&para;</a></h3>
-<p>For more information check out the <a href="/kmp-viewmodel/docs/latest/swift-interop/">docs</a>.</p>
+<p>For more information check out the <a href="https://hoc081098.github.io/kmp-viewmodel/docs/latest/swift-interop/">docs</a>.</p>
+<h3 id="4-kmp-viewmodel-compose-library">4. <code>kmp-viewmodel-compose</code> library<a class="headerlink" href="#4-kmp-viewmodel-compose-library" title="Permanent link">&para;</a></h3>
+<p>For more information check out the <a href="https://hoc081098.github.io/kmp-viewmodel/docs/latest/viewmodel-compose/">docs</a>.</p>
 <h2 id="roadmap">Roadmap<a class="headerlink" href="#roadmap" title="Permanent link">&para;</a></h2>
 <ul>
 <li>[x] support <code>SaveStateHandle</code> (since <a href="https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.2.0">0.2.0</a>).</li>
 <li>[x] add extensions for <code>Flow</code>/<code>StateFlow</code>, to use the ViewModel easily on <code>ios</code>/<code>macOS</code>/<code>tvOS</code>/<code>watchOS</code> platforms
   (since <a href="https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.3.0">0.3.0</a>.</li>
+<li>[ ] support <code>Compose Multiplatform Framework</code>.</li>
 </ul>
 <h2 id="license">License<a class="headerlink" href="#license" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>MIT License
