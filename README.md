@@ -5,7 +5,7 @@ for UI applications.
 Components are lifecycle-aware on Android.
 Supports Android Parcelable, Kotlin Parcelize, AndroidX SavedStateHandle for restoring state after process death.
 Easy interoperability with Swift/Objective-C and SwiftUI.
-Supports Compose Multiplatform Framework (Desktop, Web, iOS, macOS, tvOS, watchOS).
+Supports Compose Multiplatform Framework (Android, Desktop, Web, iOS, macOS, tvOS, watchOS).
 
 The ViewModel class is a business logic or screen level state holder.
 It exposes state to the UI and encapsulates related business logic.
@@ -110,4 +110,4 @@ Copyright (c) 2023 Petrus Nguyễn Thái Học
 [1]: https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel/
 [2]: https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-savedstate/
 [3]: https://hoc081098.github.io/kmp-viewmodel/docs/0.x/swift-interop/
-[3]: https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-compose/
+[4]: https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-compose/
