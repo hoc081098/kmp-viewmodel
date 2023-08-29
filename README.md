@@ -1,7 +1,6 @@
 # kmp-viewmodel 🔆
 
-Kotlin Multiplatform ViewModel.
-Kotlin Multiplatform MVVM.
+## Kotlin Multiplatform ViewModel - Kotlin Multiplatform MVVM - Compose Multiplatform ViewModel
 
 Shared ViewModel in Kotlin Multiplatform - A Kotlin Multiplatform library that provides shared MVVM
 for UI applications.
