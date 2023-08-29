@@ -2,14 +2,14 @@
 
 ## Kotlin Multiplatform ViewModel - Kotlin Multiplatform MVVM - Compose Multiplatform ViewModel
 
-Shared ViewModel in Kotlin Multiplatform - A Kotlin Multiplatform library that provides shared MVVM
+Shared/Common ViewModel in **Kotlin Multiplatform** - A Kotlin Multiplatform library that provides shared MVVM
 for UI applications.
-Components are lifecycle-aware on Android.
-Supports Android Parcelable, Kotlin Parcelize, AndroidX SavedStateHandle for restoring state after process death.
-Easy interoperability with Swift/Objective-C and SwiftUI.
-Supports Compose Multiplatform Framework (Android, Desktop, Web, iOS, macOS, tvOS, watchOS).
+Components are **lifecycle-aware on Android**.
+Supports **Android Parcelable**, **Kotlin Parcelize**, **AndroidX SavedStateHandle** for restoring state after process death.
+Easy interoperability with **Swift/Objective-C** and **SwiftUI**.
+Supports **Compose Multiplatform** Framework (Android, Desktop, Web, iOS, macOS, tvOS, watchOS).
 
-The ViewModel class is a business logic or screen level state holder.
+> The ViewModel class is a business logic or screen level state holder.
 It exposes state to the UI and encapsulates related business logic.
 Its principal advantage is that it caches state and persists it through configuration changes (on Android).
 
