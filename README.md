@@ -2,7 +2,7 @@
 
 ## Kotlin Multiplatform ViewModel - Kotlin Multiplatform MVVM - Compose Multiplatform ViewModel
 
-Shared/Common ViewModel in **Kotlin Multiplatform** - A Kotlin Multiplatform library that provides shared MVVM
+Common/ Shared ViewModel in **Kotlin Multiplatform** - A Kotlin Multiplatform library that provides shared MVVM
 for UI applications.
 Components are **lifecycle-aware on Android**.
 Supports **Android Parcelable**, **Kotlin Parcelize**, **AndroidX SavedStateHandle** for restoring state after process death.
@@ -54,7 +54,7 @@ Liked some of my work? Buy me a coffee (or more likely a beer)
   - `tvosX64`, `tvosSimulatorArm64`, `tvosArm64`.
   - `macosX64`, `macosArm64`.
 
-## API
+## Docs
 
 ### 0.x release docs: https://hoc081098.github.io/kmp-viewmodel/docs/0.x
 
