@@ -13,6 +13,7 @@ public final class com/hoc081098/kmp/viewmodel/compose/KmpViewModel_nonAndroidKt
 }
 
 public final class com/hoc081098/kmp/viewmodel/compose/LocalSavedStateHandleFactoryKt {
+	public static final fun SavedStateHandleFactoryProvider (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleFactory;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;I)V
 	public static final fun getLocalSavedStateHandleFactory ()Landroidx/compose/runtime/ProvidableCompositionLocal;
 }
 
