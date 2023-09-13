@@ -21,4 +21,4 @@ import androidx.lifecycle.enableSavedStateHandles
  */
 @MainThread
 public actual fun CreationExtras.createSavedStateHandle(): SavedStateHandle =
-  this[SAVED_STATE_HANDLE_KEY] ?: androidxCreateSavedStateHandle()
+  this[SAVED_STATE_HANDLE_FACTORY_KEY]?.create() ?: androidxCreateSavedStateHandle()

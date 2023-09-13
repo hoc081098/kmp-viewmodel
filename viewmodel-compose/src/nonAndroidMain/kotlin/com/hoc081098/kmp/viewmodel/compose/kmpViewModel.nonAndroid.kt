@@ -6,6 +6,7 @@ import androidx.compose.runtime.remember
 import com.hoc081098.kmp.viewmodel.CreationExtras
 import com.hoc081098.kmp.viewmodel.EmptyCreationExtras
 import com.hoc081098.kmp.viewmodel.MainThread
+import com.hoc081098.kmp.viewmodel.SavedStateHandleFactory
 import com.hoc081098.kmp.viewmodel.ViewModel
 import com.hoc081098.kmp.viewmodel.ViewModelFactory
 import com.hoc081098.kmp.viewmodel.ViewModelStoreOwner
@@ -18,6 +19,7 @@ public actual inline fun <reified VM : ViewModel> kmpViewModel(
   viewModelStoreOwner: ViewModelStoreOwner,
   key: String?,
   extras: CreationExtras,
+  savedStateHandleFactory: SavedStateHandleFactory?,
 ): VM {
   val kClass = remember { VM::class }
 
@@ -27,6 +29,7 @@ public actual inline fun <reified VM : ViewModel> kmpViewModel(
     factory = factory,
     extras = extras,
     viewModelStoreOwner = viewModelStoreOwner,
+    savedStateHandleFactory = savedStateHandleFactory,
   )
 }
 
@@ -38,11 +41,13 @@ internal fun <VM : ViewModel> resolveViewModel(
   extras: CreationExtras,
   factory: ViewModelFactory<VM>,
   viewModelStoreOwner: ViewModelStoreOwner,
+  savedStateHandleFactory: SavedStateHandleFactory?,
 ): VM = viewModelStoreOwner.getOrCreateViewModel(
   key = key,
   kClass = kClass,
   factory = factory,
   extras = extras,
+  savedStateHandleFactory = savedStateHandleFactory,
 )
 
 @Stable

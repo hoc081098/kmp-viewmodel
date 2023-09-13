@@ -6,6 +6,8 @@ import androidx.compose.runtime.remember
 import com.hoc081098.kmp.viewmodel.CreationExtras
 import com.hoc081098.kmp.viewmodel.InternalKmpViewModelApi
 import com.hoc081098.kmp.viewmodel.MainThread
+import com.hoc081098.kmp.viewmodel.SAVED_STATE_HANDLE_FACTORY_KEY
+import com.hoc081098.kmp.viewmodel.SavedStateHandleFactory
 import com.hoc081098.kmp.viewmodel.VIEW_MODEL_KEY
 import com.hoc081098.kmp.viewmodel.ViewModel
 import com.hoc081098.kmp.viewmodel.ViewModelFactory
@@ -50,6 +52,7 @@ internal fun <T : ViewModel> ViewModelStoreOwner.getOrCreateViewModel(
   kClass: KClass<T>,
   factory: ViewModelFactory<T>,
   extras: CreationExtras,
+  savedStateHandleFactory: SavedStateHandleFactory?,
 ): T {
   val viewModel = viewModelStore[key]
 
@@ -68,6 +71,7 @@ internal fun <T : ViewModel> ViewModelStoreOwner.getOrCreateViewModel(
     .create(
       extras.edit {
         this[VIEW_MODEL_KEY] = key
+        savedStateHandleFactory?.let { this[SAVED_STATE_HANDLE_FACTORY_KEY] = it }
       },
     )
     .also { viewModelStore.put(key, it) }

@@ -7,8 +7,11 @@ import kotlin.jvm.JvmField
  *
  * ### On all platforms
  *
- * If this [CreationExtras] contains [SAVED_STATE_HANDLE_KEY], then this function will
- * return the value associated with this key.
+ * If this [CreationExtras] contains [SAVED_STATE_HANDLE_FACTORY_KEY],
+ * the returned [SavedStateHandle] will be created by this factory.
+ *
+ * Basically, [SAVED_STATE_HANDLE_FACTORY_KEY] has higher priority
+ * than the default creation logic on each platform.
  *
  * ### Otherwise
  *
@@ -36,6 +39,7 @@ public expect fun CreationExtras.createSavedStateHandle(): SavedStateHandle
  * A key for [SavedStateHandle] that should be passed to [SavedStateHandle] if needed.
  */
 @JvmField
-public val SAVED_STATE_HANDLE_KEY: CreationExtrasKey<SavedStateHandle> = object : CreationExtrasKey<SavedStateHandle> {
-  override fun toString(): String = "SAVED_STATE_HANDLE_KEY"
-}
+public val SAVED_STATE_HANDLE_FACTORY_KEY: CreationExtrasKey<SavedStateHandleFactory> =
+  object : CreationExtrasKey<SavedStateHandleFactory> {
+    override fun toString(): String = "CreationExtrasKey<SavedStateHandleFactory>"
+  }
