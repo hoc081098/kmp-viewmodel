@@ -38,6 +38,7 @@ public actual inline fun <reified VM : ViewModel> kmpViewModel(
   savedStateHandleFactory = savedStateHandleFactory,
 )
 
+@Suppress("LongParameterList")
 @MainThread
 @PublishedApi
 @Composable
