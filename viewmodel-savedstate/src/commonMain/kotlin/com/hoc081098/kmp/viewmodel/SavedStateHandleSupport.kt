@@ -41,5 +41,5 @@ public expect fun CreationExtras.createSavedStateHandle(): SavedStateHandle
 @JvmField
 public val SAVED_STATE_HANDLE_FACTORY_KEY: CreationExtrasKey<SavedStateHandleFactory> =
   object : CreationExtrasKey<SavedStateHandleFactory> {
-    override fun toString(): String = "CreationExtrasKey<SavedStateHandleFactory>"
+    override fun toString(): String = "CreationExtras.Key<SavedStateHandleFactory>"
   }
