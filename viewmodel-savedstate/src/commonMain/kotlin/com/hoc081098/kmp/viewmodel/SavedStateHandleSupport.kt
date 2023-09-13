@@ -28,7 +28,7 @@ import kotlin.jvm.JvmField
  * This [CreationExtras] must contain `SAVED_STATE_REGISTRY_OWNER_KEY`,
  * `VIEW_MODEL_STORE_OWNER_KEY` and [VIEW_MODEL_KEY].
  *
- * @throws IllegalArgumentException if this `CreationExtras` are missing required keys:
+ * @throws IllegalArgumentException on Android, if this `CreationExtras` are missing required keys:
  * `ViewModelStoreOwnerKey`, `SavedStateRegistryOwnerKey`, `VIEW_MODEL_KEY`.
  *
  */

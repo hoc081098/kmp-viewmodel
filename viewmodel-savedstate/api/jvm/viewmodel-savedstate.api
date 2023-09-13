@@ -9,8 +9,12 @@ public final class com/hoc081098/kmp/viewmodel/SavedStateHandle {
 	public final fun set (Ljava/lang/String;Ljava/lang/Object;)V
 }
 
+public abstract interface class com/hoc081098/kmp/viewmodel/SavedStateHandleFactory {
+	public abstract fun create ()Lcom/hoc081098/kmp/viewmodel/SavedStateHandle;
+}
+
 public final class com/hoc081098/kmp/viewmodel/SavedStateHandleSupportKt {
-	public static final field SAVED_STATE_HANDLE_KEY Lcom/hoc081098/kmp/viewmodel/CreationExtrasKey;
+	public static final field SAVED_STATE_HANDLE_FACTORY_KEY Lcom/hoc081098/kmp/viewmodel/CreationExtrasKey;
 }
 
 public final class com/hoc081098/kmp/viewmodel/SavedStateHandleSupport_nonAndroidKt {
