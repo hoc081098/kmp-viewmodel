@@ -9,7 +9,7 @@ public final class com/hoc081098/kmp/viewmodel/compose/DefaultsKt {
 public final class com/hoc081098/kmp/viewmodel/compose/KmpViewModel_nonAndroidKt {
 	public static final fun defaultPlatformCreationExtras ()Lcom/hoc081098/kmp/viewmodel/CreationExtras;
 	public static final fun defaultPlatformViewModelStoreOwner (Landroidx/compose/runtime/Composer;I)Lcom/hoc081098/kmp/viewmodel/ViewModelStoreOwner;
-	public static final fun resolveViewModel (Ljava/lang/String;Lkotlin/reflect/KClass;Lcom/hoc081098/kmp/viewmodel/CreationExtras;Lcom/hoc081098/kmp/viewmodel/ViewModelFactory;Lcom/hoc081098/kmp/viewmodel/ViewModelStoreOwner;Lcom/hoc081098/kmp/viewmodel/SavedStateHandleFactory;)Lcom/hoc081098/kmp/viewmodel/ViewModel;
+	public static final fun resolveViewModel (Ljava/lang/String;Lkotlin/reflect/KClass;Lcom/hoc081098/kmp/viewmodel/CreationExtras;Lcom/hoc081098/kmp/viewmodel/ViewModelFactory;Lcom/hoc081098/kmp/viewmodel/ViewModelStoreOwner;)Lcom/hoc081098/kmp/viewmodel/ViewModel;
 }
 
 public final class com/hoc081098/kmp/viewmodel/compose/LocalSavedStateHandleFactoryKt {
