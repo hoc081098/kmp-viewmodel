@@ -6,10 +6,13 @@ import androidx.compose.runtime.remember
 import com.hoc081098.kmp.viewmodel.CreationExtras
 import com.hoc081098.kmp.viewmodel.EmptyCreationExtras
 import com.hoc081098.kmp.viewmodel.MainThread
+import com.hoc081098.kmp.viewmodel.SAVED_STATE_HANDLE_FACTORY_KEY
 import com.hoc081098.kmp.viewmodel.SavedStateHandleFactory
+import com.hoc081098.kmp.viewmodel.VIEW_MODEL_KEY
 import com.hoc081098.kmp.viewmodel.ViewModel
 import com.hoc081098.kmp.viewmodel.ViewModelFactory
 import com.hoc081098.kmp.viewmodel.ViewModelStoreOwner
+import com.hoc081098.kmp.viewmodel.edit
 import kotlin.reflect.KClass
 
 @MainThread
@@ -22,14 +25,17 @@ public actual inline fun <reified VM : ViewModel> kmpViewModel(
   savedStateHandleFactory: SavedStateHandleFactory?,
 ): VM {
   val kClass = remember { VM::class }
+  val nonNullKey = key ?: rememberDefaultViewModelKey(kClass)
 
   return resolveViewModel(
-    key = key ?: rememberDefaultViewModelKey(kClass),
+    key = nonNullKey,
     kClass = kClass,
     factory = factory,
-    extras = extras,
+    extras = extras.edit {
+      this[VIEW_MODEL_KEY] = nonNullKey
+      savedStateHandleFactory?.let { this[SAVED_STATE_HANDLE_FACTORY_KEY] = it }
+    },
     viewModelStoreOwner = viewModelStoreOwner,
-    savedStateHandleFactory = savedStateHandleFactory,
   )
 }
 
@@ -41,13 +47,11 @@ internal fun <VM : ViewModel> resolveViewModel(
   extras: CreationExtras,
   factory: ViewModelFactory<VM>,
   viewModelStoreOwner: ViewModelStoreOwner,
-  savedStateHandleFactory: SavedStateHandleFactory?,
 ): VM = viewModelStoreOwner.getOrCreateViewModel(
   key = key,
   kClass = kClass,
   factory = factory,
   extras = extras,
-  savedStateHandleFactory = savedStateHandleFactory,
 )
 
 @Stable

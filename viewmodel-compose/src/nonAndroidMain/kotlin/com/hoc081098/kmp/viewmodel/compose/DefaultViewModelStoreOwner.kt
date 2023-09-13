@@ -7,13 +7,11 @@ import com.hoc081098.kmp.viewmodel.CreationExtras
 import com.hoc081098.kmp.viewmodel.InternalKmpViewModelApi
 import com.hoc081098.kmp.viewmodel.MainThread
 import com.hoc081098.kmp.viewmodel.SAVED_STATE_HANDLE_FACTORY_KEY
-import com.hoc081098.kmp.viewmodel.SavedStateHandleFactory
 import com.hoc081098.kmp.viewmodel.VIEW_MODEL_KEY
 import com.hoc081098.kmp.viewmodel.ViewModel
 import com.hoc081098.kmp.viewmodel.ViewModelFactory
 import com.hoc081098.kmp.viewmodel.ViewModelStore
 import com.hoc081098.kmp.viewmodel.ViewModelStoreOwner
-import com.hoc081098.kmp.viewmodel.edit
 import kotlin.LazyThreadSafetyMode.NONE
 import kotlin.reflect.KClass
 
@@ -43,6 +41,8 @@ internal inline fun rememberDefaultViewModelStoreOwner(): ViewModelStoreOwner =
 
 /**
  * Returns an existing ViewModel or creates a new one in the scope of this [ViewModelStoreOwner].
+ *
+ * @param extras must contains [VIEW_MODEL_KEY], and [SAVED_STATE_HANDLE_FACTORY_KEY] if needed.
  */
 @OptIn(InternalKmpViewModelApi::class)
 @Suppress("UNCHECKED_CAST")
@@ -52,7 +52,6 @@ internal fun <T : ViewModel> ViewModelStoreOwner.getOrCreateViewModel(
   kClass: KClass<T>,
   factory: ViewModelFactory<T>,
   extras: CreationExtras,
-  savedStateHandleFactory: SavedStateHandleFactory?,
 ): T {
   val viewModel = viewModelStore[key]
 
@@ -68,11 +67,6 @@ internal fun <T : ViewModel> ViewModelStoreOwner.getOrCreateViewModel(
   }
 
   return factory
-    .create(
-      extras.edit {
-        this[VIEW_MODEL_KEY] = key
-        savedStateHandleFactory?.let { this[SAVED_STATE_HANDLE_FACTORY_KEY] = it }
-      },
-    )
+    .create(extras)
     .also { viewModelStore.put(key, it) }
 }
