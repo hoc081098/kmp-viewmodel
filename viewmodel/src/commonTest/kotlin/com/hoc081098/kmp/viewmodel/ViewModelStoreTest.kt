@@ -15,7 +15,7 @@ import kotlinx.coroutines.test.setMain
 
 expect fun createViewModelStore(): ViewModelStore
 
-// Copied from https://github.com/androidx/androidx/blob/37df1f7745e04a9c7e2a7fb60f7449491276916f/lifecycle/lifecycle-viewmodel/src/test/java/androidx/lifecycle/ViewModelStoreTest.kt#L29
+// Copied and edit from https://github.com/androidx/androidx/blob/37df1f7745e04a9c7e2a7fb60f7449491276916f/lifecycle/lifecycle-viewmodel/src/test/java/androidx/lifecycle/ViewModelStoreTest.kt#L29
 class ViewModelStoreTest {
   @BeforeTest
   fun setup() {

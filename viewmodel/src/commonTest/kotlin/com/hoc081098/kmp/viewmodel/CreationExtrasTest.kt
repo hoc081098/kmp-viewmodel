@@ -1,0 +1,17 @@
+package com.hoc081098.kmp.viewmodel
+
+import kotlin.test.Test
+import kotlin.test.assertEquals
+
+// Copied and edit from https://github.com/androidx/androidx/blob/37df1f7745e04a9c7e2a7fb60f7449491276916f/lifecycle/lifecycle-viewmodel/src/androidTest/java/androidx/lifecycle/CreationExtrasTest.kt#L31
+class CreationExtrasTest {
+  @Test
+  fun testInitialCreationExtras() {
+    val initial = MutableCreationExtras()
+    val key = object : CreationExtrasKey<Map<String, String>> {}
+    initial[key] = mapOf("value" to "initial")
+    val mutable = MutableCreationExtras(initial)
+    initial[key] = mapOf("value" to "overridden")
+    assertEquals("initial", mutable[key]?.get("value"))
+  }
+}
