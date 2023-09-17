@@ -9,6 +9,35 @@
 - KotlinX Coroutines `1.7.3`.
 - Android Gradle Plugin `8.1.0`.
 
+#### viewmodel
+
+- Add `ViewModelStore` and `ViewModelStoreOwner`.
+- Add `ViewModelFactory`.
+- Add `CreationExtras` and `CreationExtrasKey`.
+- Add `creationExtrasOf`, `buildCreationExtras` and `CreationExtras.edit`.
+- Add `ViewModel.isCleared()` method to check if the `ViewModel` is cleared, _only available on
+  non-Android targets_.
+- Add `MainThread` (moved from `viewmodel-savedstate` module).
+
+#### viewmodel-savedstate
+
+- Remove `MainThread` (moved to `viewmodel` module).
+- Add `SavedStateHandleFactory` interface.
+- Add `SAVED_STATE_HANDLE_FACTORY_KEY` and `CreationExtras.createSavedStateHandle()`.
+
+#### viewmodel-compose
+
+- A new module allows to access `ViewModel`s in Jetpack Compose Multiplatform.
+  - `kmpViewModel` to retrieve `ViewModel`s in `@Composable functions`.
+  - `LocalSavedStateHandleFactory` and `SavedStateHandleFactoryProvider` to
+    get/provide `SavedStateHandleFactory` in `@Composable functions`.
+  - `LocalViewModelStoreOwner` and `ViewModelStoreOwnerProvider` to
+    get/provide `ViewModelStoreOwner` in `@Composable functions`.
+  - `rememberViewModelFactory` to remember `ViewModelFactory` in `@Composable functions`.
+  - `defaultPlatformCreationExtras` and `defaultPlatformViewModelStoreOwner`
+    to get default `CreationExtras` and `ViewModelStoreOwner` in `@Composable functions`,
+    that depend on the platform.
+
 ## [0.4.0] - Apr 7, 2023
 
 ### Changed
