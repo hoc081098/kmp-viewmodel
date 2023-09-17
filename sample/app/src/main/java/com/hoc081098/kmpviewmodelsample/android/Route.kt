@@ -42,7 +42,6 @@ internal sealed class Route {
     val route = routePattern
   }
 
-
   data object ProductDetail : Route() {
     val idNavArg = navArgument(name = ProductDetailViewModel.ID_KEY) { type = NavType.IntType }
 

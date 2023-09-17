@@ -50,9 +50,13 @@ fun ProductDetailScreen(
   modifier: Modifier = Modifier,
   viewModel: ProductDetailViewModel = koinViewModel(),
 ) {
-  @Suppress("ViewModelForwarding")
-  OnLifecycleEvent(viewModel) {
-    onResume { viewModel.refresh() }
+  val refresh = remember(viewModel) {
+    @Suppress("SuspiciousCallableReferenceInLambda")
+    viewModel::refresh
+  }
+
+  OnLifecycleEvent(refresh) {
+    onResume { refresh() }
     onPause { Napier.d("[ProductDetailScreen] paused") }
   }
 
