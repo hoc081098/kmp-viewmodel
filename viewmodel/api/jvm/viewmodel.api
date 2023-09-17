@@ -12,7 +12,6 @@ public final class com/hoc081098/kmp/viewmodel/CreationExtrasKey_nonAndroidKt {
 public final class com/hoc081098/kmp/viewmodel/CreationExtrasKtxKt {
 	public static final fun buildCreationExtras (Lcom/hoc081098/kmp/viewmodel/CreationExtras;Lkotlin/jvm/functions/Function1;)Lcom/hoc081098/kmp/viewmodel/CreationExtras;
 	public static synthetic fun buildCreationExtras$default (Lcom/hoc081098/kmp/viewmodel/CreationExtras;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/CreationExtras;
-	public static final fun creationExtrasOf ([Lkotlin/Pair;)Lcom/hoc081098/kmp/viewmodel/CreationExtras;
 	public static final fun edit (Lcom/hoc081098/kmp/viewmodel/CreationExtras;Lkotlin/jvm/functions/Function1;)Lcom/hoc081098/kmp/viewmodel/CreationExtras;
 }
 

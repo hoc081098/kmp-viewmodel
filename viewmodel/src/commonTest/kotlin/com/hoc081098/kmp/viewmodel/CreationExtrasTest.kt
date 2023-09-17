@@ -14,4 +14,20 @@ class CreationExtrasTest {
     initial[key] = mapOf("value" to "overridden")
     assertEquals("initial", mutable[key]?.get("value"))
   }
+
+  @Test
+  fun testKtx() {
+    val key = object : CreationExtrasKey<Map<String, String>> {}
+
+    val initial = buildCreationExtras {
+      this[key] = mapOf("value" to "initial")
+    }
+
+    val mutable = initial.edit {
+      this[key] = mapOf("value" to "overridden")
+    }
+
+    assertEquals("initial", initial[key]?.get("value"))
+    assertEquals("overridden", mutable[key]?.get("value"))
+  }
 }

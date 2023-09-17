@@ -14,7 +14,7 @@
 - Add `ViewModelStore` and `ViewModelStoreOwner`.
 - Add `ViewModelFactory`.
 - Add `CreationExtras` and `CreationExtrasKey`.
-- Add `creationExtrasOf`, `buildCreationExtras` and `CreationExtras.edit`.
+- Add `buildCreationExtras` and `CreationExtras.edit`.
 - Add `ViewModel.isCleared()` method to check if the `ViewModel` is cleared, _only available on
   non-Android targets_.
 - Add `MainThread` (moved from `viewmodel-savedstate` module).
