@@ -9,6 +9,7 @@ import com.hoc081098.kmp.viewmodel.ViewModelStoreOwner
 /**
  * The CompositionLocal containing the current [ViewModelStoreOwner] or `null` if not provided.
  */
+@Suppress("CompositionLocalAllowlist")
 public val LocalViewModelStoreOwner: ProvidableCompositionLocal<ViewModelStoreOwner?> =
   staticCompositionLocalOf { null }
 

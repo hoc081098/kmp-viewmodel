@@ -43,4 +43,3 @@ public inline fun <reified VM : ViewModel> kmpViewModel(
 internal inline fun defaultViewModelStoreOwner(): ViewModelStoreOwner =
   LocalViewModelStoreOwner.current
     ?: defaultPlatformViewModelStoreOwner()
-

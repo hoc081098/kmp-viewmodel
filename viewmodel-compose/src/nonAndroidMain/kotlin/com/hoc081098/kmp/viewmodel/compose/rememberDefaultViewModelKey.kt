@@ -5,10 +5,12 @@ package com.hoc081098.kmp.viewmodel.compose
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import com.hoc081098.kmp.viewmodel.ViewModel
+import kotlin.jvm.JvmSynthetic
 import kotlin.reflect.KClass
 
 internal expect val <T : Any> KClass<T>.canonicalName: String?
 
+@JvmSynthetic
 @PublishedApi
 @Composable
 internal fun <VM : ViewModel> rememberDefaultViewModelKey(kClass: KClass<VM>): String = remember(kClass) {

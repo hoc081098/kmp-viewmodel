@@ -13,6 +13,7 @@ import com.hoc081098.kmp.viewmodel.ViewModel
 import com.hoc081098.kmp.viewmodel.ViewModelFactory
 import com.hoc081098.kmp.viewmodel.ViewModelStoreOwner
 import com.hoc081098.kmp.viewmodel.edit
+import kotlin.jvm.JvmSynthetic
 import kotlin.reflect.KClass
 
 @MainThread
@@ -39,6 +40,7 @@ public actual inline fun <reified VM : ViewModel> kmpViewModel(
   )
 }
 
+@JvmSynthetic
 @MainThread
 @PublishedApi
 internal fun <VM : ViewModel> resolveViewModel(

@@ -17,7 +17,7 @@ import com.hoc081098.kmp.viewmodel.ViewModelStoreOwner
 import com.hoc081098.kmp.viewmodel.edit
 import com.hoc081098.kmp.viewmodel.toAndroidX
 
-@PublishedApi
+@JvmSynthetic
 @JvmField
 internal val DefaultCreationExtrasForAndroid: CreationExtras = MutableCreationExtras()
 
@@ -39,6 +39,7 @@ public actual inline fun <reified VM : ViewModel> kmpViewModel(
 )
 
 @Suppress("LongParameterList")
+@JvmSynthetic
 @MainThread
 @PublishedApi
 @Composable
