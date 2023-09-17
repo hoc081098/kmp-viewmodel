@@ -12,7 +12,7 @@
 #### viewmodel
 
 - Add `ViewModelStore` and `ViewModelStoreOwner`.
-- Add `ViewModelFactory`.
+- Add `ViewModelFactory` and `VIEW_MODEL_KEY`.
 - Add `CreationExtras` and `CreationExtrasKey`.
 - Add `buildCreationExtras` and `CreationExtras.edit`.
 - Add `ViewModel.isCleared()` method to check if the `ViewModel` is cleared, _only available on
@@ -27,15 +27,15 @@
 
 #### viewmodel-compose
 
-- A new module allows to access `ViewModel`s in Jetpack Compose Multiplatform.
-  - `kmpViewModel` to retrieve `ViewModel`s in `@Composable functions`.
+- A new module allows to access `ViewModel`s in **Jetpack Compose Multiplatform**.
+  - `kmpViewModel` to retrieve `ViewModel`s in @Composable functions.
   - `LocalSavedStateHandleFactory` and `SavedStateHandleFactoryProvider` to
-    get/provide `SavedStateHandleFactory` in `@Composable functions`.
+    get/provide `SavedStateHandleFactory` in @Composable functions.
   - `LocalViewModelStoreOwner` and `ViewModelStoreOwnerProvider` to
-    get/provide `ViewModelStoreOwner` in `@Composable functions`.
-  - `rememberViewModelFactory` to remember `ViewModelFactory` in `@Composable functions`.
+    get/provide `ViewModelStoreOwner` in @Composable functions.
+  - `rememberViewModelFactory` to remember `ViewModelFactory` in @Composable functions.
   - `defaultPlatformCreationExtras` and `defaultPlatformViewModelStoreOwner`
-    to get default `CreationExtras` and `ViewModelStoreOwner` in `@Composable functions`,
+    to get the default `CreationExtras` and `ViewModelStoreOwner`,
     that depend on the platform.
 
 ## [0.4.0] - Apr 7, 2023
