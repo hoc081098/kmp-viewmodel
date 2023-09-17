@@ -13,6 +13,7 @@ import com.hoc081098.kmpviewmodelsample.Immutable
 import com.hoc081098.kmpviewmodelsample.ProductItemUi
 import com.hoc081098.kmpviewmodelsample.toProductItemUi
 import io.github.aakira.napier.Napier
+import kotlin.jvm.JvmStatic
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -29,7 +30,7 @@ import kotlinx.coroutines.yield
 @Immutable
 sealed interface ProductDetailState {
   data class Success(val product: ProductItemUi) : ProductDetailState
-  object Loading : ProductDetailState
+  data object Loading : ProductDetailState
   data class Error(val error: Throwable) : ProductDetailState
 }
 

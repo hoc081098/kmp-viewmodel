@@ -7,7 +7,6 @@ import com.hoc081098.kmpviewmodelsample.FakeProductsJson
 import com.hoc081098.kmpviewmodelsample.ProductItem
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
 class GetProductById(

@@ -24,30 +24,34 @@ internal fun rememberCurrentRouteAsState(currentBackStackEntryAsState: State<Nav
 
 internal sealed class Route {
   abstract val routePattern: String
-  open fun matches(route: String): Boolean = route == routePattern
 
-  object Start : Route() {
+  fun matches(route: String): Boolean = route == routePattern
+
+  data object Start : Route() {
     override val routePattern = "start"
     val route = routePattern
   }
 
-  object Products : Route() {
+  data object Products : Route() {
     override val routePattern = "products"
     val route = routePattern
   }
 
-  object Search : Route() {
+  data object Search : Route() {
     override val routePattern = "search"
     val route = routePattern
   }
 
-  object ProductDetail : Route() {
+
+  data object ProductDetail : Route() {
     val idNavArg = navArgument(name = ProductDetailViewModel.ID_KEY) { type = NavType.IntType }
 
-    override val routePattern = "product_detail/{${idNavArg.name}}"
+    private inline val idNavArgName get() = idNavArg.name
+
+    override val routePattern = "product_detail/{$idNavArgName}"
 
     fun route(id: Int) = routePattern.replace(
-      oldValue = """{${idNavArg.name}}""",
+      oldValue = """{$idNavArgName}""",
       newValue = id.toString(),
     )
   }

@@ -57,14 +57,14 @@ data class ProductsState(
 
 sealed interface ProductSingleEvent {
   sealed interface Refresh : ProductSingleEvent {
-    object Success : Refresh
+    data object Success : Refresh
     data class Failure(val error: Throwable) : Refresh
   }
 }
 
 sealed interface ProductsAction {
-  object Load : ProductsAction
-  object Refresh : ProductsAction
+  data object Load : ProductsAction
+  data object Refresh : ProductsAction
 }
 
 private fun interface Reducer {
