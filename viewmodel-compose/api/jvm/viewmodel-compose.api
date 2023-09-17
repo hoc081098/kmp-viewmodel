@@ -1,7 +1,3 @@
-public final class com/hoc081098/kmp/viewmodel/compose/CanonicalName_nonJsAndNonAndroidKt {
-	public static final fun getCanonicalName (Lkotlin/reflect/KClass;)Ljava/lang/String;
-}
-
 public final class com/hoc081098/kmp/viewmodel/compose/KmpViewModelKt {
 	public static final synthetic fun defaultViewModelStoreOwner (Landroidx/compose/runtime/Composer;I)Lcom/hoc081098/kmp/viewmodel/ViewModelStoreOwner;
 }
