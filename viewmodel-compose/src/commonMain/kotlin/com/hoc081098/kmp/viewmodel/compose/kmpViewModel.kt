@@ -8,6 +8,7 @@ import com.hoc081098.kmp.viewmodel.SavedStateHandleFactory
 import com.hoc081098.kmp.viewmodel.ViewModel
 import com.hoc081098.kmp.viewmodel.ViewModelFactory
 import com.hoc081098.kmp.viewmodel.ViewModelStoreOwner
+import kotlin.jvm.JvmSynthetic
 
 @MainThread
 @Composable
@@ -34,3 +35,12 @@ public inline fun <reified VM : ViewModel> kmpViewModel(
   viewModelStoreOwner = viewModelStoreOwner,
   factory = rememberViewModelFactory(factory),
 )
+
+@JvmSynthetic
+@PublishedApi
+@MainThread
+@Composable
+internal inline fun defaultViewModelStoreOwner(): ViewModelStoreOwner =
+  LocalViewModelStoreOwner.current
+    ?: defaultPlatformViewModelStoreOwner()
+

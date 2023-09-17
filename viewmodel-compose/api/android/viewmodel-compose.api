@@ -1,5 +1,5 @@
-public final class com/hoc081098/kmp/viewmodel/compose/DefaultsKt {
-	public static final fun defaultViewModelStoreOwner (Landroidx/compose/runtime/Composer;I)Lcom/hoc081098/kmp/viewmodel/ViewModelStoreOwner;
+public final class com/hoc081098/kmp/viewmodel/compose/KmpViewModelKt {
+	public static final synthetic fun defaultViewModelStoreOwner (Landroidx/compose/runtime/Composer;I)Lcom/hoc081098/kmp/viewmodel/ViewModelStoreOwner;
 }
 
 public final class com/hoc081098/kmp/viewmodel/compose/KmpViewModel_androidKt {
