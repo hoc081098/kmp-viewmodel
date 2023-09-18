@@ -27,6 +27,9 @@ private inline fun currentAndroidXViewModelStoreOwner(): AndroidXViewModelStoreO
   "No ViewModelStoreOwner was provided via LocalViewModelStoreOwner"
 }
 
+/**
+ * Find the nearest [androidx.lifecycle.ViewModelStoreOwner] in the hierarchy of [Context]s.
+ */
 private fun findViewModelStoreOwner(context: Context): AndroidXViewModelStoreOwner? {
   var innerContext = context
   while (innerContext is ContextWrapper) {

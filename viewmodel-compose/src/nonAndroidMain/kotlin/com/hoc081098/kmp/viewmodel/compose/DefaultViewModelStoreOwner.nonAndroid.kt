@@ -15,6 +15,10 @@ import com.hoc081098.kmp.viewmodel.ViewModelStoreOwner
 import kotlin.LazyThreadSafetyMode.NONE
 import kotlin.reflect.KClass
 
+/**
+ * A [ViewModelStoreOwner] that clears its [ViewModelStore] when it is abandoned or forgotten
+ * by the current composition.
+ */
 internal class DefaultViewModelStoreOwner : ViewModelStoreOwner, RememberObserver {
   private val viewModelStoreLazy = lazy(NONE) { ViewModelStore() }
   override val viewModelStore: ViewModelStore by viewModelStoreLazy
@@ -35,6 +39,11 @@ internal class DefaultViewModelStoreOwner : ViewModelStoreOwner, RememberObserve
   }
 }
 
+/**
+ * Remember a [ViewModelStoreOwner] in the current composition.
+ * It clears its [ViewModelStoreOwner.viewModelStore] when the current @Composable leaves the composition.
+ * Basically, its scope ties the lifecycle of the current composition.
+ */
 @Composable
 internal inline fun rememberDefaultViewModelStoreOwner(): ViewModelStoreOwner =
   remember { DefaultViewModelStoreOwner() }

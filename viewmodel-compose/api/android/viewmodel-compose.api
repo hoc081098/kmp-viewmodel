@@ -22,7 +22,7 @@ public final class com/hoc081098/kmp/viewmodel/compose/RememberViewModelFactoryK
 	public static final fun rememberViewModelFactory (Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;I)Lcom/hoc081098/kmp/viewmodel/ViewModelFactory;
 }
 
-public final class com/hoc081098/kmp/viewmodel/compose/ViewModelStoreOwnerKt {
+public final class com/hoc081098/kmp/viewmodel/compose/ViewModelStoreOwner_androidKt {
 	public static final fun defaultPlatformViewModelStoreOwner (Landroidx/compose/runtime/Composer;I)Lcom/hoc081098/kmp/viewmodel/ViewModelStoreOwner;
 }
 

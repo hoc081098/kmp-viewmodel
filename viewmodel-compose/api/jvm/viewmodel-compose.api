@@ -18,7 +18,7 @@ public final class com/hoc081098/kmp/viewmodel/compose/LocalViewModelStoreOwnerK
 	public static final fun getLocalViewModelStoreOwner ()Landroidx/compose/runtime/ProvidableCompositionLocal;
 }
 
-public final class com/hoc081098/kmp/viewmodel/compose/RememberDefaultViewModelKeyKt {
+public final class com/hoc081098/kmp/viewmodel/compose/RememberDefaultViewModelKey_nonAndroidKt {
 	public static final synthetic fun rememberDefaultViewModelKey (Lkotlin/reflect/KClass;Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
 }
 
