@@ -59,6 +59,10 @@ internal fun <VM : ViewModel> resolveViewModel(
 @Stable
 public actual fun defaultPlatformCreationExtras(): CreationExtras = EmptyCreationExtras
 
+/**
+ * Returns a [ViewModelStoreOwner] that clears its [ViewModelStoreOwner.viewModelStore]
+ * when the current @Composable leaves the composition.
+ */
 @MainThread
 @Composable
 public actual fun defaultPlatformViewModelStoreOwner(): ViewModelStoreOwner = rememberDefaultViewModelStoreOwner()

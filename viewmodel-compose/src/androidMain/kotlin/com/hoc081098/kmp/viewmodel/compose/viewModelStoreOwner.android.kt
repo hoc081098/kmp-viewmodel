@@ -9,6 +9,11 @@ import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import com.hoc081098.kmp.viewmodel.ViewModelStoreOwner
 import com.hoc081098.kmp.viewmodel.toKmp
 
+/**
+ * Returns the nearest [androidx.lifecycle.ViewModelStoreOwner] that is provided via [LocalViewModelStoreOwner].
+ * If it is not provided, then the [androidx.lifecycle.ViewModelStoreOwner] is searched in the hierarchy of [Context]s.
+ * If no [androidx.lifecycle.ViewModelStoreOwner] is found, an [IllegalStateException] will be thrown.
+ */
 @Composable
 public actual fun defaultPlatformViewModelStoreOwner(): ViewModelStoreOwner =
   currentAndroidXViewModelStoreOwner().toKmp()
