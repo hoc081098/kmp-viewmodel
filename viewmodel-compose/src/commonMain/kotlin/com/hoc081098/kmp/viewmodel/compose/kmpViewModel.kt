@@ -9,6 +9,7 @@ import com.hoc081098.kmp.viewmodel.SavedStateHandleFactory
 import com.hoc081098.kmp.viewmodel.ViewModel
 import com.hoc081098.kmp.viewmodel.ViewModelFactory
 import com.hoc081098.kmp.viewmodel.ViewModelStoreOwner
+import com.hoc081098.kmp.viewmodel.createSavedStateHandle
 import kotlin.jvm.JvmSynthetic
 
 /**
@@ -31,9 +32,12 @@ import kotlin.jvm.JvmSynthetic
  * @param savedStateHandleFactory The [SavedStateHandleFactory] that should be used to create the [SavedStateHandle]
  * which can be passed to the [ViewModel] constructor.
  * Default value is provided by [LocalSavedStateHandleFactory].
+ * Usually, [createSavedStateHandle] will be used to create the [SavedStateHandle].
+ * It will check for the existence of the [SavedStateHandleFactory] in the [CreationExtras].
  * @return A [ViewModel] that is an instance of the given [VM] type.
  *
  * @see defaultViewModelStoreOwner
+ * @see createSavedStateHandle
  */
 @MainThread
 @Composable
@@ -66,10 +70,13 @@ public expect inline fun <reified VM : ViewModel> kmpViewModel(
  * @param savedStateHandleFactory The [SavedStateHandleFactory] that should be used to create the [SavedStateHandle]
  * which can be passed to the [ViewModel] constructor.
  * Default value is provided by [LocalSavedStateHandleFactory].
+ * Usually, [createSavedStateHandle] will be used to create the [SavedStateHandle].
+ * It will check for the existence of the [SavedStateHandleFactory] in the [CreationExtras].
  * @return A [ViewModel] that is an instance of the given [VM] type.
  *
  * @see rememberViewModelFactory
  * @see defaultViewModelStoreOwner
+ * @see createSavedStateHandle
  */
 @MainThread
 @Composable
