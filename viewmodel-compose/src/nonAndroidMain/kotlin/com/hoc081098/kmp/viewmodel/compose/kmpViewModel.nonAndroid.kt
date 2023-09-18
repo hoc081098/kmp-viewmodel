@@ -56,6 +56,9 @@ internal fun <VM : ViewModel> resolveViewModel(
   extras = extras,
 )
 
+/**
+ * Returns [EmptyCreationExtras] for the current platform (non-Android).
+ */
 @Stable
 public actual fun defaultPlatformCreationExtras(): CreationExtras = EmptyCreationExtras
 

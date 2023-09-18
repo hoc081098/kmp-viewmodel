@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisallowComposableCalls
 import com.hoc081098.kmp.viewmodel.CreationExtras
 import com.hoc081098.kmp.viewmodel.MainThread
+import com.hoc081098.kmp.viewmodel.SavedStateHandle
 import com.hoc081098.kmp.viewmodel.SavedStateHandleFactory
 import com.hoc081098.kmp.viewmodel.ViewModel
 import com.hoc081098.kmp.viewmodel.ViewModelFactory
@@ -26,7 +27,13 @@ import kotlin.jvm.JvmSynthetic
  * @param key The key to use to identify the [ViewModel].
  * or null if you would like to use the default factory from the [defaultViewModelStoreOwner]
  * @param extras The default extras used to create the [ViewModel].
+ * Default value is [defaultPlatformCreationExtras].
+ * @param savedStateHandleFactory The [SavedStateHandleFactory] that should be used to create the [SavedStateHandle]
+ * which can be passed to the [ViewModel] constructor.
+ * Default value is provided by [LocalSavedStateHandleFactory].
  * @return A [ViewModel] that is an instance of the given [VM] type.
+ *
+ * @see defaultViewModelStoreOwner
  */
 @MainThread
 @Composable
@@ -53,11 +60,16 @@ public expect inline fun <reified VM : ViewModel> kmpViewModel(
  * @param key The key to use to identify the [ViewModel].
  * or null if you would like to use the default factory from the [defaultViewModelStoreOwner]
  * @param extras The default extras used to create the [ViewModel].
+ * Default value is [defaultPlatformCreationExtras].
  * @param factory A lambda that creates the [ViewModel].
  * It will be remembered as a [ViewModelFactory], that should be used to create the [ViewModel].
+ * @param savedStateHandleFactory The [SavedStateHandleFactory] that should be used to create the [SavedStateHandle]
+ * which can be passed to the [ViewModel] constructor.
+ * Default value is provided by [LocalSavedStateHandleFactory].
  * @return A [ViewModel] that is an instance of the given [VM] type.
  *
  * @see rememberViewModelFactory
+ * @see defaultViewModelStoreOwner
  */
 @MainThread
 @Composable

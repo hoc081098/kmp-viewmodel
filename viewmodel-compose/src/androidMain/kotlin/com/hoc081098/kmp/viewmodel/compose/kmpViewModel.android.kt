@@ -17,6 +17,10 @@ import com.hoc081098.kmp.viewmodel.ViewModelStoreOwner
 import com.hoc081098.kmp.viewmodel.edit
 import com.hoc081098.kmp.viewmodel.toAndroidX
 
+/**
+ * A sentinel [CreationExtras] used to determine
+ * whether the user wants to use the default [CreationExtras] defined by the platform or not.
+ */
 @JvmSynthetic
 @JvmField
 internal val DefaultCreationExtrasForAndroid: CreationExtras = MutableCreationExtras()
@@ -78,5 +82,15 @@ private inline fun CreationExtras.setSavedStateHandleFactory(savedStateHandleFac
     this
   }
 
+/**
+ * Returns a sentinel `DefaultCreationExtrasForAndroid` for the current platform (Android).
+ * This is used to determine whether the user wants to use the default [CreationExtras] defined by the platform or not.
+ *
+ * The default [CreationExtras] are provided by the [HasDefaultViewModelProviderFactory.defaultViewModelCreationExtras]
+ * if the current [androidx.lifecycle.ViewModelStoreOwner] implements [HasDefaultViewModelProviderFactory],
+ * otherwise, it is [Empty].
+ *
+ * @see HasDefaultViewModelProviderFactory
+ */
 @Stable
 public actual fun defaultPlatformCreationExtras(): CreationExtras = DefaultCreationExtrasForAndroid
