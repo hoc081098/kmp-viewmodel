@@ -5,6 +5,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.runtime.staticCompositionLocalOf
+import com.hoc081098.common.navigation.internal.DefaultNavigator
 import com.hoc081098.common.navigation.internal.NavEntry
 import com.hoc081098.common.navigation.internal.NavStoreViewModel
 import com.hoc081098.common.navigation.internal.rememberDefaultNavigator
@@ -53,6 +54,8 @@ fun NavHost(
     navStoreViewModel = navStoreViewModel,
   )
 
+  SystemBackHandlingEffect(navigator)
+
   val navEntry = navigator.visibleEntryState.value
   CompositionLocalProvider(LocalNavigator provides navigator) {
     saveableStateHolder.SaveableStateProvider(key = navEntry.id) {
@@ -80,3 +83,5 @@ private fun <T : Route> NavEntryContent(
   }
 }
 
+@Composable
+internal expect fun SystemBackHandlingEffect(navigator: DefaultNavigator)

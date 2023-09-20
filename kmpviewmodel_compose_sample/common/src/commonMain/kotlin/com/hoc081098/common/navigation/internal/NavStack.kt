@@ -15,9 +15,13 @@ internal class NavStack private constructor(
   private val _visibleEntryState = mutableStateOf(stack.last())
   internal val visibleEntryState: State<NavEntry<*>> get() = _visibleEntryState
 
+  private val _canNavigateBackState = mutableStateOf(true)
+  internal val canNavigateBackState: State<Boolean> get() = _canNavigateBackState
+
   @Suppress("NOTHING_TO_INLINE")
   private inline fun updateVisibleEntry() {
     _visibleEntryState.value = stack.last()
+    _canNavigateBackState.value = stack.size > 1
   }
 
   internal fun push(entry: NavEntry<*>) {

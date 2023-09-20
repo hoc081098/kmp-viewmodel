@@ -43,6 +43,7 @@ kotlin {
       dependencies {
         api("androidx.appcompat:appcompat:1.5.1")
         api("androidx.core:core-ktx:1.9.0")
+        implementation("androidx.activity:activity-compose:1.5.0")
       }
     }
     val androidUnitTest by getting {

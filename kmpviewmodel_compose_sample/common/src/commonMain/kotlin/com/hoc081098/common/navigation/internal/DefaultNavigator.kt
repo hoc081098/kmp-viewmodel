@@ -15,6 +15,7 @@ internal class DefaultNavigator(
   private val contents: List<RouteContent<*>>,
 ) : Navigator {
   internal val visibleEntryState get() = stack.visibleEntryState
+  internal val canNavigateBackState get() = stack.canNavigateBackState
 
   override fun navigateTo(screen: Route) {
     stack.push(
