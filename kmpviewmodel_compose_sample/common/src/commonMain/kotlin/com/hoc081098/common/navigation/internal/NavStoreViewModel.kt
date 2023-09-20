@@ -1,5 +1,6 @@
 package com.hoc081098.common.navigation.internal
 
+import com.hoc081098.common.navigation.EXTRA_ROUTE
 import com.hoc081098.common.navigation.Route
 import com.hoc081098.common.navigation.RouteContent
 import com.hoc081098.kmp.viewmodel.SavedStateHandle
@@ -71,16 +72,18 @@ internal class NavStoreViewModel(
       )
     }
 
-  internal infix fun provideSavedStateHandleFactory(id: String): SavedStateHandleFactory =
-    savedStateHandleFactories.getOrPut(id) {
-      SavedStateHandleFactory { provideSavedStateHandle(id) }
+  internal infix fun provideSavedStateHandleFactory(navEntry: NavEntry<*>): SavedStateHandleFactory =
+    savedStateHandleFactories.getOrPut(navEntry.id) {
+      SavedStateHandleFactory { provideSavedStateHandle(navEntry) }
     }
 
-  private fun provideSavedStateHandle(id: String): SavedStateHandle = savedStateHandles.getOrPut(id) {
+  private fun provideSavedStateHandle(navEntry: NavEntry<*>): SavedStateHandle = savedStateHandles.getOrPut(navEntry.id) {
     createSavedStateHandle(
-      id = id,
+      id = navEntry.id,
       globalSavedStateHandle = globalSavedStateHandle
-    )
+    ).apply {
+      this[EXTRA_ROUTE] = navEntry.route
+    }
   }
 
   internal fun removeEntry(id: String) {

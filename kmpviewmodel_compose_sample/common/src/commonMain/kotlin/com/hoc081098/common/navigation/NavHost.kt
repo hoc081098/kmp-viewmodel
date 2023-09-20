@@ -8,10 +8,19 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import com.hoc081098.common.navigation.internal.NavEntry
 import com.hoc081098.common.navigation.internal.NavStoreViewModel
 import com.hoc081098.common.navigation.internal.rememberDefaultNavigator
+import com.hoc081098.kmp.viewmodel.SavedStateHandle
 import com.hoc081098.kmp.viewmodel.compose.SavedStateHandleFactoryProvider
 import com.hoc081098.kmp.viewmodel.compose.ViewModelStoreOwnerProvider
 import com.hoc081098.kmp.viewmodel.compose.kmpViewModel
 import com.hoc081098.kmp.viewmodel.createSavedStateHandle
+
+const val EXTRA_ROUTE: String = "com.hoc081098.common.navigation.ROUTE"
+
+fun <T : Route> SavedStateHandle.requireRoute(): T {
+  return requireNotNull(get<T>(EXTRA_ROUTE)) {
+    "SavedStateHandle doesn't contain Route data in \"$EXTRA_ROUTE\""
+  }
+}
 
 val LocalNavigator = staticCompositionLocalOf<Navigator> {
   error("Can't use Navigator outside of a navigator NavHost")
@@ -64,7 +73,7 @@ private fun <T : Route> Content(
     navStoreViewModel provideViewModelStoreOwner navEntry.id
   ) {
     SavedStateHandleFactoryProvider(
-      navStoreViewModel provideSavedStateHandleFactory navEntry.id
+      navStoreViewModel provideSavedStateHandleFactory navEntry
     ) {
       navEntry.content.Content(route = navEntry.route)
     }

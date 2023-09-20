@@ -22,6 +22,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.hoc081098.common.navigation.LocalNavigator
 import com.hoc081098.common.navigation.Route
+import com.hoc081098.common.navigation.requireRoute
 import com.hoc081098.common.navigation.routeContent
 import com.hoc081098.kmp.viewmodel.SavedStateHandle
 import com.hoc081098.kmp.viewmodel.ViewModel
@@ -29,13 +30,14 @@ import com.hoc081098.kmp.viewmodel.compose.kmpViewModel
 import com.hoc081098.kmp.viewmodel.createSavedStateHandle
 import com.hoc081098.kmp.viewmodel.parcelable.Parcelize
 
-
 @Parcelize
 data class ScreenC(val id: Int) : Route
 
 class ScreenCViewModel(
   private val savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
+  val route = savedStateHandle.requireRoute<ScreenC>()
+
   val countStateFlow = savedStateHandle.getStateFlow("count", 0)
 
   init {

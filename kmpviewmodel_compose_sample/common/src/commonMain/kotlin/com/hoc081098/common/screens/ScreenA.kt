@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.hoc081098.common.navigation.LocalNavigator
 import com.hoc081098.common.navigation.Route
+import com.hoc081098.common.navigation.requireRoute
 import com.hoc081098.common.navigation.routeContent
 import com.hoc081098.kmp.viewmodel.SavedStateHandle
 import com.hoc081098.kmp.viewmodel.ViewModel
@@ -31,6 +32,8 @@ data object ScreenA : Route
 class ScreenAViewModel(
   private val savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
+  val route = savedStateHandle.requireRoute<ScreenA>()
+
   val countStateFlow = savedStateHandle.getStateFlow("count", 0)
 
   init {
