@@ -1,6 +1,5 @@
 package com.hoc081098.common.navigation.internal
 
-import com.hoc081098.common.navigation.EXTRA_ROUTE
 import com.hoc081098.common.navigation.Route
 import com.hoc081098.common.navigation.RouteContent
 import com.hoc081098.kmp.viewmodel.SavedStateHandle
@@ -8,6 +7,8 @@ import com.hoc081098.kmp.viewmodel.SavedStateHandleFactory
 import com.hoc081098.kmp.viewmodel.ViewModel
 import com.hoc081098.kmp.viewmodel.ViewModelStore
 import com.hoc081098.kmp.viewmodel.ViewModelStoreOwner
+
+internal const val EXTRA_ROUTE: String = "com.hoc081098.common.navigation.ROUTE"
 
 //region Expect and actual functions to create ViewModelStore, SavedStateHandle, NavStack
 internal expect fun createViewModelStore(): ViewModelStore

@@ -6,6 +6,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.runtime.staticCompositionLocalOf
 import com.hoc081098.common.navigation.internal.DefaultNavigator
+import com.hoc081098.common.navigation.internal.EXTRA_ROUTE
 import com.hoc081098.common.navigation.internal.NavEntry
 import com.hoc081098.common.navigation.internal.NavStoreViewModel
 import com.hoc081098.common.navigation.internal.rememberDefaultNavigator
@@ -14,8 +15,6 @@ import com.hoc081098.kmp.viewmodel.compose.SavedStateHandleFactoryProvider
 import com.hoc081098.kmp.viewmodel.compose.ViewModelStoreOwnerProvider
 import com.hoc081098.kmp.viewmodel.compose.kmpViewModel
 import com.hoc081098.kmp.viewmodel.createSavedStateHandle
-
-const val EXTRA_ROUTE: String = "com.hoc081098.common.navigation.ROUTE"
 
 fun <T : Route> SavedStateHandle.requireRoute(): T {
   return requireNotNull(get<T>(EXTRA_ROUTE)) {
