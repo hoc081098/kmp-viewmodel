@@ -24,6 +24,8 @@ internal class DefaultNavigator(
   override fun navigateBack() {
     stack.pop()
   }
+
+  internal fun saveState() = stack.saveState()
 }
 
 @Composable
@@ -31,15 +33,16 @@ internal fun rememberDefaultNavigator(
   initialRoute: Route,
   contents: List<RouteContent<*>>,
   onStackEntryRemoved: (NavEntry<*>) -> Unit,
-): DefaultNavigator = remember(initialRoute, contents, onStackEntryRemoved) {
-  DefaultNavigator(
-    stack = NavStack(
-      initial = NavEntry.create(
-        route = initialRoute,
-        contents = contents,
-      ),
-      onStackEntryRemoved = onStackEntryRemoved,
-    ),
+  navStoreViewModel: NavStoreViewModel,
+): DefaultNavigator = remember(navStoreViewModel) {
+  val stack = navStoreViewModel.createNavStack(
+    initialRoute = initialRoute,
     contents = contents,
+    onStackEntryRemoved = onStackEntryRemoved,
   )
+
+  DefaultNavigator(
+    stack = stack,
+    contents = contents,
+  ).also(navStoreViewModel::setNavStackSavedStateProvider)
 }

@@ -17,22 +17,25 @@ dependencies {
 }
 
 android {
-  compileSdkVersion(33)
+  compileSdkVersion(34)
   namespace = "com.hoc081098.android"
   defaultConfig {
     applicationId = "com.hoc081098.android"
     minSdkVersion(24)
-    targetSdkVersion(33)
+    targetSdkVersion(34)
     versionCode = 1
     versionName = "1.0-SNAPSHOT"
   }
   compileOptions {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
   }
   buildTypes {
     getByName("release") {
       isMinifyEnabled = false
     }
+  }
+  kotlinOptions {
+    jvmTarget = "11"
   }
 }

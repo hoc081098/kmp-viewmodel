@@ -40,7 +40,8 @@ fun NavHost(
         navStoreViewModel.removeEntry(entry.id)
         saveableStateHolder.removeState(entry.id)
       }
-    }
+    },
+    navStoreViewModel = navStoreViewModel,
   )
 
   val navEntry = navigator.visibleEntryState.value

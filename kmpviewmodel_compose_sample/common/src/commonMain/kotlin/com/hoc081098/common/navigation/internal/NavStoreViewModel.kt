@@ -1,5 +1,7 @@
 package com.hoc081098.common.navigation.internal
 
+import com.hoc081098.common.navigation.Route
+import com.hoc081098.common.navigation.RouteContent
 import com.hoc081098.kmp.viewmodel.SavedStateHandle
 import com.hoc081098.kmp.viewmodel.SavedStateHandleFactory
 import com.hoc081098.kmp.viewmodel.ViewModel
@@ -17,12 +19,29 @@ internal expect fun createSavedStateHandle(
   globalSavedStateHandle: SavedStateHandle,
 ): SavedStateHandle
 
+internal expect fun setNavStackSavedStateProvider(
+  globalSavedStateHandle: SavedStateHandle,
+  savedStateFactory: () -> Map<String, ArrayList<out Any>>,
+)
+
+internal expect fun createNavStack(
+  globalSavedStateHandle: SavedStateHandle,
+  initialRoute: Route,
+  contents: List<RouteContent<*>>,
+  onStackEntryRemoved: (NavEntry<*>) -> Unit
+): NavStack
+
 internal class NavStoreViewModel(
   private val globalSavedStateHandle: SavedStateHandle,
 ) : ViewModel() {
   private val viewModelStoreOwners = mutableMapOf<String, DefaultViewModelStoreOwner>()
   private val savedStateHandles = mutableMapOf<String, SavedStateHandle>()
   private val savedStateHandleFactories = mutableMapOf<String, SavedStateHandleFactory>()
+
+  init {
+    println("$this init")
+    addCloseable { println("$this close") }
+  }
 
   internal infix fun provideViewModelStoreOwner(id: String): ViewModelStoreOwner = viewModelStoreOwners
     .getOrPut(id) {
@@ -47,4 +66,18 @@ internal class NavStoreViewModel(
     val store = viewModelStoreOwners.remove(id)
     store?.viewModelStore?.clear()
   }
+
+  internal fun setNavStackSavedStateProvider(navigator: DefaultNavigator) =
+    setNavStackSavedStateProvider(globalSavedStateHandle, navigator::saveState)
+
+  internal fun createNavStack(
+    initialRoute: Route,
+    contents: List<RouteContent<*>>,
+    onStackEntryRemoved: (NavEntry<*>) -> Unit
+  ): NavStack = createNavStack(
+    globalSavedStateHandle = globalSavedStateHandle,
+    initialRoute = initialRoute,
+    contents = contents,
+    onStackEntryRemoved = onStackEntryRemoved,
+  )
 }

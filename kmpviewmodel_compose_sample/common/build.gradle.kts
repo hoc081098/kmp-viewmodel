@@ -11,7 +11,13 @@ group = "com.hoc08198"
 version = "1.0-SNAPSHOT"
 
 kotlin {
-  android()
+  androidTarget {
+    compilations.all {
+      kotlinOptions {
+        jvmTarget = "11"
+      }
+    }
+  }
   jvm("desktop") {
     jvmToolchain(11)
   }
@@ -54,15 +60,15 @@ kotlin {
 }
 
 android {
-  compileSdkVersion(33)
+  compileSdkVersion(34)
   sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
   namespace = "com.hoc081098.common"
   defaultConfig {
     minSdkVersion(24)
-    targetSdkVersion(33)
+    targetSdkVersion(34)
   }
   compileOptions {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
   }
 }

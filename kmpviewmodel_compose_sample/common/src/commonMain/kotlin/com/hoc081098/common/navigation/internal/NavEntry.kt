@@ -5,7 +5,7 @@ import com.benasher44.uuid.Uuid
 import com.hoc081098.common.navigation.Route
 import com.hoc081098.common.navigation.RouteContent
 
-internal class NavEntry<T : Route>(
+internal class NavEntry<T : Route> private constructor(
   @Stable val id: String,
   @Stable val route: T,
   val content: RouteContent<T>
@@ -14,12 +14,13 @@ internal class NavEntry<T : Route>(
     fun <T : Route> create(
       route: T,
       contents: List<RouteContent<*>>,
+      id: String = Uuid.randomUUID().toString(),
     ): NavEntry<T> {
       val contentForRoute = contents
         .first { it.id.type == route::class } as RouteContent<T>
 
       return NavEntry(
-        id = Uuid.randomUUID().toString(),
+        id = id,
         route = route,
         content = contentForRoute,
       )
