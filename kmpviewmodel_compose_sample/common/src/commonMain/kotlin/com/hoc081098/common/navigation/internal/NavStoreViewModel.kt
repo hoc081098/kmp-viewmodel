@@ -19,6 +19,11 @@ internal expect fun createSavedStateHandle(
   globalSavedStateHandle: SavedStateHandle,
 ): SavedStateHandle
 
+internal expect fun removeSavedStateHandle(
+  id: String,
+  globalSavedStateHandle: SavedStateHandle,
+): Any?
+
 internal expect fun setNavStackSavedStateProvider(
   globalSavedStateHandle: SavedStateHandle,
   savedStateFactory: () -> Map<String, ArrayList<out Any>>,
@@ -34,20 +39,36 @@ internal expect fun createNavStack(
 internal class NavStoreViewModel(
   private val globalSavedStateHandle: SavedStateHandle,
 ) : ViewModel() {
-  private val viewModelStoreOwners = mutableMapOf<String, DefaultViewModelStoreOwner>()
+  private val viewModelStoreOwners = mutableMapOf<String, ViewModelStoreOwner>()
   private val savedStateHandles = mutableMapOf<String, SavedStateHandle>()
   private val savedStateHandleFactories = mutableMapOf<String, SavedStateHandleFactory>()
 
   init {
     println("$this init")
-    addCloseable { println("$this close") }
+    addCloseable {
+      viewModelStoreOwners.values.forEach {
+        println("$this clear ${it.viewModelStore}")
+        it.viewModelStore.clear()
+      }
+      viewModelStoreOwners.clear()
+
+      savedStateHandles.keys.forEach { id ->
+        removeSavedStateHandle(id, globalSavedStateHandle)
+          .also { println("$this removeSavedStateHandle $id -> $it") }
+      }
+      savedStateHandles.clear()
+
+      savedStateHandleFactories.clear()
+
+      println("$this closed")
+    }
   }
 
   internal infix fun provideViewModelStoreOwner(id: String): ViewModelStoreOwner = viewModelStoreOwners
     .getOrPut(id) {
       DefaultViewModelStoreOwner(
         viewModelStore = createViewModelStore()
-      ).also { addCloseable(it.viewModelStore::clear) }
+      )
     }
 
   internal infix fun provideSavedStateHandleFactory(id: String): SavedStateHandleFactory =
@@ -65,6 +86,13 @@ internal class NavStoreViewModel(
   internal fun removeEntry(id: String) {
     val store = viewModelStoreOwners.remove(id)
     store?.viewModelStore?.clear()
+
+    savedStateHandles.remove(id)
+    removeSavedStateHandle(id, globalSavedStateHandle).also {
+      println("$this removeSavedStateHandle $id -> $it")
+    }
+
+    savedStateHandleFactories.remove(id)
   }
 
   internal fun setNavStackSavedStateProvider(navigator: DefaultNavigator) =

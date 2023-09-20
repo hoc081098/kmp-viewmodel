@@ -41,3 +41,8 @@ internal actual fun createNavStack(
   ),
   onStackEntryRemoved = onStackEntryRemoved,
 )
+
+internal actual fun removeSavedStateHandle(
+  id: String,
+  globalSavedStateHandle: SavedStateHandle
+): Any? = globalSavedStateHandle.remove<SavedStateHandle>(id)

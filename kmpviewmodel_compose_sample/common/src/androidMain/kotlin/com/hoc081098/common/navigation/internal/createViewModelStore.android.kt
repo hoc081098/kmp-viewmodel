@@ -66,3 +66,11 @@ internal actual fun createNavStack(
     )
   }
 }
+
+internal actual fun removeSavedStateHandle(
+  id: String,
+  globalSavedStateHandle: SavedStateHandle
+): Any? = globalSavedStateHandle.run {
+  clearSavedStateProvider(id)
+  remove<Bundle>(id)
+}
