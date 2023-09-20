@@ -15,6 +15,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.hoc081098.common.navigation.LocalNavigator
 import com.hoc081098.common.navigation.Route
@@ -71,7 +72,7 @@ val ScreenAContent = routeContent<ScreenA> { route ->
         }
       )
     },
-    backgroundColor = Color.Green.copy(alpha = 0.5f),
+    backgroundColor = Color.Green.copy(alpha = 0.3f),
   ) {
     Box(
       modifier = Modifier.fillMaxSize(),
@@ -83,6 +84,7 @@ val ScreenAContent = routeContent<ScreenA> { route ->
         Text(
           text = "ViewModel: $viewModel",
           style = MaterialTheme.typography.h6,
+          textAlign = TextAlign.Center,
         )
 
         Spacer(modifier = Modifier.height(8.dp))
