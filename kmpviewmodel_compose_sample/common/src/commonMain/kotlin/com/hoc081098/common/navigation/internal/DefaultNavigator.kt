@@ -6,6 +6,10 @@ import com.hoc081098.common.navigation.Navigator
 import com.hoc081098.common.navigation.Route
 import com.hoc081098.common.navigation.RouteContent
 
+/**
+ * A navigation entry in the navigation stack.
+ * This is used to change the internal stack.
+ */
 internal class DefaultNavigator(
   private val stack: NavStack,
   private val contents: List<RouteContent<*>>,

@@ -56,7 +56,7 @@ fun NavHost(
   val navEntry = navigator.visibleEntryState.value
   CompositionLocalProvider(LocalNavigator provides navigator) {
     saveableStateHolder.SaveableStateProvider(key = navEntry.id) {
-      Content(
+      NavEntryContent(
         navEntry,
         navStoreViewModel
       )
@@ -65,7 +65,7 @@ fun NavHost(
 }
 
 @Composable
-private fun <T : Route> Content(
+private fun <T : Route> NavEntryContent(
   navEntry: NavEntry<T>,
   navStoreViewModel: NavStoreViewModel
 ) {

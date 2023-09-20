@@ -9,10 +9,7 @@ import com.hoc081098.kmp.viewmodel.ViewModel
 import com.hoc081098.kmp.viewmodel.ViewModelStore
 import com.hoc081098.kmp.viewmodel.ViewModelStoreOwner
 
-internal class DefaultViewModelStoreOwner(
-  override val viewModelStore: ViewModelStore
-) : ViewModelStoreOwner
-
+//region Expect and actual functions to create ViewModelStore, SavedStateHandle, NavStack
 internal expect fun createViewModelStore(): ViewModelStore
 
 internal expect fun createSavedStateHandle(
@@ -36,6 +33,9 @@ internal expect fun createNavStack(
   contents: List<RouteContent<*>>,
   onStackEntryRemoved: (NavEntry<*>) -> Unit
 ): NavStack
+//endregion
+
+private class NavEntryViewModelStoreOwner(override val viewModelStore: ViewModelStore) : ViewModelStoreOwner
 
 internal class NavStoreViewModel(
   private val globalSavedStateHandle: SavedStateHandle,
@@ -46,6 +46,7 @@ internal class NavStoreViewModel(
 
   init {
     println("$this init")
+
     addCloseable {
       viewModelStoreOwners.values.forEach {
         println("$this clear ${it.viewModelStore}")
@@ -67,11 +68,12 @@ internal class NavStoreViewModel(
 
   internal infix fun provideViewModelStoreOwner(id: String): ViewModelStoreOwner = viewModelStoreOwners
     .getOrPut(id) {
-      DefaultViewModelStoreOwner(
+      NavEntryViewModelStoreOwner(
         viewModelStore = createViewModelStore()
       )
     }
 
+  //region provideSavedStateHandleFactory
   internal infix fun provideSavedStateHandleFactory(navEntry: NavEntry<*>): SavedStateHandleFactory =
     savedStateHandleFactories.getOrPut(navEntry.id) {
       SavedStateHandleFactory { provideSavedStateHandle(navEntry) }
@@ -85,6 +87,7 @@ internal class NavStoreViewModel(
       this[EXTRA_ROUTE] = navEntry.route
     }
   }
+  //endregion
 
   internal fun removeEntry(id: String) {
     val store = viewModelStoreOwners.remove(id)
@@ -98,6 +101,7 @@ internal class NavStoreViewModel(
     savedStateHandleFactories.remove(id)
   }
 
+  //region Save and restore NavStack
   internal fun setNavStackSavedStateProvider(navigator: DefaultNavigator) =
     setNavStackSavedStateProvider(globalSavedStateHandle, navigator::saveState)
 
@@ -111,4 +115,5 @@ internal class NavStoreViewModel(
     contents = contents,
     onStackEntryRemoved = onStackEntryRemoved,
   )
+  //endregion
 }

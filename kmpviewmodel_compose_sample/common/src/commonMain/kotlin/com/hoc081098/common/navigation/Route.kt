@@ -6,6 +6,12 @@ import androidx.compose.runtime.Stable
 import com.hoc081098.kmp.viewmodel.parcelable.Parcelable
 import kotlin.reflect.KClass
 
+/**
+ * Represents the route to a destination.
+ *
+ * The instance of this will be put into the navigation arguments as a [Parcelable] and is then
+ * available to the target screens.
+ */
 @Immutable
 interface Route : Parcelable
 
@@ -14,14 +20,25 @@ interface Navigator {
   fun navigateBack()
 }
 
+/**
+ * Represents the content of a route.
+ * It is used to map a route to a composable.
+ */
 interface RouteContent<T : Route> {
   @Immutable
   @JvmInline
   value class Id<T : Route>(val type: KClass<T>)
 
+  /**
+   * The id of this content.
+   * Basically it is the [KClass] of the route.
+   */
   @Stable
   val id: Id<T>
 
+  /**
+   * The composable content of this route.
+   */
   @Composable
   fun Content(route: T)
 }

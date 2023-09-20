@@ -15,12 +15,17 @@ internal class NavStack private constructor(
   private val _visibleEntryState = mutableStateOf(stack.last())
   internal val visibleEntryState: State<NavEntry<*>> get() = _visibleEntryState
 
-  fun push(entry: NavEntry<*>) {
+  @Suppress("NOTHING_TO_INLINE")
+  private inline fun updateVisibleEntry() {
+    _visibleEntryState.value = stack.last()
+  }
+
+  internal fun push(entry: NavEntry<*>) {
     stack.add(entry)
     updateVisibleEntry()
   }
 
-  fun pop(): NavEntry<*>? {
+  internal fun pop(): NavEntry<*>? {
     check(stack.isNotEmpty()) { "Cannot pop from an empty stack" }
 
     if (stack.size == 1) {
@@ -36,11 +41,10 @@ internal class NavStack private constructor(
     return removed
   }
 
-  private fun updateVisibleEntry() {
-    _visibleEntryState.value = stack.last()
-  }
-
-  fun saveState(): Map<String, ArrayList<out Any>> {
+  /**
+   * Convert this [NavStack] to a [Map] that can be used to save state on Android.
+   */
+  internal fun saveState(): Map<String, ArrayList<out Any>> {
     check(stack.isNotEmpty()) { "Cannot save state of an empty stack" }
 
     val ids = ArrayList<String>(stack.size)

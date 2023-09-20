@@ -5,10 +5,13 @@ import com.benasher44.uuid.Uuid
 import com.hoc081098.common.navigation.Route
 import com.hoc081098.common.navigation.RouteContent
 
+/**
+ * A navigation entry in the navigation stack.
+ */
 internal class NavEntry<T : Route> private constructor(
-  @Stable val id: String,
-  @Stable val route: T,
-  val content: RouteContent<T>
+  @JvmField @Stable val id: String,
+  @JvmField @Stable val route: T,
+  @JvmField val content: RouteContent<T>
 ) {
   companion object {
     fun <T : Route> create(
