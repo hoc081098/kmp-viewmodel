@@ -59,7 +59,6 @@ class ScreenBViewModel(
 @JvmField
 val ScreenBContent = routeContent<ScreenB> { route ->
   val navigator = LocalNavigator.current
-  var count by rememberSaveable { mutableStateOf(0) }
 
   val viewModel = kmpViewModel(
     factory = {
@@ -70,6 +69,7 @@ val ScreenBContent = routeContent<ScreenB> { route ->
   )
 
   val savedCount by viewModel.countStateFlow.collectAsState()
+  var count by rememberSaveable { mutableStateOf(0) }
 
   Scaffold(
     topBar = {
@@ -95,7 +95,9 @@ val ScreenBContent = routeContent<ScreenB> { route ->
       modifier = Modifier.fillMaxSize(),
       contentAlignment = Alignment.Center
     ) {
-      Column {
+      Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+      ) {
         Text(
           text = "ViewModel: $viewModel",
           style = MaterialTheme.typography.h6,
@@ -104,7 +106,7 @@ val ScreenBContent = routeContent<ScreenB> { route ->
         Spacer(modifier = Modifier.height(8.dp))
 
         Text(
-          text = "Saved count: $savedCount",
+          text = "Saved count (SavedStateHandle): $savedCount",
           style = MaterialTheme.typography.h6,
         )
 
@@ -124,7 +126,7 @@ val ScreenBContent = routeContent<ScreenB> { route ->
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        Text(text = "Click count: $count")
+        Text(text = "Click count (rememberSaveable): $count")
       }
     }
   }
