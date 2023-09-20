@@ -1,6 +1,6 @@
-package com.hoc08198.android
+package com.hoc081098.android
 
-import com.hoc08198.common.App
+import com.hoc081098.common.App
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity

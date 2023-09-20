@@ -1,11 +1,10 @@
-package com.hoc08198.common.navigation.internal
+package com.hoc081098.common.navigation.internal
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.SaveableStateHolder
-import com.hoc08198.common.navigation.Navigator
-import com.hoc08198.common.navigation.Route
-import com.hoc08198.common.navigation.RouteContent
+import com.hoc081098.common.navigation.Navigator
+import com.hoc081098.common.navigation.Route
+import com.hoc081098.common.navigation.RouteContent
 
 internal class DefaultNavigator(
   private val stack: NavStack,
@@ -31,17 +30,15 @@ internal class DefaultNavigator(
 internal fun rememberDefaultNavigator(
   initialRoute: Route,
   contents: List<RouteContent<*>>,
-  saveableStateHolder: SaveableStateHolder,
-): DefaultNavigator = remember(initialRoute, contents, saveableStateHolder) {
+  onStackEntryRemoved: (NavEntry<*>) -> Unit,
+): DefaultNavigator = remember(initialRoute, contents, onStackEntryRemoved) {
   DefaultNavigator(
     stack = NavStack(
       initial = NavEntry.create(
         route = initialRoute,
         contents = contents,
       ),
-      onStackEntryRemoved = { entry ->
-        saveableStateHolder.removeState(entry.id)
-      }
+      onStackEntryRemoved = onStackEntryRemoved,
     ),
     contents = contents,
   )

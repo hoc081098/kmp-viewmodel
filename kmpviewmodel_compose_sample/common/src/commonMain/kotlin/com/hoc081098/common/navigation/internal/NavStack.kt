@@ -1,4 +1,4 @@
-package com.hoc08198.common.navigation.internal
+package com.hoc081098.common.navigation.internal
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf

@@ -56,7 +56,7 @@ kotlin {
 android {
   compileSdkVersion(33)
   sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-  namespace = "com.hoc08198.common"
+  namespace = "com.hoc081098.common"
   defaultConfig {
     minSdkVersion(24)
     targetSdkVersion(33)

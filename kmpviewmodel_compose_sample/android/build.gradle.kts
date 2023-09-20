@@ -4,7 +4,7 @@ plugins {
   kotlin("android")
 }
 
-group = "com.hoc08198"
+group = "com.hoc081098"
 version = "1.0-SNAPSHOT"
 
 repositories {
@@ -18,9 +18,9 @@ dependencies {
 
 android {
   compileSdkVersion(33)
-  namespace = "com.hoc08198.android"
+  namespace = "com.hoc081098.android"
   defaultConfig {
-    applicationId = "com.hoc08198.android"
+    applicationId = "com.hoc081098.android"
     minSdkVersion(24)
     targetSdkVersion(33)
     versionCode = 1

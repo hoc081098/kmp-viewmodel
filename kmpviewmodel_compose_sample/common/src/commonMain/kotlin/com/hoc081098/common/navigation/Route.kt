@@ -1,4 +1,4 @@
-package com.hoc08198.common.navigation
+package com.hoc081098.common.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
