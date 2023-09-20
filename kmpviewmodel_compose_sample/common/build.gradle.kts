@@ -4,6 +4,7 @@ plugins {
   kotlin("multiplatform")
   id("org.jetbrains.compose")
   id("com.android.library")
+  id("kotlin-parcelize")
 }
 
 group = "com.hoc08198"
@@ -20,6 +21,11 @@ kotlin {
         api(compose.runtime)
         api(compose.foundation)
         api(compose.material)
+        api(compose.runtimeSaveable)
+        api("io.github.hoc081098:kmp-viewmodel")
+        api("io.github.hoc081098:kmp-viewmodel-savedstate")
+        api("io.github.hoc081098:kmp-viewmodel-compose")
+        implementation("com.benasher44:uuid:0.8.1")
       }
     }
     val commonTest by getting {

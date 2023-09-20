@@ -18,6 +18,7 @@ kotlin {
     val jvmMain by getting {
       dependencies {
         implementation(project(":common"))
+        implementation(compose.desktop.common)
         implementation(compose.desktop.currentOs)
       }
     }
@@ -34,4 +35,10 @@ compose.desktop {
       packageVersion = "1.0.0"
     }
   }
+}
+
+tasks.register<JavaExec>("runMain") {
+  classpath(kotlin.jvm().compilations.getByName("main").output.allOutputs)
+  classpath(kotlin.jvm().compilations.getByName("main").configurations.runtimeDependencyConfiguration)
+  mainClass.set("MainKt")
 }
