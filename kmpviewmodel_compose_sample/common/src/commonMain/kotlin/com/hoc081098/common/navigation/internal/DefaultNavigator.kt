@@ -16,9 +16,10 @@ internal class DefaultNavigator(
 ) : Navigator {
   internal val visibleEntryState get() = stack.visibleEntryState
   internal val canNavigateBackState get() = stack.canNavigateBackState
+  internal val isPop get() = stack.isPop
 
   override fun navigateTo(screen: Route) {
-    stack.push(
+    stack.pushWithTransition(
       NavEntry.create(
         route = screen,
         contents = contents,
@@ -27,7 +28,13 @@ internal class DefaultNavigator(
   }
 
   override fun navigateBack() {
-    stack.pop()
+    stack.popWithTransition()
+  }
+
+  internal fun markTransitionComplete() {
+    stack.transitionsInProgress
+      .value
+      .forEach(stack::markTransitionComplete)
   }
 
   internal fun saveState() = stack.saveState()

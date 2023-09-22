@@ -18,15 +18,49 @@ internal class NavStack private constructor(
   private val _canNavigateBackState = mutableStateOf(stack.size > 1)
   internal val canNavigateBackState: State<Boolean> get() = _canNavigateBackState
 
+  private val _isPop = mutableStateOf(false)
+  internal val isPop: State<Boolean> get() = _isPop
+
+  /**
+   * This is the set of currently running transitions. Use this set to retrieve the entry and call
+   * [markTransitionComplete] once the transition is complete.
+   */
+  private val _transitionsInProgress = mutableStateOf(setOf<NavEntry<*>>())
+  internal val transitionsInProgress: State<Set<NavEntry<*>>> get() = _transitionsInProgress
+
   @Suppress("NOTHING_TO_INLINE")
-  private inline fun updateVisibleEntry() {
+  private inline fun updateVisibleEntry(isPop: Boolean) {
+    _isPop.value = isPop
     _visibleEntryState.value = stack.last()
     _canNavigateBackState.value = stack.size > 1
   }
 
   internal fun push(entry: NavEntry<*>) {
     stack.add(entry)
-    updateVisibleEntry()
+    updateVisibleEntry(isPop = false)
+  }
+
+  internal fun pushWithTransition(entry: NavEntry<*>) {
+    // When passed an entry that is already transitioning via a call to push, ignore the call
+    // since we are already moving to the proper state.
+    if (
+      _transitionsInProgress.value.any { it === entry } &&
+      stack.any { it === entry }
+    ) {
+      return
+    }
+
+    val previousEntry = _visibleEntryState.value
+
+    // When navigating, we need to mark the outgoing entry as transitioning until it
+    // finishes its outgoing animation.
+    _transitionsInProgress.value = buildSet(_transitionsInProgress.value.size + 2) {
+      addAll(_transitionsInProgress.value)
+      add(previousEntry)
+      add(entry)
+    }
+
+    push(entry)
   }
 
   internal fun pop(): NavEntry<*>? {
@@ -37,12 +71,34 @@ internal class NavStack private constructor(
       return null
     }
 
-    val removed = stack.removeLast()
-
-    updateVisibleEntry()
+    val removed = stack.removeLast().apply { markAsDestroyed() }
+    updateVisibleEntry(isPop = true)
     onStackEntryRemoved(removed)
 
     return removed
+  }
+
+  internal fun popWithTransition() {
+    check(stack.isNotEmpty()) { "Cannot pop from an empty stack" }
+
+    if (stack.size == 1) {
+      // Cannot pop the single entry
+      return
+    }
+
+    // When passed an entry that is already transitioning via a call to pop, ignore the call
+    // since we are already moving to the proper state.
+    val visibleEntry = stack.last().apply { markAsDestroyed() }
+
+    if (_transitionsInProgress.value.any { it === visibleEntry }) {
+      return
+    }
+
+    // When popping, we need to mark the incoming entry as transitioning
+    _transitionsInProgress.value =
+      _transitionsInProgress.value + visibleEntry + run { stack.removeLast(); stack.last() }
+
+    updateVisibleEntry(isPop = true)
   }
 
   /**
@@ -62,6 +118,22 @@ internal class NavStack private constructor(
       SAVED_STATE_IDS to ids,
       SAVED_STATE_ROUTES to routes,
     )
+  }
+
+  internal fun markTransitionComplete(entry: NavEntry<*>) {
+    _transitionsInProgress.value -= entry
+
+    // If the entry is no longer in the stack, then it was removed during the transition
+    // and we should notify the listener.
+    if (entry !in stack) {
+      onStackEntryRemoved(entry)
+      return
+    }
+
+    val existing = stack.find { it.id == entry.id }
+    if (existing === null || existing.isDestroyed) {
+      onStackEntryRemoved(entry)
+    }
   }
 
   companion object {
