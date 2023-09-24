@@ -30,6 +30,19 @@ kotlin {
       }
     }
   }
+
+  val iosTargets = listOf(
+    iosX64(),
+    iosArm64(),
+    iosSimulatorArm64()
+  )
+  iosTargets.forEach { iosTarget ->
+    iosTarget.binaries.framework {
+      baseName = "kmpviewmodel_compose_sample_common"
+      isStatic = true
+    }
+  }
+
   sourceSets {
     val commonMain by getting {
       dependencies {
@@ -62,12 +75,41 @@ kotlin {
         implementation("junit:junit:4.13.2")
       }
     }
+
+    val nonAndroidMain by creating {
+      dependsOn(commonMain)
+    }
+    val nonAndroidTest by creating {
+      dependsOn(commonTest)
+    }
+
     val desktopMain by getting {
+      dependsOn(nonAndroidMain)
+
       dependencies {
         api(compose.preview)
       }
     }
-    val desktopTest by getting
+    val desktopTest by getting {
+      dependsOn(nonAndroidTest)
+    }
+
+    val iosMain by creating {
+      dependsOn(nonAndroidMain)
+
+      iosTargets.forEach {
+        it.compilations.getByName("main").defaultSourceSet.dependsOn(this@creating)
+      }
+
+      dependencies {}
+    }
+    val iosTest by creating {
+      dependsOn(nonAndroidTest)
+
+      iosTargets.forEach {
+        it.compilations.getByName("test").defaultSourceSet.dependsOn(this@creating)
+      }
+    }
   }
 }
 
