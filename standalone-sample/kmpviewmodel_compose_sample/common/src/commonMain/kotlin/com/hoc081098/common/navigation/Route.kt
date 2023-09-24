@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
 import com.hoc081098.kmp.viewmodel.parcelable.Parcelable
+import kotlin.jvm.JvmInline
 import kotlin.reflect.KClass
 
 /**

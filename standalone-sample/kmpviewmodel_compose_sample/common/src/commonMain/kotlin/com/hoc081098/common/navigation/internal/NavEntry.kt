@@ -2,9 +2,10 @@ package com.hoc081098.common.navigation.internal
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
-import com.benasher44.uuid.Uuid
+import com.benasher44.uuid.uuid4
 import com.hoc081098.common.navigation.Route
 import com.hoc081098.common.navigation.RouteContent
+import kotlin.jvm.JvmField
 
 /**
  * A navigation entry in the navigation stack.
@@ -24,9 +25,15 @@ internal class NavEntry<T : Route> private constructor(
 
   override fun toString(): String = "NavEntry(id=$id, route=$route, isDestroyed=$isDestroyed)"
 
+  override fun hashCode(): Int {
+    var result = id.hashCode()
+    result = 31 * result + route.hashCode()
+    return result
+  }
+
   override fun equals(other: Any?): Boolean {
     if (this === other) return true
-    if (javaClass != other?.javaClass) return false
+    if (other == null || this::class != other::class) return false
 
     other as NavEntry<*>
 
@@ -36,17 +43,11 @@ internal class NavEntry<T : Route> private constructor(
     return true
   }
 
-  override fun hashCode(): Int {
-    var result = id.hashCode()
-    result = 31 * result + route.hashCode()
-    return result
-  }
-
   companion object {
     fun <T : Route> create(
       route: T,
       contents: List<RouteContent<*>>,
-      id: String = Uuid.randomUUID().toString(),
+      id: String = uuid4().toString()
     ): NavEntry<T> {
       val contentForRoute = contents
         .first { it.id.type == route::class } as RouteContent<T>

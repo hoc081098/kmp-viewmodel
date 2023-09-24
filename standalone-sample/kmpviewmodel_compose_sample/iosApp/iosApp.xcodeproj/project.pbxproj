@@ -74,6 +74,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 356B94C62AC05DE50094D595 /* Build configuration list for PBXNativeTarget "iosApp" */;
 			buildPhases = (
+				356B94C92AC05E840094D595 /* ShellScript */,
 				356B94B42AC05DDB0094D595 /* Sources */,
 				356B94B52AC05DDB0094D595 /* Frameworks */,
 				356B94B62AC05DDB0094D595 /* Resources */,
@@ -131,6 +132,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		356B94C92AC05E840094D595 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncd \"$SRCROOT/..\"\n./gradlew :common:embedAndSignAppleFrameworkForXcode\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		356B94B42AC05DDB0094D595 /* Sources */ = {
@@ -270,6 +291,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../common/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -281,6 +303,11 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					kmpviewmodel_compose_sample_common,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hoc081098.kmpviewmodel-compose-multiplatform";
 				PRODUCT_NAME = "KmpViewModel Compose Multiplatform";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -298,6 +325,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../common/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -309,6 +337,11 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					kmpviewmodel_compose_sample_common,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hoc081098.kmpviewmodel-compose-multiplatform";
 				PRODUCT_NAME = "KmpViewModel Compose Multiplatform";
 				SWIFT_EMIT_LOC_STRINGS = YES;

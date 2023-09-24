@@ -30,6 +30,7 @@ import com.hoc081098.kmp.viewmodel.ViewModel
 import com.hoc081098.kmp.viewmodel.compose.kmpViewModel
 import com.hoc081098.kmp.viewmodel.createSavedStateHandle
 import com.hoc081098.kmp.viewmodel.parcelable.Parcelize
+import kotlin.jvm.JvmField
 
 @Parcelize
 data class ScreenC(val id: Int) : Route
