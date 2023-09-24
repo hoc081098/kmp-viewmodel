@@ -9,7 +9,7 @@ internal actual fun createViewModelStore(): ViewModelStore = ViewModelStore()
 
 internal actual fun createSavedStateHandle(
   id: String,
-  globalSavedStateHandle: SavedStateHandle
+  globalSavedStateHandle: SavedStateHandle,
 ): SavedStateHandle {
   val restoredSavedStateHandle = globalSavedStateHandle.get<SavedStateHandle>(id)
 
@@ -24,7 +24,7 @@ internal actual fun createSavedStateHandle(
 
 internal actual fun setNavStackSavedStateProvider(
   globalSavedStateHandle: SavedStateHandle,
-  savedStateFactory: () -> Map<String, ArrayList<out Any>>
+  savedStateFactory: () -> Map<String, ArrayList<out Any>>,
 ) {
   // Do nothing
 }
@@ -33,7 +33,7 @@ internal actual fun createNavStack(
   globalSavedStateHandle: SavedStateHandle,
   initialRoute: Route,
   contents: List<RouteContent<*>>,
-  onStackEntryRemoved: (NavEntry<*>) -> Unit
+  onStackEntryRemoved: (NavEntry<*>) -> Unit,
 ): NavStack = NavStack.create(
   initial = NavEntry.create(
     route = initialRoute,
@@ -44,5 +44,5 @@ internal actual fun createNavStack(
 
 internal actual fun removeSavedStateHandle(
   id: String,
-  globalSavedStateHandle: SavedStateHandle
+  globalSavedStateHandle: SavedStateHandle,
 ): Any? = globalSavedStateHandle.remove<SavedStateHandle>(id)

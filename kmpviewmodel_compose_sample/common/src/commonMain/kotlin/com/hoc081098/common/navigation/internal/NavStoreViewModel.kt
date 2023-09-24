@@ -32,7 +32,7 @@ internal expect fun createNavStack(
   globalSavedStateHandle: SavedStateHandle,
   initialRoute: Route,
   contents: List<RouteContent<*>>,
-  onStackEntryRemoved: (NavEntry<*>) -> Unit
+  onStackEntryRemoved: (NavEntry<*>) -> Unit,
 ): NavStack
 //endregion
 
@@ -70,7 +70,7 @@ internal class NavStoreViewModel(
   internal infix fun provideViewModelStoreOwner(id: String): ViewModelStoreOwner = viewModelStoreOwners
     .getOrPut(id) {
       NavEntryViewModelStoreOwner(
-        viewModelStore = createViewModelStore()
+        viewModelStore = createViewModelStore(),
       )
     }
 
@@ -83,7 +83,7 @@ internal class NavStoreViewModel(
   private fun provideSavedStateHandle(navEntry: NavEntry<*>): SavedStateHandle = savedStateHandles.getOrPut(navEntry.id) {
     createSavedStateHandle(
       id = navEntry.id,
-      globalSavedStateHandle = globalSavedStateHandle
+      globalSavedStateHandle = globalSavedStateHandle,
     ).apply {
       this[EXTRA_ROUTE] = navEntry.route
     }
@@ -109,7 +109,7 @@ internal class NavStoreViewModel(
   internal fun createNavStack(
     initialRoute: Route,
     contents: List<RouteContent<*>>,
-    onStackEntryRemoved: (NavEntry<*>) -> Unit
+    onStackEntryRemoved: (NavEntry<*>) -> Unit,
   ): NavStack = createNavStack(
     globalSavedStateHandle = globalSavedStateHandle,
     initialRoute = initialRoute,

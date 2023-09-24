@@ -1,25 +1,34 @@
-import org.jetbrains.compose.compose
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-  kotlin("multiplatform")
-  id("org.jetbrains.compose")
-  id("com.android.library")
-  id("kotlin-parcelize")
+  alias(libs.plugins.kotlin.multiplatform)
+  alias(libs.plugins.jetbrains.compose)
+  alias(libs.plugins.android.library)
+  alias(libs.plugins.kotlin.parcelize)
 }
 
 group = "com.hoc08198"
 version = "1.0-SNAPSHOT"
 
 kotlin {
+  jvmToolchain {
+    languageVersion.set(JavaLanguageVersion.of(libs.versions.java.toolchain.get()))
+    vendor.set(JvmVendorSpec.AZUL)
+  }
+
   androidTarget {
-    compilations.all {
-      kotlinOptions {
-        jvmTarget = "11"
+    compilations.configureEach {
+      compilerOptions.configure {
+        jvmTarget.set(JvmTarget.fromTarget(libs.versions.java.target.get()))
       }
     }
   }
   jvm("desktop") {
-    jvmToolchain(11)
+    compilations.configureEach {
+      compilerOptions.configure {
+        jvmTarget.set(JvmTarget.fromTarget(libs.versions.java.target.get()))
+      }
+    }
   }
   sourceSets {
     val commonMain by getting {
@@ -28,10 +37,12 @@ kotlin {
         api(compose.foundation)
         api(compose.material)
         api(compose.runtimeSaveable)
+
         api("io.github.hoc081098:kmp-viewmodel")
         api("io.github.hoc081098:kmp-viewmodel-savedstate")
         api("io.github.hoc081098:kmp-viewmodel-compose")
-        implementation("com.benasher44:uuid:0.8.1")
+
+        implementation(libs.uuid)
       }
     }
     val commonTest by getting {
@@ -41,9 +52,9 @@ kotlin {
     }
     val androidMain by getting {
       dependencies {
-        api("androidx.appcompat:appcompat:1.5.1")
-        api("androidx.core:core-ktx:1.9.0")
-        implementation("androidx.activity:activity-compose:1.5.0")
+        api(libs.androidx.appcompat)
+        api(libs.androidx.core.ktx)
+        implementation(libs.androidx.activity.compose)
       }
     }
     val androidUnitTest by getting {
@@ -61,15 +72,17 @@ kotlin {
 }
 
 android {
-  compileSdkVersion(34)
+  compileSdk = libs.versions.android.compile.get().toInt()
   sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
   namespace = "com.hoc081098.common"
+
   defaultConfig {
-    minSdkVersion(24)
-    targetSdkVersion(34)
+    minSdk = libs.versions.android.min.get().toInt()
   }
+
+  // still needed for Android projects despite toolchain
   compileOptions {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.toVersion(libs.versions.java.target.get())
+    targetCompatibility = JavaVersion.toVersion(libs.versions.java.target.get())
   }
 }

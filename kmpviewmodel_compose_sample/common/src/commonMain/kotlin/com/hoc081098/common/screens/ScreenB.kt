@@ -64,7 +64,7 @@ val ScreenBContent = routeContent<ScreenB> { route ->
   val viewModel = kmpViewModel(
     factory = {
       ScreenBViewModel(
-        savedStateHandle = createSavedStateHandle()
+        savedStateHandle = createSavedStateHandle(),
       )
     },
   )
@@ -80,21 +80,21 @@ val ScreenBContent = routeContent<ScreenB> { route ->
         },
         navigationIcon = {
           IconButton(
-            onClick = navigator::navigateBack
+            onClick = navigator::navigateBack,
           ) {
             Icon(
               imageVector = Icons.Default.ArrowBack,
               contentDescription = null,
             )
           }
-        }
+        },
       )
     },
     backgroundColor = Color.Red.copy(alpha = 0.3f),
   ) {
     Box(
       modifier = Modifier.fillMaxSize(),
-      contentAlignment = Alignment.Center
+      contentAlignment = Alignment.Center,
     ) {
       Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -121,7 +121,7 @@ val ScreenBContent = routeContent<ScreenB> { route ->
             viewModel.inc()
             count++
             navigator.navigateTo(ScreenC(id = count))
-          }
+          },
         ) {
           Text(text = "To ScreenC")
         }

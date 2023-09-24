@@ -44,7 +44,7 @@ interface RouteContent<T : Route> {
 }
 
 inline fun <reified T : Route> routeContent(
-  noinline content: @Composable (route: T) -> Unit
+  noinline content: @Composable (route: T) -> Unit,
 ): RouteContent<T> =
   object : RouteContent<T> {
     override val id: RouteContent.Id<T> = RouteContent.Id(T::class)

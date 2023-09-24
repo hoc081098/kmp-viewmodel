@@ -44,16 +44,17 @@ fun NavHost(
   val navStoreViewModel = kmpViewModel(
     factory = {
       NavStoreViewModel(
-        globalSavedStateHandle = createSavedStateHandle()
+        globalSavedStateHandle = createSavedStateHandle(),
       )
-    }
+    },
   )
 
   val navigator = rememberDefaultNavigator(
     initialRoute = initialRoute,
     contents = contents,
     onStackEntryRemoved = remember(navStoreViewModel, saveableStateHolder) {
-      { entry ->
+      {
+          entry ->
         navStoreViewModel.removeEntry(entry.id)
         saveableStateHolder.removeState(entry.id)
         println("onStackEntryRemoved: ${entry.id}")
@@ -66,7 +67,7 @@ fun NavHost(
 
   val transition = updateTransition(
     targetState = navigator.visibleEntryState.value,
-    label = "NavHost#visibleEntry"
+    label = "NavHost#visibleEntry",
   )
 
   // Mark transition complete when the transition is finished
@@ -103,12 +104,12 @@ fun NavHost(
         }
         (enter togetherWith exit).using(SizeTransform(clip = false))
       },
-      contentKey = { it.id }
+      contentKey = { it.id },
     ) { entry ->
       saveableStateHolder.SaveableStateProvider(key = entry.id) {
         NavEntryContent(
           entry,
-          navStoreViewModel
+          navStoreViewModel,
         )
       }
     }
@@ -118,13 +119,13 @@ fun NavHost(
 @Composable
 private fun <T : Route> NavEntryContent(
   navEntry: NavEntry<T>,
-  navStoreViewModel: NavStoreViewModel
+  navStoreViewModel: NavStoreViewModel,
 ) {
   ViewModelStoreOwnerProvider(
-    navStoreViewModel provideViewModelStoreOwner navEntry.id
+    navStoreViewModel provideViewModelStoreOwner navEntry.id,
   ) {
     SavedStateHandleFactoryProvider(
-      navStoreViewModel provideSavedStateHandleFactory navEntry
+      navStoreViewModel provideSavedStateHandleFactory navEntry,
     ) {
       navEntry.content.Content(route = navEntry.route)
     }

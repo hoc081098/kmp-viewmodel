@@ -23,7 +23,7 @@ internal class DefaultNavigator(
       NavEntry.create(
         route = screen,
         contents = contents,
-      )
+      ),
     )
   }
 

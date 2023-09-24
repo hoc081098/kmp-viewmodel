@@ -1,7 +1,9 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
-  id("org.jetbrains.compose")
-  id("com.android.application")
-  kotlin("android")
+  alias(libs.plugins.jetbrains.compose)
+  alias(libs.plugins.android.app)
+  alias(libs.plugins.kotlin.android)
 }
 
 group = "com.hoc081098"
@@ -12,30 +14,36 @@ repositories {
 }
 
 dependencies {
-  implementation(project(":common"))
-  implementation("androidx.activity:activity-compose:1.5.0")
+  implementation(projects.common)
+  implementation(libs.androidx.activity.compose)
 }
 
 android {
-  compileSdkVersion(34)
+  compileSdk = libs.versions.android.compile.get().toInt()
   namespace = "com.hoc081098.android"
+
   defaultConfig {
     applicationId = "com.hoc081098.android"
-    minSdkVersion(24)
-    targetSdkVersion(34)
+    minSdk = libs.versions.android.min.get().toInt()
+    targetSdk = libs.versions.android.target.get().toInt()
     versionCode = 1
     versionName = "1.0-SNAPSHOT"
   }
+
+  // still needed for Android projects despite toolchain
   compileOptions {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.toVersion(libs.versions.java.target.get())
+    targetCompatibility = JavaVersion.toVersion(libs.versions.java.target.get())
   }
+
   buildTypes {
-    getByName("release") {
-      isMinifyEnabled = false
+    release {
+      isMinifyEnabled = true
+      isShrinkResources = true
     }
   }
+
   kotlinOptions {
-    jvmTarget = "11"
+    jvmTarget = JvmTarget.fromTarget(libs.versions.java.target.get()).target
   }
 }

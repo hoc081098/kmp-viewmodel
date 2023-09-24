@@ -61,7 +61,7 @@ val ScreenCContent = routeContent<ScreenC> { route ->
   val viewModel = kmpViewModel(
     factory = {
       ScreenCViewModel(
-        savedStateHandle = createSavedStateHandle()
+        savedStateHandle = createSavedStateHandle(),
       )
     },
   )
@@ -76,21 +76,21 @@ val ScreenCContent = routeContent<ScreenC> { route ->
         },
         navigationIcon = {
           IconButton(
-            onClick = navigator::navigateBack
+            onClick = navigator::navigateBack,
           ) {
             Icon(
               imageVector = Icons.Default.ArrowBack,
               contentDescription = null,
             )
           }
-        }
+        },
       )
     },
     backgroundColor = Color.Cyan.copy(alpha = 0.3f),
   ) {
     Box(
       modifier = Modifier.fillMaxSize(),
-      contentAlignment = Alignment.Center
+      contentAlignment = Alignment.Center,
     ) {
       Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -113,7 +113,7 @@ val ScreenCContent = routeContent<ScreenC> { route ->
         Button(
           onClick = {
             viewModel.inc()
-          }
+          },
         ) {
           Text(text = "Inc")
         }

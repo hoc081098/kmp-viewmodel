@@ -57,7 +57,7 @@ val ScreenAContent = routeContent<ScreenA> { route ->
   val viewModel = kmpViewModel(
     factory = {
       ScreenAViewModel(
-        savedStateHandle = createSavedStateHandle()
+        savedStateHandle = createSavedStateHandle(),
       )
     },
   )
@@ -69,7 +69,7 @@ val ScreenAContent = routeContent<ScreenA> { route ->
       TopAppBar(
         title = {
           Text(text = route.toString())
-        }
+        },
       )
     },
     backgroundColor = Color.Green.copy(alpha = 0.3f),
@@ -100,7 +100,7 @@ val ScreenAContent = routeContent<ScreenA> { route ->
           onClick = {
             viewModel.inc()
             navigator.navigateTo(ScreenB(1))
-          }
+          },
         ) {
           Text(text = "To ScreenB")
         }

@@ -31,7 +31,7 @@ internal actual fun SystemBackHandlingEffect(navigator: DefaultNavigator) {
   DisposableEffect(backPressedDispatcherOwner, callback, lifecycleOwner) {
     backPressedDispatcherOwner.onBackPressedDispatcher.addCallback(
       lifecycleOwner,
-      callback
+      callback,
     )
     onDispose(callback::remove)
   }

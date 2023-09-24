@@ -96,7 +96,10 @@ internal class NavStack private constructor(
 
     // When popping, we need to mark the incoming entry as transitioning
     _transitionsInProgress.value =
-      _transitionsInProgress.value + visibleEntry + run { stack.removeLast(); stack.last() }
+      _transitionsInProgress.value + visibleEntry + run {
+        stack.removeLast()
+        stack.last()
+      }
 
     updateVisibleEntry(isPop = true)
   }
@@ -159,7 +162,7 @@ internal class NavStack private constructor(
         NavEntry.create(
           route = route,
           contents = contents,
-          id = id
+          id = id,
         )
       }
 

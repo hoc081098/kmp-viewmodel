@@ -24,7 +24,7 @@ internal const val SAVED_STATE_STACK = "com.hoc081098.common.navigation.stack"
 
 internal actual fun setNavStackSavedStateProvider(
   globalSavedStateHandle: SavedStateHandle,
-  savedStateFactory: () -> Map<String, ArrayList<out Any>>
+  savedStateFactory: () -> Map<String, ArrayList<out Any>>,
 ) {
   globalSavedStateHandle.setSavedStateProvider(SAVED_STATE_STACK) {
     Bundle().apply {
@@ -44,7 +44,7 @@ internal actual fun createNavStack(
   globalSavedStateHandle: SavedStateHandle,
   initialRoute: Route,
   contents: List<RouteContent<*>>,
-  onStackEntryRemoved: (NavEntry<*>) -> Unit
+  onStackEntryRemoved: (NavEntry<*>) -> Unit,
 ): NavStack {
   val savedState = globalSavedStateHandle.get<Bundle>(SAVED_STATE_STACK)
 
@@ -69,7 +69,7 @@ internal actual fun createNavStack(
 
 internal actual fun removeSavedStateHandle(
   id: String,
-  globalSavedStateHandle: SavedStateHandle
+  globalSavedStateHandle: SavedStateHandle,
 ): Any? = globalSavedStateHandle.run {
   clearSavedStateProvider(id)
   remove<Bundle>(id)

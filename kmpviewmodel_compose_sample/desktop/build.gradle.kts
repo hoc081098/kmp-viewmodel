@@ -1,23 +1,38 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-  kotlin("multiplatform")
-  id("org.jetbrains.compose")
+  alias(libs.plugins.kotlin.multiplatform)
+  alias(libs.plugins.jetbrains.compose)
 }
 
 group = "com.hoc08198"
 version = "1.0-SNAPSHOT"
 
+java {
+  sourceCompatibility = JavaVersion.toVersion(libs.versions.java.target.get())
+  targetCompatibility = JavaVersion.toVersion(libs.versions.java.target.get())
+}
 
 kotlin {
+  jvmToolchain {
+    languageVersion.set(JavaLanguageVersion.of(libs.versions.java.toolchain.get()))
+    vendor.set(JvmVendorSpec.AZUL)
+  }
+
   jvm {
-    jvmToolchain(11)
+    compilations.configureEach {
+      compilerOptions.configure {
+        jvmTarget.set(JvmTarget.fromTarget(libs.versions.java.target.get()))
+      }
+    }
+
     withJava()
   }
   sourceSets {
     val jvmMain by getting {
       dependencies {
-        implementation(project(":common"))
+        implementation(projects.common)
         implementation(compose.desktop.common)
         implementation(compose.desktop.currentOs)
       }

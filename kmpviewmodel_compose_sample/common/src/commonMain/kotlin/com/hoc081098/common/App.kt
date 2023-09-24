@@ -24,7 +24,7 @@ fun App() {
           ScreenAContent,
           ScreenBContent,
           ScreenCContent,
-        )
+        ),
       )
     }
   }
