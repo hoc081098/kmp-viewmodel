@@ -47,7 +47,7 @@ internal class NavEntry<T : Route> private constructor(
     fun <T : Route> create(
       route: T,
       contents: List<RouteContent<*>>,
-      id: String = uuid4().toString()
+      id: String = uuid4().toString(),
     ): NavEntry<T> {
       val contentForRoute = contents
         .first { it.id.type == route::class } as RouteContent<T>
