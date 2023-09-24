@@ -20,13 +20,13 @@ internal actual fun createSavedStateHandle(id: String, globalSavedStateHandle: S
     .also { globalSavedStateHandle.setSavedStateProvider(id, it.savedStateProvider()) }
 }
 
-internal const val SAVED_STATE_STACK = "com.hoc081098.common.navigation.stack"
+internal const val SavedStateStack = "com.hoc081098.common.navigation.stack"
 
 internal actual fun setNavStackSavedStateProvider(
   globalSavedStateHandle: SavedStateHandle,
   savedStateFactory: () -> Map<String, ArrayList<out Any>>,
 ) {
-  globalSavedStateHandle.setSavedStateProvider(SAVED_STATE_STACK) {
+  globalSavedStateHandle.setSavedStateProvider(SavedStateStack) {
     Bundle().apply {
       savedStateFactory().forEach { (k, v) ->
         @Suppress("UNCHECKED_CAST")
@@ -46,7 +46,7 @@ internal actual fun createNavStack(
   contents: List<RouteContent<*>>,
   onStackEntryRemoved: (NavEntry<*>) -> Unit,
 ): NavStack {
-  val savedState = globalSavedStateHandle.get<Bundle>(SAVED_STATE_STACK)
+  val savedState = globalSavedStateHandle.get<Bundle>(SavedStateStack)
 
   return if (savedState === null) {
     NavStack.create(

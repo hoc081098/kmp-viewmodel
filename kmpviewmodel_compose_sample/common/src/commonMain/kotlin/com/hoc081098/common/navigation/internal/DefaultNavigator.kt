@@ -43,7 +43,7 @@ internal class DefaultNavigator(
 @Composable
 internal fun rememberDefaultNavigator(
   initialRoute: Route,
-  contents: List<RouteContent<*>>,
+  @Suppress("UnstableCollections") contents: List<RouteContent<*>>,
   onStackEntryRemoved: (NavEntry<*>) -> Unit,
   navStoreViewModel: NavStoreViewModel,
 ): DefaultNavigator = remember(navStoreViewModel) {

@@ -8,7 +8,7 @@ import com.hoc081098.kmp.viewmodel.ViewModel
 import com.hoc081098.kmp.viewmodel.ViewModelStore
 import com.hoc081098.kmp.viewmodel.ViewModelStoreOwner
 
-internal const val EXTRA_ROUTE: String = "com.hoc081098.common.navigation.ROUTE"
+internal const val ExtraRoute: String = "com.hoc081098.common.navigation.ROUTE"
 
 //region Expect and actual functions to create ViewModelStore, SavedStateHandle, NavStack
 internal expect fun createViewModelStore(): ViewModelStore
@@ -80,14 +80,15 @@ internal class NavStoreViewModel(
       SavedStateHandleFactory { provideSavedStateHandle(navEntry) }
     }
 
-  private fun provideSavedStateHandle(navEntry: NavEntry<*>): SavedStateHandle = savedStateHandles.getOrPut(navEntry.id) {
-    createSavedStateHandle(
-      id = navEntry.id,
-      globalSavedStateHandle = globalSavedStateHandle,
-    ).apply {
-      this[EXTRA_ROUTE] = navEntry.route
+  private fun provideSavedStateHandle(navEntry: NavEntry<*>): SavedStateHandle =
+    savedStateHandles.getOrPut(navEntry.id) {
+      createSavedStateHandle(
+        id = navEntry.id,
+        globalSavedStateHandle = globalSavedStateHandle,
+      ).apply {
+        this[ExtraRoute] = navEntry.route
+      }
     }
-  }
   //endregion
 
   internal fun removeEntry(id: String) {

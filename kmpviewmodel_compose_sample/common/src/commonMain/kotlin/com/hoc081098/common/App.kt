@@ -12,10 +12,12 @@ import com.hoc081098.common.screens.ScreenBContent
 import com.hoc081098.common.screens.ScreenCContent
 
 @Composable
-fun App() {
+fun App(
+  modifier: Modifier = Modifier,
+) {
   MaterialTheme {
     Surface(
-      modifier = Modifier.fillMaxSize(),
+      modifier = modifier.fillMaxSize(),
       color = MaterialTheme.colors.background,
     ) {
       NavHost(

@@ -60,3 +60,18 @@ allprojects {
     }
   }
 }
+
+subprojects {
+  apply<io.gitlab.arturbosch.detekt.DetektPlugin>()
+  configure<io.gitlab.arturbosch.detekt.extensions.DetektExtension> {
+    source.from(files("src/"))
+    config.from(files("${project.rootDir}/../detekt.yml"))
+    buildUponDefaultConfig = true
+    allRules = true
+  }
+  afterEvaluate {
+    dependencies {
+      "detektPlugins"(libs.compose.rules.detekt)
+    }
+  }
+}

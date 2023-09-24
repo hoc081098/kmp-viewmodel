@@ -13,7 +13,7 @@ import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Modifier
 import com.hoc081098.common.navigation.internal.DefaultNavigator
-import com.hoc081098.common.navigation.internal.EXTRA_ROUTE
+import com.hoc081098.common.navigation.internal.ExtraRoute
 import com.hoc081098.common.navigation.internal.NavEntry
 import com.hoc081098.common.navigation.internal.NavStoreViewModel
 import com.hoc081098.common.navigation.internal.rememberDefaultNavigator
@@ -24,19 +24,21 @@ import com.hoc081098.kmp.viewmodel.compose.kmpViewModel
 import com.hoc081098.kmp.viewmodel.createSavedStateHandle
 
 fun <T : Route> SavedStateHandle.requireRoute(): T {
-  return requireNotNull(get<T>(EXTRA_ROUTE)) {
-    "SavedStateHandle doesn't contain Route data in \"$EXTRA_ROUTE\""
+  return requireNotNull(get<T>(ExtraRoute)) {
+    "SavedStateHandle doesn't contain Route data in \"$ExtraRoute\""
   }
 }
 
+@Suppress("CompositionLocalAllowlist")
 val LocalNavigator = staticCompositionLocalOf<Navigator> {
   error("Can't use Navigator outside of a navigator NavHost")
 }
 
+@Suppress("LongMethod")
 @Composable
 fun NavHost(
   initialRoute: Route,
-  contents: List<RouteContent<*>>,
+  @Suppress("UnstableCollections") contents: List<RouteContent<*>>,
   modifier: Modifier = Modifier,
 ) {
   val saveableStateHolder = rememberSaveableStateHolder()
