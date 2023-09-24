@@ -25,16 +25,16 @@ import com.hoc081098.kmp.viewmodel.toAndroidX
 @JvmField
 internal val DefaultCreationExtrasForAndroid: CreationExtras = MutableCreationExtras()
 
+@Suppress("NOTHING_TO_INLINE")
 @MainThread
 @Composable
-public actual inline fun <reified VM : ViewModel> kmpViewModel(
+public actual inline fun <VM : ViewModel> kmpViewModel(
   factory: ViewModelFactory<VM>,
   viewModelStoreOwner: ViewModelStoreOwner,
   key: String?,
   extras: CreationExtras,
   savedStateHandleFactory: SavedStateHandleFactory?,
 ): VM = resolveViewModel(
-  modelClass = VM::class.java,
   viewModelStoreOwner = viewModelStoreOwner,
   key = key,
   factory = factory,
@@ -48,7 +48,6 @@ public actual inline fun <reified VM : ViewModel> kmpViewModel(
 @PublishedApi
 @Composable
 internal fun <VM : ViewModel> resolveViewModel(
-  modelClass: Class<VM>,
   viewModelStoreOwner: ViewModelStoreOwner,
   key: String?,
   factory: ViewModelFactory<VM>,
@@ -58,7 +57,7 @@ internal fun <VM : ViewModel> resolveViewModel(
   val androidXOwner = remember(viewModelStoreOwner, viewModelStoreOwner::toAndroidX)
 
   return viewModel(
-    modelClass = modelClass,
+    modelClass = factory.viewModelClass.java,
     viewModelStoreOwner = androidXOwner,
     key = key,
     factory = remember(factory, factory::toAndroidX),

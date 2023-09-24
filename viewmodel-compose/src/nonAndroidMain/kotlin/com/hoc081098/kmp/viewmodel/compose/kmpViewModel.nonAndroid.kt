@@ -2,7 +2,6 @@ package com.hoc081098.kmp.viewmodel.compose
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
-import androidx.compose.runtime.remember
 import com.hoc081098.kmp.viewmodel.CreationExtras
 import com.hoc081098.kmp.viewmodel.EmptyCreationExtras
 import com.hoc081098.kmp.viewmodel.MainThread
@@ -16,21 +15,21 @@ import com.hoc081098.kmp.viewmodel.edit
 import kotlin.jvm.JvmSynthetic
 import kotlin.reflect.KClass
 
+@Suppress("NOTHING_TO_INLINE")
 @MainThread
 @Composable
-public actual inline fun <reified VM : ViewModel> kmpViewModel(
+public actual inline fun <VM : ViewModel> kmpViewModel(
   factory: ViewModelFactory<VM>,
   viewModelStoreOwner: ViewModelStoreOwner,
   key: String?,
   extras: CreationExtras,
   savedStateHandleFactory: SavedStateHandleFactory?,
 ): VM {
-  val kClass = remember { VM::class }
-  val nonNullKey = key ?: rememberDefaultViewModelKey(kClass)
+  val nonNullKey = key ?: rememberDefaultViewModelKey(factory.viewModelClass)
 
   return resolveViewModel(
     key = nonNullKey,
-    kClass = kClass,
+    kClass = factory.viewModelClass,
     factory = factory,
     extras = extras.edit {
       this[VIEW_MODEL_KEY] = nonNullKey

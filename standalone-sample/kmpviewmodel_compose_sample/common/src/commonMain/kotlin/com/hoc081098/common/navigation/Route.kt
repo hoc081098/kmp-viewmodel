@@ -45,6 +45,7 @@ interface RouteContent<T : Route> {
 }
 
 // TODO: Issue https://github.com/JetBrains/compose-multiplatform/issues/3147
+// TODO: Issue https://youtrack.jetbrains.com/issue/KT-57727
 // @OptIn(ExperimentalObjCRefinement::class)
 // @HiddenFromObjC
 // inline fun <reified T : Route> routeContent(
