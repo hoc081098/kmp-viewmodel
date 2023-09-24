@@ -33,7 +33,6 @@
     get/provide `SavedStateHandleFactory` in @Composable functions.
   - `LocalViewModelStoreOwner` and `ViewModelStoreOwnerProvider` to
     get/provide `ViewModelStoreOwner` in @Composable functions.
-  - `rememberViewModelFactory` to remember `ViewModelFactory` in @Composable functions.
   - `defaultPlatformCreationExtras` and `defaultPlatformViewModelStoreOwner`
     to get the default `CreationExtras` and `ViewModelStoreOwner`,
     that depend on the platform.
