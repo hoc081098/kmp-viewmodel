@@ -14,7 +14,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		356B94B82AC05DDB0094D595 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		356B94B82AC05DDB0094D595 /* KmpViewModel Compose Multiplatform.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KmpViewModel Compose Multiplatform.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		356B94BB2AC05DDB0094D595 /* iosAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iosAppApp.swift; sourceTree = "<group>"; };
 		356B94BD2AC05DDB0094D595 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		356B94BF2AC05DE50094D595 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -43,7 +43,7 @@
 		356B94B92AC05DDB0094D595 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				356B94B82AC05DDB0094D595 /* iosApp.app */,
+				356B94B82AC05DDB0094D595 /* KmpViewModel Compose Multiplatform.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -84,7 +84,7 @@
 			);
 			name = iosApp;
 			productName = iosApp;
-			productReference = 356B94B82AC05DDB0094D595 /* iosApp.app */;
+			productReference = 356B94B82AC05DDB0094D595 /* KmpViewModel Compose Multiplatform.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -281,8 +281,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.hoc081098.iosApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hoc081098.kmpviewmodel-compose-multiplatform";
+				PRODUCT_NAME = "KmpViewModel Compose Multiplatform";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -309,8 +309,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.hoc081098.iosApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hoc081098.kmpviewmodel-compose-multiplatform";
+				PRODUCT_NAME = "KmpViewModel Compose Multiplatform";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
