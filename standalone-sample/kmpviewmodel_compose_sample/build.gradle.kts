@@ -33,7 +33,7 @@ allprojects {
       target("**/*.kt")
 
       ktlint(ktlintVersion)
-        .setEditorConfigPath("$rootDir/../.editorconfig")
+        .setEditorConfigPath("$rootDir/../../.editorconfig")
 
       trimTrailingWhitespace()
       indentWithSpaces()
@@ -52,7 +52,7 @@ allprojects {
       target("**/*.gradle.kts", "*.gradle.kts")
 
       ktlint(ktlintVersion)
-        .setEditorConfigPath("$rootDir/../.editorconfig")
+        .setEditorConfigPath("$rootDir/../../.editorconfig")
 
       trimTrailingWhitespace()
       indentWithSpaces()
@@ -65,7 +65,7 @@ subprojects {
   apply<io.gitlab.arturbosch.detekt.DetektPlugin>()
   configure<io.gitlab.arturbosch.detekt.extensions.DetektExtension> {
     source.from(files("src/"))
-    config.from(files("${project.rootDir}/../detekt.yml"))
+    config.from(files("${project.rootDir}/../../detekt.yml"))
     buildUponDefaultConfig = true
     allRules = true
   }

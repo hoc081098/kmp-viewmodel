@@ -11,7 +11,7 @@ pluginManagement {
 
 rootProject.name = "kmpviewmodel_compose_sample"
 
-includeBuild("..") {
+includeBuild("../..") {
   dependencySubstitution {
     substitute(module("io.github.hoc081098:kmp-viewmodel"))
       .using(project(":viewmodel"))

@@ -7,15 +7,15 @@
         <compositeConfiguration>
           <compositeBuild compositeDefinitionSource="SCRIPT">
             <builds>
-              <build path="$PROJECT_DIR$/.." name="kmp-viewmodel">
+              <build path="$PROJECT_DIR$/../.." name="kmp-viewmodel">
                 <projects>
-                  <project path="$PROJECT_DIR$/.." />
-                  <project path="$PROJECT_DIR$/../sample" />
-                  <project path="$PROJECT_DIR$/../sample/app" />
-                  <project path="$PROJECT_DIR$/../sample/shared" />
-                  <project path="$PROJECT_DIR$/../viewmodel" />
-                  <project path="$PROJECT_DIR$/../viewmodel-compose" />
-                  <project path="$PROJECT_DIR$/../viewmodel-savedstate" />
+                  <project path="$PROJECT_DIR$/../.." />
+                  <project path="$PROJECT_DIR$/../../sample" />
+                  <project path="$PROJECT_DIR$/../../sample/app" />
+                  <project path="$PROJECT_DIR$/../../sample/shared" />
+                  <project path="$PROJECT_DIR$/../../viewmodel" />
+                  <project path="$PROJECT_DIR$/../../viewmodel-compose" />
+                  <project path="$PROJECT_DIR$/../../viewmodel-savedstate" />
                 </projects>
               </build>
             </builds>
@@ -27,17 +27,17 @@
         <option name="gradleJvm" value="jbr-17" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$/.." />
+            <option value="$PROJECT_DIR$/../.." />
+            <option value="$PROJECT_DIR$/../../sample" />
+            <option value="$PROJECT_DIR$/../../sample/app" />
+            <option value="$PROJECT_DIR$/../../sample/shared" />
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/android" />
             <option value="$PROJECT_DIR$/common" />
             <option value="$PROJECT_DIR$/desktop" />
-            <option value="$PROJECT_DIR$/../sample" />
-            <option value="$PROJECT_DIR$/../sample/app" />
-            <option value="$PROJECT_DIR$/../sample/shared" />
-            <option value="$PROJECT_DIR$/../viewmodel" />
-            <option value="$PROJECT_DIR$/../viewmodel-compose" />
-            <option value="$PROJECT_DIR$/../viewmodel-savedstate" />
+            <option value="$PROJECT_DIR$/../../viewmodel" />
+            <option value="$PROJECT_DIR$/../../viewmodel-compose" />
+            <option value="$PROJECT_DIR$/../../viewmodel-savedstate" />
           </set>
         </option>
       </GradleProjectSettings>
