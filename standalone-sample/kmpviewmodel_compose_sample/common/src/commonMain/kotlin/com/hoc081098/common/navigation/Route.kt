@@ -44,12 +44,26 @@ interface RouteContent<T : Route> {
   fun Content(route: T)
 }
 
-inline fun <reified T : Route> routeContent(
-  noinline content: @Composable (route: T) -> Unit,
-): RouteContent<T> =
-  object : RouteContent<T> {
-    override val id: RouteContent.Id<T> = RouteContent.Id(T::class)
+// TODO: Issue https://github.com/JetBrains/compose-multiplatform/issues/3147
+// @OptIn(ExperimentalObjCRefinement::class)
+// @HiddenFromObjC
+// inline fun <reified T : Route> routeContent(
+//  noinline content: @Composable (route: T) -> Unit,
+// ): RouteContent<T> =
+//  object : RouteContent<T> {
+//    override val id: RouteContent.Id<T> = RouteContent.Id(T::class)
+//
+//    @Composable
+//    override fun Content(route: T) = content(route)
+//  }
 
-    @Composable
-    override fun Content(route: T) = content(route)
-  }
+@Deprecated("Use routeContent instead", ReplaceWith("routeContent(content)"))
+fun <T : Route> routeContent(
+  clazz: KClass<T>,
+  content: @Composable (route: T) -> Unit,
+): RouteContent<T> = object : RouteContent<T> {
+  override val id: RouteContent.Id<T> = RouteContent.Id(clazz)
+
+  @Composable
+  override fun Content(route: T) = content(route)
+}

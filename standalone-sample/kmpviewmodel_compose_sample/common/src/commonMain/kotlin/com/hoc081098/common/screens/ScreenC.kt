@@ -56,7 +56,7 @@ class ScreenCViewModel(
 }
 
 @JvmField
-val ScreenCContent = routeContent<ScreenC> { route ->
+val ScreenCContent = routeContent(ScreenC::class) { route ->
   val navigator = LocalNavigator.current
 
   val viewModel = kmpViewModel(
