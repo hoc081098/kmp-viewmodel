@@ -8,6 +8,7 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.lifecycle.createSavedStateHandle
 import com.hoc081098.common.App
 import com.hoc081098.kmp.viewmodel.compose.kmpViewModel
+import com.hoc081098.kmp.viewmodel.viewModelFactory
 
 class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,7 +17,7 @@ class MainActivity : AppCompatActivity() {
     setContent {
       MaterialTheme {
         val mainActivityViewModel = kmpViewModel(
-          factory = {
+          factory = viewModelFactory {
             MainActivityViewModel(
               savedStateHandle = createSavedStateHandle(),
             )

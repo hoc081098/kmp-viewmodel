@@ -22,6 +22,7 @@ import com.hoc081098.kmp.viewmodel.compose.SavedStateHandleFactoryProvider
 import com.hoc081098.kmp.viewmodel.compose.ViewModelStoreOwnerProvider
 import com.hoc081098.kmp.viewmodel.compose.kmpViewModel
 import com.hoc081098.kmp.viewmodel.createSavedStateHandle
+import com.hoc081098.kmp.viewmodel.viewModelFactory
 
 fun <T : Route> SavedStateHandle.requireRoute(): T {
   return requireNotNull(get<T>(ExtraRoute)) {
@@ -44,7 +45,7 @@ fun NavHost(
   val saveableStateHolder = rememberSaveableStateHolder()
 
   val navStoreViewModel = kmpViewModel(
-    factory = {
+    factory = viewModelFactory {
       NavStoreViewModel(
         globalSavedStateHandle = createSavedStateHandle(),
       )

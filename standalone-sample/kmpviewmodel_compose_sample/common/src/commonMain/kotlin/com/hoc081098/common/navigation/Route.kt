@@ -44,6 +44,7 @@ interface RouteContent<T : Route> {
   fun Content(route: T)
 }
 
+// TODO: Use reified type parameter when KT-57727 is fixed
 // TODO: Issue https://github.com/JetBrains/compose-multiplatform/issues/3147
 // TODO: Issue https://youtrack.jetbrains.com/issue/KT-57727
 // @OptIn(ExperimentalObjCRefinement::class)

@@ -30,6 +30,7 @@ import com.hoc081098.kmp.viewmodel.ViewModel
 import com.hoc081098.kmp.viewmodel.compose.kmpViewModel
 import com.hoc081098.kmp.viewmodel.createSavedStateHandle
 import com.hoc081098.kmp.viewmodel.parcelable.Parcelize
+import com.hoc081098.kmp.viewmodel.viewModelFactory
 import kotlin.jvm.JvmField
 
 @Parcelize
@@ -60,7 +61,7 @@ val ScreenCContent = routeContent(ScreenC::class) { route ->
   val navigator = LocalNavigator.current
 
   val viewModel = kmpViewModel(
-    factory = {
+    factory = viewModelFactory {
       ScreenCViewModel(
         savedStateHandle = createSavedStateHandle(),
       )
