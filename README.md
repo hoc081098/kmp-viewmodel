@@ -78,17 +78,19 @@ For more information check out the [docs][3].
 
 For more information check out the [docs][4].
 
+## Sample
+
+- [KMM sample](https://github.com/hoc081098/kmp-viewmodel/tree/master/sample): shares business logic and `ViewHolder`s, using Jetpack Compose for Android and SwiftUi for iOS.
+- [Compose Multiplatform sample](https://github.com/hoc081098/kmp-viewmodel/tree/master/standalone-sample/kmpviewmodel_compose_sample): shares `ViewModel`s and integrates with `Navigation` in Compose Multiplatform.
+- [Compose Multiplatform KmpViewModel KMM Unsplash Sample](https://github.com/hoc081098/Compose-Multiplatform-KmpViewModel-KMM-Unsplash-Sample): A KMP template of the Unsplash App using Compose multiplatform for Android, Desktop, iOS. Share everything including data, domain, presentation, and UI.
+- [🍭 GithubSearchKMM](https://github.com/hoc081098/GithubSearchKMM): Github Repos Search KMM for Android and iOS. Kotlin Multiplatform Mobile using Jetpack Compose, SwiftUI, FlowRedux, Coroutines Flow, Dagger Hilt, Koin Dependency Injection, shared KMP ViewModel, Clean Architecture.
+
 ## Roadmap
 
 - [x] support `SaveStateHandle` (since [0.2.0](https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.2.0)).
 - [x] add extensions for `Flow`/`StateFlow`, to use the ViewModel easily on `ios`/`macOS`/`tvOS`/`watchOS` platforms
   (since [0.3.0](https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.3.0)).
 - [ ] support `Compose Multiplatform Framework`.
-
-## Sample
-
-- [KMM sample](https://github.com/hoc081098/kmp-viewmodel/tree/master/sample): shares business logic and `ViewHolder`s, using Jetpack Compose for Android and SwiftUi for iOS.
-- [Compose Multiplatform sample](https://github.com/hoc081098/kmp-viewmodel/tree/master/standalone-sample/kmpviewmodel_compose_sample): shares `ViewModel`s and integrates with `Navigation` in Compose Multiplatform.
 
 ## License
 
