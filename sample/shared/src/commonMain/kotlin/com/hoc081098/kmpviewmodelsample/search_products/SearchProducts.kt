@@ -3,8 +3,8 @@
 package com.hoc081098.kmpviewmodelsample.search_products
 
 import com.hoc081098.kmpviewmodelsample.AppDispatchers
-import com.hoc081098.kmpviewmodelsample.FakeProductsJson
-import com.hoc081098.kmpviewmodelsample.ProductItem
+import com.hoc081098.kmpviewmodelsample.data.FakeProductsJson
+import com.hoc081098.kmpviewmodelsample.data.ProductItem
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock

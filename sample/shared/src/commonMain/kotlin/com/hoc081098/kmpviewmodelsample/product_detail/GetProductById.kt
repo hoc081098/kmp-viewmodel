@@ -3,8 +3,8 @@
 package com.hoc081098.kmpviewmodelsample.product_detail
 
 import com.hoc081098.kmpviewmodelsample.AppDispatchers
-import com.hoc081098.kmpviewmodelsample.FakeProductsJson
-import com.hoc081098.kmpviewmodelsample.ProductItem
+import com.hoc081098.kmpviewmodelsample.data.FakeProductsJson
+import com.hoc081098.kmpviewmodelsample.data.ProductItem
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json

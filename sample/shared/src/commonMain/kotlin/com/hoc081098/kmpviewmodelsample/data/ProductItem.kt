@@ -1,4 +1,4 @@
-package com.hoc081098.kmpviewmodelsample
+package com.hoc081098.kmpviewmodelsample.data
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
