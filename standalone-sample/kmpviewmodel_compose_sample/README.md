@@ -10,6 +10,8 @@ Compose Multiplatform and Multiplatform ViewModel sample
 
 - The goal of these samples is to share presentation logic and UI (Compose Multiplatform).
 
+- Save and restore the navigation state across configuration changes and process death on Android.
+
 ### Desktop
 
 https://user-images.githubusercontent.com/36917223/270401024-360323a2-523f-49ba-ad8e-0d9bde97dc42.mov
