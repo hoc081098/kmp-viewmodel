@@ -1,15 +1,14 @@
 Compose Multiplatform and Multiplatform ViewModel sample
 ==================
 
-- Shares `ViewModel`s and integrates with `Navigation` in Compose Multiplatform.
+- Shares `ViewModel`s and integrates with `Navigation`, `SavedStateHandle` in Compose Multiplatform.
 
-- This projects contains Kotlin Multiplatform apps. There are three apps:
+- This project is a Kotlin Multiplatform project. There are three apps:
   - Android (under `/android`)
   - Desktop (under `/desktop`)
   - iOS (under `/iosApp`)
 
 - The goal of these samples is to share presentation logic and UI (Compose Multiplatform).
-
 
 ### Desktop
 
@@ -18,6 +17,10 @@ https://user-images.githubusercontent.com/36917223/270401024-360323a2-523f-49ba-
 ### Android
 
 https://user-images.githubusercontent.com/36917223/270400962-dd8f9fa6-9830-4ab3-88a5-c30afe3b2756.mov
+
+### iOS
+
+https://user-images.githubusercontent.com/36917223/270413967-f21e8938-d4f0-42c2-82c8-c014e8c27bf4.mp4
 
 ### Running the apps
 
