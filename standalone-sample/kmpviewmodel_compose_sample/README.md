@@ -12,10 +12,12 @@ Compose Multiplatform and Multiplatform ViewModel sample
 
 
 ### Desktop
-https://github.com/hoc081098/kmp-viewmodel/assets/36917223/dd8f9fa6-9830-4ab3-88a5-c30afe3b2756
+
+https://user-images.githubusercontent.com/36917223/270401024-360323a2-523f-49ba-ad8e-0d9bde97dc42.mov
 
 ### Android
-https://github.com/hoc081098/kmp-viewmodel/assets/36917223/360323a2-523f-49ba-ad8e-0d9bde97dc42
+
+https://user-images.githubusercontent.com/36917223/270400962-dd8f9fa6-9830-4ab3-88a5-c30afe3b2756.mov
 
 ### Running the apps
 
