@@ -1,9 +1,20 @@
 [versions]
 kotlin = "1.9.0"
-java = "11"
 coroutines = "1.7.3"
 kotlinx-serialization-json = "1.5.1"
 kotlinx-collections-immutable = "0.3.5"
+
+# the Java version that the Java and Kotlin compilers will target
+java-target = "11"
+# the Java version that is used to run the Java and Kotlin compilers and various other tasks
+java-toolchain = "17"
+
+# the Android minSdkVersion to use
+android-min = "21"
+# the Android target to use
+android-target = "33"
+# the Android compileSdkVersion to use
+android-compile = "33"
 
 jetbrains-compose = "1.5.0"
 

@@ -11,14 +11,14 @@ plugins {
 
 kotlin {
   jvmToolchain {
-    languageVersion.set(JavaLanguageVersion.of(libs.versions.java.get()))
+    languageVersion.set(JavaLanguageVersion.of(libs.versions.java.toolchain.get()))
     vendor.set(JvmVendorSpec.AZUL)
   }
 
   androidTarget {
-    compilations.all {
-      kotlinOptions {
-        jvmTarget = JavaVersion.toVersion(libs.versions.java.get()).toString()
+    compilations.configureEach {
+      compilerOptions.configure {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.fromTarget(libs.versions.java.target.get()))
       }
     }
   }
@@ -107,8 +107,8 @@ android {
   }
   // still needed for Android projects despite toolchain
   compileOptions {
-    sourceCompatibility = JavaVersion.toVersion(libs.versions.java.get())
-    targetCompatibility = JavaVersion.toVersion(libs.versions.java.get())
+    sourceCompatibility = JavaVersion.toVersion(libs.versions.java.target.get())
+    targetCompatibility = JavaVersion.toVersion(libs.versions.java.target.get())
   }
 
   dependencies {

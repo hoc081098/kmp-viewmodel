@@ -6,11 +6,11 @@ plugins {
 
 android {
   namespace = "com.hoc081098.kmpviewmodelsample.android"
-  compileSdk = 33
+  compileSdk = libs.versions.android.compile.get().toInt()
   defaultConfig {
     applicationId = "com.hoc081098.kmpviewmodelsample.android"
-    minSdk = 26
-    targetSdk = 33
+    minSdk = libs.versions.android.min.get().toInt()
+    targetSdk = libs.versions.android.target.get().toInt()
     versionCode = 1
     versionName = "1.0"
   }
@@ -31,11 +31,11 @@ android {
     }
   }
   compileOptions {
-    sourceCompatibility = JavaVersion.toVersion(libs.versions.java.get())
-    targetCompatibility = JavaVersion.toVersion(libs.versions.java.get())
+    sourceCompatibility = JavaVersion.toVersion(libs.versions.java.target.get())
+    targetCompatibility = JavaVersion.toVersion(libs.versions.java.target.get())
   }
   kotlinOptions {
-    jvmTarget = JavaVersion.toVersion(libs.versions.java.get()).toString()
+    jvmTarget = JavaVersion.toVersion(libs.versions.java.target.get()).toString()
   }
 }
 

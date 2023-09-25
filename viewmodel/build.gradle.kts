@@ -1,6 +1,7 @@
 @file:Suppress("ClassName")
 
 import java.net.URL
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
@@ -18,17 +19,25 @@ kotlin {
   explicitApi()
 
   jvmToolchain {
-    languageVersion.set(JavaLanguageVersion.of(libs.versions.java.get()))
+    languageVersion.set(JavaLanguageVersion.of(libs.versions.java.toolchain.get()))
     vendor.set(JvmVendorSpec.AZUL)
   }
 
   androidTarget {
     publishAllLibraryVariants()
+
+    compilations.configureEach {
+      compilerOptions.configure {
+        jvmTarget.set(JvmTarget.fromTarget(libs.versions.java.target.get()))
+      }
+    }
   }
 
   jvm {
-    compilations.all {
-      kotlinOptions.jvmTarget = JavaVersion.toVersion(libs.versions.java.get()).toString()
+    compilations.configureEach {
+      compilerOptions.configure {
+        jvmTarget.set(JvmTarget.fromTarget(libs.versions.java.target.get()))
+      }
     }
   }
   js(IR) {
@@ -175,18 +184,18 @@ kotlin {
 }
 
 android {
-  compileSdk = 33
+  compileSdk = libs.versions.android.compile.get().toInt()
   sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
   namespace = "com.hoc081098.kmp.viewmodel"
 
   defaultConfig {
-    minSdk = 21
+    minSdk = libs.versions.android.min.get().toInt()
   }
 
   // still needed for Android projects despite toolchain
   compileOptions {
-    sourceCompatibility = JavaVersion.toVersion(libs.versions.java.get())
-    targetCompatibility = JavaVersion.toVersion(libs.versions.java.get())
+    sourceCompatibility = JavaVersion.toVersion(libs.versions.java.target.get())
+    targetCompatibility = JavaVersion.toVersion(libs.versions.java.target.get())
   }
 }
 
