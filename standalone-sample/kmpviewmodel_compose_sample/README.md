@@ -1,16 +1,18 @@
 Compose Multiplatform and Multiplatform ViewModel sample
 ==================
 
-- Shares `ViewModel`s and integrates with `Navigation`, `SavedStateHandle` in Compose Multiplatform.
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fhoc081098%2Fkmp-viewmodel%2Ftree%2Fmaster%2Fstandalone-sample%2Fkmpviewmodel_compose_sample&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+
+- **Shares `ViewModel`s and integrates with `Navigation`, `SavedStateHandle` in Compose Multiplatform**.
 
 - This project is a Kotlin Multiplatform project. There are three apps:
   - Android (under `/android`)
   - Desktop (under `/desktop`)
   - iOS (under `/iosApp`)
 
-- The goal of these samples is to share presentation logic and UI (Compose Multiplatform).
+- The goal of these samples is to **share presentation logic and UI (Compose Multiplatform)**.
 
-- Save and restore the navigation state across configuration changes and process death on Android.
+- Save and restore the navigation state across **configuration changes** and **process death on Android**.
 
 ### Desktop
 
