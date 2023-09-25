@@ -10,6 +10,13 @@ Compose Multiplatform and Multiplatform ViewModel sample
 
 - The goal of these samples is to share presentation logic and UI (Compose Multiplatform).
 
+
+### Desktop
+https://github.com/hoc081098/kmp-viewmodel/assets/36917223/dd8f9fa6-9830-4ab3-88a5-c30afe3b2756
+
+### Android
+https://github.com/hoc081098/kmp-viewmodel/assets/36917223/360323a2-523f-49ba-ad8e-0d9bde97dc42
+
 ### Running the apps
 
 - Open this folder in Android Studio.
