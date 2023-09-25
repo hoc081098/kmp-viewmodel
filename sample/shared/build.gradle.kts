@@ -95,9 +95,9 @@ kotlin {
 
 android {
   namespace = "com.hoc081098.kmpviewmodelsample"
-  compileSdk = 33
+  compileSdk = libs.versions.android.compile.get().toInt()
   defaultConfig {
-    minSdk = 26
+    minSdk = libs.versions.android.min.get().toInt()
   }
   buildFeatures {
     buildConfig = true
