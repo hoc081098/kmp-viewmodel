@@ -85,6 +85,11 @@ For more information check out the [docs][4].
   (since [0.3.0](https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.3.0)).
 - [ ] support `Compose Multiplatform Framework`.
 
+## Sample
+
+- [KMM sample](/sample): shares business logic and `ViewHolder`s, using Jetpack Compose for Android and SwiftUi for iOS.
+- [Compose Multiplatform sample](/standalone-sample/kmpviewmodel_compose_sample): shares `ViewModel`s and integrates with `Navigation` in Compose Multiplatform.
+
 ## License
 
 ```license
