@@ -31,11 +31,15 @@
   - `kmpViewModel` to retrieve `ViewModel`s in @Composable functions.
   - `LocalSavedStateHandleFactory` and `SavedStateHandleFactoryProvider` to
     get/provide `SavedStateHandleFactory` in @Composable functions.
+    It allows integration with any navigation library.
   - `LocalViewModelStoreOwner` and `ViewModelStoreOwnerProvider` to
     get/provide `ViewModelStoreOwner` in @Composable functions.
+    It allows integration with any navigation library.
   - `defaultPlatformCreationExtras` and `defaultPlatformViewModelStoreOwner`
     to get the default `CreationExtras` and `ViewModelStoreOwner`,
-    that depend on the platform.
+    which depends on the platform.
+
+- Dependencies: [Compose Multiplatform 1.5.0](https://github.com/JetBrains/compose-multiplatform/releases/tag/v1.5.0)
 
 ## [0.4.0] - Apr 7, 2023
 
