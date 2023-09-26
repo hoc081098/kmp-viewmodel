@@ -77,6 +77,8 @@ class ScreenAViewModel(
 
 ## 3. Use `ViewModel` in Compose Multiplatform
 
+Using `kmpViewModel` to retrieve `ViewModel` in `@Composable` functions.
+
 ```kotlin
 @Composable
 fun ScreenAContent(
@@ -105,3 +107,31 @@ fun ScreenAContent(
 }
 ```
 
+## 4. Customize `SavedStateHandleFactory` and `ViewModelStoreOwner`
+
+`LocalSavedStateHandleFactory` and `LocalViewModelStoreOwner` are used to easily provide `SavedStateHandleFactory`
+and `ViewModelStoreOwner` in `@Composable` functions.
+It allows integration with any navigation library.
+
+```kotlin
+// https://github.com/hoc081098/kmp-viewmodel/blob/892cbe109fe623c57d3769b830ffda198159aee4/standalone-sample/kmpviewmodel_compose_sample/common/src/commonMain/kotlin/com/hoc081098/common/navigation/NavHost.kt#L123
+
+@Composable
+private fun <T : Route> NavEntryContent(
+  navEntry: NavEntry<T>,
+  navStoreViewModel: NavStoreViewModel,
+) {
+  ViewModelStoreOwnerProvider(
+    navStoreViewModel provideViewModelStoreOwner navEntry.id,
+  ) {
+    SavedStateHandleFactoryProvider(
+      navStoreViewModel provideSavedStateHandleFactory navEntry,
+    ) {
+      navEntry.content.Content(route = navEntry.route)
+    }
+  }
+}
+```
+
+> Full example is available at:
+> https://github.com/hoc081098/kmp-viewmodel/blob/892cbe109fe623c57d3769b830ffda198159aee4/standalone-sample/kmpviewmodel_compose_sample/common/src/commonMain/kotlin/com/hoc081098/common/navigation/NavHost.kt#L123
