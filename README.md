@@ -19,8 +19,9 @@ Its principal advantage is that it caches state and persists it through configur
 [![Build sample](https://github.com/hoc081098/kmp-viewmodel/actions/workflows/sample.yml/badge.svg)](https://github.com/hoc081098/kmp-viewmodel/actions/workflows/sample.yml)
 [![Publish Release](https://github.com/hoc081098/kmp-viewmodel/actions/workflows/publish-release.yml/badge.svg)](https://github.com/hoc081098/kmp-viewmodel/actions/workflows/publish-release.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Kotlin version](https://img.shields.io/badge/Kotlin-1.8.10-blueviolet?logo=kotlin&logoColor=white)](http://kotlinlang.org)
-[![KotlinX Coroutines version](https://img.shields.io/badge/Kotlinx_Coroutines-1.6.4-blueviolet?logo=kotlin&logoColor=white)](https://github.com/Kotlin/kotlinx.coroutines/releases/tag/1.6.4)
+[![Kotlin version](https://img.shields.io/badge/Kotlin-1.9.0-blueviolet?logo=kotlin&logoColor=white)](http://kotlinlang.org)
+[![KotlinX Coroutines version](https://img.shields.io/badge/Kotlinx_Coroutines-1.7.3-blueviolet?logo=kotlin&logoColor=white)](https://github.com/Kotlin/kotlinx.coroutines/releases/tag/1.7.3)
+[![Compose Multiplatform version](https://img.shields.io/badge/Compose_Multiplatform-1.5.0-blueviolet?logo=kotlin&logoColor=white)](https://github.com/JetBrains/compose-multiplatform/releases/tag/v1.5.0)
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fhoc081098%2Fkmp-viewmodel&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 ![badge][badge-jvm]
 ![badge][badge-android]
