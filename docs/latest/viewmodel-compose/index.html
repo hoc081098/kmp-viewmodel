@@ -15,6 +15,10 @@
         <link rel="canonical" href="https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-compose/">
       
       
+        <link rel="prev" href="../viewmodel-savedstate/">
+      
+      
+        <link rel="next" href="../swift-interop/">
       
       
       <link rel="icon" href="../images/logo.jpeg">
@@ -22,7 +26,7 @@
     
     
       
-        <title>Get started - KMP ViewModel</title>
+        <title>ViewModel Compose - KMP ViewModel</title>
       
     
     
@@ -108,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Get started
+              ViewModel Compose
             
           </span>
         </div>
@@ -298,6 +302,93 @@
       
   
   
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    ViewModel Compose
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    ViewModel Compose
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-add-dependency" class="md-nav__link">
+    1. Add dependency
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-create-your-viewmodel-in-commonmain-source-set" class="md-nav__link">
+    2. Create your ViewModel in commonMain source set
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-use-viewmodel-in-compose-multiplatform" class="md-nav__link">
+    3. Use ViewModel in Compose Multiplatform
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-customize-savedstatehandlefactory-and-viewmodelstoreowner" class="md-nav__link">
+    4. Customize SavedStateHandleFactory and ViewModelStoreOwner
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
   
     <li class="md-nav__item">
       <a href="../swift-interop/" class="md-nav__link">
@@ -372,7 +463,7 @@
 <span class="w">  </span><span class="n">sourceSets</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">commonMain</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">getting</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">api</span><span class="p">(</span><span class="s">&quot;io.github.hoc081098:kmp-viewmodel-compose:0.4.0&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="n">api</span><span class="p">(</span><span class="s">&quot;io.github.hoc081098:kmp-viewmodel-compose:0.5.0&quot;</span><span class="p">)</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
@@ -393,7 +484,7 @@
 
 <span class="c1">// build.gradle.kts</span>
 <span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">api</span><span class="p">(</span><span class="s">&quot;io.github.hoc081098:kmp-viewmodel-compose:0.4.1-SNAPSHOT&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="n">api</span><span class="p">(</span><span class="s">&quot;io.github.hoc081098:kmp-viewmodel-compose:0.5.1-SNAPSHOT&quot;</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
 
