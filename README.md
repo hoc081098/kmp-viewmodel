@@ -91,7 +91,7 @@ For more information check out the [docs][4].
 - [x] support `SaveStateHandle` (since [0.2.0](https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.2.0)).
 - [x] add extensions for `Flow`/`StateFlow`, to use the ViewModel easily on `ios`/`macOS`/`tvOS`/`watchOS` platforms
   (since [0.3.0](https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.3.0)).
-- [ ] support `Compose Multiplatform Framework`.
+- [x] support `Compose Multiplatform Framework` (since [0.5.0](https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.5.0)).
 
 ## License
 
