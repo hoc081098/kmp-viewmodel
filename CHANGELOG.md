@@ -2,14 +2,16 @@
 
 ## [Unreleased]
 
-#### Update dependencies
+## [0.5.0] - Sep 27, 2023
+
+### Update dependencies
 
 - Kotlin `1.9.0`.
 - AndroidX Lifecycle `2.6.1`.
 - KotlinX Coroutines `1.7.3`.
 - Android Gradle Plugin `8.1.0`.
 
-#### viewmodel
+### viewmodel
 
 - Add `ViewModelStore` and `ViewModelStoreOwner`.
 - Add `ViewModelFactory` and `VIEW_MODEL_KEY`.
@@ -19,13 +21,13 @@
   non-Android targets_.
 - Add `MainThread` (moved from `viewmodel-savedstate` module).
 
-#### viewmodel-savedstate
+### viewmodel-savedstate
 
 - Remove `MainThread` (moved to `viewmodel` module).
 - Add `SavedStateHandleFactory` interface.
 - Add `SAVED_STATE_HANDLE_FACTORY_KEY` and `CreationExtras.createSavedStateHandle()`.
 
-#### viewmodel-compose
+### viewmodel-compose
 
 - A new module allows to access `ViewModel`s in **Jetpack Compose Multiplatform**.
   - `kmpViewModel` to retrieve `ViewModel`s in @Composable functions.
@@ -39,7 +41,23 @@
     to get the default `CreationExtras` and `ViewModelStoreOwner`,
     which depends on the platform.
 
-- Dependencies: [Compose Multiplatform 1.5.0](https://github.com/JetBrains/compose-multiplatform/releases/tag/v1.5.0)
+- Dependencies: [Compose Multiplatform 1.5.0](https://github.com/JetBrains/compose-multiplatform/releases/tag/v1.5.0).
+
+- Docs: [0.x Viewmodel-Compose docs](https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-compose/).
+
+### Example, docs and tests
+
+- Refactor example code.
+
+- Add [Compose Multiplatform sample](https://github.com/hoc081098/kmp-viewmodel/tree/master/standalone-sample/kmpviewmodel_compose_sample)
+  which shares `ViewModel`s and integrates with `Navigation` in Compose Multiplatform.
+
+- Add [Compose Multiplatform KmpViewModel KMM Unsplash Sample](https://github.com/hoc081098/Compose-Multiplatform-KmpViewModel-KMM-Unsplash-Sample),
+  a KMP template of the Unsplash App using Compose multiplatform for Android, Desktop, iOS.
+  Share everything including data, domain, presentation, and UI.
+
+- Add more docs: [0.x docs](https://hoc081098.github.io/kmp-viewmodel/docs/0.x).
+- Add more tests.
 
 ## [0.4.0] - Apr 7, 2023
 
