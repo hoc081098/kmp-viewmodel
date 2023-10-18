@@ -5,8 +5,8 @@ java-target = "11"
 # the Java version that is used to run the Java and Kotlin compilers and various other tasks
 java-toolchain = "17"
 coroutines = "1.7.3"
-kotlinx-serialization-json = "1.5.1"
-kotlinx-collections-immutable = "0.3.5"
+kotlinx-serialization-json = "1.6.0"
+kotlinx-collections-immutable = "0.3.6"
 
 # the Android minSdkVersion to use
 android-min = "26"
@@ -15,30 +15,30 @@ android-target = "34"
 # the Android compileSdkVersion to use
 android-compile = "34"
 
-jetbrains-compose = "1.5.1"
+jetbrains-compose = "1.5.3"
 
 touchlab-stately = "1.2.5"
 napier = "2.6.1"
-flowExt = "0.7.1"
-koin = "3.4.3"
-koin-androidx-compose = "3.4.6"
+flowExt = "0.7.2"
+koin = "3.5.0"
+koin-androidx-compose = "3.5.0"
 coil = "2.4.0"
-compose-rules-detekt = "0.2.1"
+compose-rules-detekt = "0.3.0"
 
-androidx-lifecycle = "2.6.1"
-androidx-annotation = "1.6.0"
-androidx-activity = "1.7.2"
+androidx-lifecycle = "2.6.2"
+androidx-annotation = "1.7.0"
+androidx-activity = "1.8.0"
 androidx-appcompat = "1.6.1"
 androidx-compose-compiler = "1.5.1"
-androidx-core-ktx = "1.10.1"
-androidx-navigation = "2.6.0"
-android-gradle = "8.1.0"
+androidx-core-ktx = "1.12.0"
+androidx-navigation = "2.7.4"
+android-gradle = "8.1.2"
 
-spotless = "6.20.0"
+spotless = "6.22.0"
 detekt = "1.23.1"
 
-kotlinx-kover = "0.7.3"
-dokka = "1.8.20"
+kotlinx-kover = "0.7.4"
+dokka = "1.9.10"
 kotlinx-binary-compatibility-validator = "0.13.2"
 
 uuid = "0.8.1"
@@ -71,7 +71,7 @@ androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-
 androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "androidx-annotation" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
-androidx-compose-bom = { module = "androidx.compose:compose-bom", version = "2023.06.01" }
+androidx-compose-bom = { module = "androidx.compose:compose-bom", version = "2023.10.01" }
 androidx-compose-ui-ui = { module = "androidx.compose.ui:ui" }
 androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
