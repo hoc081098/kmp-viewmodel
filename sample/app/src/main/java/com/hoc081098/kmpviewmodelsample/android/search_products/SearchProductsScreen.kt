@@ -27,9 +27,11 @@ import com.hoc081098.kmpviewmodelsample.ProductItemUi
 import com.hoc081098.kmpviewmodelsample.android.common.EmptyProducts
 import com.hoc081098.kmpviewmodelsample.android.common.ErrorMessageAndRetryButton
 import com.hoc081098.kmpviewmodelsample.android.common.LoadingIndicator
+import com.hoc081098.kmpviewmodelsample.android.common.OnLifecycleEventWithBuilder
 import com.hoc081098.kmpviewmodelsample.android.common.ProductItemsList
 import com.hoc081098.kmpviewmodelsample.search_products.SearchProductsState
 import com.hoc081098.kmpviewmodelsample.search_products.SearchProductsViewModel
+import io.github.aakira.napier.Napier
 import org.koin.androidx.compose.koinViewModel
 import org.koin.compose.rememberKoinInject
 
@@ -40,6 +42,10 @@ fun SearchProductsScreen(
   modifier: Modifier = Modifier,
   viewModel: SearchProductsViewModel = koinViewModel(),
 ) {
+  OnLifecycleEventWithBuilder {
+    onEach { owner, event -> Napier.d("[SearchProductsScreen] event=$event, owner=$owner") }
+  }
+
   val state by viewModel.stateFlow.collectAsStateWithLifecycle()
   val searchTerm by viewModel.searchTermStateFlow.collectAsStateWithLifecycle(
     context = rememberKoinInject<AppDispatchers>().immediateMain,

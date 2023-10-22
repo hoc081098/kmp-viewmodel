@@ -13,9 +13,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 
-@Suppress("UnusedPrivateMember", "unused")
+@Suppress("unused")
 @Composable
-private fun OnLifecycleEvent(
+fun OnLifecycleEvent(
   vararg keys: Any?,
   lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current,
   onEvent: (owner: LifecycleOwner, event: Lifecycle.Event) -> Unit,
@@ -35,6 +35,7 @@ private fun OnLifecycleEvent(
 }
 
 typealias LifecycleEventListener = (owner: LifecycleOwner) -> Unit
+typealias LifecycleEachEventListener = (owner: LifecycleOwner, event: Lifecycle.Event) -> Unit
 
 @DslMarker
 annotation class LifecycleEventBuilderMarker
@@ -42,64 +43,79 @@ annotation class LifecycleEventBuilderMarker
 @Stable
 @LifecycleEventBuilderMarker
 class LifecycleEventBuilder {
-  internal var onCreate: LifecycleEventListener? by mutableStateOf(null)
-  internal var onStart: LifecycleEventListener? by mutableStateOf(null)
-  internal var onResume: LifecycleEventListener? by mutableStateOf(null)
-  internal var onPause: LifecycleEventListener? by mutableStateOf(null)
-  internal var onStop: LifecycleEventListener? by mutableStateOf(null)
-  internal var onDestroy: LifecycleEventListener? by mutableStateOf(null)
+  private var onCreate: LifecycleEventListener? by mutableStateOf(null)
+  private var onStart: LifecycleEventListener? by mutableStateOf(null)
+  private var onResume: LifecycleEventListener? by mutableStateOf(null)
+  private var onPause: LifecycleEventListener? by mutableStateOf(null)
+  private var onStop: LifecycleEventListener? by mutableStateOf(null)
+  private var onDestroy: LifecycleEventListener? by mutableStateOf(null)
+  private var onEach: LifecycleEachEventListener? by mutableStateOf(null)
 
+  @LifecycleEventBuilderMarker
   fun onCreate(block: LifecycleEventListener) {
     onCreate = block
   }
 
+  @LifecycleEventBuilderMarker
   fun onStart(block: LifecycleEventListener) {
     onStart = block
   }
 
+  @LifecycleEventBuilderMarker
   fun onResume(block: LifecycleEventListener) {
     onResume = block
   }
 
+  @LifecycleEventBuilderMarker
   fun onPause(block: LifecycleEventListener) {
     onPause = block
   }
 
+  @LifecycleEventBuilderMarker
   fun onStop(block: LifecycleEventListener) {
     onStop = block
   }
 
+  @LifecycleEventBuilderMarker
   fun onDestroy(block: LifecycleEventListener) {
     onDestroy = block
+  }
+
+  @LifecycleEventBuilderMarker
+  fun onEach(block: LifecycleEachEventListener) {
+    onEach = block
+  }
+
+  internal fun buildLifecycleEventObserver() = LifecycleEventObserver { owner, event ->
+    when (event) {
+      Lifecycle.Event.ON_CREATE -> onCreate
+      Lifecycle.Event.ON_START -> onStart
+      Lifecycle.Event.ON_RESUME -> onResume
+      Lifecycle.Event.ON_PAUSE -> onPause
+      Lifecycle.Event.ON_STOP -> onStop
+      Lifecycle.Event.ON_DESTROY -> onDestroy
+      Lifecycle.Event.ON_ANY -> null
+    }?.invoke(owner)
+
+    onEach?.invoke(owner, event)
   }
 }
 
 @Composable
-fun OnLifecycleEvent(
+fun OnLifecycleEventWithBuilder(
   vararg keys: Any?,
+  lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current,
   builder: LifecycleEventBuilder.() -> Unit,
 ) {
-  val lifecycleOwner = LocalLifecycleOwner.current
   val lifecycleEventBuilder = remember { LifecycleEventBuilder() }
+  val observer = remember { lifecycleEventBuilder.buildLifecycleEventObserver() }
 
+  // When builder or lifecycleOwner or keys changes, we need to re-execute the effect
   DisposableEffect(builder, lifecycleOwner, *keys) {
+    // This make sure all callbacks are always up to date.
     builder(lifecycleEventBuilder)
 
-    val observer = LifecycleEventObserver { owner, event ->
-      when (event) {
-        Lifecycle.Event.ON_CREATE -> lifecycleEventBuilder.onCreate?.invoke(owner)
-        Lifecycle.Event.ON_START -> lifecycleEventBuilder.onStart?.invoke(owner)
-        Lifecycle.Event.ON_RESUME -> lifecycleEventBuilder.onResume?.invoke(owner)
-        Lifecycle.Event.ON_PAUSE -> lifecycleEventBuilder.onPause?.invoke(owner)
-        Lifecycle.Event.ON_STOP -> lifecycleEventBuilder.onStop?.invoke(owner)
-        Lifecycle.Event.ON_DESTROY -> lifecycleEventBuilder.onDestroy?.invoke(owner)
-        Lifecycle.Event.ON_ANY -> Unit
-      }
-    }
     lifecycleOwner.lifecycle.addObserver(observer)
-
-    onDispose {
-      lifecycleOwner.lifecycle.removeObserver(observer)
-    }
+    onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
   }
 }

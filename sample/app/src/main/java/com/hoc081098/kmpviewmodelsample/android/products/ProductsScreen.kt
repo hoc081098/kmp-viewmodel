@@ -20,10 +20,12 @@ import com.hoc081098.kmpviewmodelsample.android.common.CollectWithLifecycleEffec
 import com.hoc081098.kmpviewmodelsample.android.common.EmptyProducts
 import com.hoc081098.kmpviewmodelsample.android.common.ErrorMessageAndRetryButton
 import com.hoc081098.kmpviewmodelsample.android.common.LoadingIndicator
+import com.hoc081098.kmpviewmodelsample.android.common.OnLifecycleEventWithBuilder
 import com.hoc081098.kmpviewmodelsample.android.common.ProductItemsList
 import com.hoc081098.kmpviewmodelsample.products.ProductSingleEvent
 import com.hoc081098.kmpviewmodelsample.products.ProductsAction
 import com.hoc081098.kmpviewmodelsample.products.ProductsViewModel
+import io.github.aakira.napier.Napier
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
@@ -38,6 +40,10 @@ fun ProductsScreen(
     if (!viewModel.stateFlow.value.hasContent) {
       viewModel.dispatch(ProductsAction.Load)
     }
+  }
+
+  OnLifecycleEventWithBuilder {
+    onEach { owner, event -> Napier.d("[ProductsScreen] event=$event, owner=$owner") }
   }
 
   val state by viewModel.stateFlow.collectAsStateWithLifecycle()

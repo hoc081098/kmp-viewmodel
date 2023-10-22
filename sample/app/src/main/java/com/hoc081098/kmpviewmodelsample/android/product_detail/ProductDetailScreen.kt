@@ -38,7 +38,7 @@ import coil.compose.SubcomposeAsyncImageContent
 import com.hoc081098.kmpviewmodelsample.ProductItemUi
 import com.hoc081098.kmpviewmodelsample.android.common.ErrorMessageAndRetryButton
 import com.hoc081098.kmpviewmodelsample.android.common.LoadingIndicator
-import com.hoc081098.kmpviewmodelsample.android.common.OnLifecycleEvent
+import com.hoc081098.kmpviewmodelsample.android.common.OnLifecycleEventWithBuilder
 import com.hoc081098.kmpviewmodelsample.product_detail.ProductDetailState
 import com.hoc081098.kmpviewmodelsample.product_detail.ProductDetailViewModel
 import io.github.aakira.napier.Napier
@@ -55,9 +55,10 @@ fun ProductDetailScreen(
     viewModel::refresh
   }
 
-  OnLifecycleEvent(refresh) {
+  OnLifecycleEventWithBuilder(refresh) {
     onResume { refresh() }
     onPause { Napier.d("[ProductDetailScreen] paused") }
+    onEach { owner, event -> Napier.d("[ProductDetailScreen] event=$event, owner=$owner") }
   }
 
   val state by viewModel.stateFlow.collectAsStateWithLifecycle()
@@ -69,9 +70,11 @@ fun ProductDetailScreen(
         errorMessage = s.error.message ?: "Unknown error",
       )
     }
+
     ProductDetailState.Loading -> {
       LoadingIndicator(modifier = modifier)
     }
+
     is ProductDetailState.Success -> {
       ProductDetailContent(
         modifier = modifier,
@@ -121,6 +124,7 @@ private fun ProductDetailContent(
             strokeWidth = 2.dp,
           )
         }
+
         is AsyncImagePainter.State.Error -> {
           Icon(
             modifier = Modifier
@@ -129,6 +133,7 @@ private fun ProductDetailContent(
             contentDescription = "Error",
           )
         }
+
         else -> {
           SubcomposeAsyncImageContent()
         }

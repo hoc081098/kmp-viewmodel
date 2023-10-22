@@ -4,26 +4,26 @@ PODS:
   - MBProgressHUD (1.2.0)
   - "NSObject+Rx (5.2.2)":
     - RxSwift (~> 6.2)
-  - RxCocoa (6.5.0):
-    - RxRelay (= 6.5.0)
-    - RxSwift (= 6.5.0)
+  - RxCocoa (6.6.0):
+    - RxRelay (= 6.6.0)
+    - RxSwift (= 6.6.0)
   - RxDataSources (5.0.0):
     - Differentiator (~> 5.0)
     - RxCocoa (~> 6.0)
     - RxSwift (~> 6.0)
-  - RxRelay (6.5.0):
-    - RxSwift (= 6.5.0)
-  - RxSwift (6.5.0)
+  - RxRelay (6.6.0):
+    - RxSwift (= 6.6.0)
+  - RxSwift (6.6.0)
   - shared (1.0)
 
 DEPENDENCIES:
   - Kingfisher (~> 7.0)
   - MBProgressHUD (~> 1.2.0)
   - "NSObject+Rx (~> 5.2.2)"
-  - RxCocoa (~> 6.5.0)
+  - RxCocoa (~> 6.6.0)
   - RxDataSources (~> 5.0)
-  - RxRelay (~> 6.5.0)
-  - RxSwift (~> 6.5.0)
+  - RxRelay (~> 6.6.0)
+  - RxSwift (~> 6.6.0)
   - shared (from `../shared`)
 
 SPEC REPOS:
@@ -46,12 +46,12 @@ SPEC CHECKSUMS:
   Kingfisher: 596b207973051aae5e4c54a1c1cb39837ea10d36
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   "NSObject+Rx": 61cf1f7306a73dcef8b36649198af0813ec18dfd
-  RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
+  RxCocoa: 44a80de90e25b739b5aeaae3c8c371a32e3343cc
   RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
-  RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
-  RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
+  RxRelay: 45eaa5db8ee4fb50e5ebd57deec0159e97fa51e6
+  RxSwift: a4b44f7d24599f674deebd1818eab82e58410632
   shared: 590f56c2e6596d2bf475c0e71233e385feb4a13e
 
-PODFILE CHECKSUM: 7a277d991b614c194a63871b26a52f4964259718
+PODFILE CHECKSUM: ba90cf8daf1f3b2d6cf7e270921fbb887b46843e
 
 COCOAPODS: 1.12.1
