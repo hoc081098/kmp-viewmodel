@@ -108,16 +108,13 @@ fun OnLifecycleEventWithBuilder(
   builder: LifecycleEventBuilder.() -> Unit,
 ) {
   val lifecycleEventBuilder = remember { LifecycleEventBuilder() }
+  val observer = remember { lifecycleEventBuilder.buildLifecycleEventObserver() }
 
-  // Note: It's probably bad that this call is not done in a side effect.
-  // This make sure all callbacks are always up to date.
-  // See [androidx.compose.runtime.rememberUpdatedState], it does the same thing.
-  builder(lifecycleEventBuilder)
+  // When builder or lifecycleOwner or keys changes, we need to re-execute the effect
+  DisposableEffect(builder, lifecycleOwner, *keys) {
+    // This make sure all callbacks are always up to date.
+    builder(lifecycleEventBuilder)
 
-  val observer = remember(lifecycleEventBuilder) { lifecycleEventBuilder.buildLifecycleEventObserver() }
-
-  // When lifecycleOwner changes or keys change, we need to re-execute the effect
-  DisposableEffect(lifecycleOwner, observer, *keys) {
     lifecycleOwner.lifecycle.addObserver(observer)
     onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
   }
