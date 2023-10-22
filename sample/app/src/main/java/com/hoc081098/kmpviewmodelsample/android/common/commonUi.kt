@@ -167,6 +167,7 @@ internal fun ProductItemRow(
             strokeWidth = 2.dp,
           )
         }
+
         is AsyncImagePainter.State.Error -> {
           Icon(
             modifier = Modifier
@@ -175,6 +176,7 @@ internal fun ProductItemRow(
             contentDescription = "Error",
           )
         }
+
         else -> {
           SubcomposeAsyncImageContent()
         }

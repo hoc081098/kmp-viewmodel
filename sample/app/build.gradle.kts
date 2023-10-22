@@ -6,11 +6,11 @@ plugins {
 
 android {
   namespace = "com.hoc081098.kmpviewmodelsample.android"
-  compileSdk = libs.versions.android.compile.sample.get().toInt()
+  compileSdk = libs.versions.sample.android.compile.get().toInt()
   defaultConfig {
     applicationId = "com.hoc081098.kmpviewmodelsample.android"
-    minSdk = libs.versions.android.min.sample.get().toInt()
-    targetSdk = libs.versions.android.target.sample.get().toInt()
+    minSdk = libs.versions.android.min.get().toInt()
+    targetSdk = libs.versions.sample.android.target.get().toInt()
     versionCode = 1
     versionName = "1.0"
   }
