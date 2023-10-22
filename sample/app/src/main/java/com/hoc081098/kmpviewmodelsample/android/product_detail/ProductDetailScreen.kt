@@ -58,6 +58,7 @@ fun ProductDetailScreen(
   OnLifecycleEventWithBuilder(refresh) {
     onResume { refresh() }
     onPause { Napier.d("[ProductDetailScreen] paused") }
+    onEach { owner, event -> Napier.d("[ProductDetailScreen] event=$event, owner=$owner") }
   }
 
   val state by viewModel.stateFlow.collectAsStateWithLifecycle()
