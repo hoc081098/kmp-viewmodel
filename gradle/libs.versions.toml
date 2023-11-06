@@ -28,7 +28,7 @@ napier = "2.6.1"
 flowExt = "0.7.3"
 koin = "3.5.0"
 koin-androidx-compose = "3.5.0"
-coil = "2.4.0"
+coil = "2.5.0"
 compose-rules-detekt = "0.3.2"
 
 androidx-lifecycle = "2.6.2"
