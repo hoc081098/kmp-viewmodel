@@ -6,6 +6,8 @@ import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertIs
 import kotlin.test.assertNotNull
+import kotlin.test.assertTrue
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainCoroutineDispatcher
@@ -38,6 +40,16 @@ class DemoViewModel : ViewModel {
   }
 }
 
+@OptIn(InternalKmpViewModelApi::class)
+private fun createDemoViewModel(): Pair<DemoViewModel, () -> Unit> {
+  val viewModelStore = createViewModelStore()
+
+  return DemoViewModel()
+    .also { viewModelStore.put("DemoViewModel#${it.hashCode()}", it) } to
+      viewModelStore::clear
+}
+
+@OptIn(ExperimentalStdlibApi::class)
 class ViewModelTest {
   @BeforeTest
   fun setup() {
@@ -67,7 +79,111 @@ class ViewModelTest {
   fun scopeMustHaveAMainDispatcher() {
     val vm = DemoViewModel()
     assertIs<MainCoroutineDispatcher>(
-      vm.scope.coroutineContext[ContinuationInterceptor],
+      vm.scope.coroutineContext[CoroutineDispatcher],
     )
+
+    println(vm.scope.coroutineContext[CoroutineDispatcher])
   }
+
+  @Test
+  fun addCloseablesThatWillBeClosedWhenClear() = runTest {
+    val (vm, clear) = createDemoViewModel()
+
+    val closeables = List(100) {
+      object : Closeable {
+        var closed = false
+        override fun close() {
+          closed = true
+        }
+      }
+    }
+
+    closeables.forEach(vm::addCloseable)
+    clear()
+
+    closeables.forEach { assertTrue { it.closed } }
+  }
+
+  //
+  //  @Test
+  //  fun constructor_addCloseablesThatWillBeClosedWhenClear() = runTest {
+  //    val closeables = List(100) {
+  //      object : Closeable {
+  //        var closed = AtomicBoolean(false)
+  //        override fun close() {
+  //          closed.value = true
+  //        }
+  //      }
+  //    }
+  //
+  //    val vm = DemoViewModel(closeables)
+  //    delay(1)
+  //    vm.clear()
+  //
+  //    closeables.forEach { assertTrue { it.closed.value } }
+  //  }
+  //
+  //  @Test
+  //  fun addCloseablesThatWillBeClosedWhenClear_multiThreads() = runTest {
+  //    val vm = DemoViewModel()
+  //
+  //    val closeables = List(100) {
+  //      object : Closeable {
+  //        var closed = AtomicBoolean(false)
+  //        override fun close() {
+  //          closed.value = true
+  //        }
+  //      }
+  //    }
+  //
+  //    closeables
+  //      .map { launch { runBlockInNewThread { vm.addCloseable(it) } } }
+  //      .joinAll()
+  //    (0..10)
+  //      .map { launch { runBlockInNewThread(vm::clear) } }
+  //      .joinAll()
+  //
+  //    closeables.forEach { assertTrue { it.closed.value } }
+  //  }
+  //
+  //  @Test
+  //  fun cannotAddCloseableAfterClear() = runTest {
+  //    val vm = DemoViewModel()
+  //    vm.clear()
+  //
+  //    val closeable = Closeable { error("Cannot reach here!") }
+  //
+  //    assertFailsWith<IllegalStateException> {
+  //      vm.addCloseable(closeable)
+  //    }
+  //  }
+  //
+  //  @Test
+  //  fun cannotAddCloseableAfterClear_multiThreads() = runTest {
+  //    val vm = DemoViewModel()
+  //    val isCleared = AtomicBoolean(false)
+  //
+  //    repeat(10) {
+  //      launch {
+  //        runBlockInNewThread {
+  //          vm.clear()
+  //        }
+  //        isCleared.value = true
+  //      }
+  //    }
+  //
+  //    delay(10)
+  //
+  //    (0..1000)
+  //      .map {
+  //        launch {
+  //          runBlockInNewThread {
+  //            if (isCleared.value) {
+  //              assertFailsWith<IllegalStateException> { vm.addCloseable { error("Cannot reach here!") } }
+  //            }
+  //          }
+  //        }
+  //      }
+  //      .joinAll()
+  //  }
 }

@@ -2,6 +2,7 @@ package com.hoc081098.kmp.viewmodel
 
 import com.hoc081098.kmp.viewmodel.internal.AtomicBoolean
 import com.hoc081098.kmp.viewmodel.internal.synchronized
+import kotlin.coroutines.EmptyCoroutineContext
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -9,9 +10,15 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 
 @Suppress("NOTHING_TO_INLINE")
-private inline fun viewModelScopeDispatcher(): CoroutineDispatcher =
-  runCatching { Dispatchers.Main.immediate }
-    .getOrDefault(Dispatchers.Main)
+private inline fun CoroutineDispatcher.test() = apply {
+  // Will throw an exception if this is MissingMainCoroutineDispatcher.
+  isDispatchNeeded(EmptyCoroutineContext)
+}
+
+private fun viewModelScopeDispatcher(): CoroutineDispatcher =
+  runCatching { Dispatchers.Main.immediate.test() }
+    .recoverCatching { Dispatchers.Main.test() }
+    .getOrDefault(Dispatchers.Default)
 
 public actual abstract class ViewModel : Any {
   private val lockable = Lockable()
