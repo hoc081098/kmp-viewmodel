@@ -34,9 +34,14 @@ public actual abstract class ViewModel : Any {
 
   protected actual open fun onCleared(): Unit = Unit
 
-  public actual fun addCloseable(closeable: Closeable): Unit = synchronized(lockable) {
-    check(!isCleared.value) { "Cannot addCloseable on a cleared ViewModel" }
-    closeables += closeable
+  public actual fun addCloseable(closeable: Closeable) {
+    // Although no logic should be done after user calls onCleared(), we will
+    // ensure that if it has already been called, the closeable attempting to
+    // be added will be closed immediately to ensure there will be no leaks.
+    if (isCleared.value) {
+      return closeable.closeWithRuntimeException()
+    }
+    synchronized(lockable) { closeables += closeable }
   }
 
   /**
@@ -46,16 +51,18 @@ public actual abstract class ViewModel : Any {
    * This method is thread-safe, ie. it can be called from any thread.
    */
   @Suppress("unused") // Called by platform code
-  public fun clear(): Unit = synchronized(lockable) {
+  public fun clear() {
     if (isCleared.compareAndSet(expectedValue = false, newValue = true)) {
       if (coroutineScopeLazy.isInitialized()) {
         coroutineScopeLazy.value.cancel()
       }
 
-      closeables.forEach { it.close() }
-      closeables.clear()
+      synchronized(lockable) {
+        closeables.forEach { it.closeWithRuntimeException() }
+        closeables.clear()
 
-      onCleared()
+        onCleared()
+      }
     }
   }
 
@@ -64,4 +71,15 @@ public actual abstract class ViewModel : Any {
    */
   @InternalKmpViewModelApi
   public fun isCleared(): Boolean = isCleared.value
+}
+
+private fun Closeable.closeWithRuntimeException() {
+  try {
+    close()
+  } catch (@Suppress("TooGenericExceptionCaught") e: RuntimeException) {
+    throw e
+  } catch (@Suppress("TooGenericExceptionCaught") e: Exception) {
+    @Suppress("TooGenericExceptionThrown")
+    throw RuntimeException(e)
+  }
 }
