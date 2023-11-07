@@ -80,12 +80,13 @@ public actual abstract class ViewModel : Any {
   public fun isCleared(): Boolean = isCleared.value
 }
 
+@Suppress("TooGenericExceptionCaught")
 private fun Closeable.closeWithRuntimeException() {
   try {
     close()
-  } catch (@Suppress("TooGenericExceptionCaught") e: RuntimeException) {
+  } catch (e: RuntimeException) {
     throw e
-  } catch (@Suppress("TooGenericExceptionCaught") e: Exception) {
+  } catch (e: Exception) {
     @Suppress("TooGenericExceptionThrown")
     throw RuntimeException(e)
   }
