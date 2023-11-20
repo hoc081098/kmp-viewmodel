@@ -1,6 +1,7 @@
 package com.hoc081098.kmp.viewmodel
 
-import kotlin.coroutines.ContinuationInterceptor
+import com.hoc081098.kmp.viewmodel.utils.TestAtomicBoolean
+import com.hoc081098.kmp.viewmodel.utils.delegated
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
@@ -91,7 +92,7 @@ class ViewModelTest {
 
     val closeables = List(100) {
       object : Closeable {
-        var closed = false
+        var closed by TestAtomicBoolean().delegated()
         override fun close() {
           closed = true
         }
