@@ -21,7 +21,7 @@ sample-android-target = "34"
 # the Android compileSdkVersion to use in sample
 sample-android-compile = "34"
 
-jetbrains-compose = "1.5.3"
+jetbrains-compose = "1.5.11"
 
 touchlab-stately = "1.2.5"
 napier = "2.6.1"
@@ -34,7 +34,7 @@ compose-rules-detekt = "0.3.2"
 androidx-lifecycle = "2.6.2"
 androidx-annotation = "1.7.0"
 androidx-activity = "1.8.0"
-androidx-compose-compiler = "1.5.3"
+androidx-compose-compiler = "1.5.5"
 androidx-navigation = "2.7.4"
 android-gradle = "8.1.2"
 
