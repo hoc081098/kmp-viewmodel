@@ -7,7 +7,7 @@
   make sure `Dispatchers.Main` available).
 - `js` (`IR`).
 - `Darwin` targets:
-  - `iosArm64`, `iosArm32`, `iosX64`, `iosSimulatorArm64`.
-  - `watchosArm32`, `watchosArm64`, `watchosX64`, `watchosX86`, `watchosSimulatorArm64`.
+  - `iosArm64`, `iosX64`, `iosSimulatorArm64`.
+  - `watchosArm32`, `watchosArm64`, `watchosX64`, `watchosSimulatorArm64`.
   - `tvosX64`, `tvosSimulatorArm64`, `tvosArm64`.
   - `macosX64`, `macosArm64`.

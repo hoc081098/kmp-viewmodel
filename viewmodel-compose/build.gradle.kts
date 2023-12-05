@@ -68,7 +68,6 @@ kotlin {
   watchosArm32()
   watchosArm64()
   watchosX64()
-  watchosX86()
   watchosSimulatorArm64()
 
   sourceSets {
@@ -166,7 +165,6 @@ kotlin {
       "tvosSimulatorArm64",
       "watchosArm32",
       "watchosArm64",
-      "watchosX86",
       "watchosSimulatorArm64",
       "watchosX64",
     )

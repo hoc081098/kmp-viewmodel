@@ -52,7 +52,6 @@ kotlin {
   }
 
   iosArm64()
-  iosArm32()
   iosX64()
   iosSimulatorArm64()
 
@@ -66,7 +65,6 @@ kotlin {
   watchosArm32()
   watchosArm64()
   watchosX64()
-  watchosX86()
   watchosSimulatorArm64()
 
   sourceSets {
@@ -153,7 +151,6 @@ kotlin {
       "iosX64",
       "iosSimulatorArm64",
       "iosArm64",
-      "iosArm32",
       "macosX64",
       "macosArm64",
       "tvosArm64",
@@ -161,7 +158,6 @@ kotlin {
       "tvosSimulatorArm64",
       "watchosArm32",
       "watchosArm64",
-      "watchosX86",
       "watchosSimulatorArm64",
       "watchosX64",
     )
