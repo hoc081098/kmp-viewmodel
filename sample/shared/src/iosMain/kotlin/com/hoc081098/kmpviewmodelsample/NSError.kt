@@ -19,6 +19,7 @@ import platform.darwin.NSInteger
  *
  * The Kotlin throwable can be retrieved from the [NSError.userInfo] with the key `KotlinException`.
  */
+@OptIn(ExperimentalForeignApi::class)
 fun Throwable.asNSError(): NSError {
   val userInfo = buildMap<Any?, Any> {
     this["KotlinException"] = this@asNSError

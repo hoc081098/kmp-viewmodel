@@ -26,6 +26,8 @@ kotlin {
   iosArm64()
   iosSimulatorArm64()
 
+  applyDefaultHierarchyTemplate()
+
   cocoapods {
     summary = "Some description for the Shared Module"
     homepage = "Link to the Shared Module homepage"
@@ -44,7 +46,7 @@ kotlin {
   }
 
   sourceSets {
-    val commonMain by getting {
+    commonMain {
       dependencies {
         api(projects.viewmodel)
         api(projects.viewmodelSavedstate)
@@ -58,38 +60,27 @@ kotlin {
         implementation(libs.flowExt)
       }
     }
-    val commonTest by getting {
+    commonTest {
       dependencies {
         implementation(kotlin("test"))
       }
     }
-    val androidMain by getting {
+    androidMain {
       dependencies {
         api(libs.koin.android)
       }
     }
     val androidUnitTest by getting
+
     val iosX64Main by getting
     val iosArm64Main by getting
     val iosSimulatorArm64Main by getting
-    val iosMain by creating {
-      dependsOn(commonMain)
-      iosX64Main.dependsOn(this)
-      iosArm64Main.dependsOn(this)
-      iosSimulatorArm64Main.dependsOn(this)
+    iosMain {}
 
-      dependencies {
-      }
-    }
     val iosX64Test by getting
     val iosArm64Test by getting
     val iosSimulatorArm64Test by getting
-    val iosTest by creating {
-      dependsOn(commonTest)
-      iosX64Test.dependsOn(this)
-      iosArm64Test.dependsOn(this)
-      iosSimulatorArm64Test.dependsOn(this)
-    }
+    iosTest {}
   }
 }
 
