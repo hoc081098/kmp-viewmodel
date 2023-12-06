@@ -1,5 +1,6 @@
 package com.hoc081098.kmp.viewmodel.compose
 
+import androidx.lifecycle.viewmodel.MutableCreationExtras as AndroidXMutableCreationExtras
 import androidx.annotation.MainThread
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
@@ -8,7 +9,6 @@ import androidx.lifecycle.HasDefaultViewModelProviderFactory
 import androidx.lifecycle.viewmodel.CreationExtras.Empty
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.hoc081098.kmp.viewmodel.CreationExtras
-import com.hoc081098.kmp.viewmodel.MutableCreationExtrasBuilder
 import com.hoc081098.kmp.viewmodel.SAVED_STATE_HANDLE_FACTORY_KEY
 import com.hoc081098.kmp.viewmodel.SavedStateHandleFactory
 import com.hoc081098.kmp.viewmodel.ViewModel
@@ -23,7 +23,7 @@ import com.hoc081098.kmp.viewmodel.toAndroidX
  */
 @JvmSynthetic
 @JvmField
-internal val DefaultCreationExtrasForAndroid: CreationExtras = MutableCreationExtrasBuilder().asCreationExtras()
+internal val DefaultCreationExtrasForAndroid: CreationExtras = AndroidXMutableCreationExtras()
 
 @Suppress("NOTHING_TO_INLINE")
 @MainThread
