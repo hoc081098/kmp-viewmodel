@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+### Update dependencies
+
+- [Kotlin `1.9.21`.](https://github.com/JetBrains/kotlin/releases/tag/v1.9.21)
+- [AndroidX Lifecycle `2.6.2`.](https://developer.android.com/jetpack/androidx/releases/lifecycle#2.6.2)
+
 ## [0.5.0] - Sep 27, 2023
 
 ### Update dependencies
