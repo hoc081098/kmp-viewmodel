@@ -99,9 +99,6 @@ kotlin {
 
     val nonAndroidMain by creating {
       dependsOn(commonMain.get())
-
-      dependencies {
-      }
     }
     val nonAndroidTest by creating {
       dependsOn(commonTest.get())
