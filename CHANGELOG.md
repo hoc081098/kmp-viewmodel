@@ -4,8 +4,9 @@
 
 ### Update dependencies
 
-- [Kotlin `1.9.21`.](https://github.com/JetBrains/kotlin/releases/tag/v1.9.21)
-- [AndroidX Lifecycle `2.6.2`.](https://developer.android.com/jetpack/androidx/releases/lifecycle#2.6.2)
+- Supports for [Kotlin `1.9.21`.](https://github.com/JetBrains/kotlin/releases/tag/v1.9.21).
+- [AndroidX Lifecycle `2.6.2`.](https://developer.android.com/jetpack/androidx/releases/lifecycle#2.6.2).
+- [Jetpack Compose `1.5.11`](https://github.com/JetBrains/compose-multiplatform/releases/tag/v1.5.11)
 
 ## [0.5.0] - Sep 27, 2023
 
