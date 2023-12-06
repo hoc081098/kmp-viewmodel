@@ -67,13 +67,15 @@ kotlin {
   watchosX64()
   watchosSimulatorArm64()
 
+  applyDefaultHierarchyTemplate()
+
   sourceSets {
-    val commonMain by getting {
+    commonMain {
       dependencies {
         api(libs.coroutines.core)
       }
     }
-    val commonTest by getting {
+    commonTest {
       dependencies {
         implementation(kotlin("test-common"))
         implementation(kotlin("test-annotations-common"))
@@ -82,9 +84,7 @@ kotlin {
       }
     }
 
-    val androidMain by getting {
-      dependsOn(commonMain)
-
+    androidMain {
       dependencies {
         api(libs.androidx.lifecycle.viewmodel)
         api(libs.coroutines.android)
@@ -92,27 +92,25 @@ kotlin {
       }
     }
     val androidUnitTest by getting {
-      dependsOn(commonTest)
-
       dependencies {
         implementation(kotlin("test-junit"))
       }
     }
 
     val nonAndroidMain by creating {
-      dependsOn(commonMain)
+      dependsOn(commonMain.get())
 
       dependencies {
       }
     }
     val nonAndroidTest by creating {
-      dependsOn(commonTest)
+      dependsOn(commonTest.get())
     }
 
-    val jvmMain by getting {
+    jvmMain {
       dependsOn(nonAndroidMain)
     }
-    val jvmTest by getting {
+    jvmTest {
       dependsOn(nonAndroidTest)
 
       dependencies {
@@ -120,55 +118,24 @@ kotlin {
       }
     }
 
-    val jsMain by getting {
+    jsMain {
       dependsOn(nonAndroidMain)
     }
-    val jsTest by getting {
+    jsTest {
       dependsOn(nonAndroidTest)
       dependencies {
         implementation(kotlin("test-js"))
       }
     }
 
-    val nativeMain by creating {
+    nativeMain {
       dependsOn(nonAndroidMain)
       dependencies {
         implementation(libs.touchlab.stately.concurrency)
       }
     }
-    val nativeTest by creating {
+    nativeTest {
       dependsOn(nonAndroidTest)
-    }
-
-    val darwinMain by creating {
-      dependsOn(nativeMain)
-    }
-    val darwinTest by creating {
-      dependsOn(nativeTest)
-    }
-
-    val appleTargets = listOf(
-      "iosX64",
-      "iosSimulatorArm64",
-      "iosArm64",
-      "macosX64",
-      "macosArm64",
-      "tvosArm64",
-      "tvosX64",
-      "tvosSimulatorArm64",
-      "watchosArm32",
-      "watchosArm64",
-      "watchosSimulatorArm64",
-      "watchosX64",
-    )
-
-    appleTargets.forEach {
-      getByName("${it}Main") {
-        dependsOn(darwinMain)
-      }
-      getByName("${it}Test") {
-        dependsOn(darwinTest)
-      }
     }
   }
 
