@@ -30,12 +30,19 @@
   }.asCreationExtras() // <--- asCreationExtras: convert a builder back to `CreationExtras` as needed.
   ```
 
-  > FOR MORE INFORMATION: With Kotlin 1.9.20, an expect with default arguments are no longer
+  > More details: with Kotlin 1.9.20, an expect with default arguments are no longer
   permitted when an actual is a typealias
   > (see [KT-57614](https://youtrack.jetbrains.com/issue/KT-57614)),
   > we cannot
   use `actual typealias MutableCreationExtras = androidx.lifecycle.viewmodel.MutableCreationExtras`.
   > So we have to use wrapper class instead.
+
+- Update the docs of `ViewModel.viewModelScope` to clarify that the scope is **thread-safe**
+  on both _Android_ and _non-Android targets_.
+
+- On _non-Android targets_
+  - `ViewModel.clear()` method has been refactored to improve the performance.
+  - Any `Exception` is thrown from `Closeable.close()` will be re-thrown as `RuntimeException`.
 
 ## [0.5.0] - Sep 27, 2023
 
