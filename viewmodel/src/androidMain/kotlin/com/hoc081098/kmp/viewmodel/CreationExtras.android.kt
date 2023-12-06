@@ -1,9 +1,9 @@
 package com.hoc081098.kmp.viewmodel
 
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.CreationExtras as AndroidXCreationExtras
 import androidx.lifecycle.viewmodel.CreationExtras.Key as AndroidXCreationExtrasKey
 import androidx.lifecycle.viewmodel.MutableCreationExtras as AndroidXMutableCreationExtras
-import androidx.lifecycle.ViewModelProvider
 
 public actual typealias CreationExtras = AndroidXCreationExtras
 
