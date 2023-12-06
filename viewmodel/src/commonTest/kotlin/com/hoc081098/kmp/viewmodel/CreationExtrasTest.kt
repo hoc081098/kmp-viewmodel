@@ -7,10 +7,10 @@ import kotlin.test.assertEquals
 class CreationExtrasTest {
   @Test
   fun testInitialCreationExtras() {
-    val initial = MutableCreationExtras()
+    val initial = MutableCreationExtrasBuilder()
     val key = object : CreationExtrasKey<Map<String, String>> {}
     initial[key] = mapOf("value" to "initial")
-    val mutable = MutableCreationExtras(initial)
+    val mutable = MutableCreationExtrasBuilder(initial)
     initial[key] = mapOf("value" to "overridden")
     assertEquals("initial", mutable[key]?.get("value"))
   }

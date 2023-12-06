@@ -14,13 +14,16 @@ public actual class SavedStateHandle {
 
   public actual constructor()
 
+  @MainThread
   public actual operator fun contains(key: String): Boolean = regular.containsKey(key)
 
+  @MainThread
   public actual operator fun <T> get(key: String): T? {
     @Suppress("UNCHECKED_CAST")
     return regular[key] as T?
   }
 
+  @MainThread
   public actual fun <T> getStateFlow(key: String, initialValue: T): StateFlow<T> {
     @Suppress("UNCHECKED_CAST")
     // If a flow exists we should just return it, and since it is a StateFlow and a value must
@@ -35,8 +38,10 @@ public actual class SavedStateHandle {
     }.asStateFlow() as StateFlow<T>
   }
 
+  @MainThread
   public actual fun keys(): Set<String> = regular.keys
 
+  @MainThread
   public actual fun <T> remove(key: String): T? {
     @Suppress("UNCHECKED_CAST")
     val latestValue = regular.remove(key) as T?
@@ -44,7 +49,8 @@ public actual class SavedStateHandle {
     return latestValue
   }
 
-  public actual operator fun <T> set(key: String, value: T?) {
+  @MainThread
+  public actual operator fun <T> set(key: String, value: T?): Unit {
     regular[key] = value
     flows[key]?.value = value
   }
