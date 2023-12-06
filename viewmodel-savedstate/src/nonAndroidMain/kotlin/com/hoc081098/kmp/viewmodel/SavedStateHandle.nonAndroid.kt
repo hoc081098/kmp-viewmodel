@@ -50,7 +50,7 @@ public actual class SavedStateHandle {
   }
 
   @MainThread
-  public actual operator fun <T> set(key: String, value: T?): Unit {
+  public actual operator fun <T> set(key: String, value: T?) {
     regular[key] = value
     flows[key]?.value = value
   }
