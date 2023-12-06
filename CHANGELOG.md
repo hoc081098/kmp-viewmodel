@@ -8,6 +8,10 @@
 - [AndroidX Lifecycle `2.6.2`.](https://developer.android.com/jetpack/androidx/releases/lifecycle#2.6.2).
 - [Jetpack Compose `1.5.11`](https://github.com/JetBrains/compose-multiplatform/releases/tag/v1.5.11)
 
+### Removed
+
+- Remove now-unsupported targets: `iosArm32`, `watchosX86`.
+
 ### viewmodel
 
 - `MutableCreationExtras` has been renamed to `MutableCreationExtrasBuilder`,
