@@ -154,6 +154,7 @@ jobs:
       - name: Copy docs
         run: |
           cp README.md docs/index.md
+          cp CHANGELOG.md docs/changelog.md
           sh scripts/update_docs_url.sh "snapshot"
           mkdir -p docs/API
           cp -R build/dokka/htmlMultiModule/. docs/API

@@ -47,4 +47,5 @@ nav:
   - 'ViewModel SavedState': viewmodel-savedstate.md
   - 'ViewModel Compose': viewmodel-compose.md
   - 'Swift Interop': swift-interop.md
+  - 'Change Log': changelog.md
   - 'API': API

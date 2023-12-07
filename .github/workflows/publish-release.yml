@@ -102,6 +102,7 @@ jobs:
       - name: Copy docs
         run: |
           cp README.md docs/index.md
+          cp CHANGELOG.md docs/changelog.md
           mkdir -p docs/API
           cp -R build/dokka/htmlMultiModule/. docs/API
 
