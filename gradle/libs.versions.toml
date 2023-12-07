@@ -1,5 +1,5 @@
 [versions]
-kotlin = "1.9.10"
+kotlin = "1.9.21"
 coroutines = "1.7.3"
 kotlinx-serialization-json = "1.6.0"
 kotlinx-collections-immutable = "0.3.6"
@@ -21,21 +21,21 @@ sample-android-target = "34"
 # the Android compileSdkVersion to use in sample
 sample-android-compile = "34"
 
-jetbrains-compose = "1.5.3"
+jetbrains-compose = "1.5.11"
 
 touchlab-stately = "1.2.5"
 napier = "2.6.1"
-flowExt = "0.7.3"
+flowExt = "0.7.4"
 koin = "3.5.0"
 koin-androidx-compose = "3.5.0"
-coil = "2.4.0"
-compose-rules-detekt = "0.3.2"
+coil = "2.5.0"
+compose-rules-detekt = "0.3.5"
 
 androidx-lifecycle = "2.6.2"
 androidx-annotation = "1.7.0"
-androidx-activity = "1.8.0"
-androidx-compose-compiler = "1.5.3"
-androidx-navigation = "2.7.4"
+androidx-activity = "1.8.1"
+androidx-compose-compiler = "1.5.6"
+androidx-navigation = "2.7.5"
 android-gradle = "8.1.2"
 
 spotless = "6.22.0"

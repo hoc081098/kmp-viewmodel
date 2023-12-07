@@ -101,6 +101,7 @@ public expect inline fun <VM : ViewModel> kmpViewModel(
  * Returns current composition local value for the [ViewModelStoreOwner] provided by [LocalViewModelStoreOwner].
  * or [defaultPlatformViewModelStoreOwner] if one has not been provided.
  */
+@Suppress("NOTHING_TO_INLINE")
 @JvmSynthetic
 @PublishedApi
 @MainThread

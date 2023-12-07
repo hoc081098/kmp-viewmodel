@@ -1,6 +1,52 @@
 # Change Log
 
-## [Unreleased]
+## [0.6.0] - TBD
+
+### Update dependencies
+
+- Supports for [Kotlin `1.9.21`](https://github.com/JetBrains/kotlin/releases/tag/v1.9.21).
+- [AndroidX Lifecycle `2.6.2`](https://developer.android.com/jetpack/androidx/releases/lifecycle#2.6.2).
+- [Jetpack Compose `1.5.11`](https://github.com/JetBrains/compose-multiplatform/releases/tag/v1.5.11).
+
+### Removed
+
+- Remove **now-unsupported targets**: `iosArm32`, `watchosX86`.
+
+### viewmodel
+
+- `MutableCreationExtras` has been renamed to `MutableCreationExtrasBuilder`,
+  and it does not inherit from `CreationExtras` anymore.
+  Because of this, a new method
+  `MutableCreationExtrasBuilder.asCreationExtras()` has been introduced can be used to convert
+  a builder back to `CreationExtras` as needed.
+
+  > NOTE: `buildCreationExtras` and `CreationExtras.edit` methods are still the same as before.
+
+  ```kotlin
+  // Old version (0.5.0)
+  val creationExtras: CreationExtras = MutableCreationExtras().apply {
+    // ...
+  }
+
+  // New version (0.6.0): `MutableCreationExtras` does not inherit from `CreationExtras` anymore.
+  val creationExtras: CreationExtras = MutableCreationExtrasBuilder().apply {
+    // ...
+  }.asCreationExtras() // <--- asCreationExtras: convert a builder back to `CreationExtras` as needed.
+  ```
+
+  > More details: with Kotlin 1.9.20, an expect with default arguments are no longer
+  permitted when an actual is a typealias
+  > (see [KT-57614](https://youtrack.jetbrains.com/issue/KT-57614)),
+  > we cannot
+  use `actual typealias MutableCreationExtras = androidx.lifecycle.viewmodel.MutableCreationExtras`.
+  > So we have to use wrapper class instead.
+
+- Update the docs of `ViewModel.viewModelScope` to clarify that the scope is **thread-safe**
+  on **both _Android_ and _non-Android targets_**.
+
+- On _non-Android targets_
+  - `ViewModel.clear()` method has been refactored to improve the performance.
+  - Any `Exception` thrown from `Closeable.close()` will be re-thrown as `RuntimeException`.
 
 ## [0.5.0] - Sep 27, 2023
 
@@ -41,20 +87,28 @@
     to get the default `CreationExtras` and `ViewModelStoreOwner`,
     which depends on the platform.
 
-- Dependencies: [Compose Multiplatform 1.5.0](https://github.com/JetBrains/compose-multiplatform/releases/tag/v1.5.0).
+-
 
-- Docs: [0.x Viewmodel-Compose docs](https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-compose/).
+Dependencies: [Compose Multiplatform 1.5.0](https://github.com/JetBrains/compose-multiplatform/releases/tag/v1.5.0).
+
+-
+
+Docs: [0.x Viewmodel-Compose docs](https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-compose/).
 
 ### Example, docs and tests
 
 - Refactor example code.
 
-- Add [Compose Multiplatform sample](https://github.com/hoc081098/kmp-viewmodel/tree/master/standalone-sample/kmpviewmodel_compose_sample)
-  which shares `ViewModel`s and integrates with `Navigation` in Compose Multiplatform.
+-
 
-- Add [Compose Multiplatform KmpViewModel KMM Unsplash Sample](https://github.com/hoc081098/Compose-Multiplatform-KmpViewModel-KMM-Unsplash-Sample),
-  a KMP template of the Unsplash App using Compose multiplatform for Android, Desktop, iOS.
-  Share everything including data, domain, presentation, and UI.
+Add [Compose Multiplatform sample](https://github.com/hoc081098/kmp-viewmodel/tree/master/standalone-sample/kmpviewmodel_compose_sample)
+which shares `ViewModel`s and integrates with `Navigation` in Compose Multiplatform.
+
+-
+
+Add [Compose Multiplatform KmpViewModel KMM Unsplash Sample](https://github.com/hoc081098/Compose-Multiplatform-KmpViewModel-KMM-Unsplash-Sample),
+a KMP template of the Unsplash App using Compose multiplatform for Android, Desktop, iOS.
+Share everything including data, domain, presentation, and UI.
 
 - Add more docs: [0.x docs](https://hoc081098.github.io/kmp-viewmodel/docs/0.x).
 - Add more tests.
@@ -84,7 +138,8 @@
   - `StateFlow<T: Any>.wrap(): NonNullStateFlowWrapper<T>`.
   - `StateFlow<T>.wrap(): NullableStateFlowWrapper<T>`.
 
-  In common code, you can use these methods to wrap `Flow` sources and use them in Swift code easily.
+  In common code, you can use these methods to wrap `Flow` sources and use them in Swift code
+  easily.
   ```kotlin
   // Kotlin code
   data class State(...)
@@ -181,16 +236,23 @@
 - Add an `ViewModel.addCloseable` API and a new constructor
   overload `constructor(vararg closeables: Closeable)`,
   that allow you to add one or more `Closeable` objects to the `ViewModel`
-  that will be closed when the `ViewModel` is cleared without requiring any manual work in `onCleared()`.
+  that will be closed when the `ViewModel` is cleared without requiring any manual work
+  in `onCleared()`.
 
 ## [0.0.1] - Feb 11, 2023
 
 - Initial release.
 
 [Unreleased]: https://github.com/hoc081098/kmp-viewmodel/compare/0.5.0...HEAD
+
 [0.5.0]: https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.5.0
+
 [0.4.0]: https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.4.0
+
 [0.3.0]: https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.3.0
+
 [0.2.0]: https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.2.0
+
 [0.1.0]: https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.1.0
+
 [0.0.1]: https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.0.1

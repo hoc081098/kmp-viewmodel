@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.ViewModelStoreOwner as AndroidXViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
+import com.hoc081098.kmp.viewmodel.MainThread
 import com.hoc081098.kmp.viewmodel.ViewModelStoreOwner
 import com.hoc081098.kmp.viewmodel.toKmp
 
@@ -15,6 +16,7 @@ import com.hoc081098.kmp.viewmodel.toKmp
  * If no [androidx.lifecycle.ViewModelStoreOwner] is found, an [IllegalStateException] will be thrown.
  */
 @Composable
+@MainThread
 public actual fun defaultPlatformViewModelStoreOwner(): ViewModelStoreOwner =
   currentAndroidXViewModelStoreOwner().toKmp()
 

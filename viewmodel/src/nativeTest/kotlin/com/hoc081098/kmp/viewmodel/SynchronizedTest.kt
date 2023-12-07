@@ -2,7 +2,7 @@
 package com.hoc081098.kmp.viewmodel
 
 import com.hoc081098.kmp.viewmodel.internal.synchronized
-import kotlin.native.concurrent.AtomicInt
+import kotlin.concurrent.AtomicInt
 import kotlin.native.concurrent.ObsoleteWorkersApi
 import kotlin.native.concurrent.TransferMode
 import kotlin.native.concurrent.Worker

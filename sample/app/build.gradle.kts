@@ -63,16 +63,18 @@ dependencies {
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
   kotlinOptions {
+    val buildDirAbsolutePath = project.layout.buildDirectory.map { it.asFile.absolutePath }.get()
+
     if (project.findProperty("composeCompilerReports") == "true") {
       freeCompilerArgs = freeCompilerArgs + listOf(
         "-P",
-        "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=${project.buildDir.absolutePath}/compose_compiler",
+        "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=$buildDirAbsolutePath/compose_compiler",
       )
     }
     if (project.findProperty("composeCompilerMetrics") == "true") {
       freeCompilerArgs = freeCompilerArgs + listOf(
         "-P",
-        "plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=${project.buildDir.absolutePath}/compose_compiler",
+        "plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=$buildDirAbsolutePath/compose_compiler",
       )
     }
   }

@@ -9,6 +9,10 @@ public final class com/hoc081098/kmp/viewmodel/CreationExtrasKey_nonAndroidKt {
 	public static final field VIEW_MODEL_KEY Lcom/hoc081098/kmp/viewmodel/CreationExtrasKey;
 }
 
+public final class com/hoc081098/kmp/viewmodel/CreationExtrasKt {
+	public static final fun MutableCreationExtrasBuilder (Lcom/hoc081098/kmp/viewmodel/MutableCreationExtrasBuilder;)Lcom/hoc081098/kmp/viewmodel/MutableCreationExtrasBuilder;
+}
+
 public final class com/hoc081098/kmp/viewmodel/CreationExtrasKtxKt {
 	public static final fun buildCreationExtras (Lcom/hoc081098/kmp/viewmodel/CreationExtras;Lkotlin/jvm/functions/Function1;)Lcom/hoc081098/kmp/viewmodel/CreationExtras;
 	public static synthetic fun buildCreationExtras$default (Lcom/hoc081098/kmp/viewmodel/CreationExtras;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/CreationExtras;
@@ -26,10 +30,11 @@ public abstract interface annotation class com/hoc081098/kmp/viewmodel/InternalK
 public abstract interface annotation class com/hoc081098/kmp/viewmodel/MainThread : java/lang/annotation/Annotation {
 }
 
-public final class com/hoc081098/kmp/viewmodel/MutableCreationExtras : com/hoc081098/kmp/viewmodel/CreationExtras {
+public final class com/hoc081098/kmp/viewmodel/MutableCreationExtrasBuilder : com/hoc081098/kmp/viewmodel/CreationExtras {
 	public fun <init> ()V
 	public fun <init> (Lcom/hoc081098/kmp/viewmodel/CreationExtras;)V
 	public synthetic fun <init> (Lcom/hoc081098/kmp/viewmodel/CreationExtras;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun asCreationExtras ()Lcom/hoc081098/kmp/viewmodel/CreationExtras;
 	public fun get (Lcom/hoc081098/kmp/viewmodel/CreationExtrasKey;)Ljava/lang/Object;
 	public final fun set (Lcom/hoc081098/kmp/viewmodel/CreationExtrasKey;Ljava/lang/Object;)V
 }
