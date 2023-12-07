@@ -10,7 +10,7 @@ class CreationExtrasTest {
     val initial = MutableCreationExtrasBuilder()
     val key = object : CreationExtrasKey<Map<String, String>> {}
     initial[key] = mapOf("value" to "initial")
-    val mutable = MutableCreationExtrasBuilder(initial)
+    val mutable = MutableCreationExtrasBuilder(initial.asCreationExtras())
     initial[key] = mapOf("value" to "overridden")
     assertEquals("initial", mutable[key]?.get("value"))
   }
