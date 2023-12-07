@@ -34,7 +34,7 @@ compose-rules-detekt = "0.3.5"
 androidx-lifecycle = "2.6.2"
 androidx-annotation = "1.7.0"
 androidx-activity = "1.8.1"
-androidx-compose-compiler = "1.5.5"
+androidx-compose-compiler = "1.5.6"
 androidx-navigation = "2.7.5"
 android-gradle = "8.1.2"
 
