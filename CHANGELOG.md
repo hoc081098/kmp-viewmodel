@@ -4,13 +4,13 @@
 
 ### Update dependencies
 
-- Supports for [Kotlin `1.9.21`.](https://github.com/JetBrains/kotlin/releases/tag/v1.9.21).
-- [AndroidX Lifecycle `2.6.2`.](https://developer.android.com/jetpack/androidx/releases/lifecycle#2.6.2).
-- [Jetpack Compose `1.5.11`](https://github.com/JetBrains/compose-multiplatform/releases/tag/v1.5.11)
+- Supports for [Kotlin `1.9.21`](https://github.com/JetBrains/kotlin/releases/tag/v1.9.21).
+- [AndroidX Lifecycle `2.6.2`](https://developer.android.com/jetpack/androidx/releases/lifecycle#2.6.2).
+- [Jetpack Compose `1.5.11`](https://github.com/JetBrains/compose-multiplatform/releases/tag/v1.5.11).
 
 ### Removed
 
-- Remove now-unsupported targets: `iosArm32`, `watchosX86`.
+- Remove **now-unsupported targets**: `iosArm32`, `watchosX86`.
 
 ### viewmodel
 
@@ -42,11 +42,11 @@
   > So we have to use wrapper class instead.
 
 - Update the docs of `ViewModel.viewModelScope` to clarify that the scope is **thread-safe**
-  on both _Android_ and _non-Android targets_.
+  on **both _Android_ and _non-Android targets_**.
 
 - On _non-Android targets_
   - `ViewModel.clear()` method has been refactored to improve the performance.
-  - Any `Exception` is thrown from `Closeable.close()` will be re-thrown as `RuntimeException`.
+  - Any `Exception` thrown from `Closeable.close()` will be re-thrown as `RuntimeException`.
 
 ## [0.5.0] - Sep 27, 2023
 
