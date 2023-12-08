@@ -1,6 +1,8 @@
 # Change Log
 
-## [0.6.0] - TBD
+## [Unreleased]
+
+## [0.6.0] - Dec 8, 2023
 
 ### Update dependencies
 
@@ -87,26 +89,18 @@
     to get the default `CreationExtras` and `ViewModelStoreOwner`,
     which depends on the platform.
 
--
+- Dependencies: [Compose Multiplatform 1.5.0](https://github.com/JetBrains/compose-multiplatform/releases/tag/v1.5.0).
 
-Dependencies: [Compose Multiplatform 1.5.0](https://github.com/JetBrains/compose-multiplatform/releases/tag/v1.5.0).
-
--
-
-Docs: [0.x Viewmodel-Compose docs](https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-compose/).
+- Docs: [0.x Viewmodel-Compose docs](https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-compose/).
 
 ### Example, docs and tests
 
 - Refactor example code.
 
--
-
-Add [Compose Multiplatform sample](https://github.com/hoc081098/kmp-viewmodel/tree/master/standalone-sample/kmpviewmodel_compose_sample)
+- Add [Compose Multiplatform sample](https://github.com/hoc081098/kmp-viewmodel/tree/master/standalone-sample/kmpviewmodel_compose_sample)
 which shares `ViewModel`s and integrates with `Navigation` in Compose Multiplatform.
 
--
-
-Add [Compose Multiplatform KmpViewModel KMM Unsplash Sample](https://github.com/hoc081098/Compose-Multiplatform-KmpViewModel-KMM-Unsplash-Sample),
+- Add [Compose Multiplatform KmpViewModel KMM Unsplash Sample](https://github.com/hoc081098/Compose-Multiplatform-KmpViewModel-KMM-Unsplash-Sample),
 a KMP template of the Unsplash App using Compose multiplatform for Android, Desktop, iOS.
 Share everything including data, domain, presentation, and UI.
 
@@ -243,7 +237,9 @@ Share everything including data, domain, presentation, and UI.
 
 - Initial release.
 
-[Unreleased]: https://github.com/hoc081098/kmp-viewmodel/compare/0.5.0...HEAD
+[Unreleased]: https://github.com/hoc081098/kmp-viewmodel/compare/0.6.0...HEAD
+
+[0.6.0]: https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.6.0
 
 [0.5.0]: https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.5.0
 
