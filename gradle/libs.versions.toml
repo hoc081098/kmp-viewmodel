@@ -1,7 +1,7 @@
 [versions]
 kotlin = "1.9.21"
 coroutines = "1.7.3"
-kotlinx-serialization-json = "1.6.2"
+kotlinx-serialization-json = "1.6.0"
 kotlinx-collections-immutable = "0.3.6"
 
 # the Java version that the Java and Kotlin compilers will target
@@ -36,12 +36,12 @@ androidx-annotation = "1.7.0"
 androidx-activity = "1.8.1"
 androidx-compose-compiler = "1.5.6"
 androidx-navigation = "2.7.5"
-android-gradle = "8.2.0"
+android-gradle = "8.1.2"
 
-spotless = "6.23.3"
-detekt = "1.23.4"
+spotless = "6.22.0"
+detekt = "1.23.1"
 
-kotlinx-kover = "0.7.5"
+kotlinx-kover = "0.7.4"
 dokka = "1.9.10"
 kotlinx-binary-compatibility-validator = "0.13.2"
 
