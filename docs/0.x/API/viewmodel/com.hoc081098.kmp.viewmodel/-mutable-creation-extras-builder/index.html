@@ -1,0 +1,176 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>MutableCreationExtrasBuilder</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+<a class="library-name--link" href="../../../index.html">
+                            kmp-viewmodel
+                    </a>            </div>
+            <div class="library-version">
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":viewmodel:dokkaHtmlPartial/androidMain">android</button>
+                <button class="platform-tag platform-selector common-like" data-active="" data-filter=":viewmodel:dokkaHtmlPartial/commonMain">common</button>
+                <button class="platform-tag platform-selector common-like" data-active="" data-filter=":viewmodel:dokkaHtmlPartial/nonAndroidMain">nonAndroid</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="viewmodel::com.hoc081098.kmp.viewmodel/MutableCreationExtrasBuilder///PointingToDeclaration//153061251">
+  <div class="breadcrumbs"><a href="../../index.html">viewmodel</a><span class="delimiter">/</span><a href="../index.html">com.hoc081098.kmp.viewmodel</a><span class="delimiter">/</span><span class="current">MutableCreationExtrasBuilder</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Mutable</span><wbr><span>Creation</span><wbr><span>Extras</span><wbr><span><span>Builder</span></span></h1>
+    <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+      <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":viewmodel:dokkaHtmlPartial/androidMain" data-filterable-set=":viewmodel:dokkaHtmlPartial/androidMain" data-active="" data-toggle=":viewmodel:dokkaHtmlPartial/androidMain">android</button><button class="platform-bookmark" data-filterable-current=":viewmodel:dokkaHtmlPartial/commonMain" data-filterable-set=":viewmodel:dokkaHtmlPartial/commonMain" data-toggle=":viewmodel:dokkaHtmlPartial/commonMain">common</button><button class="platform-bookmark" data-filterable-current=":viewmodel:dokkaHtmlPartial/nonAndroidMain" data-filterable-set=":viewmodel:dokkaHtmlPartial/nonAndroidMain" data-toggle=":viewmodel:dokkaHtmlPartial/nonAndroidMain">nonAndroid</button></div>
+<div class="content sourceset-dependent-content" data-togglable=":viewmodel:dokkaHtmlPartial/androidMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">class </span><a href="index.html">MutableCreationExtrasBuilder</a></div><p class="paragraph">With Kotlin 1.9.20, an expect with default arguments are no longer permitted when an actual is a typealias (see <a href="https://youtrack.jetbrains.com/issue/KT-57614">KT-57614</a>), we cannot use <code class="lang-kotlin">actual typealias MutableCreationExtras = androidx.lifecycle.viewmodel.MutableCreationExtras</code>. So we have to use wrapper class instead.</p></div><div class="content sourceset-dependent-content" data-active="" data-togglable=":viewmodel:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">expect </span><span class="token keyword">class </span><a href="index.html">MutableCreationExtrasBuilder</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">initialExtras<span class="token operator">: </span><a href="../-creation-extras/index.html">CreationExtras</a><span class="token operator"> = </span>EmptyCreationExtras</span></span><span class="token punctuation">)</span></div><p class="paragraph">Mutable builder for <a href="../-creation-extras/index.html">CreationExtras</a>.</p><h4 class="">Parameters</h4><div class="table"><div class="table-row" data-filterable-current=":viewmodel:dokkaHtmlPartial/commonMain" data-filterable-set=":viewmodel:dokkaHtmlPartial/commonMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>initial</span><wbr><span><span>Extras</span></span></u></div></span></div><div><div class="title"><p class="paragraph">extras that will be filled into the resulting <a href="index.html">MutableCreationExtrasBuilder</a></p></div></div></div></div></div></div><div class="content sourceset-dependent-content" data-togglable=":viewmodel:dokkaHtmlPartial/nonAndroidMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">class </span><a href="index.html">MutableCreationExtrasBuilder</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">initialExtras<span class="token operator">: </span><a href="../-creation-extras/index.html">CreationExtras</a></span></span><span class="token punctuation">)</span> : <a href="../-creation-extras/index.html">CreationExtras</a></div></div>    </div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button><button class="section-tab" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION,EXTENSION_PROPERTY,EXTENSION_FUNCTION">Members &amp; Extensions</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="-731795155%2FConstructors%2F-559635754" anchor-label="MutableCreationExtrasBuilder" id="-731795155%2FConstructors%2F-559635754" data-filterable-set=":viewmodel:dokkaHtmlPartial/commonMain,:viewmodel:dokkaHtmlPartial/nonAndroidMain"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":viewmodel:dokkaHtmlPartial/commonMain,:viewmodel:dokkaHtmlPartial/nonAndroidMain" data-filterable-set=":viewmodel:dokkaHtmlPartial/commonMain,:viewmodel:dokkaHtmlPartial/nonAndroidMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-mutable-creation-extras-builder.html"><span>Mutable</span><wbr><span>Creation</span><wbr><span>Extras</span><wbr><span><span>Builder</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-731795155%2FConstructors%2F-559635754"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":viewmodel:dokkaHtmlPartial/commonMain" data-filterable-set=":viewmodel:dokkaHtmlPartial/commonMain" data-active="" data-toggle=":viewmodel:dokkaHtmlPartial/commonMain">common</button><button class="platform-bookmark" data-filterable-current=":viewmodel:dokkaHtmlPartial/nonAndroidMain" data-filterable-set=":viewmodel:dokkaHtmlPartial/nonAndroidMain" data-toggle=":viewmodel:dokkaHtmlPartial/nonAndroidMain">nonAndroid</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":viewmodel:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">expect </span><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">initialExtras<span class="token operator">: </span><a href="../-creation-extras/index.html">CreationExtras</a><span class="token operator"> = </span>EmptyCreationExtras</span></span><span class="token punctuation">)</span></div></div><div class="content sourceset-dependent-content" data-togglable=":viewmodel:dokkaHtmlPartial/nonAndroidMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">initialExtras<span class="token operator">: </span><a href="../-creation-extras/index.html">CreationExtras</a></span></span><span class="token punctuation">)</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="345804049%2FFunctions%2F153061251" anchor-label="asCreationExtras" id="345804049%2FFunctions%2F153061251" data-filterable-set=":viewmodel:dokkaHtmlPartial/commonMain,:viewmodel:dokkaHtmlPartial/androidMain,:viewmodel:dokkaHtmlPartial/nonAndroidMain"></a>
+          <div class="table-row" data-filterable-current=":viewmodel:dokkaHtmlPartial/commonMain,:viewmodel:dokkaHtmlPartial/androidMain,:viewmodel:dokkaHtmlPartial/nonAndroidMain" data-filterable-set=":viewmodel:dokkaHtmlPartial/commonMain,:viewmodel:dokkaHtmlPartial/androidMain,:viewmodel:dokkaHtmlPartial/nonAndroidMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="as-creation-extras.html"><span>as</span><wbr><span>Creation</span><wbr><span><span>Extras</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="345804049%2FFunctions%2F153061251"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":viewmodel:dokkaHtmlPartial/androidMain" data-filterable-set=":viewmodel:dokkaHtmlPartial/androidMain" data-active="" data-toggle=":viewmodel:dokkaHtmlPartial/androidMain">android</button><button class="platform-bookmark" data-filterable-current=":viewmodel:dokkaHtmlPartial/commonMain" data-filterable-set=":viewmodel:dokkaHtmlPartial/commonMain" data-toggle=":viewmodel:dokkaHtmlPartial/commonMain">common</button><button class="platform-bookmark" data-filterable-current=":viewmodel:dokkaHtmlPartial/nonAndroidMain" data-filterable-set=":viewmodel:dokkaHtmlPartial/nonAndroidMain" data-toggle=":viewmodel:dokkaHtmlPartial/nonAndroidMain">nonAndroid</button></div>
+<div class="content sourceset-dependent-content" data-togglable=":viewmodel:dokkaHtmlPartial/androidMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="as-creation-extras.html"><span class="token function">asCreationExtras</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-creation-extras/index.html">CreationExtras</a></div></div><div class="content sourceset-dependent-content" data-active="" data-togglable=":viewmodel:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">expect </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="as-creation-extras.html"><span class="token function">asCreationExtras</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-creation-extras/index.html">CreationExtras</a></div><div class="brief "><p class="paragraph">Returns a <a href="../-creation-extras/index.html">CreationExtras</a> with the same content as this builder.</p></div></div><div class="content sourceset-dependent-content" data-togglable=":viewmodel:dokkaHtmlPartial/nonAndroidMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="as-creation-extras.html"><span class="token function">asCreationExtras</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-creation-extras/index.html">CreationExtras</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-822359846%2FFunctions%2F1813279489" anchor-label="edit" id="-822359846%2FFunctions%2F1813279489" data-filterable-set=":viewmodel:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":viewmodel:dokkaHtmlPartial/commonMain" data-filterable-set=":viewmodel:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../edit.html"><span><span>edit</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-822359846%2FFunctions%2F1813279489"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":viewmodel:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="../-creation-extras/index.html">CreationExtras</a><span class="token punctuation">.</span><a href="../edit.html"><span class="token function">edit</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">builderAction<span class="token operator">: </span><span class="token keyword"></span><a href="index.html">MutableCreationExtrasBuilder</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-creation-extras/index.html">CreationExtras</a></div><div class="brief "><p class="paragraph">Edits this <a href="../-creation-extras/index.html">CreationExtras</a> by populating a <a href="index.html">MutableCreationExtrasBuilder</a> using the given <a href="../edit.html">builderAction</a>. Content of this <a href="../-creation-extras/index.html">CreationExtras</a> will be copied into the resulting <a href="index.html">MutableCreationExtrasBuilder</a> first. Then the <a href="../edit.html">builderAction</a> will be applied to the <a href="index.html">MutableCreationExtrasBuilder</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="531529445%2FFunctions%2F-559635754" anchor-label="get" id="531529445%2FFunctions%2F-559635754" data-filterable-set=":viewmodel:dokkaHtmlPartial/commonMain,:viewmodel:dokkaHtmlPartial/nonAndroidMain"></a>
+          <div class="table-row" data-filterable-current=":viewmodel:dokkaHtmlPartial/commonMain,:viewmodel:dokkaHtmlPartial/nonAndroidMain" data-filterable-set=":viewmodel:dokkaHtmlPartial/commonMain,:viewmodel:dokkaHtmlPartial/nonAndroidMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get.html"><span><span>get</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="531529445%2FFunctions%2F-559635754"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":viewmodel:dokkaHtmlPartial/commonMain" data-filterable-set=":viewmodel:dokkaHtmlPartial/commonMain" data-active="" data-toggle=":viewmodel:dokkaHtmlPartial/commonMain">common</button><button class="platform-bookmark" data-filterable-current=":viewmodel:dokkaHtmlPartial/nonAndroidMain" data-filterable-set=":viewmodel:dokkaHtmlPartial/nonAndroidMain" data-toggle=":viewmodel:dokkaHtmlPartial/nonAndroidMain">nonAndroid</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":viewmodel:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">expect </span><span class="token keyword">operator </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="get.html">T</a><span class="token operator">&gt; </span><a href="get.html"><span class="token function">get</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">key<span class="token operator">: </span><a href="../../../viewmodel/com.hoc081098.kmp.viewmodel/-key/index.html">Key</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="get.html">T</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="get.html">T</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Returns an element associated with the given <a href="get.html">key</a></p></div></div><div class="content sourceset-dependent-content" data-togglable=":viewmodel:dokkaHtmlPartial/nonAndroidMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">open </span><span class="token keyword">operator override </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="get.html">T</a><span class="token operator">&gt; </span><a href="get.html"><span class="token function">get</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">key<span class="token operator">: </span><a href="../../../viewmodel/com.hoc081098.kmp.viewmodel/-key/index.html">Key</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="get.html">T</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="get.html">T</a><span class="token operator">?</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1749831672%2FFunctions%2F-559635754" anchor-label="set" id="1749831672%2FFunctions%2F-559635754" data-filterable-set=":viewmodel:dokkaHtmlPartial/commonMain,:viewmodel:dokkaHtmlPartial/nonAndroidMain"></a>
+          <div class="table-row" data-filterable-current=":viewmodel:dokkaHtmlPartial/commonMain,:viewmodel:dokkaHtmlPartial/nonAndroidMain" data-filterable-set=":viewmodel:dokkaHtmlPartial/commonMain,:viewmodel:dokkaHtmlPartial/nonAndroidMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set.html"><span><span>set</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1749831672%2FFunctions%2F-559635754"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":viewmodel:dokkaHtmlPartial/commonMain" data-filterable-set=":viewmodel:dokkaHtmlPartial/commonMain" data-active="" data-toggle=":viewmodel:dokkaHtmlPartial/commonMain">common</button><button class="platform-bookmark" data-filterable-current=":viewmodel:dokkaHtmlPartial/nonAndroidMain" data-filterable-set=":viewmodel:dokkaHtmlPartial/nonAndroidMain" data-toggle=":viewmodel:dokkaHtmlPartial/nonAndroidMain">nonAndroid</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":viewmodel:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">expect </span><span class="token keyword">operator </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="set.html">T</a><span class="token operator">&gt; </span><a href="set.html"><span class="token function">set</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">key<span class="token operator">: </span><a href="../../../viewmodel/com.hoc081098.kmp.viewmodel/-key/index.html">Key</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="set.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">t<span class="token operator">: </span><a href="set.html">T</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Associates the given <a href="set.html">key</a> with <a href="set.html">t</a></p></div></div><div class="content sourceset-dependent-content" data-togglable=":viewmodel:dokkaHtmlPartial/nonAndroidMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">operator </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="set.html">T</a><span class="token operator">&gt; </span><a href="set.html"><span class="token function">set</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">key<span class="token operator">: </span><a href="../../../viewmodel/com.hoc081098.kmp.viewmodel/-key/index.html">Key</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="set.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">t<span class="token operator">: </span><a href="set.html">T</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Associates the given <a href="set.html">key</a> with <a href="set.html">t</a></p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
