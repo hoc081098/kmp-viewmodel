@@ -17,8 +17,7 @@ private inline fun CoroutineDispatcher.test() = apply {
 
 private fun viewModelScopeDispatcher(): CoroutineDispatcher =
   runCatching { Dispatchers.Main.immediate.test() }
-    .recoverCatching { Dispatchers.Main.test() }
-    .getOrDefault(Dispatchers.Default)
+    .getOrElse { Dispatchers.Main.test() }
 
 public actual abstract class ViewModel : Any {
   private val lockable = Lockable()
