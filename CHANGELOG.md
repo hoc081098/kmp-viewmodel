@@ -1,6 +1,16 @@
 # Change Log
 
-## [Unreleased]
+## [Unreleased] - TBD
+
+### viewmodel
+
+- On _non-Android targets_: `ViewModel.viewModelScope` does not use `Dispatchers.Default` as a fallback.
+  That means the `CoroutineDispatcher` of `ViewModel.viewModelScope` is `Dispatchers.Main.immediate` or `Dispatchers.Main`.
+
+### Example, docs
+
+- Refactor example code.
+- Add **NOTE** about the `kotlinx-coroutines` dependency when targeting `Desktop` (aka. `jvm`).
 
 ## [0.6.0] - Dec 8, 2023
 
