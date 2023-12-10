@@ -1,4 +1,4 @@
-package com.hoc081098.kmpviewmodelsample
+package com.hoc081098.kmpviewmodelsample.common
 
 @MustBeDocumented
 @Target(AnnotationTarget.CLASS)

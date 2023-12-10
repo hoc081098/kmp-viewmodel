@@ -2,7 +2,7 @@
 
 package com.hoc081098.kmpviewmodelsample.search_products
 
-import com.hoc081098.kmpviewmodelsample.AppDispatchers
+import com.hoc081098.kmpviewmodelsample.common.AppDispatchers
 import com.hoc081098.kmpviewmodelsample.data.FakeProductsJson
 import com.hoc081098.kmpviewmodelsample.data.ProductItem
 import kotlinx.coroutines.delay
