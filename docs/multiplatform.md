@@ -3,7 +3,8 @@
 ## Supported targets
 
 - `android`.
-- `jvm`
+- `jvm` (must add `kotlinx-coroutines-swing`/`kotlinx-coroutines-javafx` to your dependencies to
+  make sure `Dispatchers.Main` available).
 
 > [!NOTE]  
 > If you are targeting `Desktop` and not using `JetBrains Compose Multiplatform`, you should provide the dependency `org.jetbrains.kotlinx:kotlinx-coroutines-swing` **or** `org.jetbrains.kotlinx:kotlinx-coroutines-javafx`
