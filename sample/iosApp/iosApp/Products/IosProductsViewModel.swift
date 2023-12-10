@@ -22,7 +22,9 @@ class IosProductsViewModel: ObservableObject {
     self.singleEventPublisher = self.commonVm.eventFlow
       .asNonNullPublisher(
         ProductSingleEvent.self,
-        dispatcher: DIContainer.shared.get(for: AppDispatchers.self).immediateMain
+        dispatcher: DIContainer.shared
+          .get(for: AppDispatchers.self)
+          .immediateMain
       )
       .handleEvents(receiveCancel: { Napier.d("eventFlow cancelled") })
       .assertNoFailure()
@@ -51,7 +53,9 @@ class IosProductsViewModel: ObservableObject {
     .tickerFlow
     .asNullablePublisher(
       NSString.self,
-      dispatcher: DIContainer.shared.get(for: AppDispatchers.self).immediateMain
+      dispatcher: DIContainer.shared
+        .get(for: AppDispatchers.self)
+        .immediateMain
     )
     .map { $0 as String? }
     .assertNoFailure()
