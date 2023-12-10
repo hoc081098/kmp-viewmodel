@@ -67,6 +67,9 @@ struct ProductsView: View {
         fatalError()
       }
     }
+      .onReceive(self.viewModel.singleEventPublisher) { event in
+        Napier.d("[ProductsView] received \(event)")
+      }
   }
 }
 

@@ -16,7 +16,18 @@ class IosProductsViewModel: ObservableObject {
 
   @Published private(set) var state: ProductsState
 
+  let singleEventPublisher: AnyPublisher<ProductSingleEvent, Never>
+
   init() {
+    self.singleEventPublisher = self.commonVm.eventFlow
+      .asNonNullPublisher(
+        ProductSingleEvent.self,
+        dispatcher: DIContainer.shared.get(for: AppDispatchers.self).immediateMain
+      )
+      .handleEvents(receiveCancel: { Napier.d("eventFlow cancelled") })
+      .assertNoFailure()
+      .eraseToAnyPublisher()
+
     self.state = self.commonVm.stateFlow.value
     self.commonVm.stateFlow.subscribe(
       scope: self.commonVm.viewModelScope,
@@ -36,9 +47,15 @@ class IosProductsViewModel: ObservableObject {
   // MARK: Demo purpose only
   private var cancellable: AnyCancellable? = nil
 
-  private lazy var tickerPublisher: AnyPublisher<NSString?, Error> = self.commonVm
+  private lazy var tickerPublisher: AnyPublisher<String?, Never> = self.commonVm
     .tickerFlow
-    .asNullablePublisher()
+    .asNullablePublisher(
+      NSString.self,
+      dispatcher: DIContainer.shared.get(for: AppDispatchers.self).immediateMain
+    )
+    .map { $0 as String? }
+    .assertNoFailure()
+    .eraseToAnyPublisher()
 
   func onActive() {
     self.cancellable?.cancel()

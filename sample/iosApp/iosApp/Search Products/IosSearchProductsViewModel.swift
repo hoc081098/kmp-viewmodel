@@ -29,7 +29,10 @@ class IosSearchProductsViewModel: ObservableObject {
 
     self.commonVm
       .searchTermStateFlow
-      .asNonNullPublisher(NSString.self)
+      .asNonNullPublisher(
+        NSString.self,
+        dispatcher: DIContainer.shared.get(for: AppDispatchers.self).immediateMain
+      )
       .handleEvents(receiveCancel: { Napier.d("searchTermStateFlow cancelled") })
       .assertNoFailure()
       .map { $0 as String }
