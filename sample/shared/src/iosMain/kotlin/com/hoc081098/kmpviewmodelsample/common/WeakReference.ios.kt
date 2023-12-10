@@ -4,7 +4,7 @@ import kotlin.experimental.ExperimentalNativeApi
 
 @OptIn(ExperimentalNativeApi::class)
 internal actual class WeakReference<T : Any> actual constructor(reference: T) {
-  private val weakReference = kotlin.native.ref.WeakReference(reference)
+  private val ref = kotlin.native.ref.WeakReference(reference)
 
-  actual fun get(): T? = weakReference.get()
+  actual fun get(): T? = ref.get()
 }
