@@ -35,8 +35,7 @@ public expect abstract class ViewModel {
    * ### Other platforms
    * - This scope is bound to the first available in the order:
    *   [Dispatchers.Main.immediate][kotlinx.coroutines.MainCoroutineDispatcher.immediate] or
-   *   [Dispatchers.Main][kotlinx.coroutines.MainCoroutineDispatcher] or
-   *   [Dispatchers.Default][kotlinx.coroutines.Dispatchers.Default].
+   *   [Dispatchers.Main][kotlinx.coroutines.MainCoroutineDispatcher].
    *
    *   You should make sure that you add the corresponding dependency to your project,
    *   to ensure that the [kotlinx.coroutines.MainCoroutineDispatcher] is available
