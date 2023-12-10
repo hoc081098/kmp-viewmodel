@@ -19,9 +19,9 @@ Its principal advantage is that it caches state and persists it through configur
 [![Build sample](https://github.com/hoc081098/kmp-viewmodel/actions/workflows/sample.yml/badge.svg)](https://github.com/hoc081098/kmp-viewmodel/actions/workflows/sample.yml)
 [![Publish Release](https://github.com/hoc081098/kmp-viewmodel/actions/workflows/publish-release.yml/badge.svg)](https://github.com/hoc081098/kmp-viewmodel/actions/workflows/publish-release.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Kotlin version](https://img.shields.io/badge/Kotlin-1.9.0-blueviolet?logo=kotlin&logoColor=white)](http://kotlinlang.org)
+[![Kotlin version](https://img.shields.io/badge/Kotlin-1.9.21-blueviolet?logo=kotlin&logoColor=white)](http://kotlinlang.org)
 [![KotlinX Coroutines version](https://img.shields.io/badge/Kotlinx_Coroutines-1.7.3-blueviolet?logo=kotlin&logoColor=white)](https://github.com/Kotlin/kotlinx.coroutines/releases/tag/1.7.3)
-[![Compose Multiplatform version](https://img.shields.io/badge/Compose_Multiplatform-1.5.0-blueviolet?logo=kotlin&logoColor=white)](https://github.com/JetBrains/compose-multiplatform/releases/tag/v1.5.0)
+[![Compose Multiplatform version](https://img.shields.io/badge/Compose_Multiplatform-1.5.11-blueviolet?logo=kotlin&logoColor=white)](https://github.com/JetBrains/compose-multiplatform/releases/tag/v1.5.0)
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fhoc081098%2Fkmp-viewmodel&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 ![badge][badge-jvm]
 ![badge][badge-android]
@@ -49,10 +49,10 @@ Liked some of my work? Buy me a coffee (or more likely a beer)
 - `jvm` (must add `kotlinx-coroutines-swing`/`kotlinx-coroutines-javafx` to your dependencies to
   make sure `Dispatchers.Main` available).
 
-> [!NOTE]  
+> [!NOTE]
 > If you are targeting `Desktop` and not using `JetBrains Compose Multiplatform`, you should provide the dependency `org.jetbrains.kotlinx:kotlinx-coroutines-swing` **or** `org.jetbrains.kotlinx:kotlinx-coroutines-javafx`,
 > the `ViewModel.viewModelScope` depends on `Dispatchers.Main` provided by this library on Desktop.
-> 
+>
 > If you are using `JetBrains Compose Multiplatform` and targeting `Desktop`, you should provide `org.jetbrains.kotlinx:kotlinx-coroutines-swing`.
 
 - `js` (`IR`).
@@ -64,7 +64,7 @@ Liked some of my work? Buy me a coffee (or more likely a beer)
 
 ## Docs
 
-### 0.x release docs: https://hoc081098.github.io/kmp-viewmodel/docs/0.x
+### **0.x release** docs: https://hoc081098.github.io/kmp-viewmodel/docs/0.x
 
 ### Snapshot docs: https://hoc081098.github.io/kmp-viewmodel/docs/latest
 

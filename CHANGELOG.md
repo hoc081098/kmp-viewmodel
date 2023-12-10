@@ -2,6 +2,8 @@
 
 ## [Unreleased] - TBD
 
+## [0.6.1] - Dec 10, 2023
+
 ### viewmodel
 
 - On _non-Android targets_: `ViewModel.viewModelScope` does not use `Dispatchers.Default` as a fallback.
@@ -247,7 +249,9 @@ Share everything including data, domain, presentation, and UI.
 
 - Initial release.
 
-[Unreleased]: https://github.com/hoc081098/kmp-viewmodel/compare/0.6.0...HEAD
+[Unreleased]: https://github.com/hoc081098/kmp-viewmodel/compare/0.6.1...HEAD
+
+[0.6.1]: https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.6.1
 
 [0.6.0]: https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.6.0
 
