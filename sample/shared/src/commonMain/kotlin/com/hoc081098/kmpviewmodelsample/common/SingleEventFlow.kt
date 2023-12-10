@@ -4,7 +4,6 @@ import com.hoc081098.kmp.viewmodel.Closeable
 import com.hoc081098.kmp.viewmodel.MainThread
 import com.hoc081098.kmp.viewmodel.ViewModel
 import io.github.aakira.napier.Napier
-import kotlin.LazyThreadSafetyMode.NONE
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.onClosed
 import kotlinx.coroutines.channels.onFailure
@@ -45,10 +44,11 @@ sealed interface SingleEventFlowSender<E> {
   suspend fun sendEvent(event: E)
 }
 
-private class SingleEventFlowImpl<E>(private val channel: Channel<E>) : SingleEventFlow<E> {
+private class SingleEventFlowImpl<E>(private val channelRef: WeakReference<Channel<E>>) : SingleEventFlow<E> {
   override suspend fun collect(collector: FlowCollector<E>) {
     debugCheckImmediateMainDispatcher()
-    return collector.emitAll(channel.receiveAsFlow())
+    val flow = channelRef.get()?.receiveAsFlow() ?: return
+    return collector.emitAll(flow)
   }
 }
 
@@ -59,7 +59,7 @@ class SingleEventChannel<E> :
   SingleEventFlowSender<E> {
   private val _eventChannel = Channel<E>(Channel.UNLIMITED)
 
-  override val singleEventFlow: SingleEventFlow<E> by lazy(NONE) { SingleEventFlowImpl(_eventChannel) }
+  override val singleEventFlow: SingleEventFlow<E> = SingleEventFlowImpl(WeakReference(_eventChannel))
 
   init {
     Napier.d("[EventChannel] created: hashCode=${identityHashCode()}")

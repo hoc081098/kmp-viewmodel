@@ -6,7 +6,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.currentCoroutineContext
 
 @OptIn(ExperimentalStdlibApi::class)
-suspend inline fun debugCheckImmediateMainDispatcher() {
+internal suspend inline fun debugCheckImmediateMainDispatcher() {
   if (isDebug()) {
     val dispatcher = currentCoroutineContext()[CoroutineDispatcher]
     check(dispatcher === Dispatchers.Main.immediate) {
