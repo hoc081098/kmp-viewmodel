@@ -13,6 +13,7 @@ import com.hoc081098.kmp.viewmodel.wrapper.NonNullStateFlowWrapper
 import com.hoc081098.kmp.viewmodel.wrapper.wrap
 import com.hoc081098.kmpviewmodelsample.Immutable
 import com.hoc081098.kmpviewmodelsample.ProductItemUi
+import com.hoc081098.kmpviewmodelsample.common.SingleEventChannel
 import com.hoc081098.kmpviewmodelsample.toProductItemUi
 import io.github.aakira.napier.Napier
 import kotlin.time.Duration
@@ -21,7 +22,6 @@ import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -32,7 +32,6 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.scan
 import kotlinx.coroutines.flow.stateIn
 
@@ -73,19 +72,19 @@ private fun interface Reducer {
 
 class ProductsViewModel(
   private val getProducts: GetProducts,
+  private val singleEventChannel: SingleEventChannel<ProductSingleEvent>,
 ) : ViewModel(
   Closeable { Napier.d("[DEMO] Closable 1 ...") },
   Closeable { Napier.d("[DEMO] Closable 2 ...") },
+  singleEventChannel,
 ) {
-  private val _eventChannel = Channel<ProductSingleEvent>(Int.MAX_VALUE)
   private val _actionFlow = MutableSharedFlow<ProductsAction>(Int.MAX_VALUE)
 
   val stateFlow: NonNullStateFlowWrapper<ProductsState>
-  val eventFlow: NonNullFlowWrapper<ProductSingleEvent> = _eventChannel.receiveAsFlow().wrap()
+  val eventFlow: NonNullFlowWrapper<ProductSingleEvent> = singleEventChannel.singleEventFlow.wrap()
 
   init {
     addCloseable { Napier.d("[DEMO] Closable 3 ...") }
-    addCloseable(_eventChannel::close)
 
     stateFlow = merge(
       _actionFlow
@@ -115,7 +114,7 @@ class ProductsViewModel(
     flatMapFirst {
       flowFromSuspend { getProducts() }
         .map { products ->
-          _eventChannel.trySend(ProductSingleEvent.Refresh.Success)
+          singleEventChannel.sendEvent(ProductSingleEvent.Refresh.Success)
 
           Reducer { state ->
             state.copy(
@@ -128,7 +127,7 @@ class ProductsViewModel(
           }
         }
         .catch { throwable ->
-          _eventChannel.trySend(ProductSingleEvent.Refresh.Failure(throwable))
+          singleEventChannel.sendEvent(ProductSingleEvent.Refresh.Failure(throwable))
           emit(Reducer { it.copy(isRefreshing = false) })
         }
         .startWith { Reducer { it.copy(isRefreshing = true) } }

@@ -19,6 +19,8 @@ internal expect val PlatformModule: Module
 
 expect fun setupNapier()
 
+expect fun isDebug(): Boolean
+
 fun startKoinCommon(
   appDeclaration: KoinAppDeclaration = {},
 ) {
