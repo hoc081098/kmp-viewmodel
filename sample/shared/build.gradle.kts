@@ -138,3 +138,10 @@ fun Project.workaroundForIssueKT51970() {
     }
   }
 }
+
+// Monitor GC performance: https://kotlinlang.org/docs/native-memory-manager.html#monitor-gc-performance
+kotlin.targets.withType(org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget::class.java) {
+  binaries.all {
+    freeCompilerArgs += "-Xruntime-logs=gc=info"
+  }
+}

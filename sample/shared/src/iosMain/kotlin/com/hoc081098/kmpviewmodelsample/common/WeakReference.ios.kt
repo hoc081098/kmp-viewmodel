@@ -3,5 +3,8 @@ package com.hoc081098.kmpviewmodelsample.common
 import kotlin.experimental.ExperimentalNativeApi
 
 @OptIn(ExperimentalNativeApi::class)
-@Suppress("ACTUAL_WITHOUT_EXPECT") // TODO: https://youtrack.jetbrains.com/issue/KT-37316
-internal actual typealias WeakReference<T> = kotlin.native.ref.WeakReference<T>
+internal actual class WeakReference<T : Any> actual constructor(reference: T) {
+  private val weakReference = kotlin.native.ref.WeakReference(reference)
+
+  actual fun get(): T? = weakReference.get()
+}
