@@ -23,9 +23,9 @@ public final class com/hoc081098/kmp/viewmodel/SavedStateHandleKey {
 }
 
 public final class com/hoc081098/kmp/viewmodel/SavedStateHandleKeyKt {
-	public static final fun get (Lcom/hoc081098/kmp/viewmodel/SavedStateHandle;Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;)Ljava/lang/Object;
-	public static final fun getStateFlow (Lcom/hoc081098/kmp/viewmodel/SavedStateHandle;Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;)Lkotlinx/coroutines/flow/StateFlow;
-	public static final fun set (Lcom/hoc081098/kmp/viewmodel/SavedStateHandle;Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;Ljava/lang/Object;)V
+	public static final synthetic fun get (Lcom/hoc081098/kmp/viewmodel/SavedStateHandle;Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;)Ljava/lang/Object;
+	public static final synthetic fun getStateFlow (Lcom/hoc081098/kmp/viewmodel/SavedStateHandle;Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;)Lkotlinx/coroutines/flow/StateFlow;
+	public static final synthetic fun set (Lcom/hoc081098/kmp/viewmodel/SavedStateHandle;Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;Ljava/lang/Object;)V
 }
 
 public final class com/hoc081098/kmp/viewmodel/SavedStateHandleSupportKt {

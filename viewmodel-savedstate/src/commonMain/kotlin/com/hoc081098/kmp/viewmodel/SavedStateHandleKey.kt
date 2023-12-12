@@ -1,5 +1,6 @@
 package com.hoc081098.kmp.viewmodel
 
+import kotlin.jvm.JvmSynthetic
 import kotlinx.coroutines.flow.StateFlow
 
 public class SavedStateHandleKey<T>(
@@ -19,6 +20,7 @@ public class SavedStateHandleKey<T>(
   override fun hashCode(): Int = key.hashCode()
 }
 
+@JvmSynthetic
 public inline operator fun <T> SavedStateHandle.get(key: SavedStateHandleKey<T>): T =
   if (key.key in this) {
     @Suppress("UNCHECKED_CAST", "RemoveExplicitTypeArguments")
@@ -28,8 +30,10 @@ public inline operator fun <T> SavedStateHandle.get(key: SavedStateHandleKey<T>)
     key.defaultValue
   }
 
+@JvmSynthetic
 public inline operator fun <T> SavedStateHandle.set(key: SavedStateHandleKey<T>, value: T): Unit =
   set(key.key, value)
 
+@JvmSynthetic
 public inline fun <T> SavedStateHandle.getStateFlow(key: SavedStateHandleKey<T>): StateFlow<T> =
   getStateFlow(key.key, key.defaultValue)
