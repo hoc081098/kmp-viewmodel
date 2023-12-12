@@ -20,6 +20,7 @@ public class SavedStateHandleKey<T>(
   override fun hashCode(): Int = key.hashCode()
 }
 
+@Suppress("NOTHING_TO_INLINE")
 @JvmSynthetic
 public inline operator fun <T> SavedStateHandle.get(key: SavedStateHandleKey<T>): T =
   if (key.key in this) {
@@ -30,10 +31,12 @@ public inline operator fun <T> SavedStateHandle.get(key: SavedStateHandleKey<T>)
     key.defaultValue
   }
 
+@Suppress("NOTHING_TO_INLINE")
 @JvmSynthetic
 public inline operator fun <T> SavedStateHandle.set(key: SavedStateHandleKey<T>, value: T): Unit =
   set(key.key, value)
 
+@Suppress("NOTHING_TO_INLINE")
 @JvmSynthetic
 public inline fun <T> SavedStateHandle.getStateFlow(key: SavedStateHandleKey<T>): StateFlow<T> =
   getStateFlow(key.key, key.defaultValue)
