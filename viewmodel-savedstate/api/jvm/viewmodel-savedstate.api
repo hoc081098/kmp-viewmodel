@@ -13,6 +13,21 @@ public abstract interface class com/hoc081098/kmp/viewmodel/SavedStateHandleFact
 	public abstract fun create ()Lcom/hoc081098/kmp/viewmodel/SavedStateHandle;
 }
 
+public final class com/hoc081098/kmp/viewmodel/SavedStateHandleKey {
+	public fun <init> (Ljava/lang/String;Ljava/lang/Object;)V
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDefaultValue ()Ljava/lang/Object;
+	public final fun getKey ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/hoc081098/kmp/viewmodel/SavedStateHandleKeyKt {
+	public static final fun get (Lcom/hoc081098/kmp/viewmodel/SavedStateHandle;Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;)Ljava/lang/Object;
+	public static final fun getStateFlow (Lcom/hoc081098/kmp/viewmodel/SavedStateHandle;Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;)Lkotlinx/coroutines/flow/StateFlow;
+	public static final fun set (Lcom/hoc081098/kmp/viewmodel/SavedStateHandle;Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;Ljava/lang/Object;)V
+}
+
 public final class com/hoc081098/kmp/viewmodel/SavedStateHandleSupportKt {
 	public static final field SAVED_STATE_HANDLE_FACTORY_KEY Lcom/hoc081098/kmp/viewmodel/CreationExtrasKey;
 }

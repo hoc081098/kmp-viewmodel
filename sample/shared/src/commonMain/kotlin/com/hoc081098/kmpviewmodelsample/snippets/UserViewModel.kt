@@ -3,9 +3,12 @@
 package com.hoc081098.kmpviewmodelsample.snippets
 
 import com.hoc081098.kmp.viewmodel.SavedStateHandle
+import com.hoc081098.kmp.viewmodel.SavedStateHandleKey
 import com.hoc081098.kmp.viewmodel.ViewModel
+import com.hoc081098.kmp.viewmodel.getStateFlow
 import com.hoc081098.kmp.viewmodel.parcelable.Parcelable
 import com.hoc081098.kmp.viewmodel.parcelable.Parcelize
+import com.hoc081098.kmp.viewmodel.set
 import com.hoc081098.kmp.viewmodel.wrapper.wrap
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.launch
@@ -20,7 +23,7 @@ class UserViewModel(
   private val savedStateHandle: SavedStateHandle,
   private val getUserUseCase: suspend () -> User?,
 ) : ViewModel() {
-  val userStateFlow = savedStateHandle.getStateFlow<User?>(USER_KEY, null).wrap()
+  val userStateFlow = savedStateHandle.getStateFlow(USER_KEY).wrap()
 
   fun getUser() {
     viewModelScope.launch {
@@ -36,6 +39,6 @@ class UserViewModel(
   }
 
   private companion object {
-    private const val USER_KEY = "user_key"
+    private val USER_KEY = SavedStateHandleKey<User?>("user_key", null)
   }
 }

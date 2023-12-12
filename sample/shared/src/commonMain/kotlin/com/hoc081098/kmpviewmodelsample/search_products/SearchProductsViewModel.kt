@@ -5,7 +5,10 @@ package com.hoc081098.kmpviewmodelsample.search_products
 import com.hoc081098.flowext.flowFromSuspend
 import com.hoc081098.flowext.startWith
 import com.hoc081098.kmp.viewmodel.SavedStateHandle
+import com.hoc081098.kmp.viewmodel.SavedStateHandleKey
 import com.hoc081098.kmp.viewmodel.ViewModel
+import com.hoc081098.kmp.viewmodel.getStateFlow
+import com.hoc081098.kmp.viewmodel.set
 import com.hoc081098.kmp.viewmodel.wrapper.NonNullStateFlowWrapper
 import com.hoc081098.kmp.viewmodel.wrapper.NullableStateFlowWrapper
 import com.hoc081098.kmp.viewmodel.wrapper.wrap
@@ -52,7 +55,7 @@ class SearchProductsViewModel(
   private val savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
   val searchTermStateFlow: NullableStateFlowWrapper<String?> =
-    savedStateHandle.getStateFlow<String?>(SEARCH_TERM_KEY, null).wrap()
+    savedStateHandle.getStateFlow(SEARCH_TERM_KEY).wrap()
 
   val stateFlow: NonNullStateFlowWrapper<SearchProductsState> = searchTermStateFlow
     .debounce(400.milliseconds)
@@ -71,7 +74,10 @@ class SearchProductsViewModel(
   }
 
   companion object {
-    const val SEARCH_TERM_KEY = "com.hoc081098.kmpviewmodelsample.search_term"
+    private val SEARCH_TERM_KEY = SavedStateHandleKey<String?>(
+      key = "com.hoc081098.kmpviewmodelsample.search_term",
+      defaultValue = null,
+    )
   }
 }
 
