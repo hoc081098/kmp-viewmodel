@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.StateFlow
  *
  * @see SafeSavedStateHandle
  */
-public class SavedStateHandleKey<out T> internal constructor(
+public class SavedStateHandleKey<T> internal constructor(
   @JvmField
   @PublishedApi
   @JvmSynthetic

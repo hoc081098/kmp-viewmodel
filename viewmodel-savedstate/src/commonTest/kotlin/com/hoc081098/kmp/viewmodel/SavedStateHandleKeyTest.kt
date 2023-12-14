@@ -105,7 +105,7 @@ class SavedStateHandleKeyTest {
         assertTrue { key.key in savedStateHandle }
 
         // Update
-        safeSavedStateHandle[key] = nextValue
+        safeSavedStateHandle[key as SavedStateHandleKey<Any?>] = nextValue
 
         // Read
         assertTrue { key.key in savedStateHandle }
