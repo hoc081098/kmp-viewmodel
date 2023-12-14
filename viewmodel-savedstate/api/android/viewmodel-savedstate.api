@@ -31,7 +31,11 @@ public final class com/hoc081098/kmp/viewmodel/SavedStateHandleKey {
 public final class com/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion {
 }
 
-public final class com/hoc081098/kmp/viewmodel/SavedStateHandleKeyKeysKt {
+public final class com/hoc081098/kmp/viewmodel/SavedStateHandleKeyKt {
+	public static final fun safe (Landroidx/lifecycle/SavedStateHandle;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
+}
+
+public final class com/hoc081098/kmp/viewmodel/SavedStateHandleKeysKt {
 	public static final fun boolean (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;Z)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
 	public static final fun booleanArray (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;[Z)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
 	public static final fun byte (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;B)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
@@ -58,10 +62,6 @@ public final class com/hoc081098/kmp/viewmodel/SavedStateHandleKeyKeysKt {
 	public static final fun string (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/String;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
 	public static final fun stringArray (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;[Ljava/lang/String;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
 	public static final fun stringArrayList (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;Ljava/util/ArrayList;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-}
-
-public final class com/hoc081098/kmp/viewmodel/SavedStateHandleKeyKt {
-	public static final fun safe (Landroidx/lifecycle/SavedStateHandle;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
 }
 
 public final class com/hoc081098/kmp/viewmodel/SavedStateHandleNullableKeysKt {
