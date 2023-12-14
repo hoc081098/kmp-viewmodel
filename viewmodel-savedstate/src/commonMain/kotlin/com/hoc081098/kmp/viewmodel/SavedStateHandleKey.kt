@@ -43,8 +43,7 @@ public value class SafeSavedStateHandle(public val savedStateHandle: SavedStateH
       @Suppress("UNCHECKED_CAST", "RemoveExplicitTypeArguments")
       savedStateHandle.get<T>(key.key) as T
     } else {
-      set(key, key.defaultValue)
-      key.defaultValue
+      key.defaultValue.also { this[key] = it }
     }
 
   public inline operator fun <T> set(key: SavedStateHandleKey<T>, value: T): Unit =

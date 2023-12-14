@@ -1,7 +1,6 @@
 package com.hoc081098.kmp.viewmodel
 
 import com.hoc081098.kmp.viewmodel.parcelable.Parcelable
-import kotlin.jvm.JvmStatic
 
 public fun SavedStateHandleKey.Companion.boolean(key: String, defaultValue: Boolean): SavedStateHandleKey<Boolean> =
   SavedStateHandleKey(key, defaultValue)
