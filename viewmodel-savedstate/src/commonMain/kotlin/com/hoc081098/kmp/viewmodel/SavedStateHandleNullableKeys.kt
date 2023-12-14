@@ -14,6 +14,12 @@ public fun SavedStateHandleKey.Companion.nullableDoubleArray(
 ): SavedStateHandleKey<DoubleArray?> =
   SavedStateHandleKey(key, defaultValue)
 
+public fun SavedStateHandleKey.Companion.nullableIntArray(
+  key: String,
+  defaultValue: IntArray? = null,
+): SavedStateHandleKey<IntArray?> =
+  SavedStateHandleKey(key, defaultValue)
+
 public fun SavedStateHandleKey.Companion.nullableLongArray(
   key: String,
   defaultValue: LongArray? = null,

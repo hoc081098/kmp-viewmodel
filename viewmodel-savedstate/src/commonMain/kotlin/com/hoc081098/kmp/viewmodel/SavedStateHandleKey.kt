@@ -1,6 +1,8 @@
 package com.hoc081098.kmp.viewmodel
 
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmInline
+import kotlin.jvm.JvmSynthetic
 import kotlinx.coroutines.flow.StateFlow
 
 /**
@@ -10,7 +12,10 @@ import kotlinx.coroutines.flow.StateFlow
  * @see SafeSavedStateHandle
  */
 public class SavedStateHandleKey<out T> internal constructor(
-  public val key: String,
+  @JvmField
+  @PublishedApi
+  @JvmSynthetic
+  internal val key: String,
   public val defaultValue: T,
 ) {
   public override fun toString(): String = "SavedStateHandleKey(key='$key', defaultValue=$defaultValue)"
@@ -18,10 +23,10 @@ public class SavedStateHandleKey<out T> internal constructor(
   override fun equals(other: Any?): Boolean {
     if (this === other) return true
     if (other !is SavedStateHandleKey<*>) return false
-    return key == other.key
+    return key == other.key && defaultValue == other.defaultValue
   }
 
-  override fun hashCode(): Int = key.hashCode()
+  override fun hashCode(): Int = 31 * key.hashCode() + defaultValue.hashCode()
 
   public companion object
 }
