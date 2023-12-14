@@ -1,120 +1,105 @@
 package com.hoc081098.kmp.viewmodel
 
 import com.hoc081098.kmp.viewmodel.parcelable.Parcelable
-import kotlin.jvm.JvmName
 
-@JvmName("nullableBooleanArrayKey")
-public fun nullableBooleanArraySavedStateHandleKey(
+public fun SavedStateHandleKey.Companion.nullableBooleanArray(
   key: String,
-  defaultValue: BooleanArray? = null
+  defaultValue: BooleanArray? = null,
 ): SavedStateHandleKey<BooleanArray?> =
   SavedStateHandleKey(key, defaultValue)
 
-@JvmName("nullableDoubleArrayKey")
-public fun nullableDoubleArraySavedStateHandleKey(
+public fun SavedStateHandleKey.Companion.nullableDoubleArray(
   key: String,
-  defaultValue: DoubleArray? = null
+  defaultValue: DoubleArray? = null,
 ): SavedStateHandleKey<DoubleArray?> =
   SavedStateHandleKey(key, defaultValue)
 
-@JvmName("nullableLongArrayKey")
-public fun nullableLongArraySavedStateHandleKey(
+public fun SavedStateHandleKey.Companion.nullableLongArray(
   key: String,
-  defaultValue: LongArray? = null
+  defaultValue: LongArray? = null,
 ): SavedStateHandleKey<LongArray?> =
   SavedStateHandleKey(key, defaultValue)
 
-@JvmName("nullableStringKey")
-public fun nullableStringSavedStateHandleKey(key: String, defaultValue: String? = null): SavedStateHandleKey<String?> =
+public fun SavedStateHandleKey.Companion.nullableString(
+  key: String,
+  defaultValue: String? = null,
+): SavedStateHandleKey<String?> =
   SavedStateHandleKey(key, defaultValue)
 
-@JvmName("nullableStringArrayKey")
-public fun nullableStringArraySavedStateHandleKey(
+public fun SavedStateHandleKey.Companion.nullableStringArray(
   key: String,
-  defaultValue: Array<String>? = null
+  defaultValue: Array<String>? = null,
 ): SavedStateHandleKey<Array<String>?> =
   SavedStateHandleKey(key, defaultValue)
 
-@JvmName("nullableByteArrayKey")
-public fun nullableByteArraySavedStateHandleKey(
+public fun SavedStateHandleKey.Companion.nullableByteArray(
   key: String,
-  defaultValue: ByteArray? = null
+  defaultValue: ByteArray? = null,
 ): SavedStateHandleKey<ByteArray?> =
   SavedStateHandleKey(key, defaultValue)
 
-@JvmName("nullableCharArrayKey")
-public fun nullableCharArraySavedStateHandleKey(
+public fun SavedStateHandleKey.Companion.nullableCharArray(
   key: String,
-  defaultValue: CharArray? = null
+  defaultValue: CharArray? = null,
 ): SavedStateHandleKey<CharArray?> =
   SavedStateHandleKey(key, defaultValue)
 
-@JvmName("nullableCharSequenceKey")
-public fun nullableCharSequenceSavedStateHandleKey(
+public fun SavedStateHandleKey.Companion.nullableCharSequence(
   key: String,
-  defaultValue: CharSequence? = null
+  defaultValue: CharSequence? = null,
 ): SavedStateHandleKey<CharSequence?> =
   SavedStateHandleKey(key, defaultValue)
 
-@JvmName("nullableCharSequenceArrayKey")
-public fun nullableCharSequenceArraySavedStateHandleKey(
+public fun SavedStateHandleKey.Companion.nullableCharSequenceArray(
   key: String,
-  defaultValue: Array<CharSequence>? = null
+  defaultValue: Array<CharSequence>? = null,
 ): SavedStateHandleKey<Array<CharSequence>?> =
   SavedStateHandleKey(key, defaultValue)
 
-@JvmName("nullableFloatArrayKey")
-public fun nullableFloatArraySavedStateHandleKey(
+public fun SavedStateHandleKey.Companion.nullableFloatArray(
   key: String,
-  defaultValue: FloatArray? = null
+  defaultValue: FloatArray? = null,
 ): SavedStateHandleKey<FloatArray?> =
   SavedStateHandleKey(key, defaultValue)
 
-@JvmName("nullableParcelableKey")
-public fun <T : Parcelable> nullableParcelableSavedStateHandleKey(
+public fun <T : Parcelable> SavedStateHandleKey.Companion.nullableParcelable(
   key: String,
-  defaultValue: T? = null
+  defaultValue: T? = null,
 ): SavedStateHandleKey<T?> =
   SavedStateHandleKey(key, defaultValue)
 
-@JvmName("nullableParcelableArrayKey")
-public fun <T : Parcelable> nullableParcelableArraySavedStateHandleKey(
+public fun <T : Parcelable> SavedStateHandleKey.Companion.nullableParcelableArray(
   key: String,
-  defaultValue: Array<T>? = null
+  defaultValue: Array<T>? = null,
 ): SavedStateHandleKey<Array<T>?> =
   SavedStateHandleKey(key, defaultValue)
 
-@JvmName("nullableShortArrayKey")
-public fun nullableShortArraySavedStateHandleKey(
+public fun SavedStateHandleKey.Companion.nullableShortArray(
   key: String,
-  defaultValue: ShortArray? = null
+  defaultValue: ShortArray? = null,
 ): SavedStateHandleKey<ShortArray?> =
   SavedStateHandleKey(key, defaultValue)
 
-@JvmName("nullableParcelableArrayListKey")
-public fun <T : Parcelable> nullableParcelableArrayListSavedStateHandleKey(
+public fun <T : Parcelable> SavedStateHandleKey.Companion.nullableParcelableArrayList(
   key: String,
-  defaultValue: ArrayList<T>? = null
+  defaultValue: ArrayList<T>? = null,
 ): SavedStateHandleKey<ArrayList<T>?> =
   SavedStateHandleKey(key, defaultValue)
 
-@JvmName("nullableIntArrayListKey")
-public fun nullableIntArrayListSavedStateHandleKey(
+public fun SavedStateHandleKey.Companion.nullableIntArrayList(
   key: String,
-  defaultValue: ArrayList<Int>? = null
+  defaultValue: ArrayList<Int>? = null,
 ): SavedStateHandleKey<ArrayList<Int>?> =
   SavedStateHandleKey(key, defaultValue)
 
-@JvmName("nullableStringArrayListKey")
-public fun nullableStringArrayListSavedStateHandleKey(
+public fun SavedStateHandleKey.Companion.nullableStringArrayList(
   key: String,
-  defaultValue: ArrayList<String>? = null
+  defaultValue: ArrayList<String>? = null,
 ): SavedStateHandleKey<ArrayList<String>?> =
   SavedStateHandleKey(key, defaultValue)
 
-@JvmName("nullableCharSequenceArrayListKey")
-public fun nullableCharSequenceArrayListSavedStateHandleKey(
+public fun SavedStateHandleKey.Companion.nullableCharSequenceArrayList(
   key: String,
-  defaultValue: ArrayList<CharSequence>? = null
+  defaultValue: ArrayList<CharSequence>? = null,
 ): SavedStateHandleKey<ArrayList<CharSequence>?> =
   SavedStateHandleKey(key, defaultValue)

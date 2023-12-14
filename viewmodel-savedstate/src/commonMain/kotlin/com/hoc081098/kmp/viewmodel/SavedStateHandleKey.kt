@@ -22,6 +22,8 @@ public class SavedStateHandleKey<out T> internal constructor(
   }
 
   override fun hashCode(): Int = key.hashCode()
+
+  public companion object
 }
 
 /**

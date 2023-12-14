@@ -3,8 +3,9 @@
 package com.hoc081098.kmpviewmodelsample.snippets
 
 import com.hoc081098.kmp.viewmodel.SavedStateHandle
+import com.hoc081098.kmp.viewmodel.SavedStateHandleKey
 import com.hoc081098.kmp.viewmodel.ViewModel
-import com.hoc081098.kmp.viewmodel.nullableParcelableSavedStateHandleKey
+import com.hoc081098.kmp.viewmodel.nullableParcelable
 import com.hoc081098.kmp.viewmodel.parcelable.Parcelable
 import com.hoc081098.kmp.viewmodel.parcelable.Parcelize
 import com.hoc081098.kmp.viewmodel.safe
@@ -38,6 +39,6 @@ class UserViewModel(
   }
 
   private companion object {
-    private val USER_KEY = nullableParcelableSavedStateHandleKey<User>("user_key")
+    private val USER_KEY = SavedStateHandleKey.nullableParcelable<User>("user_key")
   }
 }

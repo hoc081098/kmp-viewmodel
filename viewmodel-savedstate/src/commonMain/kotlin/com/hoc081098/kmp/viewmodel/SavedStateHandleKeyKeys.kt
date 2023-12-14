@@ -1,135 +1,156 @@
 package com.hoc081098.kmp.viewmodel
 
 import com.hoc081098.kmp.viewmodel.parcelable.Parcelable
-import kotlin.jvm.JvmName
 
-@JvmName("booleanKey")
-public fun booleanSavedStateHandleKey(key: String, defaultValue: Boolean): SavedStateHandleKey<Boolean> =
+public fun SavedStateHandleKey.Companion.boolean(key: String, defaultValue: Boolean): SavedStateHandleKey<Boolean> =
   SavedStateHandleKey(key, defaultValue)
 
-@JvmName("booleanArrayKey")
-public fun booleanArraySavedStateHandleKey(
+public fun SavedStateHandleKey.Companion.booleanArray(
   key: String,
-  defaultValue: BooleanArray
+  defaultValue: BooleanArray,
 ): SavedStateHandleKey<BooleanArray> =
   SavedStateHandleKey(key, defaultValue)
 
-@JvmName("doubleKey")
-public fun doubleSavedStateHandleKey(key: String, defaultValue: Double): SavedStateHandleKey<Double> =
-  SavedStateHandleKey(key, defaultValue)
-
-@JvmName("doubleArrayKey")
-public fun doubleArraySavedStateHandleKey(key: String, defaultValue: DoubleArray): SavedStateHandleKey<DoubleArray> =
-  SavedStateHandleKey(key, defaultValue)
-
-@JvmName("intKey")
-public fun intSavedStateHandleKey(key: String, defaultValue: Int): SavedStateHandleKey<Int> =
-  SavedStateHandleKey(key, defaultValue)
-
-@JvmName("intArrayKey")
-public fun intArraySavedStateHandleKey(key: String, defaultValue: IntArray): SavedStateHandleKey<IntArray> =
-  SavedStateHandleKey(key, defaultValue)
-
-@JvmName("longKey")
-public fun longSavedStateHandleKey(key: String, defaultValue: Long): SavedStateHandleKey<Long> =
-  SavedStateHandleKey(key, defaultValue)
-
-@JvmName("longArrayKey")
-public fun longArraySavedStateHandleKey(key: String, defaultValue: LongArray): SavedStateHandleKey<LongArray> =
-  SavedStateHandleKey(key, defaultValue)
-
-@JvmName("stringKey")
-public fun stringSavedStateHandleKey(key: String, defaultValue: String): SavedStateHandleKey<String> =
-  SavedStateHandleKey(key, defaultValue)
-
-@JvmName("stringArrayKey")
-public fun stringArraySavedStateHandleKey(
+public fun SavedStateHandleKey.Companion.double(
   key: String,
-  defaultValue: Array<String>
+  defaultValue: Double,
+): SavedStateHandleKey<Double> =
+  SavedStateHandleKey(key, defaultValue)
+
+public fun SavedStateHandleKey.Companion.doubleArray(
+  key: String,
+  defaultValue: DoubleArray,
+): SavedStateHandleKey<DoubleArray> =
+  SavedStateHandleKey(key, defaultValue)
+
+public fun SavedStateHandleKey.Companion.int(
+  key: String,
+  defaultValue: Int,
+): SavedStateHandleKey<Int> =
+  SavedStateHandleKey(key, defaultValue)
+
+public fun SavedStateHandleKey.Companion.intArray(
+  key: String,
+  defaultValue: IntArray,
+): SavedStateHandleKey<IntArray> =
+  SavedStateHandleKey(key, defaultValue)
+
+public fun SavedStateHandleKey.Companion.long(
+  key: String,
+  defaultValue: Long,
+): SavedStateHandleKey<Long> =
+  SavedStateHandleKey(key, defaultValue)
+
+public fun SavedStateHandleKey.Companion.longArray(
+  key: String,
+  defaultValue: LongArray,
+): SavedStateHandleKey<LongArray> =
+  SavedStateHandleKey(key, defaultValue)
+
+public fun SavedStateHandleKey.Companion.string(
+  key: String,
+  defaultValue: String,
+): SavedStateHandleKey<String> =
+  SavedStateHandleKey(key, defaultValue)
+
+public fun SavedStateHandleKey.Companion.stringArray(
+  key: String,
+  defaultValue: Array<String>,
 ): SavedStateHandleKey<Array<String>> =
   SavedStateHandleKey(key, defaultValue)
 
-@JvmName("byteKey")
-public fun byteSavedStateHandleKey(key: String, defaultValue: Byte): SavedStateHandleKey<Byte> =
-  SavedStateHandleKey(key, defaultValue)
-
-@JvmName("byteArrayKey")
-public fun byteArraySavedStateHandleKey(key: String, defaultValue: ByteArray): SavedStateHandleKey<ByteArray> =
-  SavedStateHandleKey(key, defaultValue)
-
-@JvmName("charKey")
-public fun charSavedStateHandleKey(key: String, defaultValue: Char): SavedStateHandleKey<Char> =
-  SavedStateHandleKey(key, defaultValue)
-
-@JvmName("charArrayKey")
-public fun charArraySavedStateHandleKey(key: String, defaultValue: CharArray): SavedStateHandleKey<CharArray> =
-  SavedStateHandleKey(key, defaultValue)
-
-@JvmName("charSequenceKey")
-public fun charSequenceSavedStateHandleKey(
+public fun SavedStateHandleKey.Companion.byte(
   key: String,
-  defaultValue: CharSequence
+  defaultValue: Byte,
+): SavedStateHandleKey<Byte> =
+  SavedStateHandleKey(key, defaultValue)
+
+public fun SavedStateHandleKey.Companion.byteArray(
+  key: String,
+  defaultValue: ByteArray,
+): SavedStateHandleKey<ByteArray> =
+  SavedStateHandleKey(key, defaultValue)
+
+public fun SavedStateHandleKey.Companion.char(
+  key: String,
+  defaultValue: Char,
+): SavedStateHandleKey<Char> =
+  SavedStateHandleKey(key, defaultValue)
+
+public fun SavedStateHandleKey.Companion.charArray(
+  key: String,
+  defaultValue: CharArray,
+): SavedStateHandleKey<CharArray> =
+  SavedStateHandleKey(key, defaultValue)
+
+public fun SavedStateHandleKey.Companion.charSequence(
+  key: String,
+  defaultValue: CharSequence,
 ): SavedStateHandleKey<CharSequence> =
   SavedStateHandleKey(key, defaultValue)
 
-@JvmName("charSequenceArrayKey")
-public fun charSequenceArraySavedStateHandleKey(
+public fun SavedStateHandleKey.Companion.charSequenceArray(
   key: String,
-  defaultValue: Array<CharSequence>
+  defaultValue: Array<CharSequence>,
 ): SavedStateHandleKey<Array<CharSequence>> =
   SavedStateHandleKey(key, defaultValue)
 
-@JvmName("floatKey")
-public fun floatSavedStateHandleKey(key: String, defaultValue: Float): SavedStateHandleKey<Float> =
-  SavedStateHandleKey(key, defaultValue)
-
-@JvmName("floatArrayKey")
-public fun floatArraySavedStateHandleKey(key: String, defaultValue: FloatArray): SavedStateHandleKey<FloatArray> =
-  SavedStateHandleKey(key, defaultValue)
-
-@JvmName("parcelableKey")
-public fun <T : Parcelable> parcelableSavedStateHandleKey(key: String, defaultValue: T): SavedStateHandleKey<T> =
-  SavedStateHandleKey(key, defaultValue)
-
-@JvmName("parcelableArrayKey")
-public fun <T : Parcelable> parcelableArraySavedStateHandleKey(
+public fun SavedStateHandleKey.Companion.float(
   key: String,
-  defaultValue: Array<T>
+  defaultValue: Float,
+): SavedStateHandleKey<Float> =
+  SavedStateHandleKey(key, defaultValue)
+
+public fun SavedStateHandleKey.Companion.floatArray(
+  key: String,
+  defaultValue: FloatArray,
+): SavedStateHandleKey<FloatArray> =
+  SavedStateHandleKey(key, defaultValue)
+
+public fun <T : Parcelable> SavedStateHandleKey.Companion.parcelable(
+  key: String,
+  defaultValue: T,
+): SavedStateHandleKey<T> =
+  SavedStateHandleKey(key, defaultValue)
+
+public fun <T : Parcelable> SavedStateHandleKey.Companion.parcelableArray(
+  key: String,
+  defaultValue: Array<T>,
 ): SavedStateHandleKey<Array<T>> =
   SavedStateHandleKey(key, defaultValue)
 
-@JvmName("shortKey")
-public fun shortSavedStateHandleKey(key: String, defaultValue: Short): SavedStateHandleKey<Short> =
-  SavedStateHandleKey(key, defaultValue)
-
-@JvmName("shortArrayKey")
-public fun shortArraySavedStateHandleKey(key: String, defaultValue: ShortArray): SavedStateHandleKey<ShortArray> =
-  SavedStateHandleKey(key, defaultValue)
-
-@JvmName("parcelableArrayListKey")
-public fun <T : Parcelable> parcelableArrayListSavedStateHandleKey(
+public fun SavedStateHandleKey.Companion.short(
   key: String,
-  defaultValue: ArrayList<T>
+  defaultValue: Short,
+): SavedStateHandleKey<Short> =
+  SavedStateHandleKey(key, defaultValue)
+
+public fun SavedStateHandleKey.Companion.shortArray(
+  key: String,
+  defaultValue: ShortArray,
+): SavedStateHandleKey<ShortArray> =
+  SavedStateHandleKey(key, defaultValue)
+
+public fun <T : Parcelable> SavedStateHandleKey.Companion.parcelableArrayList(
+  key: String,
+  defaultValue: ArrayList<T>,
 ): SavedStateHandleKey<ArrayList<T>> =
   SavedStateHandleKey(key, defaultValue)
 
-@JvmName("intArrayListKey")
-public fun intArrayListSavedStateHandleKey(
+public fun SavedStateHandleKey.Companion.intArrayList(
   key: String,
-  defaultValue: ArrayList<Int>
+  defaultValue: ArrayList<Int>,
 ): SavedStateHandleKey<ArrayList<Int>> =
   SavedStateHandleKey(key, defaultValue)
 
-@JvmName("stringArrayListKey")
-public fun stringArrayListSavedStateHandleKey(
+public fun SavedStateHandleKey.Companion.stringArrayList(
   key: String,
-  defaultValue: ArrayList<String>
+  defaultValue: ArrayList<String>,
 ): SavedStateHandleKey<ArrayList<String>> =
   SavedStateHandleKey(key, defaultValue)
 
-@JvmName("charSequenceArrayListKey")
-public fun charSequenceArrayListSavedStateHandleKey(
+public fun SavedStateHandleKey.Companion.charSequenceArrayList(
   key: String,
-  defaultValue: ArrayList<CharSequence>
+  defaultValue: ArrayList<CharSequence>,
 ): SavedStateHandleKey<ArrayList<CharSequence>> =
   SavedStateHandleKey(key, defaultValue)
