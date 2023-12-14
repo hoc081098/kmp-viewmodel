@@ -5,10 +5,9 @@ package com.hoc081098.kmpviewmodelsample.search_products
 import com.hoc081098.flowext.flowFromSuspend
 import com.hoc081098.flowext.startWith
 import com.hoc081098.kmp.viewmodel.SavedStateHandle
-import com.hoc081098.kmp.viewmodel.SavedStateHandleKey
 import com.hoc081098.kmp.viewmodel.ViewModel
-import com.hoc081098.kmp.viewmodel.getStateFlow
-import com.hoc081098.kmp.viewmodel.set
+import com.hoc081098.kmp.viewmodel.nullableStringSavedStateHandleKey
+import com.hoc081098.kmp.viewmodel.safe
 import com.hoc081098.kmp.viewmodel.wrapper.NonNullStateFlowWrapper
 import com.hoc081098.kmp.viewmodel.wrapper.NullableStateFlowWrapper
 import com.hoc081098.kmp.viewmodel.wrapper.wrap
@@ -55,7 +54,7 @@ class SearchProductsViewModel(
   private val savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
   val searchTermStateFlow: NullableStateFlowWrapper<String?> =
-    savedStateHandle.getStateFlow(SEARCH_TERM_KEY).wrap()
+    savedStateHandle.safe { it.getStateFlow(SEARCH_TERM_KEY) }.wrap()
 
   val stateFlow: NonNullStateFlowWrapper<SearchProductsState> = searchTermStateFlow
     .debounce(400.milliseconds)
@@ -70,14 +69,11 @@ class SearchProductsViewModel(
     .wrap()
 
   fun search(term: String) {
-    savedStateHandle[SEARCH_TERM_KEY] = term
+    savedStateHandle.safe { it[SEARCH_TERM_KEY] = term }
   }
 
   companion object {
-    private val SEARCH_TERM_KEY = SavedStateHandleKey<String?>(
-      key = "com.hoc081098.kmpviewmodelsample.search_term",
-      defaultValue = null,
-    )
+    private val SEARCH_TERM_KEY = nullableStringSavedStateHandleKey("com.hoc081098.kmpviewmodelsample.search_term")
   }
 }
 

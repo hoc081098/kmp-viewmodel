@@ -1,34 +1,18 @@
 package com.hoc081098.kmp.viewmodel
 
-import kotlin.jvm.JvmSynthetic
+import kotlin.jvm.JvmInline
 import kotlinx.coroutines.flow.StateFlow
-
-/**
- * Check if [value] is valid to put into [SavedStateHandle].
- */
-internal expect fun validateValue(value: Any?): Boolean
 
 /**
  * Key for values stored in [SavedStateHandle].
  * Type [T] is the type of the value associated with the key.
  *
- * - On `Android` platform, the [T] must be one type that could be stored in [android.os.Bundle].
- *   If this requirement is not met, an [IllegalArgumentException] will be thrown at the construction time.
- *
- * - On `non-Android` platform, the [T] could be any type.
- *
- * @see SavedStateHandle.set
+ * @see SafeSavedStateHandle
  */
-public class SavedStateHandleKey<T>(
+public class SavedStateHandleKey<out T> internal constructor(
   public val key: String,
   public val defaultValue: T,
 ) {
-  init {
-    require(validateValue(defaultValue)) {
-      "Can't put value with type ${defaultValue!!::class} into saved state"
-    }
-  }
-
   public override fun toString(): String = "SavedStateHandleKey(key='$key', defaultValue=$defaultValue)"
 
   override fun equals(other: Any?): Boolean {
@@ -40,23 +24,28 @@ public class SavedStateHandleKey<T>(
   override fun hashCode(): Int = key.hashCode()
 }
 
+/**
+ * A wrapper of [SavedStateHandle] that provides type-safe access with [SavedStateHandleKey].
+ */
 @Suppress("NOTHING_TO_INLINE")
-@JvmSynthetic
-public inline operator fun <T> SavedStateHandle.get(key: SavedStateHandleKey<T>): T =
-  if (key.key in this) {
-    @Suppress("UNCHECKED_CAST", "RemoveExplicitTypeArguments")
-    get<T>(key.key) as T
-  } else {
-    set(key, key.defaultValue)
-    key.defaultValue
-  }
+@JvmInline
+public value class SafeSavedStateHandle(public val savedStateHandle: SavedStateHandle) {
+  public inline operator fun <T> get(key: SavedStateHandleKey<T>): T =
+    if (key.key in savedStateHandle) {
+      // DO NOT use "!!" here, because [T] may be nullable type.
+      @Suppress("UNCHECKED_CAST", "RemoveExplicitTypeArguments")
+      savedStateHandle.get<T>(key.key) as T
+    } else {
+      set(key, key.defaultValue)
+      key.defaultValue
+    }
 
-@Suppress("NOTHING_TO_INLINE")
-@JvmSynthetic
-public inline operator fun <T> SavedStateHandle.set(key: SavedStateHandleKey<T>, value: T): Unit =
-  set(key.key, value)
+  public inline operator fun <T> set(key: SavedStateHandleKey<T>, value: T): Unit =
+    savedStateHandle.set(key.key, value)
 
-@Suppress("NOTHING_TO_INLINE")
-@JvmSynthetic
-public inline fun <T> SavedStateHandle.getStateFlow(key: SavedStateHandleKey<T>): StateFlow<T> =
-  getStateFlow(key.key, key.defaultValue)
+  public inline fun <T> getStateFlow(key: SavedStateHandleKey<T>): StateFlow<T> =
+    savedStateHandle.getStateFlow(key.key, key.defaultValue)
+}
+
+public inline fun <R> SavedStateHandle.safe(block: (SafeSavedStateHandle) -> R): R =
+  block(SafeSavedStateHandle(this))
