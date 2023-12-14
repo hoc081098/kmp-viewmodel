@@ -42,11 +42,10 @@ class ProductDetailViewModel(
   savedStateHandle: SavedStateHandle,
   private val getProductById: GetProductById,
 ) : ViewModel() {
-  val id = checkNotNull(savedStateHandle.safe { it[ID_SAVED_KEY] }) {
+  private val id = checkNotNull(savedStateHandle.safe { it[ID_SAVED_KEY] }) {
     """id must not be null.
       |For non-Android platforms, you must set id to `SavedStateHandle` with key ${ID_SAVED_KEY.key},
       |and pass that `SavedStateHandle` to `ProductDetailViewModel` constructor.
-      |
     """.trimMargin()
   }
 
