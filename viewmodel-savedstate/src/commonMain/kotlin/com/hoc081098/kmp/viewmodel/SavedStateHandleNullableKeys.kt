@@ -2,6 +2,12 @@ package com.hoc081098.kmp.viewmodel
 
 import com.hoc081098.kmp.viewmodel.parcelable.Parcelable
 
+public fun SavedStateHandleKey.Companion.nullableBoolean(
+  key: String,
+  defaultValue: Boolean? = null,
+): SavedStateHandleKey<Boolean?> =
+  SavedStateHandleKey(key, defaultValue)
+
 public fun SavedStateHandleKey.Companion.nullableBooleanArray(
   key: String,
   defaultValue: BooleanArray? = null,
@@ -12,6 +18,12 @@ public fun SavedStateHandleKey.Companion.nullableDoubleArray(
   key: String,
   defaultValue: DoubleArray? = null,
 ): SavedStateHandleKey<DoubleArray?> =
+  SavedStateHandleKey(key, defaultValue)
+
+public fun SavedStateHandleKey.Companion.nullableInt(
+  key: String,
+  defaultValue: Int? = null,
+): SavedStateHandleKey<Int?> =
   SavedStateHandleKey(key, defaultValue)
 
 public fun SavedStateHandleKey.Companion.nullableIntArray(

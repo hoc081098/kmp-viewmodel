@@ -43,7 +43,7 @@ internal sealed class Route {
   }
 
   data object ProductDetail : Route() {
-    val idNavArg = navArgument(name = ProductDetailViewModel.ID_KEY) { type = NavType.IntType }
+    val idNavArg = navArgument(name = ProductDetailViewModel.ID_SAVED_KEY.key) { type = NavType.IntType }
 
     private inline val idNavArgName get() = idNavArg.name
 

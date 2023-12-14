@@ -1,8 +1,6 @@
 package com.hoc081098.kmp.viewmodel
 
-import kotlin.jvm.JvmField
 import kotlin.jvm.JvmInline
-import kotlin.jvm.JvmSynthetic
 import kotlinx.coroutines.flow.StateFlow
 
 /**
@@ -12,10 +10,7 @@ import kotlinx.coroutines.flow.StateFlow
  * @see SafeSavedStateHandle
  */
 public class SavedStateHandleKey<T> internal constructor(
-  @JvmField
-  @PublishedApi
-  @JvmSynthetic
-  internal val key: String,
+  public val key: String,
   public val defaultValue: T,
 ) {
   public override fun toString(): String = "SavedStateHandleKey(key='$key', defaultValue=$defaultValue)"

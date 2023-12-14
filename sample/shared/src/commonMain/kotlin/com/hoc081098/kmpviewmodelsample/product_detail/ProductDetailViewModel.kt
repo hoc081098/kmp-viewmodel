@@ -6,13 +6,17 @@ import com.hoc081098.flowext.flatMapFirst
 import com.hoc081098.flowext.flowFromSuspend
 import com.hoc081098.flowext.startWith
 import com.hoc081098.kmp.viewmodel.SavedStateHandle
+import com.hoc081098.kmp.viewmodel.SavedStateHandleKey
 import com.hoc081098.kmp.viewmodel.ViewModel
+import com.hoc081098.kmp.viewmodel.nullableInt
+import com.hoc081098.kmp.viewmodel.safe
 import com.hoc081098.kmp.viewmodel.wrapper.NonNullStateFlowWrapper
 import com.hoc081098.kmp.viewmodel.wrapper.wrap
 import com.hoc081098.kmpviewmodelsample.ProductItemUi
 import com.hoc081098.kmpviewmodelsample.common.Immutable
 import com.hoc081098.kmpviewmodelsample.toProductItemUi
 import io.github.aakira.napier.Napier
+import kotlin.jvm.JvmField
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -38,15 +42,17 @@ class ProductDetailViewModel(
   savedStateHandle: SavedStateHandle,
   private val getProductById: GetProductById,
 ) : ViewModel() {
-  val id = checkNotNull(savedStateHandle.get<Int>(ID_KEY)) {
+  val id = checkNotNull(savedStateHandle.safe { it[ID_SAVED_KEY] }) {
     """id must not be null.
-      |For non-Android platforms, you must set id to `SavedStateHandle` with key $ID_KEY,
+      |For non-Android platforms, you must set id to `SavedStateHandle` with key ${ID_SAVED_KEY.key},
       |and pass that `SavedStateHandle` to `ProductDetailViewModel` constructor.
       |
     """.trimMargin()
   }
+
   private val refreshFlow = MutableSharedFlow<Unit>(extraBufferCapacity = 1)
   private val retryFlow = MutableSharedFlow<Unit>(extraBufferCapacity = 1)
+
   private val productItemFlow = flowFromSuspend { getProductById(id) }
     .onStart { Napier.d("getProductById id=$id") }
     .map { ProductDetailState.Success(it.toProductItemUi()) }
@@ -80,7 +86,7 @@ class ProductDetailViewModel(
       yield()
 
       if (stateFlow.value is ProductDetailState.Success) {
-        Napier.d("refresh")
+        Napier.d("refresh...")
         refreshFlow.emit(Unit)
       }
     }
@@ -89,7 +95,7 @@ class ProductDetailViewModel(
   fun retry() {
     viewModelScope.launch {
       if (stateFlow.value is ProductDetailState.Error) {
-        Napier.d("retry")
+        Napier.d("retry...")
         retryFlow.emit(Unit)
       }
     }
@@ -98,13 +104,14 @@ class ProductDetailViewModel(
   companion object {
     // This key is used by non-Android platforms to set id to SavedStateHandle,
     // used by Android platform to set id to Bundle (handled by Compose-Navigation).
-    const val ID_KEY = "id"
+    @JvmField
+    val ID_SAVED_KEY = SavedStateHandleKey.nullableInt("id")
 
     /**
      * This factory method is used by non-Android platforms to create an instance of [ProductDetailViewModel].
      */
     fun create(id: Int, getProductById: GetProductById): ProductDetailViewModel = ProductDetailViewModel(
-      savedStateHandle = SavedStateHandle(mapOf(ID_KEY to id)),
+      savedStateHandle = SavedStateHandle(mapOf(ID_SAVED_KEY.key to id)),
       getProductById = getProductById,
     )
   }
