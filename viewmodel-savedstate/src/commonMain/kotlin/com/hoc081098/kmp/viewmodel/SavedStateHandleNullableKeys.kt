@@ -14,6 +14,12 @@ public fun SavedStateHandleKey.Companion.nullableBooleanArray(
 ): SavedStateHandleKey<BooleanArray?> =
   SavedStateHandleKey(key, defaultValue)
 
+public fun SavedStateHandleKey.Companion.nullableDouble(
+  key: String,
+  defaultValue: Double? = null,
+): SavedStateHandleKey<Double?> =
+  SavedStateHandleKey(key, defaultValue)
+
 public fun SavedStateHandleKey.Companion.nullableDoubleArray(
   key: String,
   defaultValue: DoubleArray? = null,
@@ -30,6 +36,12 @@ public fun SavedStateHandleKey.Companion.nullableIntArray(
   key: String,
   defaultValue: IntArray? = null,
 ): SavedStateHandleKey<IntArray?> =
+  SavedStateHandleKey(key, defaultValue)
+
+public fun SavedStateHandleKey.Companion.nullableLong(
+  key: String,
+  defaultValue: Long? = null
+): SavedStateHandleKey<Long?> =
   SavedStateHandleKey(key, defaultValue)
 
 public fun SavedStateHandleKey.Companion.nullableLongArray(
@@ -50,10 +62,22 @@ public fun SavedStateHandleKey.Companion.nullableStringArray(
 ): SavedStateHandleKey<Array<String>?> =
   SavedStateHandleKey(key, defaultValue)
 
+public fun SavedStateHandleKey.Companion.nullableByte(
+  key: String,
+  defaultValue: Byte? = null,
+): SavedStateHandleKey<Byte?> =
+  SavedStateHandleKey(key, defaultValue)
+
 public fun SavedStateHandleKey.Companion.nullableByteArray(
   key: String,
   defaultValue: ByteArray? = null,
 ): SavedStateHandleKey<ByteArray?> =
+  SavedStateHandleKey(key, defaultValue)
+
+public fun SavedStateHandleKey.Companion.nullableChar(
+  key: String,
+  defaultValue: Char? = null,
+): SavedStateHandleKey<Char?> =
   SavedStateHandleKey(key, defaultValue)
 
 public fun SavedStateHandleKey.Companion.nullableCharArray(
@@ -74,6 +98,12 @@ public fun SavedStateHandleKey.Companion.nullableCharSequenceArray(
 ): SavedStateHandleKey<Array<CharSequence>?> =
   SavedStateHandleKey(key, defaultValue)
 
+public fun SavedStateHandleKey.Companion.nullableFloat(
+  key: String,
+  defaultValue: Float? = null,
+): SavedStateHandleKey<Float?> =
+  SavedStateHandleKey(key, defaultValue)
+
 public fun SavedStateHandleKey.Companion.nullableFloatArray(
   key: String,
   defaultValue: FloatArray? = null,
@@ -90,6 +120,12 @@ public fun <T : Parcelable> SavedStateHandleKey.Companion.nullableParcelableArra
   key: String,
   defaultValue: Array<T>? = null,
 ): SavedStateHandleKey<Array<T>?> =
+  SavedStateHandleKey(key, defaultValue)
+
+public fun SavedStateHandleKey.Companion.nullableShort(
+  key: String,
+  defaultValue: Short? = null,
+): SavedStateHandleKey<Short?> =
   SavedStateHandleKey(key, defaultValue)
 
 public fun SavedStateHandleKey.Companion.nullableShortArray(
