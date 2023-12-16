@@ -1,7 +1,5 @@
 package com.hoc081098.kmp.viewmodel
 
-import com.hoc081098.kmp.viewmodel.parcelable.Parcelable
-import com.hoc081098.kmp.viewmodel.parcelable.Parcelize
 import com.hoc081098.kmp.viewmodel.safe.NonNullSavedStateHandleKey
 import com.hoc081098.kmp.viewmodel.safe.boolean
 import com.hoc081098.kmp.viewmodel.safe.booleanArray
@@ -97,9 +95,6 @@ val nonNullKeyAndNextValues: List<Pair<NonNullSavedStateHandleKey<out Any>, Any>
     arrayListOf(StringBuilder("hoc081098")),
 )
 
-@Parcelize
-data class TestParcelable(val value: Int) : Parcelable
-
 class NonNullSavedStateHandleKeyTest {
   @Test
   fun nullAssociated() {
@@ -125,7 +120,7 @@ class NonNullSavedStateHandleKeyTest {
   }
 
   @Test
-  fun readWriteRead() {
+  fun read_then_write_then_read() {
     val savedStateHandle = SavedStateHandle()
 
     nonNullKeyAndNextValues.forEach { (key, nextValue) ->

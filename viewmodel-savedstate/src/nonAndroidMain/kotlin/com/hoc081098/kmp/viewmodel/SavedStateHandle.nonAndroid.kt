@@ -19,15 +19,8 @@ public actual class SavedStateHandle {
 
   @MainThread
   public actual operator fun <T> get(key: String): T? {
-    return try {
-      @Suppress("UNCHECKED_CAST")
-      regular[key] as T?
-    } catch (@Suppress("SwallowedException") e: ClassCastException) {
-      // Instead of failing on ClassCastException, we remove the value from the
-      // SavedStateHandle and return null.
-      remove<T>(key)
-      null
-    }
+    @Suppress("UNCHECKED_CAST")
+    return regular[key] as T?
   }
 
   @MainThread
