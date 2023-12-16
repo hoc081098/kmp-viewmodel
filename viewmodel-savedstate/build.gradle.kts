@@ -160,7 +160,6 @@ android {
 
   defaultConfig {
     minSdk = libs.versions.android.min.get().toInt()
-    testInstrumentationRunner = "androidx.test.ext.junit.runners.AndroidJUnit4"
   }
 
   // still needed for Android projects despite toolchain
@@ -169,8 +168,15 @@ android {
     targetCompatibility = JavaVersion.toVersion(libs.versions.java.target.get())
   }
 
+  testOptions {
+    unitTests {
+      isIncludeAndroidResources = true
+    }
+  }
+
   dependencies {
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    testImplementation(libs.junit)
+    testImplementation(libs.robolectric)
   }
 }
 

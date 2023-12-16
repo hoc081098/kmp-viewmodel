@@ -33,11 +33,10 @@ import com.hoc081098.kmp.viewmodel.safe.stringArrayList
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
-import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
-val nonNullKeyAndNextValues = listOf(
+val nonNullKeyAndNextValues: List<Pair<NonNullSavedStateHandleKey<out Any>, Any>> = listOf(
   NonNullSavedStateHandleKey.boolean("boolean", false) to
     true,
   NonNullSavedStateHandleKey.booleanArray("booleanArray", booleanArrayOf(false)) to
@@ -94,9 +93,9 @@ val nonNullKeyAndNextValues = listOf(
 @Parcelize
 data class TestParcelable(val value: Int) : Parcelable
 
-class SavedStateHandleKeyTest {
+class NonNullSavedStateHandleKeyTest {
   @Test
-  fun test() {
+  fun readWriteRead() {
     val savedStateHandle = SavedStateHandle()
 
     nonNullKeyAndNextValues.forEach { (key, nextValue) ->
@@ -106,16 +105,14 @@ class SavedStateHandleKeyTest {
         assertFalse { key.key in savedStateHandle }
 
         assertEquals(key.defaultValue, safeSavedStateHandle[key])
-        assertEquals(key.defaultValue, savedStateHandle[key.key])
-
-        assertNotNull(savedStateHandle[key.key])
-        assertTrue { key.key in savedStateHandle }
+        assertNull(savedStateHandle[key.key])
 
         // Update
         safeSavedStateHandle[key as NonNullSavedStateHandleKey<Any>] = nextValue
 
         // Read
         assertTrue { key.key in savedStateHandle }
+
         assertEquals(nextValue, safeSavedStateHandle[key])
         assertEquals(nextValue, savedStateHandle[key.key])
       }
