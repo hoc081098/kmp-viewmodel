@@ -13,8 +13,7 @@ public value class SafeSavedStateHandle(public val savedStateHandle: SavedStateH
   /**
    * Get a value associated with the given [key].
    *
-   * If no value is associated with the given [key], the [NonNullSavedStateHandleKey.defaultValue] will be returned,
-   * and the default value will be saved in [SavedStateHandle].
+   * If no value is associated with the given [key], the [NonNullSavedStateHandleKey.defaultValue] will be returned.
    *
    * Otherwise, the value associated with the given [key] will be returned.
    * It maybe throw [kotlin.NullPointerException] if the value associated with the given [key] is null.
@@ -26,14 +25,13 @@ public value class SafeSavedStateHandle(public val savedStateHandle: SavedStateH
     if (key.key in savedStateHandle) {
       savedStateHandle.get<T>(key.key)!!
     } else {
-      key.defaultValue.also { this[key] = it }
+      key.defaultValue
     }
 
   /**
    * Get a value associated with the given [key].
    *
-   * If no value is associated with the given [key], the [NullableSavedStateHandleKey.defaultValue] will be returned,
-   * and the default value will be saved in [SavedStateHandle].
+   * If no value is associated with the given [key], the [NullableSavedStateHandleKey.defaultValue] will be returned.
    *
    * Otherwise, the value associated with the given [key] will be returned (`null` is possible).
    *
@@ -44,7 +42,7 @@ public value class SafeSavedStateHandle(public val savedStateHandle: SavedStateH
     if (key.key in savedStateHandle) {
       savedStateHandle.get<T>(key.key)
     } else {
-      key.defaultValue.also { this[key] = it }
+      key.defaultValue
     }
 
   /**
