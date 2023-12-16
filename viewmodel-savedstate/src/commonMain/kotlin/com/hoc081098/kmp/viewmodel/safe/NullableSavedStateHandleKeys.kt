@@ -1,7 +1,8 @@
-package com.hoc081098.kmp.viewmodel
+package com.hoc081098.kmp.viewmodel.safe
 
 import com.hoc081098.kmp.viewmodel.parcelable.Parcelable
 
+@Suppress("NOTHING_TO_INLINE")
 private inline fun <T : Any> key(key: String, value: T?) = NullableSavedStateHandleKey(key, value)
 
 public fun NullableSavedStateHandleKey.Companion.boolean(

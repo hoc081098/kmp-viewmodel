@@ -2,13 +2,13 @@
 
 package com.hoc081098.kmpviewmodelsample.snippets
 
-import com.hoc081098.kmp.viewmodel.NullableSavedStateHandleKey
 import com.hoc081098.kmp.viewmodel.SavedStateHandle
 import com.hoc081098.kmp.viewmodel.ViewModel
-import com.hoc081098.kmp.viewmodel.parcelable
 import com.hoc081098.kmp.viewmodel.parcelable.Parcelable
 import com.hoc081098.kmp.viewmodel.parcelable.Parcelize
-import com.hoc081098.kmp.viewmodel.safe
+import com.hoc081098.kmp.viewmodel.safe.NullableSavedStateHandleKey
+import com.hoc081098.kmp.viewmodel.safe.parcelable
+import com.hoc081098.kmp.viewmodel.safe.safe
 import com.hoc081098.kmp.viewmodel.wrapper.wrap
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.launch

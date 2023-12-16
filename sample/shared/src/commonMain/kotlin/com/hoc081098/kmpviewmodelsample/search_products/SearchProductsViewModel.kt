@@ -4,11 +4,11 @@ package com.hoc081098.kmpviewmodelsample.search_products
 
 import com.hoc081098.flowext.flowFromSuspend
 import com.hoc081098.flowext.startWith
-import com.hoc081098.kmp.viewmodel.NullableSavedStateHandleKey
 import com.hoc081098.kmp.viewmodel.SavedStateHandle
 import com.hoc081098.kmp.viewmodel.ViewModel
-import com.hoc081098.kmp.viewmodel.safe
-import com.hoc081098.kmp.viewmodel.string
+import com.hoc081098.kmp.viewmodel.safe.NullableSavedStateHandleKey
+import com.hoc081098.kmp.viewmodel.safe.safe
+import com.hoc081098.kmp.viewmodel.safe.string
 import com.hoc081098.kmp.viewmodel.wrapper.NonNullStateFlowWrapper
 import com.hoc081098.kmp.viewmodel.wrapper.NullableStateFlowWrapper
 import com.hoc081098.kmp.viewmodel.wrapper.wrap

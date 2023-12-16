@@ -1,5 +1,6 @@
-package com.hoc081098.kmp.viewmodel
+package com.hoc081098.kmp.viewmodel.safe
 
+import com.hoc081098.kmp.viewmodel.SavedStateHandle
 import kotlin.jvm.JvmInline
 import kotlinx.coroutines.flow.StateFlow
 
@@ -48,5 +49,8 @@ public value class SafeSavedStateHandle(public val savedStateHandle: SavedStateH
   }
 }
 
+/**
+ * Enables type-safe access to [SavedStateHandle].
+ */
 public inline fun <R> SavedStateHandle.safe(block: (SafeSavedStateHandle) -> R): R =
   block(SafeSavedStateHandle(this))

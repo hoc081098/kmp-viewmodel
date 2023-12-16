@@ -5,11 +5,11 @@ package com.hoc081098.kmpviewmodelsample.product_detail
 import com.hoc081098.flowext.flatMapFirst
 import com.hoc081098.flowext.flowFromSuspend
 import com.hoc081098.flowext.startWith
-import com.hoc081098.kmp.viewmodel.NullableSavedStateHandleKey
 import com.hoc081098.kmp.viewmodel.SavedStateHandle
 import com.hoc081098.kmp.viewmodel.ViewModel
-import com.hoc081098.kmp.viewmodel.int
-import com.hoc081098.kmp.viewmodel.safe
+import com.hoc081098.kmp.viewmodel.safe.NullableSavedStateHandleKey
+import com.hoc081098.kmp.viewmodel.safe.int
+import com.hoc081098.kmp.viewmodel.safe.safe
 import com.hoc081098.kmp.viewmodel.wrapper.NonNullStateFlowWrapper
 import com.hoc081098.kmp.viewmodel.wrapper.wrap
 import com.hoc081098.kmpviewmodelsample.ProductItemUi
