@@ -6,15 +6,15 @@ package com.hoc081098.kmp.viewmodel
  *
  * @see SafeSavedStateHandle
  */
-public class SavedStateHandleKey<T : Any> internal constructor(
+public class NullableSavedStateHandleKey<T : Any> internal constructor(
   public val key: String,
-  public val defaultValue: T,
+  public val defaultValue: T?,
 ) {
-  public override fun toString(): String = "SavedStateHandleKey(key='$key', defaultValue=$defaultValue)"
+  public override fun toString(): String = "NullableSavedStateHandleKey(key='$key', defaultValue=$defaultValue)"
 
   override fun equals(other: Any?): Boolean {
     if (this === other) return true
-    if (other !is SavedStateHandleKey<*>) return false
+    if (other !is NullableSavedStateHandleKey<*>) return false
     return key == other.key && defaultValue == other.defaultValue
   }
 

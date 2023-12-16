@@ -4,11 +4,11 @@ package com.hoc081098.kmpviewmodelsample.search_products
 
 import com.hoc081098.flowext.flowFromSuspend
 import com.hoc081098.flowext.startWith
+import com.hoc081098.kmp.viewmodel.NullableSavedStateHandleKey
 import com.hoc081098.kmp.viewmodel.SavedStateHandle
-import com.hoc081098.kmp.viewmodel.SavedStateHandleKey
 import com.hoc081098.kmp.viewmodel.ViewModel
-import com.hoc081098.kmp.viewmodel.nullableString
 import com.hoc081098.kmp.viewmodel.safe
+import com.hoc081098.kmp.viewmodel.string
 import com.hoc081098.kmp.viewmodel.wrapper.NonNullStateFlowWrapper
 import com.hoc081098.kmp.viewmodel.wrapper.NullableStateFlowWrapper
 import com.hoc081098.kmp.viewmodel.wrapper.wrap
@@ -74,7 +74,7 @@ class SearchProductsViewModel(
   }
 
   companion object {
-    private val SEARCH_TERM_KEY = SavedStateHandleKey.nullableString("com.hoc081098.kmpviewmodelsample.search_term")
+    private val SEARCH_TERM_KEY = NullableSavedStateHandleKey.string("com.hoc081098.kmpviewmodelsample.search_term")
   }
 }
 

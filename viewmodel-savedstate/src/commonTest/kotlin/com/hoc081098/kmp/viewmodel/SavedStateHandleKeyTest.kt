@@ -67,27 +67,6 @@ val nonNullKeyAndNextValues = listOf(
 data class TestParcelable(val value: Int) : Parcelable
 
 class SavedStateHandleKeyTest {
-
-  val nullableKeys = listOf(
-    SavedStateHandleKey.nullableBooleanArray("nullableBooleanArray"),
-    SavedStateHandleKey.nullableDoubleArray("nullableDoubleArray"),
-    SavedStateHandleKey.nullableLongArray("nullableLongArray"),
-    SavedStateHandleKey.nullableString("nullableString"),
-    SavedStateHandleKey.nullableStringArray("nullableStringArray"),
-    SavedStateHandleKey.nullableByteArray("nullableByteArray"),
-    SavedStateHandleKey.nullableCharArray("nullableCharArray"),
-    SavedStateHandleKey.nullableCharSequence("nullableCharSequence"),
-    SavedStateHandleKey.nullableCharSequenceArray("nullableCharSequenceArray"),
-    SavedStateHandleKey.nullableFloatArray("nullableFloatArray"),
-    SavedStateHandleKey.nullableIntArray("nullableIntArray"),
-    SavedStateHandleKey.nullableShortArray("nullableShortArray"),
-    SavedStateHandleKey.nullableCharSequenceArrayList("nullableCharSequenceArrayList"),
-    SavedStateHandleKey.nullableIntArrayList("nullableIntArrayList"),
-    SavedStateHandleKey.nullableParcelable("nullableParcelable"),
-    SavedStateHandleKey.nullableParcelableArray<Parcelable>("nullableParcelableArray"),
-    SavedStateHandleKey.nullableParcelableArrayList<Parcelable>("nullableParcelableArrayList"),
-  )
-
   @Test
   fun test() {
     val savedStateHandle = SavedStateHandle()
@@ -105,7 +84,7 @@ class SavedStateHandleKeyTest {
         assertTrue { key.key in savedStateHandle }
 
         // Update
-        safeSavedStateHandle[key as SavedStateHandleKey<Any?>] = nextValue
+        safeSavedStateHandle[key as SavedStateHandleKey<Any>] = nextValue
 
         // Read
         assertTrue { key.key in savedStateHandle }

@@ -5,10 +5,10 @@ package com.hoc081098.kmpviewmodelsample.product_detail
 import com.hoc081098.flowext.flatMapFirst
 import com.hoc081098.flowext.flowFromSuspend
 import com.hoc081098.flowext.startWith
+import com.hoc081098.kmp.viewmodel.NullableSavedStateHandleKey
 import com.hoc081098.kmp.viewmodel.SavedStateHandle
-import com.hoc081098.kmp.viewmodel.SavedStateHandleKey
 import com.hoc081098.kmp.viewmodel.ViewModel
-import com.hoc081098.kmp.viewmodel.nullableInt
+import com.hoc081098.kmp.viewmodel.int
 import com.hoc081098.kmp.viewmodel.safe
 import com.hoc081098.kmp.viewmodel.wrapper.NonNullStateFlowWrapper
 import com.hoc081098.kmp.viewmodel.wrapper.wrap
@@ -104,7 +104,7 @@ class ProductDetailViewModel(
     // This key is used by non-Android platforms to set id to SavedStateHandle,
     // used by Android platform to set id to Bundle (handled by Compose-Navigation).
     @JvmField
-    val ID_SAVED_KEY = SavedStateHandleKey.nullableInt("id")
+    val ID_SAVED_KEY = NullableSavedStateHandleKey.int("id")
 
     /**
      * This factory method is used by non-Android platforms to create an instance of [ProductDetailViewModel].
