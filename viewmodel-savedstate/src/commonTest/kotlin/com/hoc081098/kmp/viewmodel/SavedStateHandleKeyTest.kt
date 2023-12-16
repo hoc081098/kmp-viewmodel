@@ -2,7 +2,7 @@ package com.hoc081098.kmp.viewmodel
 
 import com.hoc081098.kmp.viewmodel.parcelable.Parcelable
 import com.hoc081098.kmp.viewmodel.parcelable.Parcelize
-import com.hoc081098.kmp.viewmodel.safe.SavedStateHandleKey
+import com.hoc081098.kmp.viewmodel.safe.NonNullSavedStateHandleKey
 import com.hoc081098.kmp.viewmodel.safe.boolean
 import com.hoc081098.kmp.viewmodel.safe.booleanArray
 import com.hoc081098.kmp.viewmodel.safe.byte
@@ -38,56 +38,56 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 val nonNullKeyAndNextValues = listOf(
-  SavedStateHandleKey.boolean("boolean", false) to
+  NonNullSavedStateHandleKey.boolean("boolean", false) to
     true,
-  SavedStateHandleKey.booleanArray("booleanArray", booleanArrayOf(false)) to
+  NonNullSavedStateHandleKey.booleanArray("booleanArray", booleanArrayOf(false)) to
     booleanArrayOf(true),
-  SavedStateHandleKey.double("double", 0.0) to 1.0,
-  SavedStateHandleKey.doubleArray("doubleArray", doubleArrayOf(0.0)) to
+  NonNullSavedStateHandleKey.double("double", 0.0) to 1.0,
+  NonNullSavedStateHandleKey.doubleArray("doubleArray", doubleArrayOf(0.0)) to
     doubleArrayOf(1.0),
-  SavedStateHandleKey.int("int", 0) to
+  NonNullSavedStateHandleKey.int("int", 0) to
     1,
-  SavedStateHandleKey.intArray("intArray", intArrayOf(0)) to
+  NonNullSavedStateHandleKey.intArray("intArray", intArrayOf(0)) to
     intArrayOf(1),
-  SavedStateHandleKey.long("long", 0L) to
+  NonNullSavedStateHandleKey.long("long", 0L) to
     1L,
-  SavedStateHandleKey.longArray("longArray", longArrayOf(0L)) to
+  NonNullSavedStateHandleKey.longArray("longArray", longArrayOf(0L)) to
     longArrayOf(1L),
-  SavedStateHandleKey.string("string", "") to
+  NonNullSavedStateHandleKey.string("string", "") to
     "hoc081098",
-  SavedStateHandleKey.stringArray("stringArray", arrayOf("")) to
+  NonNullSavedStateHandleKey.stringArray("stringArray", arrayOf("")) to
     arrayOf("hoc081098"),
-  SavedStateHandleKey.byte("byte", 0) to
+  NonNullSavedStateHandleKey.byte("byte", 0) to
     1.toByte(),
-  SavedStateHandleKey.byteArray("byteArray", byteArrayOf(0)) to
+  NonNullSavedStateHandleKey.byteArray("byteArray", byteArrayOf(0)) to
     byteArrayOf(1),
-  SavedStateHandleKey.char("char", 'A') to
+  NonNullSavedStateHandleKey.char("char", 'A') to
     'B',
-  SavedStateHandleKey.charArray("charArray", charArrayOf('A')) to
+  NonNullSavedStateHandleKey.charArray("charArray", charArrayOf('A')) to
     charArrayOf('B'),
-  SavedStateHandleKey.charSequence("charSequence", StringBuilder("")) to
+  NonNullSavedStateHandleKey.charSequence("charSequence", StringBuilder("")) to
     StringBuilder("hoc081098"),
-  SavedStateHandleKey.charSequenceArray("charSequenceArray", arrayOf(StringBuilder(""))) to
+  NonNullSavedStateHandleKey.charSequenceArray("charSequenceArray", arrayOf(StringBuilder(""))) to
     arrayOf(StringBuilder("hoc081098")),
-  SavedStateHandleKey.float("float", 0f) to
+  NonNullSavedStateHandleKey.float("float", 0f) to
     1f,
-  SavedStateHandleKey.floatArray("floatArray", floatArrayOf(0f)) to
+  NonNullSavedStateHandleKey.floatArray("floatArray", floatArrayOf(0f)) to
     floatArrayOf(1f),
-  SavedStateHandleKey.parcelable("parcelable", TestParcelable(0)) to
+  NonNullSavedStateHandleKey.parcelable("parcelable", TestParcelable(0)) to
     TestParcelable(1),
-  SavedStateHandleKey.parcelableArray("parcelableArray", arrayOf(TestParcelable(0))) to
+  NonNullSavedStateHandleKey.parcelableArray("parcelableArray", arrayOf(TestParcelable(0))) to
     TestParcelable(1),
-  SavedStateHandleKey.short("short", 0) to
+  NonNullSavedStateHandleKey.short("short", 0) to
     1.toShort(),
-  SavedStateHandleKey.shortArray("shortArray", shortArrayOf(0)) to
+  NonNullSavedStateHandleKey.shortArray("shortArray", shortArrayOf(0)) to
     shortArrayOf(1),
-  SavedStateHandleKey.parcelableArrayList("parcelableArrayList", arrayListOf(TestParcelable(0))) to
+  NonNullSavedStateHandleKey.parcelableArrayList("parcelableArrayList", arrayListOf(TestParcelable(0))) to
     arrayListOf(TestParcelable(1)),
-  SavedStateHandleKey.intArrayList("intArrayList", arrayListOf(0)) to
+  NonNullSavedStateHandleKey.intArrayList("intArrayList", arrayListOf(0)) to
     arrayListOf(1),
-  SavedStateHandleKey.stringArrayList("stringArrayList", arrayListOf("")) to
+  NonNullSavedStateHandleKey.stringArrayList("stringArrayList", arrayListOf("")) to
     arrayListOf("hoc081098"),
-  SavedStateHandleKey.charSequenceArrayList("charSequenceArrayList", arrayListOf(StringBuilder(""))) to
+  NonNullSavedStateHandleKey.charSequenceArrayList("charSequenceArrayList", arrayListOf(StringBuilder(""))) to
     arrayListOf(StringBuilder("hoc081098")),
 )
 
@@ -112,7 +112,7 @@ class SavedStateHandleKeyTest {
         assertTrue { key.key in savedStateHandle }
 
         // Update
-        safeSavedStateHandle[key as SavedStateHandleKey<Any>] = nextValue
+        safeSavedStateHandle[key as NonNullSavedStateHandleKey<Any>] = nextValue
 
         // Read
         assertTrue { key.key in savedStateHandle }

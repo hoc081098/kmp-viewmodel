@@ -1,8 +1,11 @@
 package com.hoc081098.kmp.viewmodel.safe
 
+import com.hoc081098.kmp.viewmodel.SavedStateHandle
+
 /**
  * Key for values stored in [SavedStateHandle].
  * Type [T] is the type of the value associated with the key.
+ * The value associated with the key may be null.
  *
  * @see SafeSavedStateHandle
  */

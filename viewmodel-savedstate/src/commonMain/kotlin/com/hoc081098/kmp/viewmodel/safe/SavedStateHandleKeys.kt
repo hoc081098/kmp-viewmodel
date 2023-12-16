@@ -3,157 +3,157 @@ package com.hoc081098.kmp.viewmodel.safe
 import com.hoc081098.kmp.viewmodel.parcelable.Parcelable
 
 @Suppress("NOTHING_TO_INLINE")
-private inline fun <T : Any> key(key: String, value: T) = SavedStateHandleKey(key, value)
+private inline fun <T : Any> key(key: String, value: T) = NonNullSavedStateHandleKey(key, value)
 
-public fun SavedStateHandleKey.Companion.boolean(key: String, defaultValue: Boolean): SavedStateHandleKey<Boolean> =
+public fun NonNullSavedStateHandleKey.Companion.boolean(key: String, defaultValue: Boolean): NonNullSavedStateHandleKey<Boolean> =
   key(key, defaultValue)
 
-public fun SavedStateHandleKey.Companion.booleanArray(
+public fun NonNullSavedStateHandleKey.Companion.booleanArray(
   key: String,
   defaultValue: BooleanArray,
-): SavedStateHandleKey<BooleanArray> =
+): NonNullSavedStateHandleKey<BooleanArray> =
   key(key, defaultValue)
 
-public fun SavedStateHandleKey.Companion.double(
+public fun NonNullSavedStateHandleKey.Companion.double(
   key: String,
   defaultValue: Double,
-): SavedStateHandleKey<Double> =
+): NonNullSavedStateHandleKey<Double> =
   key(key, defaultValue)
 
-public fun SavedStateHandleKey.Companion.doubleArray(
+public fun NonNullSavedStateHandleKey.Companion.doubleArray(
   key: String,
   defaultValue: DoubleArray,
-): SavedStateHandleKey<DoubleArray> =
+): NonNullSavedStateHandleKey<DoubleArray> =
   key(key, defaultValue)
 
-public fun SavedStateHandleKey.Companion.int(
+public fun NonNullSavedStateHandleKey.Companion.int(
   key: String,
   defaultValue: Int,
-): SavedStateHandleKey<Int> =
+): NonNullSavedStateHandleKey<Int> =
   key(key, defaultValue)
 
-public fun SavedStateHandleKey.Companion.intArray(
+public fun NonNullSavedStateHandleKey.Companion.intArray(
   key: String,
   defaultValue: IntArray,
-): SavedStateHandleKey<IntArray> =
+): NonNullSavedStateHandleKey<IntArray> =
   key(key, defaultValue)
 
-public fun SavedStateHandleKey.Companion.long(
+public fun NonNullSavedStateHandleKey.Companion.long(
   key: String,
   defaultValue: Long,
-): SavedStateHandleKey<Long> =
+): NonNullSavedStateHandleKey<Long> =
   key(key, defaultValue)
 
-public fun SavedStateHandleKey.Companion.longArray(
+public fun NonNullSavedStateHandleKey.Companion.longArray(
   key: String,
   defaultValue: LongArray,
-): SavedStateHandleKey<LongArray> =
+): NonNullSavedStateHandleKey<LongArray> =
   key(key, defaultValue)
 
-public fun SavedStateHandleKey.Companion.string(
+public fun NonNullSavedStateHandleKey.Companion.string(
   key: String,
   defaultValue: String,
-): SavedStateHandleKey<String> =
+): NonNullSavedStateHandleKey<String> =
   key(key, defaultValue)
 
-public fun SavedStateHandleKey.Companion.stringArray(
+public fun NonNullSavedStateHandleKey.Companion.stringArray(
   key: String,
   defaultValue: Array<String>,
-): SavedStateHandleKey<Array<String>> =
+): NonNullSavedStateHandleKey<Array<String>> =
   key(key, defaultValue)
 
-public fun SavedStateHandleKey.Companion.byte(
+public fun NonNullSavedStateHandleKey.Companion.byte(
   key: String,
   defaultValue: Byte,
-): SavedStateHandleKey<Byte> =
+): NonNullSavedStateHandleKey<Byte> =
   key(key, defaultValue)
 
-public fun SavedStateHandleKey.Companion.byteArray(
+public fun NonNullSavedStateHandleKey.Companion.byteArray(
   key: String,
   defaultValue: ByteArray,
-): SavedStateHandleKey<ByteArray> =
+): NonNullSavedStateHandleKey<ByteArray> =
   key(key, defaultValue)
 
-public fun SavedStateHandleKey.Companion.char(
+public fun NonNullSavedStateHandleKey.Companion.char(
   key: String,
   defaultValue: Char,
-): SavedStateHandleKey<Char> =
+): NonNullSavedStateHandleKey<Char> =
   key(key, defaultValue)
 
-public fun SavedStateHandleKey.Companion.charArray(
+public fun NonNullSavedStateHandleKey.Companion.charArray(
   key: String,
   defaultValue: CharArray,
-): SavedStateHandleKey<CharArray> =
+): NonNullSavedStateHandleKey<CharArray> =
   key(key, defaultValue)
 
-public fun SavedStateHandleKey.Companion.charSequence(
+public fun NonNullSavedStateHandleKey.Companion.charSequence(
   key: String,
   defaultValue: CharSequence,
-): SavedStateHandleKey<CharSequence> =
+): NonNullSavedStateHandleKey<CharSequence> =
   key(key, defaultValue)
 
-public fun SavedStateHandleKey.Companion.charSequenceArray(
+public fun NonNullSavedStateHandleKey.Companion.charSequenceArray(
   key: String,
   defaultValue: Array<CharSequence>,
-): SavedStateHandleKey<Array<CharSequence>> =
+): NonNullSavedStateHandleKey<Array<CharSequence>> =
   key(key, defaultValue)
 
-public fun SavedStateHandleKey.Companion.float(
+public fun NonNullSavedStateHandleKey.Companion.float(
   key: String,
   defaultValue: Float,
-): SavedStateHandleKey<Float> =
+): NonNullSavedStateHandleKey<Float> =
   key(key, defaultValue)
 
-public fun SavedStateHandleKey.Companion.floatArray(
+public fun NonNullSavedStateHandleKey.Companion.floatArray(
   key: String,
   defaultValue: FloatArray,
-): SavedStateHandleKey<FloatArray> =
+): NonNullSavedStateHandleKey<FloatArray> =
   key(key, defaultValue)
 
-public fun <T : Parcelable> SavedStateHandleKey.Companion.parcelable(
+public fun <T : Parcelable> NonNullSavedStateHandleKey.Companion.parcelable(
   key: String,
   defaultValue: T,
-): SavedStateHandleKey<T> =
+): NonNullSavedStateHandleKey<T> =
   key(key, defaultValue)
 
-public fun <T : Parcelable> SavedStateHandleKey.Companion.parcelableArray(
+public fun <T : Parcelable> NonNullSavedStateHandleKey.Companion.parcelableArray(
   key: String,
   defaultValue: Array<T>,
-): SavedStateHandleKey<Array<T>> =
+): NonNullSavedStateHandleKey<Array<T>> =
   key(key, defaultValue)
 
-public fun SavedStateHandleKey.Companion.short(
+public fun NonNullSavedStateHandleKey.Companion.short(
   key: String,
   defaultValue: Short,
-): SavedStateHandleKey<Short> =
+): NonNullSavedStateHandleKey<Short> =
   key(key, defaultValue)
 
-public fun SavedStateHandleKey.Companion.shortArray(
+public fun NonNullSavedStateHandleKey.Companion.shortArray(
   key: String,
   defaultValue: ShortArray,
-): SavedStateHandleKey<ShortArray> =
+): NonNullSavedStateHandleKey<ShortArray> =
   key(key, defaultValue)
 
-public fun <T : Parcelable> SavedStateHandleKey.Companion.parcelableArrayList(
+public fun <T : Parcelable> NonNullSavedStateHandleKey.Companion.parcelableArrayList(
   key: String,
   defaultValue: ArrayList<T>,
-): SavedStateHandleKey<ArrayList<T>> =
+): NonNullSavedStateHandleKey<ArrayList<T>> =
   key(key, defaultValue)
 
-public fun SavedStateHandleKey.Companion.intArrayList(
+public fun NonNullSavedStateHandleKey.Companion.intArrayList(
   key: String,
   defaultValue: ArrayList<Int>,
-): SavedStateHandleKey<ArrayList<Int>> =
+): NonNullSavedStateHandleKey<ArrayList<Int>> =
   key(key, defaultValue)
 
-public fun SavedStateHandleKey.Companion.stringArrayList(
+public fun NonNullSavedStateHandleKey.Companion.stringArrayList(
   key: String,
   defaultValue: ArrayList<String>,
-): SavedStateHandleKey<ArrayList<String>> =
+): NonNullSavedStateHandleKey<ArrayList<String>> =
   key(key, defaultValue)
 
-public fun SavedStateHandleKey.Companion.charSequenceArrayList(
+public fun NonNullSavedStateHandleKey.Companion.charSequenceArrayList(
   key: String,
   defaultValue: ArrayList<CharSequence>,
-): SavedStateHandleKey<ArrayList<CharSequence>> =
+): NonNullSavedStateHandleKey<ArrayList<CharSequence>> =
   key(key, defaultValue)
