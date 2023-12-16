@@ -41,7 +41,7 @@ public value class SafeSavedStateHandle(public val savedStateHandle: SavedStateH
     message = "This method is not supported on non-null type key",
     level = DeprecationLevel.ERROR,
   )
-  public inline fun <T : Any> remove(key: NonNullSavedStateHandleKey<T>): Nothing =
+  public inline fun <T : Any> remove(@Suppress("UnusedParameter") key: NonNullSavedStateHandleKey<T>): Nothing =
     throw UnsupportedOperationException("Not supported")
 
   public inline fun <T : Any> remove(key: NullableSavedStateHandleKey<T>) {

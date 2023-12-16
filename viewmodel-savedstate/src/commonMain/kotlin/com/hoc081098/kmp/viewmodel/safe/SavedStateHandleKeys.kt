@@ -1,3 +1,5 @@
+@file:Suppress("TooManyFunctions")
+
 package com.hoc081098.kmp.viewmodel.safe
 
 import com.hoc081098.kmp.viewmodel.parcelable.Parcelable
@@ -5,7 +7,9 @@ import com.hoc081098.kmp.viewmodel.parcelable.Parcelable
 @Suppress("NOTHING_TO_INLINE")
 private inline fun <T : Any> key(key: String, value: T) = NonNullSavedStateHandleKey(key, value)
 
-public fun NonNullSavedStateHandleKey.Companion.boolean(key: String, defaultValue: Boolean): NonNullSavedStateHandleKey<Boolean> =
+public fun NonNullSavedStateHandleKey.Companion.boolean(
+  key: String, defaultValue: Boolean
+): NonNullSavedStateHandleKey<Boolean> =
   key(key, defaultValue)
 
 public fun NonNullSavedStateHandleKey.Companion.booleanArray(
