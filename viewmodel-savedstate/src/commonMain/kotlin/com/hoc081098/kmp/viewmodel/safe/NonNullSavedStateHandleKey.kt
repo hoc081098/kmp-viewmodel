@@ -7,6 +7,9 @@ import com.hoc081098.kmp.viewmodel.SavedStateHandle
  * Type [T] is the type of the value associated with the key.
  * The value associated with the key must not be null.
  *
+ * @param key the key
+ * @param defaultValue the default value is used if no value is associated with the key
+ *
  * @see SafeSavedStateHandle
  */
 public class NonNullSavedStateHandleKey<T : Any> internal constructor(
