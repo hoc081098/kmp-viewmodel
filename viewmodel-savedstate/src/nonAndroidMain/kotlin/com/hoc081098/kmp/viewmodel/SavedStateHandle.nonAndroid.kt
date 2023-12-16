@@ -22,7 +22,7 @@ public actual class SavedStateHandle {
     return try {
       @Suppress("UNCHECKED_CAST")
       regular[key] as T?
-    } catch (e: ClassCastException) {
+    } catch (@Suppress("SwallowedException") e: ClassCastException) {
       // Instead of failing on ClassCastException, we remove the value from the
       // SavedStateHandle and return null.
       remove<T>(key)
