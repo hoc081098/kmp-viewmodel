@@ -31,10 +31,17 @@ import com.hoc081098.kmp.viewmodel.safe.string
 import com.hoc081098.kmp.viewmodel.safe.stringArray
 import com.hoc081098.kmp.viewmodel.safe.stringArrayList
 import kotlin.test.Test
+import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
+import kotlinx.coroutines.async
+import kotlinx.coroutines.flow.take
+import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
+import kotlinx.coroutines.test.runTest
 
 val nonNullKeyAndNextValues: List<Pair<NonNullSavedStateHandleKey<out Any>, Any>> = listOf(
   NonNullSavedStateHandleKey.boolean("boolean", false) to
@@ -95,6 +102,29 @@ data class TestParcelable(val value: Int) : Parcelable
 
 class NonNullSavedStateHandleKeyTest {
   @Test
+  fun nullAssociated() {
+    val savedStateHandle = SavedStateHandle()
+
+    nonNullKeyAndNextValues.forEach { (key, nextValue) ->
+      savedStateHandle[key.key] = null
+
+      assertFailsWith<NullPointerException> {
+        savedStateHandle.safe { it[key] }
+      }
+    }
+  }
+
+  @Test
+  fun nonNullAssociated() {
+    val savedStateHandle = SavedStateHandle()
+
+    nonNullKeyAndNextValues.forEach { (key, nextValue) ->
+      savedStateHandle[key.key] = nextValue
+      assertEquals(nextValue, savedStateHandle[key.key])
+    }
+  }
+
+  @Test
   fun readWriteRead() {
     val savedStateHandle = SavedStateHandle()
 
@@ -116,6 +146,25 @@ class NonNullSavedStateHandleKeyTest {
         assertEquals(nextValue, safeSavedStateHandle[key])
         assertEquals(nextValue, savedStateHandle[key.key])
       }
+    }
+  }
+
+  @Test
+  fun getStateFlow() = runTest(UnconfinedTestDispatcher()) {
+    val savedStateHandle = SavedStateHandle()
+
+    nonNullKeyAndNextValues.forEach { (key, nextValue) ->
+      val stateFlow = savedStateHandle.safe { it.getStateFlow(key) }
+      assertEquals(key.defaultValue, stateFlow.value)
+
+      val deferred = async { stateFlow.take(2).toList() }
+
+      savedStateHandle.safe { it[key as NonNullSavedStateHandleKey<Any>] = nextValue }
+
+      assertContentEquals(
+        expected = listOf(key.defaultValue, nextValue),
+        actual = deferred.await(),
+      )
     }
   }
 }
