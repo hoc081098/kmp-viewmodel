@@ -40,7 +40,8 @@ public value class SafeSavedStateHandle(public val savedStateHandle: SavedStateH
    */
   public inline operator fun <T : Any> get(key: NullableSavedStateHandleKey<T>): T? =
     if (key.key in savedStateHandle) {
-      savedStateHandle.get<T>(key.key)
+      @Suppress("RemoveExplicitTypeArguments")
+      savedStateHandle.get<T?>(key.key)
     } else {
       key.defaultValue
     }
