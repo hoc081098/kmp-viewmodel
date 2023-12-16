@@ -40,7 +40,7 @@ import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 
-val nullableKeyAndNextValues: List<Pair<NullableSavedStateHandleKey<out Any>, Any?>> = listOf(
+private val nullableKeyWithNonNullInitialAndNextValues: List<Pair<NullableSavedStateHandleKey<out Any>, Any?>> = listOf(
   NullableSavedStateHandleKey.boolean("boolean", false) to
     true,
   NullableSavedStateHandleKey.booleanArray("booleanArray", booleanArrayOf(false)) to
@@ -93,6 +93,63 @@ val nullableKeyAndNextValues: List<Pair<NullableSavedStateHandleKey<out Any>, An
   NullableSavedStateHandleKey.charSequenceArrayList("charSequenceArrayList", arrayListOf(StringBuilder(""))) to
     arrayListOf(StringBuilder("hoc081098")),
 )
+
+private val nullableKeyWithNullInitialAndNextValues: List<Pair<NullableSavedStateHandleKey<out Any>, Any?>> = listOf(
+  NullableSavedStateHandleKey.boolean("boolean_null") to
+    true,
+  NullableSavedStateHandleKey.booleanArray("booleanArray_null") to
+    booleanArrayOf(true),
+  NullableSavedStateHandleKey.double("double_null") to 1.0,
+  NullableSavedStateHandleKey.doubleArray("doubleArray_null") to
+    doubleArrayOf(1.0),
+  NullableSavedStateHandleKey.int("int_null") to
+    1,
+  NullableSavedStateHandleKey.intArray("intArray_null") to
+    intArrayOf(1),
+  NullableSavedStateHandleKey.long("long_null") to
+    1L,
+  NullableSavedStateHandleKey.longArray("longArray_null") to
+    longArrayOf(1L),
+  NullableSavedStateHandleKey.string("string_null") to
+    "hoc081098",
+  NullableSavedStateHandleKey.stringArray("stringArray_null") to
+    arrayOf("hoc081098"),
+  NullableSavedStateHandleKey.byte("byte_null") to
+    1.toByte(),
+  NullableSavedStateHandleKey.byteArray("byteArray_null") to
+    byteArrayOf(1),
+  NullableSavedStateHandleKey.char("char_null") to
+    'B',
+  NullableSavedStateHandleKey.charArray("charArray_null") to
+    charArrayOf('B'),
+  NullableSavedStateHandleKey.charSequence("charSequence_null") to
+    StringBuilder("hoc081098"),
+  NullableSavedStateHandleKey.charSequenceArray("charSequenceArray_null") to
+    arrayOf(StringBuilder("hoc081098")),
+  NullableSavedStateHandleKey.float("float_null") to
+    1f,
+  NullableSavedStateHandleKey.floatArray("floatArray_null") to
+    floatArrayOf(1f),
+  NullableSavedStateHandleKey.parcelable<TestParcelable>("parcelable_null") to
+    TestParcelable(1),
+  NullableSavedStateHandleKey.parcelableArray<TestParcelable>("parcelableArray_null") to
+    TestParcelable(1),
+  NullableSavedStateHandleKey.short("short_null") to
+    1.toShort(),
+  NullableSavedStateHandleKey.shortArray("shortArray_null") to
+    shortArrayOf(1),
+  NullableSavedStateHandleKey.parcelableArrayList<TestParcelable>("parcelableArrayList_null") to
+    arrayListOf(TestParcelable(1)),
+  NullableSavedStateHandleKey.intArrayList("intArrayList_null") to
+    arrayListOf(1),
+  NullableSavedStateHandleKey.stringArrayList("stringArrayList_null") to
+    arrayListOf("hoc081098"),
+  NullableSavedStateHandleKey.charSequenceArrayList("charSequenceArrayList_null") to
+    arrayListOf(StringBuilder("hoc081098")),
+)
+
+private val nullableKeyAndNextValues =
+  nullableKeyWithNonNullInitialAndNextValues + nullableKeyWithNullInitialAndNextValues
 
 class NullableSavedStateHandleKeyTest {
   @Test
@@ -200,11 +257,11 @@ class NullableSavedStateHandleKeyTest {
 
       val deferred = async { stateFlow.take(3).toList() }
 
-      savedStateHandle.safe { it[key as NullableSavedStateHandleKey<Any>] = null }
       savedStateHandle.safe { it[key as NullableSavedStateHandleKey<Any>] = nextValue }
+      savedStateHandle.safe { it[key as NullableSavedStateHandleKey<Any>] = null }
 
       assertContentEquals(
-        expected = listOf(key.defaultValue, null, nextValue),
+        expected = listOf(key.defaultValue, nextValue, null),
         actual = deferred.await(),
       )
     }
