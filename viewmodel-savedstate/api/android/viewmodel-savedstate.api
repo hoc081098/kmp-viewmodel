@@ -1,18 +1,44 @@
+public final class com/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey {
+	public static final field Companion Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDefaultValue ()Ljava/lang/Object;
+	public final fun getKey ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion {
+}
+
 public final class com/hoc081098/kmp/viewmodel/SafeSavedStateHandle {
 	public static final synthetic fun box-impl (Landroidx/lifecycle/SavedStateHandle;)Lcom/hoc081098/kmp/viewmodel/SafeSavedStateHandle;
 	public static fun constructor-impl (Landroidx/lifecycle/SavedStateHandle;)Landroidx/lifecycle/SavedStateHandle;
 	public fun equals (Ljava/lang/Object;)Z
 	public static fun equals-impl (Landroidx/lifecycle/SavedStateHandle;Ljava/lang/Object;)Z
 	public static final fun equals-impl0 (Landroidx/lifecycle/SavedStateHandle;Landroidx/lifecycle/SavedStateHandle;)Z
+	public static final fun get-impl (Landroidx/lifecycle/SavedStateHandle;Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;)Ljava/lang/Object;
 	public static final fun get-impl (Landroidx/lifecycle/SavedStateHandle;Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;)Ljava/lang/Object;
 	public final fun getSavedStateHandle ()Landroidx/lifecycle/SavedStateHandle;
+	public static final fun getStateFlow-impl (Landroidx/lifecycle/SavedStateHandle;Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;)Lkotlinx/coroutines/flow/StateFlow;
 	public static final fun getStateFlow-impl (Landroidx/lifecycle/SavedStateHandle;Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;)Lkotlinx/coroutines/flow/StateFlow;
 	public fun hashCode ()I
 	public static fun hashCode-impl (Landroidx/lifecycle/SavedStateHandle;)I
+	public static final fun remove-impl (Landroidx/lifecycle/SavedStateHandle;Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;)V
+	public static final fun remove-impl (Landroidx/lifecycle/SavedStateHandle;Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;)Ljava/lang/Void;
+	public static final fun set-impl (Landroidx/lifecycle/SavedStateHandle;Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;Ljava/lang/Object;)V
 	public static final fun set-impl (Landroidx/lifecycle/SavedStateHandle;Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;Ljava/lang/Object;)V
 	public fun toString ()Ljava/lang/String;
 	public static fun toString-impl (Landroidx/lifecycle/SavedStateHandle;)Ljava/lang/String;
 	public final synthetic fun unbox-impl ()Landroidx/lifecycle/SavedStateHandle;
+}
+
+public final class com/hoc081098/kmp/viewmodel/SafeSavedStateHandleKt {
+	public static final fun safe (Landroidx/lifecycle/SavedStateHandle;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
+}
+
+public final class com/hoc081098/kmp/viewmodel/SafeSavedStateHandle_androidKt {
+	public static final fun getLiveData-CUhs5Sc (Landroidx/lifecycle/SavedStateHandle;Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;)Landroidx/lifecycle/LiveData;
+	public static final fun getLiveData-CUhs5Sc (Landroidx/lifecycle/SavedStateHandle;Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;)Landroidx/lifecycle/LiveData;
 }
 
 public abstract interface class com/hoc081098/kmp/viewmodel/SavedStateHandleFactory {
@@ -29,10 +55,6 @@ public final class com/hoc081098/kmp/viewmodel/SavedStateHandleKey {
 }
 
 public final class com/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion {
-}
-
-public final class com/hoc081098/kmp/viewmodel/SavedStateHandleKeyKt {
-	public static final fun safe (Landroidx/lifecycle/SavedStateHandle;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
 }
 
 public final class com/hoc081098/kmp/viewmodel/SavedStateHandleKeysKt {
@@ -65,58 +87,58 @@ public final class com/hoc081098/kmp/viewmodel/SavedStateHandleKeysKt {
 }
 
 public final class com/hoc081098/kmp/viewmodel/SavedStateHandleNullableKeysKt {
-	public static final fun nullableBoolean (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/Boolean;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static synthetic fun nullableBoolean$default (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/Boolean;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static final fun nullableBooleanArray (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;[Z)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static synthetic fun nullableBooleanArray$default (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;[ZILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static final fun nullableByte (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/Byte;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static synthetic fun nullableByte$default (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/Byte;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static final fun nullableByteArray (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;[B)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static synthetic fun nullableByteArray$default (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;[BILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static final fun nullableChar (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/Character;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static synthetic fun nullableChar$default (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/Character;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static final fun nullableCharArray (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;[C)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static synthetic fun nullableCharArray$default (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;[CILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static final fun nullableCharSequence (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/CharSequence;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static synthetic fun nullableCharSequence$default (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/CharSequence;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static final fun nullableCharSequenceArray (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;[Ljava/lang/CharSequence;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static synthetic fun nullableCharSequenceArray$default (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;[Ljava/lang/CharSequence;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static final fun nullableCharSequenceArrayList (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;Ljava/util/ArrayList;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static synthetic fun nullableCharSequenceArrayList$default (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;Ljava/util/ArrayList;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static final fun nullableDouble (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/Double;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static synthetic fun nullableDouble$default (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/Double;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static final fun nullableDoubleArray (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;[D)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static synthetic fun nullableDoubleArray$default (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;[DILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static final fun nullableFloat (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/Float;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static synthetic fun nullableFloat$default (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/Float;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static final fun nullableFloatArray (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;[F)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static synthetic fun nullableFloatArray$default (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;[FILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static final fun nullableInt (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/Integer;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static synthetic fun nullableInt$default (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/Integer;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static final fun nullableIntArray (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;[I)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static synthetic fun nullableIntArray$default (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;[IILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static final fun nullableIntArrayList (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;Ljava/util/ArrayList;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static synthetic fun nullableIntArrayList$default (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;Ljava/util/ArrayList;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static final fun nullableLong (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/Long;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static synthetic fun nullableLong$default (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/Long;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static final fun nullableLongArray (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;[J)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static synthetic fun nullableLongArray$default (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;[JILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static final fun nullableParcelable (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;Landroid/os/Parcelable;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static synthetic fun nullableParcelable$default (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;Landroid/os/Parcelable;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static final fun nullableParcelableArray (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;[Landroid/os/Parcelable;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static synthetic fun nullableParcelableArray$default (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;[Landroid/os/Parcelable;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static final fun nullableParcelableArrayList (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;Ljava/util/ArrayList;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static synthetic fun nullableParcelableArrayList$default (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;Ljava/util/ArrayList;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static final fun nullableShort (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/Short;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static synthetic fun nullableShort$default (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/Short;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static final fun nullableShortArray (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;[S)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static synthetic fun nullableShortArray$default (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;[SILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static final fun nullableString (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/String;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static synthetic fun nullableString$default (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static final fun nullableStringArray (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;[Ljava/lang/String;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static synthetic fun nullableStringArray$default (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;[Ljava/lang/String;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static final fun nullableStringArrayList (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;Ljava/util/ArrayList;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
-	public static synthetic fun nullableStringArrayList$default (Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey$Companion;Ljava/lang/String;Ljava/util/ArrayList;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandleKey;
+	public static final fun boolean (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/Boolean;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static synthetic fun boolean$default (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/Boolean;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static final fun booleanArray (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;[Z)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static synthetic fun booleanArray$default (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;[ZILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static final fun byte (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/Byte;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static synthetic fun byte$default (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/Byte;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static final fun byteArray (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;[B)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static synthetic fun byteArray$default (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;[BILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static final fun char (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/Character;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static synthetic fun char$default (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/Character;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static final fun charArray (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;[C)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static synthetic fun charArray$default (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;[CILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static final fun charSequence (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/CharSequence;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static synthetic fun charSequence$default (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/CharSequence;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static final fun charSequenceArray (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;[Ljava/lang/CharSequence;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static synthetic fun charSequenceArray$default (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;[Ljava/lang/CharSequence;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static final fun charSequenceArrayList (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;Ljava/util/ArrayList;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static synthetic fun charSequenceArrayList$default (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;Ljava/util/ArrayList;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static final fun double (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/Double;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static synthetic fun double$default (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/Double;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static final fun doubleArray (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;[D)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static synthetic fun doubleArray$default (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;[DILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static final fun float (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/Float;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static synthetic fun float$default (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/Float;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static final fun floatArray (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;[F)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static synthetic fun floatArray$default (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;[FILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static final fun int (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/Integer;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static synthetic fun int$default (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/Integer;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static final fun intArray (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;[I)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static synthetic fun intArray$default (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;[IILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static final fun intArrayList (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;Ljava/util/ArrayList;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static synthetic fun intArrayList$default (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;Ljava/util/ArrayList;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static final fun long (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/Long;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static synthetic fun long$default (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/Long;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static final fun longArray (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;[J)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static synthetic fun longArray$default (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;[JILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static final fun parcelable (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;Landroid/os/Parcelable;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static synthetic fun parcelable$default (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;Landroid/os/Parcelable;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static final fun parcelableArray (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;[Landroid/os/Parcelable;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static synthetic fun parcelableArray$default (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;[Landroid/os/Parcelable;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static final fun parcelableArrayList (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;Ljava/util/ArrayList;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static synthetic fun parcelableArrayList$default (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;Ljava/util/ArrayList;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static final fun short (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/Short;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static synthetic fun short$default (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/Short;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static final fun shortArray (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;[S)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static synthetic fun shortArray$default (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;[SILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static final fun string (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/String;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static synthetic fun string$default (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static final fun stringArray (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;[Ljava/lang/String;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static synthetic fun stringArray$default (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;[Ljava/lang/String;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static final fun stringArrayList (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;Ljava/util/ArrayList;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
+	public static synthetic fun stringArrayList$default (Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey$Companion;Ljava/lang/String;Ljava/util/ArrayList;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/NullableSavedStateHandleKey;
 }
 
 public final class com/hoc081098/kmp/viewmodel/SavedStateHandleSupportKt {
