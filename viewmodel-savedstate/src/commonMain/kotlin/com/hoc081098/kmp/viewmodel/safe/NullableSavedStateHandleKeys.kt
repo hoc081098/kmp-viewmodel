@@ -1,4 +1,5 @@
 @file:Suppress("TooManyFunctions")
+
 package com.hoc081098.kmp.viewmodel.safe
 
 import com.hoc081098.kmp.viewmodel.parcelable.Parcelable

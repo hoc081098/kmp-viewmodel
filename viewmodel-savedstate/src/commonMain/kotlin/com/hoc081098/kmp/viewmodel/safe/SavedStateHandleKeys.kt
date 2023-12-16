@@ -8,7 +8,8 @@ import com.hoc081098.kmp.viewmodel.parcelable.Parcelable
 private inline fun <T : Any> key(key: String, value: T) = NonNullSavedStateHandleKey(key, value)
 
 public fun NonNullSavedStateHandleKey.Companion.boolean(
-  key: String, defaultValue: Boolean
+  key: String,
+  defaultValue: Boolean,
 ): NonNullSavedStateHandleKey<Boolean> =
   key(key, defaultValue)
 
