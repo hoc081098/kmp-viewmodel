@@ -58,7 +58,7 @@ private val nullableKeyWithNonNullInitialAndNextValues: List<Pair<NullableSavedS
     longArrayOf(1L),
   NullableSavedStateHandleKey.string("string", "") to
     "hoc081098",
-  NullableSavedStateHandleKey.stringArray("stringArray", arrayOf("")) to
+  NullableSavedStateHandleKey.stringArray("stringArray", arrayOf("", null)) to
     arrayOf("hoc081098"),
   NullableSavedStateHandleKey.byte("byte", 0) to
     1.toByte(),
@@ -70,7 +70,7 @@ private val nullableKeyWithNonNullInitialAndNextValues: List<Pair<NullableSavedS
     charArrayOf('B'),
   NullableSavedStateHandleKey.charSequence("charSequence", StringBuilder("")) to
     StringBuilder("hoc081098"),
-  NullableSavedStateHandleKey.charSequenceArray("charSequenceArray", arrayOf(StringBuilder(""))) to
+  NullableSavedStateHandleKey.charSequenceArray("charSequenceArray", arrayOf(StringBuilder(""), null)) to
     arrayOf(StringBuilder("hoc081098")),
   NullableSavedStateHandleKey.float("float", 0f) to
     1f,
@@ -78,19 +78,19 @@ private val nullableKeyWithNonNullInitialAndNextValues: List<Pair<NullableSavedS
     floatArrayOf(1f),
   NullableSavedStateHandleKey.parcelable("parcelable", TestParcelable(0)) to
     TestParcelable(1),
-  NullableSavedStateHandleKey.parcelableArray("parcelableArray", arrayOf(TestParcelable(0))) to
+  NullableSavedStateHandleKey.parcelableArray("parcelableArray", arrayOf(TestParcelable(0), null)) to
     TestParcelable(1),
   NullableSavedStateHandleKey.short("short", 0) to
     1.toShort(),
   NullableSavedStateHandleKey.shortArray("shortArray", shortArrayOf(0)) to
     shortArrayOf(1),
-  NullableSavedStateHandleKey.parcelableArrayList("parcelableArrayList", arrayListOf(TestParcelable(0))) to
+  NullableSavedStateHandleKey.parcelableArrayList("parcelableArrayList", arrayListOf(TestParcelable(0), null)) to
     arrayListOf(TestParcelable(1)),
-  NullableSavedStateHandleKey.intArrayList("intArrayList", arrayListOf(0)) to
+  NullableSavedStateHandleKey.intArrayList("intArrayList", arrayListOf(0, null)) to
     arrayListOf(1),
-  NullableSavedStateHandleKey.stringArrayList("stringArrayList", arrayListOf("")) to
+  NullableSavedStateHandleKey.stringArrayList("stringArrayList", arrayListOf("", null)) to
     arrayListOf("hoc081098"),
-  NullableSavedStateHandleKey.charSequenceArrayList("charSequenceArrayList", arrayListOf(StringBuilder(""))) to
+  NullableSavedStateHandleKey.charSequenceArrayList("charSequenceArrayList", arrayListOf(StringBuilder(""), null)) to
     arrayListOf(StringBuilder("hoc081098")),
 )
 

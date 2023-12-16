@@ -63,8 +63,8 @@ public fun NullableSavedStateHandleKey.Companion.string(
 
 public fun NullableSavedStateHandleKey.Companion.stringArray(
   key: String,
-  defaultValue: Array<String>? = null,
-): NullableSavedStateHandleKey<Array<String>> =
+  defaultValue: Array<String?>? = null,
+): NullableSavedStateHandleKey<Array<String?>> =
   key(key, defaultValue)
 
 public fun NullableSavedStateHandleKey.Companion.byte(
@@ -99,8 +99,8 @@ public fun NullableSavedStateHandleKey.Companion.charSequence(
 
 public fun NullableSavedStateHandleKey.Companion.charSequenceArray(
   key: String,
-  defaultValue: Array<CharSequence>? = null,
-): NullableSavedStateHandleKey<Array<CharSequence>> =
+  defaultValue: Array<CharSequence?>? = null,
+): NullableSavedStateHandleKey<Array<CharSequence?>> =
   key(key, defaultValue)
 
 public fun NullableSavedStateHandleKey.Companion.float(
@@ -123,8 +123,8 @@ public fun <T : Parcelable> NullableSavedStateHandleKey.Companion.parcelable(
 
 public fun <T : Parcelable> NullableSavedStateHandleKey.Companion.parcelableArray(
   key: String,
-  defaultValue: Array<T>? = null,
-): NullableSavedStateHandleKey<Array<T>> =
+  defaultValue: Array<T?>? = null,
+): NullableSavedStateHandleKey<Array<T?>> =
   key(key, defaultValue)
 
 public fun NullableSavedStateHandleKey.Companion.short(
@@ -141,24 +141,24 @@ public fun NullableSavedStateHandleKey.Companion.shortArray(
 
 public fun <T : Parcelable> NullableSavedStateHandleKey.Companion.parcelableArrayList(
   key: String,
-  defaultValue: ArrayList<T>? = null,
-): NullableSavedStateHandleKey<ArrayList<T>> =
+  defaultValue: ArrayList<T?>? = null,
+): NullableSavedStateHandleKey<ArrayList<T?>> =
   key(key, defaultValue)
 
 public fun NullableSavedStateHandleKey.Companion.intArrayList(
   key: String,
-  defaultValue: ArrayList<Int>? = null,
-): NullableSavedStateHandleKey<ArrayList<Int>> =
+  defaultValue: ArrayList<Int?>? = null,
+): NullableSavedStateHandleKey<ArrayList<Int?>> =
   key(key, defaultValue)
 
 public fun NullableSavedStateHandleKey.Companion.stringArrayList(
   key: String,
-  defaultValue: ArrayList<String>? = null,
-): NullableSavedStateHandleKey<ArrayList<String>> =
+  defaultValue: ArrayList<String?>? = null,
+): NullableSavedStateHandleKey<ArrayList<String?>> =
   key(key, defaultValue)
 
 public fun NullableSavedStateHandleKey.Companion.charSequenceArrayList(
   key: String,
-  defaultValue: ArrayList<CharSequence>? = null,
-): NullableSavedStateHandleKey<ArrayList<CharSequence>> =
+  defaultValue: ArrayList<CharSequence?>? = null,
+): NullableSavedStateHandleKey<ArrayList<CharSequence?>> =
   key(key, defaultValue)

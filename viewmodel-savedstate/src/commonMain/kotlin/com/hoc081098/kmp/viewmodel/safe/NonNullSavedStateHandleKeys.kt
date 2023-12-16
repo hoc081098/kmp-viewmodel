@@ -99,8 +99,8 @@ public fun NonNullSavedStateHandleKey.Companion.charSequence(
 
 public fun NonNullSavedStateHandleKey.Companion.charSequenceArray(
   key: String,
-  defaultValue: Array<CharSequence>,
-): NonNullSavedStateHandleKey<Array<CharSequence>> =
+  defaultValue: Array<CharSequence?>,
+): NonNullSavedStateHandleKey<Array<CharSequence?>> =
   key(key, defaultValue)
 
 public fun NonNullSavedStateHandleKey.Companion.float(
@@ -123,8 +123,8 @@ public fun <T : Parcelable> NonNullSavedStateHandleKey.Companion.parcelable(
 
 public fun <T : Parcelable> NonNullSavedStateHandleKey.Companion.parcelableArray(
   key: String,
-  defaultValue: Array<T>,
-): NonNullSavedStateHandleKey<Array<T>> =
+  defaultValue: Array<T?>,
+): NonNullSavedStateHandleKey<Array<T?>> =
   key(key, defaultValue)
 
 public fun NonNullSavedStateHandleKey.Companion.short(
@@ -141,24 +141,24 @@ public fun NonNullSavedStateHandleKey.Companion.shortArray(
 
 public fun <T : Parcelable> NonNullSavedStateHandleKey.Companion.parcelableArrayList(
   key: String,
-  defaultValue: ArrayList<T>,
-): NonNullSavedStateHandleKey<ArrayList<T>> =
+  defaultValue: ArrayList<T?>,
+): NonNullSavedStateHandleKey<ArrayList<T?>> =
   key(key, defaultValue)
 
 public fun NonNullSavedStateHandleKey.Companion.intArrayList(
   key: String,
-  defaultValue: ArrayList<Int>,
-): NonNullSavedStateHandleKey<ArrayList<Int>> =
+  defaultValue: ArrayList<Int?>,
+): NonNullSavedStateHandleKey<ArrayList<Int?>> =
   key(key, defaultValue)
 
 public fun NonNullSavedStateHandleKey.Companion.stringArrayList(
   key: String,
-  defaultValue: ArrayList<String>,
-): NonNullSavedStateHandleKey<ArrayList<String>> =
+  defaultValue: ArrayList<String?>,
+): NonNullSavedStateHandleKey<ArrayList<String?>> =
   key(key, defaultValue)
 
 public fun NonNullSavedStateHandleKey.Companion.charSequenceArrayList(
   key: String,
-  defaultValue: ArrayList<CharSequence>,
-): NonNullSavedStateHandleKey<ArrayList<CharSequence>> =
+  defaultValue: ArrayList<CharSequence?>,
+): NonNullSavedStateHandleKey<ArrayList<CharSequence?>> =
   key(key, defaultValue)

@@ -71,7 +71,7 @@ val nonNullKeyAndNextValues: List<Pair<NonNullSavedStateHandleKey<out Any>, Any>
     charArrayOf('B'),
   NonNullSavedStateHandleKey.charSequence("charSequence", StringBuilder("")) to
     StringBuilder("hoc081098"),
-  NonNullSavedStateHandleKey.charSequenceArray("charSequenceArray", arrayOf(StringBuilder(""))) to
+  NonNullSavedStateHandleKey.charSequenceArray("charSequenceArray", arrayOf(StringBuilder(""), null)) to
     arrayOf(StringBuilder("hoc081098")),
   NonNullSavedStateHandleKey.float("float", 0f) to
     1f,
@@ -79,19 +79,19 @@ val nonNullKeyAndNextValues: List<Pair<NonNullSavedStateHandleKey<out Any>, Any>
     floatArrayOf(1f),
   NonNullSavedStateHandleKey.parcelable("parcelable", TestParcelable(0)) to
     TestParcelable(1),
-  NonNullSavedStateHandleKey.parcelableArray("parcelableArray", arrayOf(TestParcelable(0))) to
+  NonNullSavedStateHandleKey.parcelableArray("parcelableArray", arrayOf(TestParcelable(0), null)) to
     TestParcelable(1),
   NonNullSavedStateHandleKey.short("short", 0) to
     1.toShort(),
   NonNullSavedStateHandleKey.shortArray("shortArray", shortArrayOf(0)) to
     shortArrayOf(1),
-  NonNullSavedStateHandleKey.parcelableArrayList("parcelableArrayList", arrayListOf(TestParcelable(0))) to
+  NonNullSavedStateHandleKey.parcelableArrayList("parcelableArrayList", arrayListOf(TestParcelable(0), null)) to
     arrayListOf(TestParcelable(1)),
-  NonNullSavedStateHandleKey.intArrayList("intArrayList", arrayListOf(0)) to
+  NonNullSavedStateHandleKey.intArrayList("intArrayList", arrayListOf(0, null)) to
     arrayListOf(1),
-  NonNullSavedStateHandleKey.stringArrayList("stringArrayList", arrayListOf("")) to
+  NonNullSavedStateHandleKey.stringArrayList("stringArrayList", arrayListOf("", null)) to
     arrayListOf("hoc081098"),
-  NonNullSavedStateHandleKey.charSequenceArrayList("charSequenceArrayList", arrayListOf(StringBuilder(""))) to
+  NonNullSavedStateHandleKey.charSequenceArrayList("charSequenceArrayList", arrayListOf(StringBuilder(""), null)) to
     arrayListOf(StringBuilder("hoc081098")),
 )
 
