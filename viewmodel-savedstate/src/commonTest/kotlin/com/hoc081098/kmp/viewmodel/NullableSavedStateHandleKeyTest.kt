@@ -297,7 +297,7 @@ class NullableSavedStateHandleKeyTest {
   fun toStringTest() {
     nullableKeyAndNextValues.forEach { (key) ->
       assertEquals(
-        "NullableSavedStateHandleKey(key='${key.key}', defaultValue=${key.defaultValue})",
+        "NullableSavedStateHandleKey(key='${key.key}', defaultValue=${key.defaultValue.toString()})",
         key.toString(),
       )
     }

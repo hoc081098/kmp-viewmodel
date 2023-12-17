@@ -193,7 +193,7 @@ class NonNullSavedStateHandleKeyTest {
   fun toStringTest() {
     nonNullKeyAndNextValues.forEach { (key) ->
       assertEquals(
-        "NonNullSavedStateHandleKey(key='${key.key}', defaultValue=${key.defaultValue})",
+        "NonNullSavedStateHandleKey(key='${key.key}', defaultValue=${key.defaultValue.toString()})",
         key.toString(),
       )
     }
