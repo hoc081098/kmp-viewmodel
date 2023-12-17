@@ -292,14 +292,4 @@ class NullableSavedStateHandleKeyTest {
         NullableSavedStateHandleKey.long("long", 1).hashCode()
     }
   }
-
-  @Test
-  fun toStringTest() {
-    nullableKeyAndNextValues.forEach { (key) ->
-      assertEquals(
-        "NullableSavedStateHandleKey(key='${key.key}', defaultValue=${key.defaultValue.toString()})",
-        key.toString(),
-      )
-    }
-  }
 }

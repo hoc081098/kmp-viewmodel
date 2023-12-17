@@ -1,6 +1,9 @@
 package com.hoc081098.kmp.viewmodel.safe
 
 import com.hoc081098.kmp.viewmodel.SavedStateHandle
+import dev.drewhamilton.poko.ArrayContentBased
+import dev.drewhamilton.poko.ArrayContentSupport
+import dev.drewhamilton.poko.Poko
 
 /**
  * Key for values stored in [SavedStateHandle].
@@ -12,19 +15,11 @@ import com.hoc081098.kmp.viewmodel.SavedStateHandle
  *
  * @see SafeSavedStateHandle
  */
+@OptIn(ArrayContentSupport::class)
+@Poko
 public class NonNullSavedStateHandleKey<T : Any> internal constructor(
   public val key: String,
-  public val defaultValue: T,
+  @ArrayContentBased public val defaultValue: T,
 ) {
-  public override fun toString(): String = "NonNullSavedStateHandleKey(key='$key', defaultValue=$defaultValue)"
-
-  override fun equals(other: Any?): Boolean {
-    if (this === other) return true
-    if (other !is NonNullSavedStateHandleKey<*>) return false
-    return key == other.key && defaultValue == other.defaultValue
-  }
-
-  override fun hashCode(): Int = 31 * key.hashCode() + defaultValue.hashCode()
-
   public companion object
 }

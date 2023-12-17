@@ -46,6 +46,7 @@ detekt = "1.23.4"
 kotlinx-kover = "0.7.5"
 dokka = "1.9.10"
 kotlinx-binary-compatibility-validator = "0.13.2"
+poko = "0.15.1"
 
 vanniktech-maven-publish = "0.25.3"
 ktlint = "0.50.0"
@@ -106,6 +107,7 @@ kotlinx-kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kotlinx-kov
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 kotlinx-binary-compatibility-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "kotlinx-binary-compatibility-validator" }
 
+poko = { id = "dev.drewhamilton.poko", version.ref = "poko" }
 vanniktech-maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "vanniktech-maven-publish" }
 
 [bundles]

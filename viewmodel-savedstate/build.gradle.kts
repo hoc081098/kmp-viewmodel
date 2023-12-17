@@ -9,6 +9,7 @@ plugins {
   alias(libs.plugins.android.library)
   alias(libs.plugins.kotlin.parcelize)
 
+  alias(libs.plugins.poko)
   alias(libs.plugins.vanniktech.maven.publish)
 
   alias(libs.plugins.dokka)
