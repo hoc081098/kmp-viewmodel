@@ -43,56 +43,56 @@ import kotlinx.coroutines.test.runTest
 
 val nonNullKeyAndNextValues: List<Pair<NonNullSavedStateHandleKey<out Any>, Any>> = listOf(
   NonNullSavedStateHandleKey.boolean("boolean", false) to
-      true,
+    true,
   NonNullSavedStateHandleKey.booleanArray("booleanArray", booleanArrayOf(false)) to
-      booleanArrayOf(true),
+    booleanArrayOf(true),
   NonNullSavedStateHandleKey.double("double", 0.0) to 1.0,
   NonNullSavedStateHandleKey.doubleArray("doubleArray", doubleArrayOf(0.0)) to
-      doubleArrayOf(1.0),
+    doubleArrayOf(1.0),
   NonNullSavedStateHandleKey.int("int", 0) to
-      1,
+    1,
   NonNullSavedStateHandleKey.intArray("intArray", intArrayOf(0)) to
-      intArrayOf(1),
+    intArrayOf(1),
   NonNullSavedStateHandleKey.long("long", 0L) to
-      1L,
+    1L,
   NonNullSavedStateHandleKey.longArray("longArray", longArrayOf(0L)) to
-      longArrayOf(1L),
+    longArrayOf(1L),
   NonNullSavedStateHandleKey.string("string", "") to
-      "hoc081098",
+    "hoc081098",
   NonNullSavedStateHandleKey.stringArray("stringArray", arrayOf("")) to
-      arrayOf("hoc081098"),
+    arrayOf("hoc081098"),
   NonNullSavedStateHandleKey.byte("byte", 0) to
-      1.toByte(),
+    1.toByte(),
   NonNullSavedStateHandleKey.byteArray("byteArray", byteArrayOf(0)) to
-      byteArrayOf(1),
+    byteArrayOf(1),
   NonNullSavedStateHandleKey.char("char", 'A') to
-      'B',
+    'B',
   NonNullSavedStateHandleKey.charArray("charArray", charArrayOf('A')) to
-      charArrayOf('B'),
+    charArrayOf('B'),
   NonNullSavedStateHandleKey.charSequence("charSequence", StringBuilder("")) to
-      StringBuilder("hoc081098"),
+    StringBuilder("hoc081098"),
   NonNullSavedStateHandleKey.charSequenceArray("charSequenceArray", arrayOf(StringBuilder(""), null)) to
-      arrayOf(StringBuilder("hoc081098")),
+    arrayOf(StringBuilder("hoc081098")),
   NonNullSavedStateHandleKey.float("float", 0f) to
-      1f,
+    1f,
   NonNullSavedStateHandleKey.floatArray("floatArray", floatArrayOf(0f)) to
-      floatArrayOf(1f),
+    floatArrayOf(1f),
   NonNullSavedStateHandleKey.parcelable("parcelable", TestParcelable(0)) to
-      TestParcelable(1),
+    TestParcelable(1),
   NonNullSavedStateHandleKey.parcelableArray("parcelableArray", arrayOf(TestParcelable(0), null)) to
-      TestParcelable(1),
+    TestParcelable(1),
   NonNullSavedStateHandleKey.short("short", 0) to
-      1.toShort(),
+    1.toShort(),
   NonNullSavedStateHandleKey.shortArray("shortArray", shortArrayOf(0)) to
-      shortArrayOf(1),
+    shortArrayOf(1),
   NonNullSavedStateHandleKey.parcelableArrayList("parcelableArrayList", arrayListOf(TestParcelable(0), null)) to
-      arrayListOf(TestParcelable(1)),
+    arrayListOf(TestParcelable(1)),
   NonNullSavedStateHandleKey.intArrayList("intArrayList", arrayListOf(0, null)) to
-      arrayListOf(1),
+    arrayListOf(1),
   NonNullSavedStateHandleKey.stringArrayList("stringArrayList", arrayListOf("", null)) to
-      arrayListOf("hoc081098"),
+    arrayListOf("hoc081098"),
   NonNullSavedStateHandleKey.charSequenceArrayList("charSequenceArrayList", arrayListOf(StringBuilder(""), null)) to
-      arrayListOf(StringBuilder("hoc081098")),
+    arrayListOf(StringBuilder("hoc081098")),
 )
 
 class NonNullSavedStateHandleKeyTest {
@@ -172,20 +172,20 @@ class NonNullSavedStateHandleKeyTest {
 
     assertFalse {
       NonNullSavedStateHandleKey.int("int", 0) ==
-          NonNullSavedStateHandleKey.int("int", 1)
+        NonNullSavedStateHandleKey.int("int", 1)
     }
     assertFalse {
       NonNullSavedStateHandleKey.int("int", 0).hashCode() ==
-          NonNullSavedStateHandleKey.int("int", 1).hashCode()
+        NonNullSavedStateHandleKey.int("int", 1).hashCode()
     }
 
     assertFalse {
       NonNullSavedStateHandleKey.int("int", 0) ==
-          NonNullSavedStateHandleKey.long("long", 1)
+        NonNullSavedStateHandleKey.long("long", 1)
     }
     assertFalse {
       NonNullSavedStateHandleKey.int("int", 0).hashCode() ==
-          NonNullSavedStateHandleKey.long("long", 1).hashCode()
+        NonNullSavedStateHandleKey.long("long", 1).hashCode()
     }
   }
 }
