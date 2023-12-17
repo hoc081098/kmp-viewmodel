@@ -168,7 +168,7 @@ class NullableSavedStateHandleKeyTest {
 
     nullableKeyAndNextValues.forEach { (key, nextValue) ->
       savedStateHandle[key.key] = nextValue
-      assertEquals(nextValue, savedStateHandle[key.key])
+      assertEquals(nextValue, savedStateHandle.safe { it[key] })
     }
   }
 
