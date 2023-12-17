@@ -266,4 +266,40 @@ class NullableSavedStateHandleKeyTest {
       )
     }
   }
+
+  @Test
+  fun hashCodeAndEquals() {
+    nullableKeyAndNextValues.forEach {
+      assertTrue { it.first == it.first }
+      assertTrue { it.first.hashCode() == it.first.hashCode() }
+    }
+
+    assertFalse {
+      NullableSavedStateHandleKey.int("int", 0) ==
+        NullableSavedStateHandleKey.int("int", 1)
+    }
+    assertFalse {
+      NullableSavedStateHandleKey.int("int", 0).hashCode() ==
+        NullableSavedStateHandleKey.int("int", 1).hashCode()
+    }
+
+    assertFalse {
+      NullableSavedStateHandleKey.int("int", 0) ==
+        NullableSavedStateHandleKey.long("long", 1)
+    }
+    assertFalse {
+      NullableSavedStateHandleKey.int("int", 0).hashCode() ==
+        NullableSavedStateHandleKey.long("long", 1).hashCode()
+    }
+  }
+
+  @Test
+  fun toStringTest() {
+    nullableKeyAndNextValues.forEach { (key) ->
+      assertEquals(
+        "NullableSavedStateHandleKey(key='${key.key}', defaultValue=${key.defaultValue})",
+        key.toString(),
+      )
+    }
+  }
 }

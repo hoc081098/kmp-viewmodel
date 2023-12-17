@@ -162,4 +162,40 @@ class NonNullSavedStateHandleKeyTest {
       )
     }
   }
+
+  @Test
+  fun hashCodeAndEquals() {
+    nonNullKeyAndNextValues.forEach {
+      assertTrue { it.first == it.first }
+      assertTrue { it.first.hashCode() == it.first.hashCode() }
+    }
+
+    assertFalse {
+      NonNullSavedStateHandleKey.int("int", 0) ==
+        NonNullSavedStateHandleKey.int("int", 1)
+    }
+    assertFalse {
+      NonNullSavedStateHandleKey.int("int", 0).hashCode() ==
+        NonNullSavedStateHandleKey.int("int", 1).hashCode()
+    }
+
+    assertFalse {
+      NonNullSavedStateHandleKey.int("int", 0) ==
+        NonNullSavedStateHandleKey.long("long", 1)
+    }
+    assertFalse {
+      NonNullSavedStateHandleKey.int("int", 0).hashCode() ==
+        NonNullSavedStateHandleKey.long("long", 1).hashCode()
+    }
+  }
+
+  @Test
+  fun toStringTest() {
+    nonNullKeyAndNextValues.forEach { (key) ->
+      assertEquals(
+        "NonNullSavedStateHandleKey(key='${key.key}', defaultValue=${key.defaultValue})",
+        key.toString(),
+      )
+    }
+  }
 }
