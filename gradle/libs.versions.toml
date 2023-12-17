@@ -1,4 +1,5 @@
 [versions]
+junit = "4.13.2"
 kotlin = "1.9.21"
 coroutines = "1.7.3"
 kotlinx-serialization-json = "1.6.2"
@@ -17,6 +18,7 @@ android-target = "33"
 android-compile = "33"
 
 # the Android target to use in sample
+robolectric = "4.11.1"
 sample-android-target = "34"
 # the Android compileSdkVersion to use in sample
 sample-android-compile = "34"
@@ -44,6 +46,7 @@ detekt = "1.23.4"
 kotlinx-kover = "0.7.5"
 dokka = "1.9.10"
 kotlinx-binary-compatibility-validator = "0.13.2"
+poko = "0.15.1"
 
 vanniktech-maven-publish = "0.25.3"
 ktlint = "0.50.0"
@@ -53,11 +56,13 @@ coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", ve
 coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 coroutines-jdk8 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8", version.ref = "coroutines" }
+junit = { module = "junit:junit", version.ref = "junit" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
 kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlinx-collections-immutable" }
 
 jetbrains-compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "jetbrains-compose" }
 
+robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 touchlab-stately-concurrency = { module = "co.touchlab:stately-concurrency", version.ref = "touchlab-stately" }
 napier = { module = "io.github.aakira:napier", version.ref = "napier" }
 flowExt = { module = "io.github.hoc081098:FlowExt", version.ref = "flowExt" }
@@ -102,6 +107,7 @@ kotlinx-kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kotlinx-kov
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 kotlinx-binary-compatibility-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "kotlinx-binary-compatibility-validator" }
 
+poko = { id = "dev.drewhamilton.poko", version.ref = "poko" }
 vanniktech-maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "vanniktech-maven-publish" }
 
 [bundles]

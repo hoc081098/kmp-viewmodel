@@ -9,6 +9,7 @@ plugins {
   alias(libs.plugins.android.library)
   alias(libs.plugins.kotlin.parcelize)
 
+  alias(libs.plugins.poko)
   alias(libs.plugins.vanniktech.maven.publish)
 
   alias(libs.plugins.dokka)
@@ -166,6 +167,17 @@ android {
   compileOptions {
     sourceCompatibility = JavaVersion.toVersion(libs.versions.java.target.get())
     targetCompatibility = JavaVersion.toVersion(libs.versions.java.target.get())
+  }
+
+  testOptions {
+    unitTests {
+      isIncludeAndroidResources = true
+    }
+  }
+
+  dependencies {
+    testImplementation(libs.junit)
+    testImplementation(libs.robolectric)
   }
 }
 
