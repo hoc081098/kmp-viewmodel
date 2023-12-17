@@ -92,6 +92,9 @@ public value class SafeSavedStateHandle(public val savedStateHandle: SavedStateH
   /**
    * Removes a value associated with the given [key].
    *
+   * After the removal, when calling [get] with the given [key],
+   * the [NullableSavedStateHandleKey.defaultValue] will be returned.
+   *
    * @see [SavedStateHandle.remove]
    */
   public inline fun <T : Any> remove(key: NullableSavedStateHandleKey<T>) {
