@@ -3,7 +3,7 @@ junit = "4.13.2"
 kotlin = "1.9.21"
 coroutines = "1.7.3"
 kotlinx-serialization-json = "1.6.2"
-kotlinx-collections-immutable = "0.3.6"
+kotlinx-collections-immutable = "0.3.7"
 
 # the Java version that the Java and Kotlin compilers will target
 java-target = "11"
