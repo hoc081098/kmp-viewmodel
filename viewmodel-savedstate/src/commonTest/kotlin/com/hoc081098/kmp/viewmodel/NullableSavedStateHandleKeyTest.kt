@@ -156,7 +156,7 @@ class NullableSavedStateHandleKeyTest {
   fun nullAssociated() {
     val savedStateHandle = SavedStateHandle()
 
-    nullableKeyAndNextValues.forEach { (key, nextValue) ->
+    nullableKeyAndNextValues.forEach { (key) ->
       savedStateHandle[key.key] = null
       assertNull(savedStateHandle.safe { it[key] })
     }
@@ -186,6 +186,7 @@ class NullableSavedStateHandleKeyTest {
         assertNull(savedStateHandle[key.key])
 
         // Update
+        @Suppress("UNCHECKED_CAST")
         safeSavedStateHandle[key as NullableSavedStateHandleKey<Any>] = nextValue
 
         // Read
@@ -211,6 +212,7 @@ class NullableSavedStateHandleKeyTest {
         assertNull(savedStateHandle[key.key])
 
         // Update
+        @Suppress("UNCHECKED_CAST")
         safeSavedStateHandle[key as NullableSavedStateHandleKey<Any>] = null
 
         // Read
@@ -226,7 +228,7 @@ class NullableSavedStateHandleKeyTest {
   fun read_then_remove_then_read() {
     val savedStateHandle = SavedStateHandle()
 
-    nullableKeyAndNextValues.forEach { (key, nextValue) ->
+    nullableKeyAndNextValues.forEach { (key) ->
       savedStateHandle.safe { safeSavedStateHandle ->
         // Read
         assertNull(savedStateHandle[key.key])
@@ -257,7 +259,9 @@ class NullableSavedStateHandleKeyTest {
 
       val deferred = async { stateFlow.take(3).toList() }
 
+      @Suppress("UNCHECKED_CAST")
       savedStateHandle.safe { it[key as NullableSavedStateHandleKey<Any>] = nextValue }
+      @Suppress("UNCHECKED_CAST")
       savedStateHandle.safe { it[key as NullableSavedStateHandleKey<Any>] = null }
 
       assertContentEquals(

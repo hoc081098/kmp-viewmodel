@@ -100,7 +100,7 @@ class NonNullSavedStateHandleKeyTest {
   fun nullAssociated() {
     val savedStateHandle = SavedStateHandle()
 
-    nonNullKeyAndNextValues.forEach { (key, nextValue) ->
+    nonNullKeyAndNextValues.forEach { (key) ->
       savedStateHandle[key.key] = null
 
       assertFailsWith<NullPointerException> {
@@ -133,6 +133,7 @@ class NonNullSavedStateHandleKeyTest {
         assertNull(savedStateHandle[key.key])
 
         // Update
+        @Suppress("UNCHECKED_CAST")
         safeSavedStateHandle[key as NonNullSavedStateHandleKey<Any>] = nextValue
 
         // Read
@@ -145,7 +146,7 @@ class NonNullSavedStateHandleKeyTest {
   }
 
   @Test
-  fun getStateFlow() = runTest(UnconfinedTestDispatcher()) {
+  fun getStateFlow_noExistingValue() = runTest(UnconfinedTestDispatcher()) {
     val savedStateHandle = SavedStateHandle()
 
     nonNullKeyAndNextValues.forEach { (key, nextValue) ->
@@ -154,10 +155,33 @@ class NonNullSavedStateHandleKeyTest {
 
       val deferred = async { stateFlow.take(2).toList() }
 
+      @Suppress("UNCHECKED_CAST")
       savedStateHandle.safe { it[key as NonNullSavedStateHandleKey<Any>] = nextValue }
 
       assertContentEquals(
         expected = listOf(key.defaultValue, nextValue),
+        actual = deferred.await(),
+      )
+    }
+  }
+
+  @Test
+  fun getStateFlow_existingValue() = runTest(UnconfinedTestDispatcher()) {
+    val savedStateHandle = SavedStateHandle()
+
+    nonNullKeyAndNextValues.forEach { (key, nextValue) ->
+      savedStateHandle[key.key] = nextValue
+
+      val stateFlow = savedStateHandle.safe { it.getStateFlow(key) }
+      assertEquals(nextValue, stateFlow.value)
+
+      val deferred = async { stateFlow.take(2).toList() }
+
+      @Suppress("UNCHECKED_CAST")
+      savedStateHandle.safe { it[key as NonNullSavedStateHandleKey<Any>] = key.defaultValue }
+
+      assertContentEquals(
+        expected = listOf(nextValue, key.defaultValue),
         actual = deferred.await(),
       )
     }
