@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.StateFlow
  * with [NonNullSavedStateHandleKey]s and [NullableSavedStateHandleKey]s.
  */
 @Suppress("NOTHING_TO_INLINE")
+@OptIn(DelicateSafeSavedStateHandleApi::class)
 @JvmInline
 public value class SafeSavedStateHandle(public val savedStateHandle: SavedStateHandle) {
   /**
@@ -17,7 +18,7 @@ public value class SafeSavedStateHandle(public val savedStateHandle: SavedStateH
    * If no value is associated with the given [key], the [NonNullSavedStateHandleKey.defaultValue] will be returned.
    *
    * Otherwise, the value associated with the given [key] will be returned.
-   * It maybe throw [kotlin.NullPointerException] if the value associated with the given [key] is null.
+   * It may throw [kotlin.NullPointerException] if the value associated with the given [key] is null.
    *
    * @throws [kotlin.NullPointerException] if the value associated with the given [key] is null.
    * @see [SavedStateHandle.get]

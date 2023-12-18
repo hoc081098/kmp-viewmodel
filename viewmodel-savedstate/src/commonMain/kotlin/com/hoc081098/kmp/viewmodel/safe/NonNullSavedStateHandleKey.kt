@@ -7,8 +7,11 @@ import dev.drewhamilton.poko.Poko
 
 /**
  * Key for values stored in [SavedStateHandle].
- * Type [T] is the type of the value associated with the key.
- * The value associated with the key must not be null.
+ * The type of the value associated with this key is [T] (non-null)
+ *
+ * **NOTE**: When using [key] directly, you must ensure that the value associated with the key has **type `T`**.
+ * Otherwise, it may throw [kotlin.ClassCastException] or [kotlin.NullPointerException] when using this key
+ * with [SafeSavedStateHandle].
  *
  * @param key the key
  * @param defaultValue the default value is used if no value is associated with the key
@@ -18,6 +21,12 @@ import dev.drewhamilton.poko.Poko
 @OptIn(ArrayContentSupport::class)
 @Poko
 public class NonNullSavedStateHandleKey<T : Any> internal constructor(
+  /**
+   * **NOTE**: When using [key] directly, you must ensure that the value associated with the key has **type `T`**.
+   * Otherwise, it may throw [kotlin.ClassCastException] or [kotlin.NullPointerException] when using this key
+   * with [SafeSavedStateHandle].
+   */
+  @DelicateSafeSavedStateHandleApi
   public val key: String,
   @ArrayContentBased public val defaultValue: T,
 ) {

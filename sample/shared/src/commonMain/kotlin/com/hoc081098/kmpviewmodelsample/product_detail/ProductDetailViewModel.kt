@@ -7,6 +7,7 @@ import com.hoc081098.flowext.flowFromSuspend
 import com.hoc081098.flowext.startWith
 import com.hoc081098.kmp.viewmodel.SavedStateHandle
 import com.hoc081098.kmp.viewmodel.ViewModel
+import com.hoc081098.kmp.viewmodel.safe.DelicateSafeSavedStateHandleApi
 import com.hoc081098.kmp.viewmodel.safe.NullableSavedStateHandleKey
 import com.hoc081098.kmp.viewmodel.safe.int
 import com.hoc081098.kmp.viewmodel.safe.safe
@@ -37,7 +38,7 @@ sealed interface ProductDetailState {
   data class Error(val error: Throwable) : ProductDetailState
 }
 
-@OptIn(ExperimentalCoroutinesApi::class)
+@OptIn(ExperimentalCoroutinesApi::class, DelicateSafeSavedStateHandleApi::class)
 class ProductDetailViewModel(
   savedStateHandle: SavedStateHandle,
   private val getProductById: GetProductById,

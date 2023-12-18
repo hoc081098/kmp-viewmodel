@@ -1,5 +1,6 @@
 package com.hoc081098.kmp.viewmodel
 
+import com.hoc081098.kmp.viewmodel.safe.DelicateSafeSavedStateHandleApi
 import com.hoc081098.kmp.viewmodel.safe.NonNullSavedStateHandleKey
 import com.hoc081098.kmp.viewmodel.safe.boolean
 import com.hoc081098.kmp.viewmodel.safe.booleanArray
@@ -95,6 +96,7 @@ val nonNullKeyAndNextValues: List<Pair<NonNullSavedStateHandleKey<out Any>, Any>
     arrayListOf(StringBuilder("hoc081098")),
 )
 
+@OptIn(DelicateSafeSavedStateHandleApi::class)
 class NonNullSavedStateHandleKeyTest {
   @Test
   fun nullAssociated() {

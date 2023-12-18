@@ -1,5 +1,6 @@
 package com.hoc081098.kmp.viewmodel
 
+import com.hoc081098.kmp.viewmodel.safe.DelicateSafeSavedStateHandleApi
 import com.hoc081098.kmp.viewmodel.safe.NullableSavedStateHandleKey
 import com.hoc081098.kmp.viewmodel.safe.boolean
 import com.hoc081098.kmp.viewmodel.safe.booleanArray
@@ -151,6 +152,7 @@ private val nullableKeyWithNullInitialAndNextValues: List<Pair<NullableSavedStat
 private val nullableKeyAndNextValues =
   nullableKeyWithNonNullInitialAndNextValues + nullableKeyWithNullInitialAndNextValues
 
+@OptIn(DelicateSafeSavedStateHandleApi::class)
 class NullableSavedStateHandleKeyTest {
   @Test
   fun nullAssociated() {

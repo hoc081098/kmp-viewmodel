@@ -1,5 +1,6 @@
 package com.hoc081098.kmp.viewmodel
 
+import com.hoc081098.kmp.viewmodel.safe.DelicateSafeSavedStateHandleApi
 import com.hoc081098.kmp.viewmodel.safe.NonNullSavedStateHandleKey
 import com.hoc081098.kmp.viewmodel.safe.safe
 import kotlin.test.assertEquals
@@ -10,6 +11,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 
+@OptIn(DelicateSafeSavedStateHandleApi::class)
 @RunWith(RobolectricTestRunner::class)
 class NonNullSavedStateHandleKeyAndroidTest {
   @Test
@@ -26,6 +28,7 @@ class NonNullSavedStateHandleKeyAndroidTest {
         assertNull(savedStateHandle[key.key])
 
         // Update
+        @Suppress("UNCHECKED_CAST")
         safeSavedStateHandle[key as NonNullSavedStateHandleKey<Any>] = nextValue
 
         // Read
