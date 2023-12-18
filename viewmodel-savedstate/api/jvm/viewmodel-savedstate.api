@@ -43,6 +43,9 @@ public abstract interface annotation class com/hoc081098/kmp/viewmodel/parcelabl
 public abstract interface annotation class com/hoc081098/kmp/viewmodel/parcelable/WriteWith : java/lang/annotation/Annotation {
 }
 
+public abstract interface annotation class com/hoc081098/kmp/viewmodel/safe/DelicateSafeSavedStateHandleApi : java/lang/annotation/Annotation {
+}
+
 public final class com/hoc081098/kmp/viewmodel/safe/NonNullSavedStateHandleKey {
 	public static final field Companion Lcom/hoc081098/kmp/viewmodel/safe/NonNullSavedStateHandleKey$Companion;
 	public fun equals (Ljava/lang/Object;)Z

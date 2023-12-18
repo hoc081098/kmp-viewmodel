@@ -15,6 +15,9 @@ public final class com/hoc081098/kmp/viewmodel/SavedStateHandleSupport_androidKt
 	public static final fun createSavedStateHandle (Landroidx/lifecycle/viewmodel/CreationExtras;)Landroidx/lifecycle/SavedStateHandle;
 }
 
+public abstract interface annotation class com/hoc081098/kmp/viewmodel/safe/DelicateSafeSavedStateHandleApi : java/lang/annotation/Annotation {
+}
+
 public final class com/hoc081098/kmp/viewmodel/safe/NonNullSavedStateHandleKey {
 	public static final field Companion Lcom/hoc081098/kmp/viewmodel/safe/NonNullSavedStateHandleKey$Companion;
 	public fun equals (Ljava/lang/Object;)Z
