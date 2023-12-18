@@ -5,7 +5,8 @@ import kotlin.jvm.JvmInline
 import kotlinx.coroutines.flow.StateFlow
 
 /**
- * A wrapper of [SavedStateHandle] that provides type-safe access with [NonNullSavedStateHandleKey].
+ * A wrapper of [SavedStateHandle] that provides type-safe access
+ * with [NonNullSavedStateHandleKey]s and [NullableSavedStateHandleKey]s.
  */
 @Suppress("NOTHING_TO_INLINE")
 @JvmInline
@@ -18,6 +19,7 @@ public value class SafeSavedStateHandle(public val savedStateHandle: SavedStateH
    * Otherwise, the value associated with the given [key] will be returned.
    * It maybe throw [kotlin.NullPointerException] if the value associated with the given [key] is null.
    *
+   * @throws [kotlin.NullPointerException] if the value associated with the given [key] is null.
    * @see [SavedStateHandle.get]
    * @see [SavedStateHandle.set]
    */
@@ -104,6 +106,29 @@ public value class SafeSavedStateHandle(public val savedStateHandle: SavedStateH
 
 /**
  * Enables type-safe access to [SavedStateHandle].
+ * You can use this with [NonNullSavedStateHandleKey]s and [NullableSavedStateHandleKey]s.
+ *
+ * Example of usage:
+ *
+ * ```kotlin
+ * val idKey = NullableSavedStateHandleKey.int("id")
+ *
+ * // Get a value associated with the given key.
+ * val id: Int? = savedStateHandle.safe { it[idKey] }
+ *
+ * // Associate the given value with the key.
+ * savedStateHandle.safe { it[idKey] = 42 }
+ *
+ * // Remove a value associated with the given key.
+ * savedStateHandle.safe { it.remove(idKey) }
+ *
+ * // Get a StateFlow
+ * val idStateFlow: StateFlow<Int?> = savedStateHandle.safe { it.getStateFlow(idKey) }
+ * ```
+ *
+ * @receiver [SavedStateHandle] to be wrapped and accessed safely.
+ * @param block a block of code to be executed with [SafeSavedStateHandle].
+ * Inside the block, you can use methods of [SafeSavedStateHandle] to access [SavedStateHandle].
  */
 public inline fun <R> SavedStateHandle.safe(block: (SafeSavedStateHandle) -> R): R =
   block(SafeSavedStateHandle(this))
