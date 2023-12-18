@@ -250,7 +250,7 @@ class NullableSavedStateHandleKeyTest {
   }
 
   @Test
-  fun getStateFlow() = runTest(UnconfinedTestDispatcher()) {
+  fun getStateFlow_noExistingValue() = runTest(UnconfinedTestDispatcher()) {
     val savedStateHandle = SavedStateHandle()
 
     nullableKeyAndNextValues.forEach { (key, nextValue) ->
@@ -266,6 +266,28 @@ class NullableSavedStateHandleKeyTest {
 
       assertContentEquals(
         expected = listOf(key.defaultValue, nextValue, null),
+        actual = deferred.await(),
+      )
+    }
+  }
+
+  @Test
+  fun getStateFlow_existingValue() = runTest(UnconfinedTestDispatcher()) {
+    val savedStateHandle = SavedStateHandle()
+
+    nullableKeyAndNextValues.forEach { (key, nextValue) ->
+      savedStateHandle[key.key] = nextValue
+
+      val stateFlow = savedStateHandle.safe { it.getStateFlow(key) }
+      assertEquals(nextValue, stateFlow.value)
+
+      val deferred = async { stateFlow.take(2).toList() }
+
+      @Suppress("UNCHECKED_CAST")
+      savedStateHandle.safe { it[key as NullableSavedStateHandleKey<Any>] = null }
+
+      assertContentEquals(
+        expected = listOf(nextValue, null),
         actual = deferred.await(),
       )
     }
