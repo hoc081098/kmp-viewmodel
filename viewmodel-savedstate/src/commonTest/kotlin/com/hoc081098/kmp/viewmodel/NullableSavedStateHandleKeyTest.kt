@@ -149,7 +149,7 @@ private val nullableKeyWithNullInitialAndNextValues: List<Pair<NullableSavedStat
     arrayListOf(StringBuilder("hoc081098")),
 )
 
-private val nullableKeyAndNextValues =
+val nullableKeyAndNextValues =
   nullableKeyWithNonNullInitialAndNextValues + nullableKeyWithNullInitialAndNextValues
 
 @OptIn(DelicateSafeSavedStateHandleApi::class)

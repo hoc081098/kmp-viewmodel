@@ -57,7 +57,7 @@ class NonNullSavedStateHandleKeyAndroidTest {
   fun getLiveData_noExistingValue() {
     val savedStateHandle = SavedStateHandle()
 
-    nonNullKeyAndNextValues.forEach { (key, nextValue) ->
+    nonNullKeyAndNextValues.forEach { (key) ->
       @Suppress("UNCHECKED_CAST")
       val liveData: LiveData<Any> = savedStateHandle.safe { it.getLiveData(key) } as LiveData<Any>
       liveData.assertValue(key.defaultValue)
@@ -122,5 +122,3 @@ class NonNullSavedStateHandleKeyAndroidTest {
     }
   }
 }
-
-
