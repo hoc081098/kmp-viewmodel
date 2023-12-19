@@ -21,7 +21,7 @@ import kotlinx.coroutines.flow.StateFlow
  *
  * This acts as a simple key-value map.
  *
- * ### Type-safe access
+ * ### Type-safe access to [SavedStateHandle]
  *
  * You can use [SafeSavedStateHandle] with [NonNullSavedStateHandleKey] and [NullableSavedStateHandleKey]
  * to enable type-safe access to [SavedStateHandle]
