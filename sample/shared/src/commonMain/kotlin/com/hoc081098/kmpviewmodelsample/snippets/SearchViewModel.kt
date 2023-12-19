@@ -1,23 +1,7 @@
-# Type-safe access to SavedStateHandle
+@file:Suppress("unused") // Snippet
 
-- Module `kmp-viewmodel-savedstate` provides the type-safe API
-  that allows you to access `SavedStateHandle` in a type-safe way.
+package com.hoc081098.kmpviewmodelsample.snippets
 
-- All API are available on all platforms and are located in the `com.hoc081098.kmp.viewmodel.safe`
-  package.
-
-## 1. Define your `SavedStateHandle` keys
-
-```kotlin
-import com.hoc081098.kmp.viewmodel.safe.NonNullSavedStateHandleKey
-import com.hoc081098.kmp.viewmodel.safe.string
-
-val searchTermKey = NonNullSavedStateHandleKey.string(key = "searchTerm", defaultValue = "")
-```
-
-## 2. Use `SavedStateHandle.safe` extension function
-
-```kotlin
 import com.hoc081098.kmp.viewmodel.SavedStateHandle
 import com.hoc081098.kmp.viewmodel.ViewModel
 import com.hoc081098.kmp.viewmodel.safe.NonNullSavedStateHandleKey
@@ -44,4 +28,3 @@ class SearchViewModel(
     )
   }
 }
-```
