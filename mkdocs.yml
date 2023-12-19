@@ -45,6 +45,7 @@ nav:
   - 'Multiplatform': multiplatform.md
   - 'ViewModel': viewmodel.md
   - 'ViewModel SavedState': viewmodel-savedstate.md
+  - 'Safe SavedStateHandle': safe-savedstatehandle.md
   - 'ViewModel Compose': viewmodel-compose.md
   - 'Swift Interop': swift-interop.md
   - 'Change Log': changelog.md

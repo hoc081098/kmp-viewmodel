@@ -246,3 +246,8 @@ class IosUserViewModel: ObservableObject {
 
 > For more details, please
 > check [kmp viewmodel sample](https://github.com/hoc081098/kmp-viewmodel/tree/master/sample).
+
+
+## 4. Type-safe access
+
+Please check [Type-safe access to SavedStateHandle](safe-savedstatehandle.md) for more details.
