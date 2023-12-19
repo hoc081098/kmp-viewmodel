@@ -250,4 +250,4 @@ class IosUserViewModel: ObservableObject {
 
 ## 4. Type-safe access
 
-Please check [Type-safe access to SavedStateHandle](safe-savedstatehandle.md) for more details.
+Please check [Type-safe access to SavedStateHandle](/viewmodel-savedstate-safe) for more details.
