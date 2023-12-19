@@ -12,13 +12,13 @@
         <meta name="author" content="Petrus Nguyễn Thái Học">
       
       
-        <link rel="canonical" href="https://hoc081098.github.io/kmp-viewmodel/docs/0.x/swift-interop/">
+        <link rel="canonical" href="https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-savedstate-safe/">
       
       
-        <link rel="prev" href="../viewmodel-compose/">
+        <link rel="prev" href="../viewmodel-savedstate/">
       
       
-        <link rel="next" href="../changelog/">
+        <link rel="next" href="../viewmodel-compose/">
       
       
       <link rel="icon" href="../images/logo.jpeg">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Swift Interop - KMP ViewModel</title>
+        <title>Safe SavedStateHandle - KMP ViewModel</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#kmp-viewmodel-and-swift-interoperability" class="md-skip">
+        <a href="#type-safe-access-to-savedstatehandle" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Swift Interop
+              Safe SavedStateHandle
             
           </span>
         </div>
@@ -306,10 +306,30 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../viewmodel-savedstate-safe/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Safe SavedStateHandle
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -318,6 +338,44 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-define-your-savedstatehandle-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Define your SavedStateHandle keys
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-use-savedstatehandlesafe-extension-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Use SavedStateHandle.safe extension function
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -346,28 +404,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Swift Interop
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../swift-interop/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -376,75 +416,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#kmp-viewmodel-and-swift-interoperability" class="md-nav__link">
-    <span class="md-ellipsis">
-      kmp-viewmodel and Swift interoperability
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="kmp-viewmodel and Swift interoperability">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#exposing-kmp-viewmodel-sources-to-swift" class="md-nav__link">
-    <span class="md-ellipsis">
-      Exposing kmp-viewmodel sources to Swift
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#using-wrappers-in-swift" class="md-nav__link">
-    <span class="md-ellipsis">
-      Using wrappers in Swift
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#combine-interop" class="md-nav__link">
-    <span class="md-ellipsis">
-      Combine interop
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#rxswift-interop" class="md-nav__link">
-    <span class="md-ellipsis">
-      RxSwift interop
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -507,60 +478,87 @@
   
 
 
-  <h1>Swift Interop</h1>
-
-<h2 id="kmp-viewmodel-and-swift-interoperability"><code>kmp-viewmodel</code> and <code>Swift</code> interoperability<a class="headerlink" href="#kmp-viewmodel-and-swift-interoperability" title="Permanent link">&para;</a></h2>
-<p><code>kmp-viewmodel</code> can be exported and used in <code>Swift</code> as usual, however there are few limitations.</p>
-<h3 id="exposing-kmp-viewmodel-sources-to-swift">Exposing <code>kmp-viewmodel</code> sources to Swift<a class="headerlink" href="#exposing-kmp-viewmodel-sources-to-swift" title="Permanent link">&para;</a></h3>
-<p>KotlinX Coroutines Flow are Kotlin interfaces with generic types.
-Since generics for interfaces
-are <a href="https://kotlinlang.org/docs/reference/native/objc_interop.html#generics">not exported</a>
-to <code>Swift</code>,
-<code>kmp-viewmodel</code> provides <code>Flow</code> wrapper classes.</p>
-<p>You can wrap <code>Flow</code>s sources using corresponding <code>wrap()</code> extension functions:</p>
+<h1 id="type-safe-access-to-savedstatehandle">Type-safe access to SavedStateHandle<a class="headerlink" href="#type-safe-access-to-savedstatehandle" title="Permanent link">&para;</a></h1>
 <ul>
-<li><code>Flow&lt;T: Any&gt;.wrap(): NonNullFlowWrapper&lt;T&gt;</code></li>
-<li><code>Flow&lt;T&gt;.wrap(): NullableFlowWrapper&lt;T&gt;</code></li>
-<li><code>StateFlow&lt;T: Any&gt;.wrap(): NonNullStateFlowWrapper&lt;T&gt;</code></li>
-<li><code>StateFlow&lt;T&gt;.wrap(): NullableStateFlowWrapper&lt;T&gt;</code></li>
+<li>
+<p>Module <code>kmp-viewmodel-savedstate</code> provides the type-safe API
+  that allows you to access <code>SavedStateHandle</code> in a type-safe way.</p>
+</li>
+<li>
+<p>All API are available on all platforms and are located in the <code>com.hoc081098.kmp.viewmodel.safe</code>
+  package.</p>
+</li>
+<li>
+<p>There are 2 types of keys:</p>
+</li>
+<li>
+<p><code>NonNullSavedStateHandleKey&lt;T&gt;</code>: key for values stored in <code>SavedStateHandle</code>.
+    The type of the value associated with this key is <code>T</code> (non-null).</p>
+</li>
+<li>
+<p><code>NullableSavedStateHandleKey&lt;T&gt;</code>: key for values stored in <code>SavedStateHandle</code>.
+    The type of the value associated with this key is <code>T?</code> (nullable, <code>null</code> is valid).</p>
+</li>
+<li>
+<p>Using <code>SavedStateHandle.safe</code> extension function to access <code>SavedStateHandle</code> in a type-safe way.
+  It accepts a lambda with a single parameter of type <code>SafeSavedStateHandle</code>.
+  <code>SafeSavedStateHandle</code> provides methods:</p>
+</li>
+<li><code>public inline operator fun &lt;T : Any&gt; get(key: NonNullSavedStateHandleKey&lt;T&gt;): T</code>.</li>
+<li><code>public inline operator fun &lt;T : Any&gt; get(key: NullableSavedStateHandleKey&lt;T&gt;): T?</code>.</li>
+<li><code>public inline operator fun &lt;T : Any&gt; set(key: NonNullSavedStateHandleKey&lt;T&gt;, value: T): Unit</code>.</li>
+<li><code>public inline operator fun &lt;T : Any&gt; set(key: NullableSavedStateHandleKey&lt;T&gt;, value: T?): Unit</code>.</li>
+<li><code>public inline fun &lt;T : Any&gt; getStateFlow(key: NonNullSavedStateHandleKey&lt;T&gt;): StateFlow&lt;T&gt;</code>.</li>
+<li><code>public inline fun &lt;T : Any&gt; getStateFlow(key: NullableSavedStateHandleKey&lt;T&gt;): StateFlow&lt;T?&gt;</code>.</li>
+<li><code>public inline fun &lt;T : Any&gt; remove(key: NullableSavedStateHandleKey&lt;T&gt;)</code>.</li>
 </ul>
-<p>Example:</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// Kotlin code</span>
-<span class="kd">class</span><span class="w"> </span><span class="nc">SharedViewModel</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ViewModel</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MutableStateFlow</span><span class="p">(</span><span class="n">State</span><span class="p">())</span>
-<span class="w">  </span><span class="kd">val</span><span class="w"> </span><span class="nv">stateFlow</span><span class="p">:</span><span class="w"> </span><span class="n">NonNullStateFlowWrapper</span><span class="o">&lt;</span><span class="n">State</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_state</span><span class="p">.</span><span class="na">wrap</span><span class="p">()</span>
+<h2 id="1-define-your-savedstatehandle-keys">1. Define your <code>SavedStateHandle</code> keys<a class="headerlink" href="#1-define-your-savedstatehandle-keys" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nn">com.hoc081098.kmp.viewmodel.safe.NonNullSavedStateHandleKey</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">com.hoc081098.kmp.viewmodel.safe.string</span>
+
+<span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">searchTermKey</span><span class="p">:</span><span class="w"> </span><span class="n">NonNullSavedStateHandleKey</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NonNullSavedStateHandleKey</span><span class="p">.</span><span class="na">string</span><span class="p">(</span>
+<span class="w">  </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;search_term&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">defaultValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="p">)</span>
+<span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">userIdKey</span><span class="p">:</span><span class="w"> </span><span class="n">NullableSavedStateHandleKey</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NullableSavedStateHandleKey</span><span class="p">.</span><span class="na">string</span><span class="p">(</span><span class="s">&quot;user_id&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="2-use-savedstatehandlesafe-extension-function">2. Use <code>SavedStateHandle.safe</code> extension function<a class="headerlink" href="#2-use-savedstatehandlesafe-extension-function" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nn">com.hoc081098.kmp.viewmodel.SavedStateHandle</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">com.hoc081098.kmp.viewmodel.ViewModel</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">com.hoc081098.kmp.viewmodel.safe.NonNullSavedStateHandleKey</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">com.hoc081098.kmp.viewmodel.safe.NullableSavedStateHandleKey</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">com.hoc081098.kmp.viewmodel.safe.safe</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">com.hoc081098.kmp.viewmodel.safe.string</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">com.hoc081098.kmp.viewmodel.wrapper.NonNullStateFlowWrapper</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">com.hoc081098.kmp.viewmodel.wrapper.NullableStateFlowWrapper</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">com.hoc081098.kmp.viewmodel.wrapper.wrap</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">SearchViewModel</span><span class="p">(</span>
+<span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">savedStateHandle</span><span class="p">:</span><span class="w"> </span><span class="n">SavedStateHandle</span><span class="p">,</span>
+<span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ViewModel</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">internal</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">searchTermStateFlow</span><span class="p">:</span><span class="w"> </span><span class="n">NonNullStateFlowWrapper</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">savedStateHandle</span>
+<span class="w">    </span><span class="p">.</span><span class="na">safe</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">getStateFlow</span><span class="p">(</span><span class="n">searchTermKey</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">.</span><span class="na">wrap</span><span class="p">()</span>
+
+<span class="w">  </span><span class="kd">internal</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">userIdStateFlow</span><span class="p">:</span><span class="w"> </span><span class="n">NullableStateFlowWrapper</span><span class="o">&lt;</span><span class="kt">String?</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">savedStateHandle</span>
+<span class="w">    </span><span class="p">.</span><span class="na">safe</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">getStateFlow</span><span class="p">(</span><span class="n">userIdKey</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">.</span><span class="na">wrap</span><span class="p">()</span>
+
+<span class="w">  </span><span class="kd">internal</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">changeSearchTerm</span><span class="p">(</span><span class="n">searchTerm</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">savedStateHandle</span><span class="p">.</span><span class="na">safe</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="o">[</span><span class="n">searchTermKey</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">searchTerm</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">setUserId</span><span class="p">(</span><span class="n">userId</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">savedStateHandle</span><span class="p">.</span><span class="na">safe</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="o">[</span><span class="n">userIdKey</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">userId</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">  </span><span class="kd">companion</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="err">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">searchTermKey</span><span class="p">:</span><span class="w"> </span><span class="n">NonNullSavedStateHandleKey</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NonNullSavedStateHandleKey</span><span class="p">.</span><span class="na">string</span><span class="p">(</span>
+<span class="w">      </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;search_term&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="n">defaultValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">userIdKey</span><span class="p">:</span><span class="w"> </span><span class="n">NullableSavedStateHandleKey</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NullableSavedStateHandleKey</span><span class="p">.</span><span class="na">string</span><span class="p">(</span><span class="s">&quot;user_id&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<h3 id="using-wrappers-in-swift">Using wrappers in Swift<a class="headerlink" href="#using-wrappers-in-swift" title="Permanent link">&para;</a></h3>
-<p>Flow wrappers can be used in Swift as usual:</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// Swift code</span>
-<span class="kd">func</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">let</span> <span class="nv">viewModel</span> <span class="p">=</span> <span class="n">SharedViewModel</span><span class="p">()</span>
-
-  <span class="n">val</span> <span class="n">closable</span> <span class="p">=</span> <span class="n">viewModel</span><span class="p">.</span><span class="n">stateFlow</span><span class="p">.</span><span class="n">subscribe</span><span class="p">(</span>
-    <span class="n">scope</span><span class="p">:</span> <span class="n">viewModel</span><span class="p">.</span><span class="n">viewModelScope</span><span class="p">,</span>
-    <span class="n">onValue</span><span class="p">:</span> <span class="p">{</span> <span class="n">state</span> <span class="k">in</span>
-      <span class="c1">// do something with state</span>
-    <span class="p">}</span>
-  <span class="p">)</span>
-
-  <span class="c1">// At some point later</span>
-  <span class="n">closable</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>If Kotlin Code does not wrap <code>Flow</code>s to <code>FlowWrapper</code>s, we can also wrap them in Swift code.</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// Swift code</span>
-<span class="kd">let</span> <span class="nv">nonNull</span> <span class="p">=</span> <span class="n">NonNullFlowWrapperKt</span><span class="p">.</span><span class="n">wrap</span><span class="p">(</span><span class="kc">self</span><span class="p">)</span> <span class="k">as</span><span class="p">!</span> <span class="n">NonNullFlowWrapper</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span>
-<span class="kd">let</span> <span class="nv">nullable</span> <span class="p">=</span> <span class="n">NullableFlowWrapperKt</span><span class="p">.</span><span class="n">wrap</span><span class="p">(</span><span class="kc">self</span><span class="p">)</span> <span class="k">as</span><span class="p">!</span> <span class="n">NullableFlowWrapper</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span>
-<span class="p">...</span>
-</code></pre></div>
-<h3 id="combine-interop">Combine interop<a class="headerlink" href="#combine-interop" title="Permanent link">&para;</a></h3>
-<p>Please
-check <a href="https://github.com/hoc081098/kmp-viewmodel/blob/master/sample/iosApp/iosApp/Utils/kotlinxCoroutinesFlowExtensions.swift">kotlinxCoroutinesFlowExtensions.swift</a>
-.</p>
-<h3 id="rxswift-interop">RxSwift interop<a class="headerlink" href="#rxswift-interop" title="Permanent link">&para;</a></h3>
-<p>Please
-check <a href="https://github.com/hoc081098/kmp-viewmodel/blob/master/sample/iosApp/iosApp-RxSwift/Utils/kotlinxCoroutinesFlow%2BRxSwift.swift">kotlinxCoroutinesFlow+RxSwift.swift</a>.</p>
 
 
 
