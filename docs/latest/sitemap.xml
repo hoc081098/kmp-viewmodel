@@ -2,42 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://hoc081098.github.io/kmp-viewmodel/docs/0.x/</loc>
-         <lastmod>2023-12-19</lastmod>
+         <lastmod>2023-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://hoc081098.github.io/kmp-viewmodel/docs/0.x/changelog/</loc>
-         <lastmod>2023-12-19</lastmod>
+         <lastmod>2023-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://hoc081098.github.io/kmp-viewmodel/docs/0.x/multiplatform/</loc>
-         <lastmod>2023-12-19</lastmod>
+         <lastmod>2023-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://hoc081098.github.io/kmp-viewmodel/docs/0.x/swift-interop/</loc>
-         <lastmod>2023-12-19</lastmod>
+         <lastmod>2023-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-compose/</loc>
-         <lastmod>2023-12-19</lastmod>
+         <lastmod>2023-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-savedstate-safe/</loc>
-         <lastmod>2023-12-19</lastmod>
+         <lastmod>2023-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-savedstate/</loc>
-         <lastmod>2023-12-19</lastmod>
+         <lastmod>2023-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel/</loc>
-         <lastmod>2023-12-19</lastmod>
+         <lastmod>2023-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
