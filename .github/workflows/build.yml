@@ -145,8 +145,8 @@ jobs:
         with:
           python-version: 3.x
 
-      - name: Install MkDocs Material
-        run: pip install mkdocs-material
+      - name: Install MkDocs MaterialRequirements
+        run: pip install -r docs/requirements.txt
 
       - name: Generate docs
         run: ./gradlew :dokkaHtmlMultiModule --no-parallel --stacktrace
@@ -160,7 +160,7 @@ jobs:
           cp -R build/dokka/htmlMultiModule/. docs/API
 
       - name: Build MkDocs
-        run: mkdocs build
+        run: mkdocs build --verbose
 
       - name: Deploy docs 🚀 to website
         if: ${{ contains(matrix.os, 'macos') }}
