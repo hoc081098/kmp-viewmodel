@@ -26,7 +26,7 @@ sample-android-compile = "34"
 jetbrains-compose = "1.5.11"
 
 touchlab-stately = "1.2.5"
-napier = "2.6.1"
+napier = "2.7.0"
 flowExt = "0.7.4"
 koin = "3.5.0"
 koin-androidx-compose = "3.5.0"
