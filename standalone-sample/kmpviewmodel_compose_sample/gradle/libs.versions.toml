@@ -42,7 +42,7 @@ dokka = "1.9.10"
 kotlinx-binary-compatibility-validator = "0.13.2"
 
 uuid = "0.8.2"
-vanniktech-maven-publish = "0.26.0"
+vanniktech-maven-publish = "0.27.0"
 ktlint = "0.50.0"
 
 [libraries]
