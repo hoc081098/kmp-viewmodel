@@ -17,6 +17,10 @@ plugins {
   alias(libs.plugins.kotlinx.kover)
 }
 
+compose {
+  kotlinCompilerPlugin.set(libs.versions.jetbrains.compose.compiler)
+}
+
 kotlin {
   explicitApi()
 

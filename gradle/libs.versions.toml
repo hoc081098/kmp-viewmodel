@@ -24,6 +24,7 @@ sample-android-target = "34"
 sample-android-compile = "34"
 
 jetbrains-compose = "1.5.11"
+jetbrains-compose-compiler = "1.5.7.1"
 
 touchlab-stately = "1.2.5"
 napier = "2.7.1"
