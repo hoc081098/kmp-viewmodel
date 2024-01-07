@@ -41,7 +41,6 @@ public fun <T : Any> SafeSavedStateHandle.getLiveData(key: NullableSavedStateHan
   }.also { check(it.isInitialized) { "LiveData isn't initialized" } }
 }
 
-@JvmName("map")
 @MainThread
 @CheckResult
 private fun <X, Y> LiveData<X>.map(
@@ -56,6 +55,7 @@ private class MapLiveData<X, Y>(
 
   override fun isInitialized(): Boolean = true
 
+  @Suppress("UNCHECKED_CAST")
   override fun getValue(): Y? = transform(source.value as X)
 
   override fun onActive() {
