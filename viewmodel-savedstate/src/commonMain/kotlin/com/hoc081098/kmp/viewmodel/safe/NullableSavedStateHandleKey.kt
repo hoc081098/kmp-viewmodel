@@ -1,5 +1,6 @@
 package com.hoc081098.kmp.viewmodel.safe
 
+import com.hoc081098.kmp.viewmodel.InternalKmpViewModelApi
 import com.hoc081098.kmp.viewmodel.SavedStateHandle
 import dev.drewhamilton.poko.ArrayContentBased
 import dev.drewhamilton.poko.ArrayContentSupport
@@ -20,6 +21,7 @@ import dev.drewhamilton.poko.Poko
 @OptIn(ArrayContentSupport::class)
 @Poko
 public class NullableSavedStateHandleKey<T : Any> @PublishedApi
+@InternalKmpViewModelApi
 internal constructor(
   /**
    * **NOTE**: When using [key] directly, you must ensure that the value associated with the key has **type `T?`**.

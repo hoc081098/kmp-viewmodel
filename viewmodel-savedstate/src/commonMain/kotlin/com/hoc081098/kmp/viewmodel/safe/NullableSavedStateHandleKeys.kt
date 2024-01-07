@@ -2,8 +2,10 @@
 
 package com.hoc081098.kmp.viewmodel.safe
 
+import com.hoc081098.kmp.viewmodel.InternalKmpViewModelApi
 import com.hoc081098.kmp.viewmodel.parcelable.Parcelable
 
+@OptIn(InternalKmpViewModelApi::class)
 @Suppress("NOTHING_TO_INLINE")
 private inline fun <T : Any> key(key: String, value: T?) = NullableSavedStateHandleKey(key, value)
 
@@ -121,6 +123,7 @@ public fun <T : Parcelable> NullableSavedStateHandleKey.Companion.parcelable(
 ): NullableSavedStateHandleKey<T> =
   key(key, defaultValue)
 
+@OptIn(InternalKmpViewModelApi::class)
 public inline fun <reified T : Parcelable> NullableSavedStateHandleKey.Companion.parcelableArray(
   key: String,
   defaultValue: Array<T?>? = null,
