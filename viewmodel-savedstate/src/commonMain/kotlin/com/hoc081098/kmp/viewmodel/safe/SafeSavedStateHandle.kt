@@ -25,9 +25,16 @@ public value class SafeSavedStateHandle(public val savedStateHandle: SavedStateH
    * @see [SavedStateHandle.get]
    * @see [SavedStateHandle.set]
    */
-  public inline operator fun <T : Any> get(key: NonNullSavedStateHandleKey<T>): T =
+  public operator fun <T : Any> get(key: NonNullSavedStateHandleKey<T>): T =
     if (key.key in savedStateHandle) {
-      savedStateHandle.get<T>(key.key)!!
+      val transform = key.transform
+
+      if (transform == null) {
+        savedStateHandle.get<T>(key.key)!!
+      } else {
+        @Suppress("RemoveExplicitTypeArguments") // Readability
+        transform(savedStateHandle.get<Any?>(key.key))
+      }
     } else {
       key.defaultValue
     }
@@ -77,8 +84,18 @@ public value class SafeSavedStateHandle(public val savedStateHandle: SavedStateH
    *
    * @see [SavedStateHandle.getStateFlow]
    */
-  public inline fun <T : Any> getStateFlow(key: NonNullSavedStateHandleKey<T>): StateFlow<T> =
-    savedStateHandle.getStateFlow(key.key, key.defaultValue)
+  public fun <T : Any> getStateFlow(key: NonNullSavedStateHandleKey<T>): StateFlow<T> {
+    val transform = key.transform
+
+    return if (transform == null) {
+      @Suppress("RemoveExplicitTypeArguments") // Readability
+      savedStateHandle.getStateFlow<T>(key.key, key.defaultValue)
+    } else {
+      savedStateHandle
+        .getStateFlow<Any>(key.key, key.defaultValue)
+        .mapState(transform)
+    }
+  }
 
   /**
    * Returns a [StateFlow] that will emit the currently active value associated with the given [key].
