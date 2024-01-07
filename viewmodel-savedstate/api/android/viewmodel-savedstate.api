@@ -145,6 +145,7 @@ public final class com/hoc081098/kmp/viewmodel/safe/SafeSavedStateHandle {
 }
 
 public final class com/hoc081098/kmp/viewmodel/safe/SafeSavedStateHandleKt {
+	public static final fun getSafe (Landroidx/lifecycle/SavedStateHandle;)Landroidx/lifecycle/SavedStateHandle;
 	public static final fun safe (Landroidx/lifecycle/SavedStateHandle;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
 }
 

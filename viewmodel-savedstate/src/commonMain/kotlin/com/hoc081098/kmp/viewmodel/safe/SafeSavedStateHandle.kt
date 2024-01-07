@@ -166,4 +166,34 @@ public value class SafeSavedStateHandle(public val savedStateHandle: SavedStateH
  * Inside the block, you can use methods of [SafeSavedStateHandle] to access [SavedStateHandle].
  */
 public inline fun <R> SavedStateHandle.safe(block: (SafeSavedStateHandle) -> R): R =
-  block(SafeSavedStateHandle(this))
+  safe.let(block)
+
+/**
+ * Enables type-safe access to [SavedStateHandle].
+ * You can use this with [NonNullSavedStateHandleKey]s and [NullableSavedStateHandleKey]s.
+ *
+ * This is a another way to use [SafeSavedStateHandle] without a lambda.
+ *
+ * Example of usage:
+ *
+ * ```kotlin
+ * val idKey = NullableSavedStateHandleKey.int("id")
+ *
+ * // Get a value associated with the given key.
+ * val id: Int? = savedStateHandle.safe[idKey]
+ *
+ * // Associate the given value with the key.
+ * savedStateHandle.safe[idKey] = 42
+ *
+ * // Remove a value associated with the given key.
+ * savedStateHandle.safe.remove(idKey)
+ *
+ * // Get a StateFlow
+ * val idStateFlow: StateFlow<Int?> = savedStateHandle.safe.getStateFlow(idKey)
+ * ```
+ *
+ * @receiver [SavedStateHandle] to be wrapped and accessed safely.
+ * @return [SafeSavedStateHandle] to access [SavedStateHandle] safely.
+ */
+public inline val SavedStateHandle.safe: SafeSavedStateHandle
+  get() = SafeSavedStateHandle(this)

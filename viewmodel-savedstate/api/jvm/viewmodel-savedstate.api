@@ -178,6 +178,7 @@ public final class com/hoc081098/kmp/viewmodel/safe/SafeSavedStateHandle {
 }
 
 public final class com/hoc081098/kmp/viewmodel/safe/SafeSavedStateHandleKt {
+	public static final fun getSafe (Lcom/hoc081098/kmp/viewmodel/SavedStateHandle;)Lcom/hoc081098/kmp/viewmodel/SavedStateHandle;
 	public static final fun safe (Lcom/hoc081098/kmp/viewmodel/SavedStateHandle;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
 }
 

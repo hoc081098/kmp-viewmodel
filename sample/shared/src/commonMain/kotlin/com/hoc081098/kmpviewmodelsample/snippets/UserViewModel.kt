@@ -38,6 +38,8 @@ class UserViewModel(
     }
   }
 
+  fun removeUser() = savedStateHandle.safe.remove(USER_KEY)
+
   private companion object {
     private val USER_KEY = NullableSavedStateHandleKey.parcelable<User>("user_key")
   }

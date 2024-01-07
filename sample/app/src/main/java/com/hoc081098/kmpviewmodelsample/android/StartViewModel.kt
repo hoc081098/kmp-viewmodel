@@ -1,11 +1,13 @@
 package com.hoc081098.kmpviewmodelsample.android
 
 import android.os.Parcelable
+import androidx.lifecycle.Observer
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hoc081098.kmp.viewmodel.safe.NonNullSavedStateHandleKey
 import com.hoc081098.kmp.viewmodel.safe.NullableSavedStateHandleKey
+import com.hoc081098.kmp.viewmodel.safe.getLiveData
 import com.hoc081098.kmp.viewmodel.safe.parcelableArray
 import com.hoc081098.kmp.viewmodel.safe.safe
 import io.github.aakira.napier.Napier
@@ -20,7 +22,16 @@ internal class StartViewModel(
   private val savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
   private val nullableStateFlow = savedStateHandle.safe { it.getStateFlow(NULLABLE_PARCELABLE_ARRAY_KEY) }
+  private val nullableLiveData = savedStateHandle.safe.getLiveData(NULLABLE_PARCELABLE_ARRAY_KEY)
+  private val nullableObserver = Observer<Array<TestParcelable?>?> {
+    Napier.d("$this: NULLABLE_PARCELABLE_ARRAY_KEY nullableLiveData=${it.contentToString()}")
+  }
+
   private val nonNullStateFlow = savedStateHandle.safe { it.getStateFlow(NON_NULL_PARCELABLE_ARRAY_KEY) }
+  private val nonNullLiveData = savedStateHandle.safe.getLiveData(NON_NULL_PARCELABLE_ARRAY_KEY)
+  private val nonNullObserver = Observer<Array<TestParcelable?>?> {
+    Napier.d("$this: NON_NULL_PARCELABLE_ARRAY_KEY nonNullLiveData=${it.contentToString()}")
+  }
 
   init {
     Napier.d("$this::init")
@@ -34,6 +45,9 @@ internal class StartViewModel(
     nullableStateFlow
       .onEach { Napier.d("$this: NULLABLE_PARCELABLE_ARRAY_KEY nullableStateFlow=${it.contentToString()}") }
       .launchIn(viewModelScope)
+
+    nullableLiveData.observeForever(nullableObserver)
+    addCloseable { nullableLiveData.removeObserver(nullableObserver) }
 
     // Read
     savedStateHandle
@@ -58,6 +72,9 @@ internal class StartViewModel(
     nonNullStateFlow
       .onEach { Napier.d("$this:: nonNullStateFlow=${it.contentToString()}") }
       .launchIn(viewModelScope)
+
+    nonNullLiveData.observeForever(nonNullObserver)
+    addCloseable { nonNullLiveData.removeObserver(nonNullObserver) }
 
     // Read
     savedStateHandle
