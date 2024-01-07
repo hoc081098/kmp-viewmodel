@@ -1,10 +1,8 @@
-package com.hoc081098.kmp.viewmodel
+package com.hoc081098.kmp.viewmodel.safe
 
 import androidx.lifecycle.LiveData
-import com.hoc081098.kmp.viewmodel.safe.DelicateSafeSavedStateHandleApi
-import com.hoc081098.kmp.viewmodel.safe.NullableSavedStateHandleKey
-import com.hoc081098.kmp.viewmodel.safe.safe
-import kotlin.test.assertEquals
+import com.hoc081098.kmp.viewmodel.SavedStateHandle
+import com.hoc081098.kmp.viewmodel.extendedAssertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
@@ -28,7 +26,7 @@ class NullableSavedStateHandleKeyAndroidTest {
         assertNull(savedStateHandle[key.key])
         assertFalse { key.key in savedStateHandle }
 
-        assertEquals(key.defaultValue, safeSavedStateHandle[key])
+        extendedAssertEquals(key.defaultValue, safeSavedStateHandle[key])
         assertNull(savedStateHandle[key.key])
 
         // Update
@@ -38,8 +36,8 @@ class NullableSavedStateHandleKeyAndroidTest {
         // Read
         assertTrue { key.key in savedStateHandle }
 
-        assertEquals(nextValue, safeSavedStateHandle[key])
-        assertEquals(nextValue, savedStateHandle[key.key])
+        extendedAssertEquals(nextValue, safeSavedStateHandle[key])
+        extendedAssertEquals(nextValue, savedStateHandle[key.key])
       }
     }
 
@@ -48,8 +46,8 @@ class NullableSavedStateHandleKeyAndroidTest {
     val restored = SavedStateHandle.createHandle(bundle, null)
 
     nullableKeyAndNextValues.forEach { (key, nextValue) ->
-      assertEquals(nextValue, restored[key.key])
-      assertEquals(nextValue, restored.safe { it[key] })
+      extendedAssertEquals(nextValue, restored[key.key])
+      extendedAssertEquals(nextValue, restored.safe { it[key] })
     }
   }
 
@@ -63,7 +61,7 @@ class NullableSavedStateHandleKeyAndroidTest {
         assertNull(savedStateHandle[key.key])
         assertFalse { key.key in savedStateHandle }
 
-        assertEquals(key.defaultValue, safeSavedStateHandle[key])
+        extendedAssertEquals(key.defaultValue, safeSavedStateHandle[key])
         assertNull(savedStateHandle[key.key])
 
         // Remove
@@ -72,7 +70,7 @@ class NullableSavedStateHandleKeyAndroidTest {
         // Read
         assertFalse { key.key in savedStateHandle }
 
-        assertEquals(key.defaultValue, safeSavedStateHandle[key])
+        extendedAssertEquals(key.defaultValue, safeSavedStateHandle[key])
         assertNull(savedStateHandle[key.key])
       }
     }
@@ -81,9 +79,9 @@ class NullableSavedStateHandleKeyAndroidTest {
     val bundle = savedStateHandle.savedStateProvider().saveState()
     val restored = SavedStateHandle.createHandle(bundle, null)
 
-    nullableKeyAndNextValues.forEach { (key, nextValue) ->
+    nullableKeyAndNextValues.forEach { (key) ->
       assertNull(restored[key.key])
-      assertEquals(key.defaultValue, restored.safe { it[key] })
+      extendedAssertEquals(key.defaultValue, restored.safe { it[key] })
     }
   }
 
@@ -116,7 +114,7 @@ class NullableSavedStateHandleKeyAndroidTest {
   fun getLiveData_existingNullValue() {
     val savedStateHandle = SavedStateHandle()
 
-    nullableKeyAndNextValues.forEach { (key, nextValue) ->
+    nullableKeyAndNextValues.forEach { (key) ->
       savedStateHandle[key.key] = null
 
       @Suppress("UNCHECKED_CAST")

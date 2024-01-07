@@ -1,37 +1,9 @@
-package com.hoc081098.kmp.viewmodel
+package com.hoc081098.kmp.viewmodel.safe
 
-import com.hoc081098.kmp.viewmodel.safe.DelicateSafeSavedStateHandleApi
-import com.hoc081098.kmp.viewmodel.safe.NullableSavedStateHandleKey
-import com.hoc081098.kmp.viewmodel.safe.boolean
-import com.hoc081098.kmp.viewmodel.safe.booleanArray
-import com.hoc081098.kmp.viewmodel.safe.byte
-import com.hoc081098.kmp.viewmodel.safe.byteArray
-import com.hoc081098.kmp.viewmodel.safe.char
-import com.hoc081098.kmp.viewmodel.safe.charArray
-import com.hoc081098.kmp.viewmodel.safe.charSequence
-import com.hoc081098.kmp.viewmodel.safe.charSequenceArray
-import com.hoc081098.kmp.viewmodel.safe.charSequenceArrayList
-import com.hoc081098.kmp.viewmodel.safe.double
-import com.hoc081098.kmp.viewmodel.safe.doubleArray
-import com.hoc081098.kmp.viewmodel.safe.float
-import com.hoc081098.kmp.viewmodel.safe.floatArray
-import com.hoc081098.kmp.viewmodel.safe.int
-import com.hoc081098.kmp.viewmodel.safe.intArray
-import com.hoc081098.kmp.viewmodel.safe.intArrayList
-import com.hoc081098.kmp.viewmodel.safe.long
-import com.hoc081098.kmp.viewmodel.safe.longArray
-import com.hoc081098.kmp.viewmodel.safe.parcelable
-import com.hoc081098.kmp.viewmodel.safe.parcelableArray
-import com.hoc081098.kmp.viewmodel.safe.parcelableArrayList
-import com.hoc081098.kmp.viewmodel.safe.safe
-import com.hoc081098.kmp.viewmodel.safe.short
-import com.hoc081098.kmp.viewmodel.safe.shortArray
-import com.hoc081098.kmp.viewmodel.safe.string
-import com.hoc081098.kmp.viewmodel.safe.stringArray
-import com.hoc081098.kmp.viewmodel.safe.stringArrayList
+import com.hoc081098.kmp.viewmodel.SavedStateHandle
+import com.hoc081098.kmp.viewmodel.TestParcelable
+import com.hoc081098.kmp.viewmodel.extendedAssertEquals
 import kotlin.test.Test
-import kotlin.test.assertContentEquals
-import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
@@ -80,7 +52,7 @@ private val nullableKeyWithNonNullInitialAndNextValues: List<Pair<NullableSavedS
   NullableSavedStateHandleKey.parcelable("parcelable", TestParcelable(0)) to
     TestParcelable(1),
   NullableSavedStateHandleKey.parcelableArray("parcelableArray", arrayOf(TestParcelable(0), null)) to
-    TestParcelable(1),
+    arrayOf(TestParcelable(1), null),
   NullableSavedStateHandleKey.short("short", 0) to
     1.toShort(),
   NullableSavedStateHandleKey.shortArray("shortArray", shortArrayOf(0)) to
@@ -134,7 +106,7 @@ private val nullableKeyWithNullInitialAndNextValues: List<Pair<NullableSavedStat
   NullableSavedStateHandleKey.parcelable<TestParcelable>("parcelable_null") to
     TestParcelable(1),
   NullableSavedStateHandleKey.parcelableArray<TestParcelable>("parcelableArray_null") to
-    TestParcelable(1),
+    arrayOf(TestParcelable(1)),
   NullableSavedStateHandleKey.short("short_null") to
     1.toShort(),
   NullableSavedStateHandleKey.shortArray("shortArray_null") to
@@ -170,7 +142,7 @@ class NullableSavedStateHandleKeyTest {
 
     nullableKeyAndNextValues.forEach { (key, nextValue) ->
       savedStateHandle[key.key] = nextValue
-      assertEquals(nextValue, savedStateHandle.safe { it[key] })
+      extendedAssertEquals(nextValue, savedStateHandle.safe { it[key] })
     }
   }
 
@@ -184,7 +156,7 @@ class NullableSavedStateHandleKeyTest {
         assertNull(savedStateHandle[key.key])
         assertFalse { key.key in savedStateHandle }
 
-        assertEquals(key.defaultValue, safeSavedStateHandle[key])
+        extendedAssertEquals(key.defaultValue, safeSavedStateHandle[key])
         assertNull(savedStateHandle[key.key])
 
         // Update
@@ -194,8 +166,8 @@ class NullableSavedStateHandleKeyTest {
         // Read
         assertTrue { key.key in savedStateHandle }
 
-        assertEquals(nextValue, safeSavedStateHandle[key])
-        assertEquals(nextValue, savedStateHandle[key.key])
+        extendedAssertEquals(nextValue, safeSavedStateHandle[key])
+        extendedAssertEquals(nextValue, savedStateHandle[key.key])
       }
     }
   }
@@ -210,7 +182,7 @@ class NullableSavedStateHandleKeyTest {
         assertNull(savedStateHandle[key.key])
         assertFalse { key.key in savedStateHandle }
 
-        assertEquals(key.defaultValue, safeSavedStateHandle[key])
+        extendedAssertEquals(key.defaultValue, safeSavedStateHandle[key])
         assertNull(savedStateHandle[key.key])
 
         // Update
@@ -236,7 +208,7 @@ class NullableSavedStateHandleKeyTest {
         assertNull(savedStateHandle[key.key])
         assertFalse { key.key in savedStateHandle }
 
-        assertEquals(key.defaultValue, safeSavedStateHandle[key])
+        extendedAssertEquals(key.defaultValue, safeSavedStateHandle[key])
         assertNull(savedStateHandle[key.key])
 
         // Update
@@ -245,7 +217,7 @@ class NullableSavedStateHandleKeyTest {
         // Read
         assertFalse { key.key in savedStateHandle }
 
-        assertEquals(key.defaultValue, safeSavedStateHandle[key])
+        extendedAssertEquals(key.defaultValue, safeSavedStateHandle[key])
         assertNull(savedStateHandle[key.key])
       }
     }
@@ -257,7 +229,7 @@ class NullableSavedStateHandleKeyTest {
 
     nullableKeyAndNextValues.forEach { (key, nextValue) ->
       val stateFlow = savedStateHandle.safe { it.getStateFlow(key) }
-      assertEquals(key.defaultValue, stateFlow.value)
+      extendedAssertEquals(key.defaultValue, stateFlow.value)
 
       val deferred = async { stateFlow.take(3).toList() }
 
@@ -266,7 +238,7 @@ class NullableSavedStateHandleKeyTest {
       @Suppress("UNCHECKED_CAST")
       savedStateHandle.safe { it[key as NullableSavedStateHandleKey<Any>] = null }
 
-      assertContentEquals(
+      extendedAssertEquals(
         expected = listOf(key.defaultValue, nextValue, null),
         actual = deferred.await(),
       )
@@ -281,14 +253,14 @@ class NullableSavedStateHandleKeyTest {
       savedStateHandle[key.key] = nextValue
 
       val stateFlow = savedStateHandle.safe { it.getStateFlow(key) }
-      assertEquals(nextValue, stateFlow.value)
+      extendedAssertEquals(nextValue, stateFlow.value)
 
       val deferred = async { stateFlow.take(2).toList() }
 
       @Suppress("UNCHECKED_CAST")
       savedStateHandle.safe { it[key as NullableSavedStateHandleKey<Any>] = null }
 
-      assertContentEquals(
+      extendedAssertEquals(
         expected = listOf(nextValue, null),
         actual = deferred.await(),
       )

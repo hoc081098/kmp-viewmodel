@@ -1,7 +1,8 @@
-package com.hoc081098.kmp.viewmodel
+package com.hoc081098.kmp.viewmodel.safe
 
 import androidx.lifecycle.LiveData
-import kotlin.test.assertEquals
+import com.hoc081098.kmp.viewmodel.MainThread
+import com.hoc081098.kmp.viewmodel.extendedAssertEquals
 import kotlin.test.assertTrue
 
 @MainThread
@@ -9,7 +10,7 @@ internal fun <T : Any?> LiveData<T>.assertValue(expected: T?) {
   var received = false
   observeForever {
     received = true
-    assertEquals(expected, it)
+    extendedAssertEquals(expected, it)
   }
   assertTrue { received }
 }
@@ -20,7 +21,7 @@ internal fun <T : Any?> LiveData<T>.assertValues(vararg expected: T?) {
   var index = 0
   observeForever {
     received = true
-    assertEquals(expected[index++], it)
+    extendedAssertEquals(expected[index++], it)
   }
   assertTrue { received }
 }

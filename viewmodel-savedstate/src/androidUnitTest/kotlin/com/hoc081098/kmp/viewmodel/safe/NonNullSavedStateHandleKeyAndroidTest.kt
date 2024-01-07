@@ -1,10 +1,8 @@
-package com.hoc081098.kmp.viewmodel
+package com.hoc081098.kmp.viewmodel.safe
 
 import androidx.lifecycle.LiveData
-import com.hoc081098.kmp.viewmodel.safe.DelicateSafeSavedStateHandleApi
-import com.hoc081098.kmp.viewmodel.safe.NonNullSavedStateHandleKey
-import com.hoc081098.kmp.viewmodel.safe.safe
-import kotlin.test.assertEquals
+import com.hoc081098.kmp.viewmodel.SavedStateHandle
+import com.hoc081098.kmp.viewmodel.extendedAssertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
@@ -28,7 +26,7 @@ class NonNullSavedStateHandleKeyAndroidTest {
         assertNull(savedStateHandle[key.key])
         assertFalse { key.key in savedStateHandle }
 
-        assertEquals(key.defaultValue, safeSavedStateHandle[key])
+        extendedAssertEquals(key.defaultValue, safeSavedStateHandle[key])
         assertNull(savedStateHandle[key.key])
 
         // Update
@@ -38,8 +36,8 @@ class NonNullSavedStateHandleKeyAndroidTest {
         // Read
         assertTrue { key.key in savedStateHandle }
 
-        assertEquals(nextValue, safeSavedStateHandle[key])
-        assertEquals(nextValue, savedStateHandle[key.key])
+        extendedAssertEquals(nextValue, safeSavedStateHandle[key])
+        extendedAssertEquals(nextValue, savedStateHandle[key.key])
       }
     }
 
@@ -48,8 +46,8 @@ class NonNullSavedStateHandleKeyAndroidTest {
     val restored = SavedStateHandle.createHandle(bundle, null)
 
     nonNullKeyAndNextValues.forEach { (key, nextValue) ->
-      assertEquals(nextValue, restored[key.key])
-      assertEquals(nextValue, restored.safe { it[key] })
+      extendedAssertEquals(nextValue, restored[key.key])
+      extendedAssertEquals(nextValue, restored.safe { it[key] })
     }
   }
 
