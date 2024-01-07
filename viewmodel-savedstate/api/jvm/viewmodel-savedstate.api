@@ -89,6 +89,8 @@ public final class com/hoc081098/kmp/viewmodel/safe/NonNullSavedStateHandleKeysK
 
 public final class com/hoc081098/kmp/viewmodel/safe/NullableSavedStateHandleKey {
 	public static final field Companion Lcom/hoc081098/kmp/viewmodel/safe/NullableSavedStateHandleKey$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getDefaultValue ()Ljava/lang/Object;
 	public final fun getKey ()Ljava/lang/String;
@@ -138,8 +140,6 @@ public final class com/hoc081098/kmp/viewmodel/safe/NullableSavedStateHandleKeys
 	public static synthetic fun longArray$default (Lcom/hoc081098/kmp/viewmodel/safe/NullableSavedStateHandleKey$Companion;Ljava/lang/String;[JILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/safe/NullableSavedStateHandleKey;
 	public static final fun parcelable (Lcom/hoc081098/kmp/viewmodel/safe/NullableSavedStateHandleKey$Companion;Ljava/lang/String;Lcom/hoc081098/kmp/viewmodel/parcelable/Parcelable;)Lcom/hoc081098/kmp/viewmodel/safe/NullableSavedStateHandleKey;
 	public static synthetic fun parcelable$default (Lcom/hoc081098/kmp/viewmodel/safe/NullableSavedStateHandleKey$Companion;Ljava/lang/String;Lcom/hoc081098/kmp/viewmodel/parcelable/Parcelable;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/safe/NullableSavedStateHandleKey;
-	public static final fun parcelableArray (Lcom/hoc081098/kmp/viewmodel/safe/NullableSavedStateHandleKey$Companion;Ljava/lang/String;[Lcom/hoc081098/kmp/viewmodel/parcelable/Parcelable;)Lcom/hoc081098/kmp/viewmodel/safe/NullableSavedStateHandleKey;
-	public static synthetic fun parcelableArray$default (Lcom/hoc081098/kmp/viewmodel/safe/NullableSavedStateHandleKey$Companion;Ljava/lang/String;[Lcom/hoc081098/kmp/viewmodel/parcelable/Parcelable;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/safe/NullableSavedStateHandleKey;
 	public static final fun parcelableArrayList (Lcom/hoc081098/kmp/viewmodel/safe/NullableSavedStateHandleKey$Companion;Ljava/lang/String;Ljava/util/ArrayList;)Lcom/hoc081098/kmp/viewmodel/safe/NullableSavedStateHandleKey;
 	public static synthetic fun parcelableArrayList$default (Lcom/hoc081098/kmp/viewmodel/safe/NullableSavedStateHandleKey$Companion;Ljava/lang/String;Ljava/util/ArrayList;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/safe/NullableSavedStateHandleKey;
 	public static final fun short (Lcom/hoc081098/kmp/viewmodel/safe/NullableSavedStateHandleKey$Companion;Ljava/lang/String;Ljava/lang/Short;)Lcom/hoc081098/kmp/viewmodel/safe/NullableSavedStateHandleKey;

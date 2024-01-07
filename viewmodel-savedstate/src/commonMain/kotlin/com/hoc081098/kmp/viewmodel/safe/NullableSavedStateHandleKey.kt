@@ -19,7 +19,8 @@ import dev.drewhamilton.poko.Poko
  */
 @OptIn(ArrayContentSupport::class)
 @Poko
-public class NullableSavedStateHandleKey<T : Any> internal constructor(
+public class NullableSavedStateHandleKey<T : Any> @PublishedApi
+internal constructor(
   /**
    * **NOTE**: When using [key] directly, you must ensure that the value associated with the key has **type `T?`**.
    * Otherwise, it may throw [kotlin.ClassCastException] when using this key with [SafeSavedStateHandle].
@@ -27,6 +28,7 @@ public class NullableSavedStateHandleKey<T : Any> internal constructor(
   @DelicateSafeSavedStateHandleApi
   public val key: String,
   @ArrayContentBased public val defaultValue: T?,
+  internal val transform: ((Any?) -> T?)? = null,
 ) {
   public companion object
 }

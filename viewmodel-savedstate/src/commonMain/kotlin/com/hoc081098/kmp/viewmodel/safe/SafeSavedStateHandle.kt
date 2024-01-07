@@ -1,6 +1,7 @@
 package com.hoc081098.kmp.viewmodel.safe
 
 import com.hoc081098.kmp.viewmodel.SavedStateHandle
+import com.hoc081098.kmp.viewmodel.safe.internal.mapState
 import kotlin.jvm.JvmInline
 import kotlinx.coroutines.flow.StateFlow
 
@@ -41,10 +42,16 @@ public value class SafeSavedStateHandle(public val savedStateHandle: SavedStateH
    * @see [SavedStateHandle.get]
    * @see [SavedStateHandle.set]
    */
-  public inline operator fun <T : Any> get(key: NullableSavedStateHandleKey<T>): T? =
+  public operator fun <T : Any> get(key: NullableSavedStateHandleKey<T>): T? =
     if (key.key in savedStateHandle) {
-      @Suppress("RemoveExplicitTypeArguments")
-      savedStateHandle.get<T?>(key.key)
+      val transform = key.transform
+
+      @Suppress("RemoveExplicitTypeArguments") // Readability
+      if (transform == null) {
+        savedStateHandle.get<T?>(key.key)
+      } else {
+        transform(savedStateHandle.get<Any?>(key.key))
+      }
     } else {
       key.defaultValue
     }
@@ -78,8 +85,18 @@ public value class SafeSavedStateHandle(public val savedStateHandle: SavedStateH
    *
    * @see [SavedStateHandle.getStateFlow]
    */
-  public inline fun <T : Any> getStateFlow(key: NullableSavedStateHandleKey<T>): StateFlow<T?> =
-    savedStateHandle.getStateFlow(key.key, key.defaultValue)
+  public fun <T : Any> getStateFlow(key: NullableSavedStateHandleKey<T>): StateFlow<T?> {
+    val transform = key.transform
+
+    return if (transform == null) {
+      @Suppress("RemoveExplicitTypeArguments") // Readability
+      savedStateHandle.getStateFlow<T?>(key.key, key.defaultValue)
+    } else {
+      savedStateHandle
+        .getStateFlow<Any?>(key.key, key.defaultValue)
+        .mapState(transform)
+    }
+  }
 
   /**
    * **Always throws [UnsupportedOperationException]**.

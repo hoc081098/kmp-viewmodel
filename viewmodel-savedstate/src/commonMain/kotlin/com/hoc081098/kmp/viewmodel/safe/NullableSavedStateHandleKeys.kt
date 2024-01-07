@@ -121,11 +121,24 @@ public fun <T : Parcelable> NullableSavedStateHandleKey.Companion.parcelable(
 ): NullableSavedStateHandleKey<T> =
   key(key, defaultValue)
 
-public fun <T : Parcelable> NullableSavedStateHandleKey.Companion.parcelableArray(
+public inline fun <reified T : Parcelable> NullableSavedStateHandleKey.Companion.parcelableArray(
   key: String,
   defaultValue: Array<T?>? = null,
 ): NullableSavedStateHandleKey<Array<T?>> =
-  key(key, defaultValue)
+  NullableSavedStateHandleKey(key, defaultValue) { value ->
+    // Workaround according to https://github.com/androidx/androidx/commit/2ffce096e13e3aa4675a8b0fd8b0d74cb1ced653
+    //
+    // From AndroidX's commit message:
+    //
+    // As part of the exploration of this problem, arrays
+    // of Parcelables were found impossible to actually
+    // properly support out of the box, so additional KDocs
+    // were added to specifically call out the workaround
+    // required to support those.
+    value ?: return@NullableSavedStateHandleKey null
+    value as Array<Parcelable?>
+    Array(value.size) { value[it] as T? }
+  }
 
 public fun NullableSavedStateHandleKey.Companion.short(
   key: String,
