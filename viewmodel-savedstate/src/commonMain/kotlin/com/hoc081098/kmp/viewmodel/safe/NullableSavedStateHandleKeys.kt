@@ -135,8 +135,12 @@ public inline fun <reified T : Parcelable> NullableSavedStateHandleKey.Companion
     // properly support out of the box, so additional KDocs
     // were added to specifically call out the workaround
     // required to support those.
+
     value ?: return@NullableSavedStateHandleKey null
+
+    @Suppress("UNCHECKED_CAST")
     value as Array<Parcelable?>
+
     Array(value.size) { value[it] as T? }
   }
 
