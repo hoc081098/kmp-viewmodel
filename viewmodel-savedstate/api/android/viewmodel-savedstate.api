@@ -1,8 +1,3 @@
-public final class com/hoc081098/kmp/viewmodel/SafeSavedStateHandle_androidKt {
-	public static final fun getLiveData-WQ3K4ew (Landroidx/lifecycle/SavedStateHandle;Lcom/hoc081098/kmp/viewmodel/safe/NonNullSavedStateHandleKey;)Landroidx/lifecycle/LiveData;
-	public static final fun getLiveData-WQ3K4ew (Landroidx/lifecycle/SavedStateHandle;Lcom/hoc081098/kmp/viewmodel/safe/NullableSavedStateHandleKey;)Landroidx/lifecycle/LiveData;
-}
-
 public abstract interface class com/hoc081098/kmp/viewmodel/SavedStateHandleFactory {
 	public abstract fun create ()Landroidx/lifecycle/SavedStateHandle;
 }
@@ -20,6 +15,8 @@ public abstract interface annotation class com/hoc081098/kmp/viewmodel/safe/Deli
 
 public final class com/hoc081098/kmp/viewmodel/safe/NonNullSavedStateHandleKey {
 	public static final field Companion Lcom/hoc081098/kmp/viewmodel/safe/NonNullSavedStateHandleKey$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getDefaultValue ()Ljava/lang/Object;
 	public final fun getKey ()Ljava/lang/String;
@@ -50,7 +47,6 @@ public final class com/hoc081098/kmp/viewmodel/safe/NonNullSavedStateHandleKeysK
 	public static final fun long (Lcom/hoc081098/kmp/viewmodel/safe/NonNullSavedStateHandleKey$Companion;Ljava/lang/String;J)Lcom/hoc081098/kmp/viewmodel/safe/NonNullSavedStateHandleKey;
 	public static final fun longArray (Lcom/hoc081098/kmp/viewmodel/safe/NonNullSavedStateHandleKey$Companion;Ljava/lang/String;[J)Lcom/hoc081098/kmp/viewmodel/safe/NonNullSavedStateHandleKey;
 	public static final fun parcelable (Lcom/hoc081098/kmp/viewmodel/safe/NonNullSavedStateHandleKey$Companion;Ljava/lang/String;Landroid/os/Parcelable;)Lcom/hoc081098/kmp/viewmodel/safe/NonNullSavedStateHandleKey;
-	public static final fun parcelableArray (Lcom/hoc081098/kmp/viewmodel/safe/NonNullSavedStateHandleKey$Companion;Ljava/lang/String;[Landroid/os/Parcelable;)Lcom/hoc081098/kmp/viewmodel/safe/NonNullSavedStateHandleKey;
 	public static final fun parcelableArrayList (Lcom/hoc081098/kmp/viewmodel/safe/NonNullSavedStateHandleKey$Companion;Ljava/lang/String;Ljava/util/ArrayList;)Lcom/hoc081098/kmp/viewmodel/safe/NonNullSavedStateHandleKey;
 	public static final fun short (Lcom/hoc081098/kmp/viewmodel/safe/NonNullSavedStateHandleKey$Companion;Ljava/lang/String;S)Lcom/hoc081098/kmp/viewmodel/safe/NonNullSavedStateHandleKey;
 	public static final fun shortArray (Lcom/hoc081098/kmp/viewmodel/safe/NonNullSavedStateHandleKey$Companion;Ljava/lang/String;[S)Lcom/hoc081098/kmp/viewmodel/safe/NonNullSavedStateHandleKey;
@@ -150,5 +146,10 @@ public final class com/hoc081098/kmp/viewmodel/safe/SafeSavedStateHandle {
 
 public final class com/hoc081098/kmp/viewmodel/safe/SafeSavedStateHandleKt {
 	public static final fun safe (Landroidx/lifecycle/SavedStateHandle;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
+}
+
+public final class com/hoc081098/kmp/viewmodel/safe/SafeSavedStateHandle_androidKt {
+	public static final fun getLiveData-WQ3K4ew (Landroidx/lifecycle/SavedStateHandle;Lcom/hoc081098/kmp/viewmodel/safe/NonNullSavedStateHandleKey;)Landroidx/lifecycle/LiveData;
+	public static final fun getLiveData-WQ3K4ew (Landroidx/lifecycle/SavedStateHandle;Lcom/hoc081098/kmp/viewmodel/safe/NullableSavedStateHandleKey;)Landroidx/lifecycle/LiveData;
 }
 
