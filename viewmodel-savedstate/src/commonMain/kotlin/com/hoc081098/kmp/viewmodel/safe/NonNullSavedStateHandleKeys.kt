@@ -4,6 +4,7 @@ package com.hoc081098.kmp.viewmodel.safe
 
 import com.hoc081098.kmp.viewmodel.InternalKmpViewModelApi
 import com.hoc081098.kmp.viewmodel.parcelable.Parcelable
+import com.hoc081098.kmp.viewmodel.safe.internal.parcelableArrayTransform
 
 @OptIn(InternalKmpViewModelApi::class)
 @Suppress("NOTHING_TO_INLINE")
@@ -128,24 +129,11 @@ public inline fun <reified T : Parcelable> NonNullSavedStateHandleKey.Companion.
   key: String,
   defaultValue: Array<T?>,
 ): NonNullSavedStateHandleKey<Array<T?>> =
-  NonNullSavedStateHandleKey(key, defaultValue) { value ->
-    // Workaround according to https://github.com/androidx/androidx/commit/2ffce096e13e3aa4675a8b0fd8b0d74cb1ced653
-    //
-    // From AndroidX's commit message:
-    //
-    // As part of the exploration of this problem, arrays
-    // of Parcelables were found impossible to actually
-    // properly support out of the box, so additional KDocs
-    // were added to specifically call out the workaround
-    // required to support those.
-
-    value!!
-
-    @Suppress("UNCHECKED_CAST")
-    value as Array<Parcelable?>
-
-    Array(value.size) { value[it] as T? }
-  }
+  NonNullSavedStateHandleKey(
+    key = key,
+    defaultValue = defaultValue,
+    transform = parcelableArrayTransform<T>(),
+  )
 
 public fun NonNullSavedStateHandleKey.Companion.short(
   key: String,
