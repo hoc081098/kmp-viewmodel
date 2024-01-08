@@ -70,7 +70,7 @@ internal class StartViewModel(
   private fun playgroundNonNullKey() {
     // Observe
     nonNullStateFlow
-      .onEach { Napier.d("$this:: nonNullStateFlow=${it.contentToString()}") }
+      .onEach { Napier.d("$this: NON_NULL_PARCELABLE_ARRAY_KEY nonNullStateFlow=${it.contentToString()}") }
       .launchIn(viewModelScope)
 
     nonNullLiveData.observeForever(nonNullObserver)
