@@ -30,7 +30,7 @@ public inline fun <reified VM : ViewModel> koinViewModelFactory(
 @InternalKmpViewModelApi
 internal class KmpViewModelParametersHolder(
   initialValues: ParametersDefinition? = null,
-  val extras: CreationExtras,
+  private val extras: CreationExtras,
 ) : ParametersHolder(
   initialValues?.invoke()?.values?.toMutableList()
     ?: mutableListOf(),

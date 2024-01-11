@@ -2,7 +2,6 @@ public final class com/hoc081098/kmp/viewmodel/koin/KmpViewModelParametersHolder
 	public fun <init> (Lkotlin/jvm/functions/Function0;Lcom/hoc081098/kmp/viewmodel/CreationExtras;)V
 	public synthetic fun <init> (Lkotlin/jvm/functions/Function0;Lcom/hoc081098/kmp/viewmodel/CreationExtras;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun elementAt (ILkotlin/reflect/KClass;)Ljava/lang/Object;
-	public final fun getExtras ()Lcom/hoc081098/kmp/viewmodel/CreationExtras;
 	public fun getOrNull (Lkotlin/reflect/KClass;)Ljava/lang/Object;
 }
 
