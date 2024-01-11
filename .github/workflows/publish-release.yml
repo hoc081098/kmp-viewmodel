@@ -77,7 +77,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build release
-        run: ./gradlew :viewmodel:assemble :viewmodel-savedstate:assemble :viewmodel-compose:assemble
+        run: ./gradlew :viewmodel:assemble :viewmodel-savedstate:assemble :viewmodel-compose:assemble :viewmodel-koin:assemble
 
       - name: Publish release
         run: ./gradlew publish --stacktrace
