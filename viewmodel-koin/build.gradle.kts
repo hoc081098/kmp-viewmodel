@@ -77,6 +77,7 @@ kotlin {
     commonMain {
       dependencies {
         api(projects.viewmodel)
+        api(projects.viewmodelSavedstate)
         api(libs.koin.core)
       }
     }
