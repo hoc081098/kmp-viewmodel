@@ -22,6 +22,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "kmp-viewmodel"
 include(":viewmodel")
+include(":viewmodel-koin")
 include(":viewmodel-savedstate")
 include(":viewmodel-compose")
 include(":sample:app", ":sample:shared")
