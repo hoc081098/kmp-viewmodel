@@ -1,4 +1,4 @@
-public final class com/hoc081098/kmp/viewmodel/compose/KmpViewModelKt {
+public final class com/hoc081098/kmp/viewmodel/compose/DefaultViewModelStoreOwnerKt {
 	public static final synthetic fun defaultViewModelStoreOwner (Landroidx/compose/runtime/Composer;I)Lcom/hoc081098/kmp/viewmodel/ViewModelStoreOwner;
 }
 

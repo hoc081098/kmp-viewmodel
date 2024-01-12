@@ -54,6 +54,10 @@ public abstract interface class com/hoc081098/kmp/viewmodel/ViewModelFactory {
 	public abstract fun getViewModelClass ()Lkotlin/reflect/KClass;
 }
 
+public final class com/hoc081098/kmp/viewmodel/ViewModelFactoryKt {
+	public static final fun viewModelFactory (Lkotlin/reflect/KClass;Lkotlin/jvm/functions/Function1;)Lcom/hoc081098/kmp/viewmodel/ViewModelFactory;
+}
+
 public class com/hoc081098/kmp/viewmodel/ViewModelStore {
 	public fun <init> ()V
 	public final fun clear ()V

@@ -13,13 +13,27 @@ import org.koin.core.parameter.ParametersHolder
 import org.koin.core.qualifier.Qualifier
 import org.koin.core.scope.Scope
 
-@OptIn(InternalKmpViewModelApi::class)
 public inline fun <reified VM : ViewModel> koinViewModelFactory(
   scope: Scope,
   qualifier: Qualifier? = null,
   noinline parameters: ParametersDefinition? = null,
-): ViewModelFactory<VM> = viewModelFactory {
-  scope.get<VM>(
+): ViewModelFactory<VM> =
+  koinViewModelFactory(
+    viewModelClass = VM::class,
+    scope = scope,
+    qualifier = qualifier,
+    parameters = parameters,
+  )
+
+@OptIn(InternalKmpViewModelApi::class)
+public fun <VM : ViewModel> koinViewModelFactory(
+  viewModelClass: KClass<VM>,
+  scope: Scope,
+  qualifier: Qualifier? = null,
+  parameters: ParametersDefinition? = null,
+): ViewModelFactory<VM> = viewModelFactory(viewModelClass = viewModelClass) {
+  scope.get(
+    clazz = viewModelClass,
     qualifier = qualifier,
     parameters = { KmpViewModelParametersHolder(parameters, this) },
   )

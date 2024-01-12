@@ -22,9 +22,10 @@ dependencyResolutionManagement {
 
 rootProject.name = "kmp-viewmodel"
 include(":viewmodel")
-include(":viewmodel-koin")
-include(":viewmodel-savedstate")
 include(":viewmodel-compose")
+include(":viewmodel-koin")
+include(":viewmodel-koin-compose")
+include(":viewmodel-savedstate")
 include(":sample:app", ":sample:shared")
 
 plugins {

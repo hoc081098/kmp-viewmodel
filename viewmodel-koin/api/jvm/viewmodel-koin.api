@@ -5,3 +5,8 @@ public final class com/hoc081098/kmp/viewmodel/koin/KmpViewModelParametersHolder
 	public fun getOrNull (Lkotlin/reflect/KClass;)Ljava/lang/Object;
 }
 
+public final class com/hoc081098/kmp/viewmodel/koin/KoinViewModelFactoryKt {
+	public static final fun koinViewModelFactory (Lkotlin/reflect/KClass;Lorg/koin/core/scope/Scope;Lorg/koin/core/qualifier/Qualifier;Lkotlin/jvm/functions/Function0;)Lcom/hoc081098/kmp/viewmodel/ViewModelFactory;
+	public static synthetic fun koinViewModelFactory$default (Lkotlin/reflect/KClass;Lorg/koin/core/scope/Scope;Lorg/koin/core/qualifier/Qualifier;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/ViewModelFactory;
+}
+
