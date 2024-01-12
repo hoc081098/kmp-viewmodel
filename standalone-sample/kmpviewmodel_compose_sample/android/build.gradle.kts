@@ -9,6 +9,10 @@ plugins {
 group = "com.hoc081098"
 version = "1.0-SNAPSHOT"
 
+compose {
+  kotlinCompilerPlugin.set(libs.versions.jetbrains.compose.compiler)
+}
+
 repositories {
   jcenter()
 }

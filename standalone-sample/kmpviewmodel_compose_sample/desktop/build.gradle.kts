@@ -9,6 +9,10 @@ plugins {
 group = "com.hoc08198"
 version = "1.0-SNAPSHOT"
 
+compose {
+  kotlinCompilerPlugin.set(libs.versions.jetbrains.compose.compiler)
+}
+
 java {
   sourceCompatibility = JavaVersion.toVersion(libs.versions.java.target.get())
   targetCompatibility = JavaVersion.toVersion(libs.versions.java.target.get())

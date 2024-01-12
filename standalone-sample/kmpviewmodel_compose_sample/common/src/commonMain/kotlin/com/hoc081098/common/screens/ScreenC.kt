@@ -27,10 +27,8 @@ import com.hoc081098.common.navigation.requireRoute
 import com.hoc081098.common.navigation.routeContent
 import com.hoc081098.kmp.viewmodel.SavedStateHandle
 import com.hoc081098.kmp.viewmodel.ViewModel
-import com.hoc081098.kmp.viewmodel.compose.kmpViewModel
-import com.hoc081098.kmp.viewmodel.createSavedStateHandle
+import com.hoc081098.kmp.viewmodel.koin.compose.koinKmpViewModel
 import com.hoc081098.kmp.viewmodel.parcelable.Parcelize
-import com.hoc081098.kmp.viewmodel.viewModelFactory
 import kotlin.jvm.JvmField
 
 @Parcelize
@@ -59,14 +57,7 @@ class ScreenCViewModel(
 @JvmField
 val ScreenCContent = routeContent(ScreenC::class) { route ->
   val navigator = LocalNavigator.current
-
-  val viewModel = kmpViewModel(
-    factory = viewModelFactory {
-      ScreenCViewModel(
-        savedStateHandle = createSavedStateHandle(),
-      )
-    },
-  )
+  val viewModel = koinKmpViewModel<ScreenCViewModel>()
 
   val savedCount by viewModel.countStateFlow.collectAsState()
 
