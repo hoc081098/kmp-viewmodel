@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.hoc081098.common.domain.DemoRepository
 import com.hoc081098.common.navigation.NavHost
@@ -37,11 +38,13 @@ fun App(
   modifier: Modifier = Modifier,
 ) {
   KoinApplication(
-    application = {
-      modules(
-        ViewModelModule,
-        RepositoryModule,
-      )
+    application = remember {
+      {
+        modules(
+          ViewModelModule,
+          RepositoryModule,
+        )
+      }
     },
   ) {
     MaterialTheme {
