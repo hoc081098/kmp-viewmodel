@@ -39,6 +39,7 @@ kotlin {
         implementation(projects.common)
         implementation(compose.desktop.common)
         implementation(compose.desktop.currentOs)
+        implementation(libs.coroutines.swing)
       }
     }
     val jvmTest by getting
