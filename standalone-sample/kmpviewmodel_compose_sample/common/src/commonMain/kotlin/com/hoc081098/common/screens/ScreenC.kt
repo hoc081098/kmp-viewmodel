@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.hoc081098.common.domain.DemoRepository
 import com.hoc081098.common.navigation.LocalNavigator
 import com.hoc081098.common.navigation.Route
 import com.hoc081098.common.navigation.requireRoute
@@ -30,12 +31,14 @@ import com.hoc081098.kmp.viewmodel.ViewModel
 import com.hoc081098.kmp.viewmodel.koin.compose.koinKmpViewModel
 import com.hoc081098.kmp.viewmodel.parcelable.Parcelize
 import kotlin.jvm.JvmField
+import kotlinx.coroutines.launch
 
 @Parcelize
 data class ScreenC(val id: Int) : Route
 
 class ScreenCViewModel(
   private val savedStateHandle: SavedStateHandle,
+  private val demoRepository: DemoRepository,
 ) : ViewModel() {
   val route = savedStateHandle.requireRoute<ScreenC>()
 
@@ -46,6 +49,11 @@ class ScreenCViewModel(
 
     addCloseable {
       println("$this close")
+    }
+
+    viewModelScope.launch {
+      val data = demoRepository.getData()
+      println("$this data=$data")
     }
   }
 
