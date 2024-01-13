@@ -21,6 +21,7 @@ import org.koin.core.parameter.ParametersDefinition
 import org.koin.core.qualifier.Qualifier
 import org.koin.core.scope.Scope
 
+@Suppress("LongParameterList")
 @OptIn(InternalKmpViewModelApi::class)
 @MainThread
 @Composable
@@ -56,6 +57,7 @@ public fun <VM : ViewModel> koinKmpViewModel(
   )
 }
 
+@Suppress("LongParameterList")
 @OptIn(InternalKmpViewModelApi::class)
 @MainThread
 @Composable
