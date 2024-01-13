@@ -13,6 +13,42 @@ import org.koin.core.parameter.ParametersHolder
 import org.koin.core.qualifier.Qualifier
 import org.koin.core.scope.Scope
 
+/**
+ * Create a [ViewModelFactory] for the given [VM] type,
+ * which creates the [VM] by getting it from the given Koin [scope]
+ * with the given [qualifier] and [parameters].
+ *
+ * [SavedStateHandle] will be created and passed to the constructor of [VM] if it's requested.
+ *
+ * ### Example
+ * ```kotlin
+ * class MyRepository
+ *
+ * class MyViewModel(
+ *   val myRepository: MyRepository,
+ *   val savedStateHandle: SavedStateHandle,
+ *   val id: Int,
+ * ) : ViewModel()
+ *
+ * val myModule = module {
+ *   factoryOf(::MyRepository)
+ *   factoryOf(::MyViewModel)
+ * }
+ *
+ * val factory = koinViewModelFactory<MyViewModel>(
+ *   scope = KoinPlatformTools.defaultContext().get().scopeRegistry.rootScope,
+ *   parameters = { parametersOf(1) },
+ * )
+ * ```
+ *
+ * @param VM The type of the [ViewModel] to create.
+ * @param scope The Koin [Scope] to get the [ViewModel] from.
+ * @param qualifier The Koin [Qualifier] to get the [ViewModel] with.
+ * @param parameters The Koin [ParametersDefinition] to get the [ViewModel] with.
+ *
+ * @see viewModelFactory
+ * @see [Scope.get]
+ */
 public inline fun <reified VM : ViewModel> koinViewModelFactory(
   scope: Scope,
   qualifier: Qualifier? = null,
@@ -25,6 +61,43 @@ public inline fun <reified VM : ViewModel> koinViewModelFactory(
     parameters = parameters,
   )
 
+/**
+ * Create a [ViewModelFactory] for the given [viewModelClass],
+ * which creates the [VM] by getting it from the given Koin [scope]
+ * with the given [qualifier] and [parameters].
+ *
+ * [SavedStateHandle] will be created and passed to the constructor of [VM] if it's requested.
+ *
+ * ### Example
+ * ```kotlin
+ * class MyRepository
+ *
+ * class MyViewModel(
+ *   val myRepository: MyRepository,
+ *   val savedStateHandle: SavedStateHandle,
+ *   val id: Int,
+ * ) : ViewModel()
+ *
+ * val myModule = module {
+ *   factoryOf(::MyRepository)
+ *   factoryOf(::MyViewModel)
+ * }
+ *
+ * val factory = koinViewModelFactory(
+ *   viewModelClass = MyViewModel::class,
+ *   scope = KoinPlatformTools.defaultContext().get().scopeRegistry.rootScope,
+ *   parameters = { parametersOf(1) },
+ * )
+ * ```
+ *
+ * @param viewModelClass The [KClass] of the [ViewModel] to create.
+ * @param scope The Koin [Scope] to get the [ViewModel] from.
+ * @param qualifier The Koin [Qualifier] to get the [ViewModel] with.
+ * @param parameters The Koin [ParametersDefinition] to get the [ViewModel] with.
+ *
+ * @see viewModelFactory
+ * @see [Scope.get]
+ */
 @OptIn(InternalKmpViewModelApi::class)
 public fun <VM : ViewModel> koinViewModelFactory(
   viewModelClass: KClass<VM>,
