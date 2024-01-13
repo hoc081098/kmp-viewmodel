@@ -26,3 +26,14 @@ public inline fun <reified VM : ViewModel> viewModelFactory(
   override val viewModelClass: KClass<VM> = VM::class
   override fun create(extras: CreationExtras): VM = builder(extras)
 }
+
+/**
+ * Creates a [ViewModelFactory] that returns the result of invoking [builder].
+ */
+public inline fun <VM : ViewModel> viewModelFactory(
+  viewModelClass: KClass<VM>,
+  crossinline builder: CreationExtras.() -> VM,
+): ViewModelFactory<VM> = object : ViewModelFactory<VM> {
+  override val viewModelClass: KClass<VM> = viewModelClass
+  override fun create(extras: CreationExtras): VM = builder(extras)
+}

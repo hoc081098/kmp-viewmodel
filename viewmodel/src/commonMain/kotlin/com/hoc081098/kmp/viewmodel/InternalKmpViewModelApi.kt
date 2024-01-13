@@ -10,6 +10,7 @@ package com.hoc081098.kmp.viewmodel
   AnnotationTarget.PROPERTY,
   AnnotationTarget.CONSTRUCTOR,
   AnnotationTarget.FUNCTION,
+  AnnotationTarget.CLASS,
 )
 @RequiresOptIn
 @Retention(AnnotationRetention.BINARY)

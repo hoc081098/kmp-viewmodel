@@ -35,7 +35,7 @@ val LocalNavigator = staticCompositionLocalOf<Navigator> {
   error("Can't use Navigator outside of a navigator NavHost")
 }
 
-@Suppress("LongMethod")
+@Suppress("LongMethod", "ViewModelInjection")
 @Composable
 fun NavHost(
   initialRoute: Route,

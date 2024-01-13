@@ -15,16 +15,16 @@
                   <project path="$PROJECT_DIR$/../../sample/shared" />
                   <project path="$PROJECT_DIR$/../../viewmodel" />
                   <project path="$PROJECT_DIR$/../../viewmodel-compose" />
+                  <project path="$PROJECT_DIR$/../../viewmodel-koin" />
+                  <project path="$PROJECT_DIR$/../../viewmodel-koin-compose" />
                   <project path="$PROJECT_DIR$/../../viewmodel-savedstate" />
                 </projects>
               </build>
             </builds>
           </compositeBuild>
         </compositeConfiguration>
-        <option name="testRunner" value="GRADLE" />
-        <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleJvm" value="jbr-17" />
+        <option name="gradleJvm" value="#GRADLE_LOCAL_JAVA_HOME" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/../.." />
@@ -37,9 +37,12 @@
             <option value="$PROJECT_DIR$/desktop" />
             <option value="$PROJECT_DIR$/../../viewmodel" />
             <option value="$PROJECT_DIR$/../../viewmodel-compose" />
+            <option value="$PROJECT_DIR$/../../viewmodel-koin" />
+            <option value="$PROJECT_DIR$/../../viewmodel-koin-compose" />
             <option value="$PROJECT_DIR$/../../viewmodel-savedstate" />
           </set>
         </option>
+        <option name="resolveExternalAnnotations" value="false" />
       </GradleProjectSettings>
     </option>
   </component>

@@ -33,7 +33,7 @@ import com.hoc081098.kmpviewmodelsample.search_products.SearchProductsState
 import com.hoc081098.kmpviewmodelsample.search_products.SearchProductsViewModel
 import io.github.aakira.napier.Napier
 import org.koin.androidx.compose.koinViewModel
-import org.koin.compose.rememberKoinInject
+import org.koin.compose.koinInject
 
 @Suppress("ReturnCount")
 @Composable
@@ -48,7 +48,7 @@ fun SearchProductsScreen(
 
   val state by viewModel.stateFlow.collectAsStateWithLifecycle()
   val searchTerm by viewModel.searchTermStateFlow.collectAsStateWithLifecycle(
-    context = rememberKoinInject<AppDispatchers>().immediateMain,
+    context = koinInject<AppDispatchers>().immediateMain,
   )
 
   Column(

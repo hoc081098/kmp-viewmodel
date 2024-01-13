@@ -30,10 +30,8 @@ import com.hoc081098.common.navigation.requireRoute
 import com.hoc081098.common.navigation.routeContent
 import com.hoc081098.kmp.viewmodel.SavedStateHandle
 import com.hoc081098.kmp.viewmodel.ViewModel
-import com.hoc081098.kmp.viewmodel.compose.kmpViewModel
-import com.hoc081098.kmp.viewmodel.createSavedStateHandle
+import com.hoc081098.kmp.viewmodel.koin.compose.koinKmpViewModel
 import com.hoc081098.kmp.viewmodel.parcelable.Parcelize
-import com.hoc081098.kmp.viewmodel.viewModelFactory
 import kotlin.jvm.JvmField
 
 @Parcelize
@@ -60,16 +58,9 @@ class ScreenBViewModel(
 }
 
 @JvmField
-val ScreenBContent = routeContent(ScreenB::class) { route ->
+val ScreenBContent = routeContent<ScreenB> { route ->
   val navigator = LocalNavigator.current
-
-  val viewModel = kmpViewModel(
-    factory = viewModelFactory {
-      ScreenBViewModel(
-        savedStateHandle = createSavedStateHandle(),
-      )
-    },
-  )
+  val viewModel = koinKmpViewModel<ScreenBViewModel>()
 
   val savedCount by viewModel.countStateFlow.collectAsState()
   var count by rememberSaveable { mutableStateOf(0) }
