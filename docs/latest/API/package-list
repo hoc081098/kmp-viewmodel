@@ -6,6 +6,11 @@ com.hoc081098.kmp.viewmodel
 com.hoc081098.kmp.viewmodel.wrapper
 module:viewmodel-compose
 com.hoc081098.kmp.viewmodel.compose
+com.hoc081098.kmp.viewmodel.compose.internal
+module:viewmodel-koin
+com.hoc081098.kmp.viewmodel.koin
+module:viewmodel-koin-compose
+com.hoc081098.kmp.viewmodel.koin.compose
 module:viewmodel-savedstate
 com.hoc081098.kmp.viewmodel
 com.hoc081098.kmp.viewmodel.parcelable
