@@ -9,7 +9,7 @@ class DemoRepository {
   private val mutex = Mutex()
 
   suspend fun save(data: String) = mutex.withLock {
-    delay(1_000)
+    delay(@Suppress("MagicNumber") 1_000)
     this.data = data
   }
 
