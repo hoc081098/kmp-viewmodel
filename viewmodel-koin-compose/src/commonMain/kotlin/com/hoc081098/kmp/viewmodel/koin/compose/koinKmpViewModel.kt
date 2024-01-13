@@ -2,6 +2,7 @@ package com.hoc081098.kmp.viewmodel.koin.compose
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.NonRestartableComposable
+import androidx.compose.runtime.remember
 import com.hoc081098.kmp.viewmodel.CreationExtras
 import com.hoc081098.kmp.viewmodel.InternalKmpViewModelApi
 import com.hoc081098.kmp.viewmodel.MainThread
@@ -33,14 +34,18 @@ public fun <VM : ViewModel> koinKmpViewModel(
   scope: Scope = currentKoinScope(),
   parameters: ParametersDefinition? = null,
 ): VM {
-  val factory = koinViewModelFactory(
-    viewModelClass = viewModelClass,
-    scope = scope,
-    qualifier = qualifier,
-    parameters = parameters,
-  )
+  val factory = remember(viewModelClass, scope, qualifier, parameters) {
+    koinViewModelFactory(
+      viewModelClass = viewModelClass,
+      scope = scope,
+      qualifier = qualifier,
+      parameters = parameters,
+    )
+  }
 
-  val vmKey = getViewModelKey(qualifier, scope, key)
+  val vmKey = remember(qualifier, scope, key) {
+    getViewModelKey(qualifier, scope, key)
+  }
 
   return kmpViewModel(
     factory = factory,

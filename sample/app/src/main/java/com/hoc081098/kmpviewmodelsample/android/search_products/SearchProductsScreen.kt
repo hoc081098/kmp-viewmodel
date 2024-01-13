@@ -34,7 +34,6 @@ import com.hoc081098.kmpviewmodelsample.search_products.SearchProductsViewModel
 import io.github.aakira.napier.Napier
 import org.koin.androidx.compose.koinViewModel
 import org.koin.compose.koinInject
-import org.koin.compose.rememberKoinInject
 
 @Suppress("ReturnCount")
 @Composable
