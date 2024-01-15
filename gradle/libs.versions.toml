@@ -35,14 +35,14 @@ koin-compose = "1.1.2"
 coil = "2.5.0"
 compose-rules-detekt = "0.3.9"
 
-androidx-lifecycle = "2.6.2"
+androidx-lifecycle = "2.7.0"
 androidx-annotation = "1.7.1"
 androidx-activity = "1.8.2"
 androidx-compose-compiler = "1.5.8-dev-k1.9.22-42b6ec2b037"
 androidx-navigation = "2.7.6"
 android-gradle = "8.2.1"
 
-spotless = "6.23.3"
+spotless = "6.24.0"
 detekt = "1.23.4"
 
 kotlinx-kover = "0.7.5"
