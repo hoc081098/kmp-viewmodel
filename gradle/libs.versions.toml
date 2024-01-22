@@ -33,7 +33,7 @@ koin = "3.5.3"
 koin-androidx-compose = "3.5.3"
 koin-compose = "1.1.2"
 coil = "2.5.0"
-compose-rules-detekt = "0.3.9"
+compose-rules-detekt = "0.3.10"
 
 androidx-lifecycle = "2.6.2"
 androidx-annotation = "1.7.1"
