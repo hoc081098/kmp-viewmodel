@@ -53,6 +53,7 @@ Liked some of my work? Buy me a coffee (or more likely a beer)
 > If you are targeting `Desktop` and:
 >   - not using `JetBrains Compose Multiplatform`, you should provide the dependency `org.jetbrains.kotlinx:kotlinx-coroutines-swing` **or** `org.jetbrains.kotlinx:kotlinx-coroutines-javafx`.
 >   - using `JetBrains Compose Multiplatform`, you should provide `org.jetbrains.kotlinx:kotlinx-coroutines-swing`.
+>
 > Because the `ViewModel.viewModelScope` depends on `Dispatchers.Main` provided by that libraries on Desktop.
 
 - `js` (`IR`).
