@@ -50,10 +50,11 @@ Liked some of my work? Buy me a coffee (or more likely a beer)
   make sure `Dispatchers.Main` available).
 
 > [!NOTE]
-> If you are targeting `Desktop` and not using `JetBrains Compose Multiplatform`, you should provide the dependency `org.jetbrains.kotlinx:kotlinx-coroutines-swing` **or** `org.jetbrains.kotlinx:kotlinx-coroutines-javafx`,
-> the `ViewModel.viewModelScope` depends on `Dispatchers.Main` provided by this library on Desktop.
+> If you are targeting `Desktop` and:
+>   - not using `JetBrains Compose Multiplatform`, you should provide the dependency `org.jetbrains.kotlinx:kotlinx-coroutines-swing` **or** `org.jetbrains.kotlinx:kotlinx-coroutines-javafx`.
+>   - using `JetBrains Compose Multiplatform`, you should provide `org.jetbrains.kotlinx:kotlinx-coroutines-swing`.
 >
-> If you are using `JetBrains Compose Multiplatform` and targeting `Desktop`, you should provide `org.jetbrains.kotlinx:kotlinx-coroutines-swing`.
+> Because the `ViewModel.viewModelScope` depends on `Dispatchers.Main` provided by that libraries on Desktop.
 
 - `js` (`IR`).
 - `Darwin` targets:
