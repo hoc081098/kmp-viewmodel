@@ -43,8 +43,6 @@ Liked some of my work? Buy me a coffee (or more likely a beer)
 
 <a href="https://www.buymeacoffee.com/hoc081098" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-blue.png" alt="Buy Me A Coffee" height=64></a>
 
-## ViewModel + Navigation for Compose Multiplatform will come soon... 🌞🔥
-
 ## Supported targets
 
 - `android`.
@@ -88,6 +86,10 @@ For more information check out the [docs][3].
 ### 4. `kmp-viewmodel-compose` library
 
 For more information check out the [docs][4].
+
+### 5. `kmp-viewmodel` and Navigation for JetBrains Compose Multiplatform.
+
+For more information check out https://github.com/hoc081098/solivagant
 
 ## Sample
 
