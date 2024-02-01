@@ -13,6 +13,8 @@ Supports **Compose Multiplatform** Framework (Android, Desktop, Web, iOS, macOS,
 It exposes state to the UI and encapsulates related business logic.
 Its principal advantage is that it caches state and persists it through configuration changes (on Android).
 
+## kmp-viewmodel and Navigation for JetBrains Compose Multiplatform 👉 https://github.com/hoc081098/solivagant
+
 [![maven-central](https://img.shields.io/maven-central/v/io.github.hoc081098/kmp-viewmodel)](https://search.maven.org/search?q=g:io.github.hoc081098%20kmp-viewmodel)
 [![codecov](https://codecov.io/gh/hoc081098/kmp-viewmodel/branch/master/graph/badge.svg?token=jBFg12osvP)](https://codecov.io/gh/hoc081098/kmp-viewmodel)
 [![Build and publish snapshot](https://github.com/hoc081098/kmp-viewmodel/actions/workflows/build.yml/badge.svg)](https://github.com/hoc081098/kmp-viewmodel/actions/workflows/build.yml)
