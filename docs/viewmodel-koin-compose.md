@@ -1,5 +1,7 @@
 # ViewModel Compose Multiplatform and Koin
 
+Koin integration with **Kotlin Multiplatform ViewModel** and **Jetpack Compose Multiplatform**.
+
 **Koin** is the pragmatic **Kotlin & Kotlin Multiplatform Dependency Injection framework**.
 For more information check out the [Koin documentation](https://insert-koin.io/).
 
