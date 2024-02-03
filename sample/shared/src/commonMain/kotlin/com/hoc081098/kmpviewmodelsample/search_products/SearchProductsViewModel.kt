@@ -1,4 +1,3 @@
-@file:Suppress("PackageNaming")
 
 package com.hoc081098.kmpviewmodelsample.search_products
 

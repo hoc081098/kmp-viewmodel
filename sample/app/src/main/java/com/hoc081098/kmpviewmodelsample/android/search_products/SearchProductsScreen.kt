@@ -2,7 +2,6 @@
   ExperimentalMaterial3Api::class,
   ExperimentalMaterialApi::class,
 )
-@file:Suppress("PackageNaming")
 
 package com.hoc081098.kmpviewmodelsample.android.search_products
 
@@ -35,7 +34,6 @@ import io.github.aakira.napier.Napier
 import org.koin.androidx.compose.koinViewModel
 import org.koin.compose.koinInject
 
-@Suppress("ReturnCount")
 @Composable
 fun SearchProductsScreen(
   navigateToProductDetail: (Int) -> Unit,
@@ -86,41 +84,37 @@ fun SearchProductsScreen(
   }
 }
 
-@Suppress("ReturnCount", "ModifierReused")
 @Composable
 private fun ListContent(
   state: SearchProductsState,
   onItemClick: (ProductItemUi) -> Unit,
   modifier: Modifier = Modifier,
 ) {
-  if (state.isLoading) {
-    LoadingIndicator(
-      modifier = modifier,
-    )
-    return
-  }
+  when {
+    state.isLoading -> {
+      LoadingIndicator(modifier = modifier)
+    }
 
-  state.error?.let { error ->
-    ErrorMessageAndRetryButton(
-      modifier = modifier,
-      onRetry = { },
-      errorMessage = error.message ?: "Unknown error",
-    )
-    return
-  }
+    state.error != null -> {
+      ErrorMessageAndRetryButton(
+        modifier = modifier,
+        onRetry = { },
+        errorMessage = state.error?.message ?: "Unknown error",
+      )
+    }
 
-  val products = state.products.ifEmpty {
-    EmptyProducts(
-      modifier = modifier,
-    )
-    return
-  }
+    state.products.isEmpty() -> {
+      EmptyProducts(modifier = modifier)
+    }
 
-  ProductItemsList(
-    modifier = Modifier.fillMaxSize(),
-    products = products,
-    isRefreshing = false,
-    pullRefreshState = null,
-    onItemClick = onItemClick,
-  )
+    else -> {
+      ProductItemsList(
+        modifier = modifier.fillMaxSize(),
+        products = state.products,
+        isRefreshing = false,
+        pullRefreshState = null,
+        onItemClick = onItemClick,
+      )
+    }
+  }
 }

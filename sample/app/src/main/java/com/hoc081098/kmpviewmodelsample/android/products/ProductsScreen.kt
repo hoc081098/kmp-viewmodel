@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -29,7 +30,6 @@ import io.github.aakira.napier.Napier
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
-@Suppress("ReturnCount", "ModifierReused")
 @Composable
 fun ProductsScreen(
   navigateToProductDetail: (Int) -> Unit,
@@ -72,33 +72,35 @@ fun ProductsScreen(
   }
   viewModel.eventFlow.CollectWithLifecycleEffect(collector = eventHandler)
 
-  if (state.isLoading) {
-    LoadingIndicator(modifier = modifier)
-    return
-  }
+  Surface(modifier = modifier) {
+    when {
+      state.isLoading -> {
+        LoadingIndicator()
+      }
 
-  state.error?.let { error ->
-    ErrorMessageAndRetryButton(
-      modifier = modifier,
-      onRetry = { viewModel.dispatch(ProductsAction.Load) },
-      errorMessage = error.message ?: "Unknown error",
-    )
-    return
-  }
+      state.error != null -> {
+        ErrorMessageAndRetryButton(
+          onRetry = { viewModel.dispatch(ProductsAction.Load) },
+          errorMessage = state.error?.message ?: "Unknown error",
+        )
+      }
 
-  val products = state.products.ifEmpty {
-    EmptyProducts(modifier = modifier)
-    return
+      state.products.isEmpty() -> {
+        EmptyProducts()
+      }
+
+      else -> {
+        ProductItemsList(
+          products = state.products,
+          pullRefreshState = rememberPullRefreshState(
+            refreshing = state.isRefreshing,
+            onRefresh = { viewModel.dispatch(ProductsAction.Refresh) },
+          ),
+          isRefreshing = state.isRefreshing,
+          lazyListState = lazyListState,
+          onItemClick = { navigateToProductDetail(it.id) },
+        )
+      }
+    }
   }
-  ProductItemsList(
-    modifier = modifier,
-    products = products,
-    pullRefreshState = rememberPullRefreshState(
-      refreshing = state.isRefreshing,
-      onRefresh = { viewModel.dispatch(ProductsAction.Refresh) },
-    ),
-    isRefreshing = state.isRefreshing,
-    lazyListState = lazyListState,
-    onItemClick = { navigateToProductDetail(it.id) },
-  )
 }
