@@ -477,10 +477,11 @@
   make sure <code>Dispatchers.Main</code> available).</li>
 </ul>
 <blockquote>
-<p>[!NOTE]<br />
-If you are targeting <code>Desktop</code> and not using <code>JetBrains Compose Multiplatform</code>, you should provide the dependency <code>org.jetbrains.kotlinx:kotlinx-coroutines-swing</code> <strong>or</strong> <code>org.jetbrains.kotlinx:kotlinx-coroutines-javafx</code>,
-the <code>ViewModel.viewModelScope</code> depends on <code>Dispatchers.Main</code> provided by this library on Desktop.</p>
-<p>If you are using <code>JetBrains Compose Multiplatform</code> and targeting <code>Desktop</code>, you should provide <code>org.jetbrains.kotlinx:kotlinx-coroutines-swing</code>.</p>
+<p>[!NOTE]
+If you are targeting <code>Desktop</code> and:
+  - not using <code>JetBrains Compose Multiplatform</code>, you should provide the dependency <code>org.jetbrains.kotlinx:kotlinx-coroutines-swing</code> <strong>or</strong> <code>org.jetbrains.kotlinx:kotlinx-coroutines-javafx</code>.
+  - using <code>JetBrains Compose Multiplatform</code>, you should provide <code>org.jetbrains.kotlinx:kotlinx-coroutines-swing</code>.</p>
+<p>Because the <code>ViewModel.viewModelScope</code> depends on <code>Dispatchers.Main</code> provided by that libraries on Desktop.</p>
 </blockquote>
 <ul>
 <li><code>js</code> (<code>IR</code>).</li>

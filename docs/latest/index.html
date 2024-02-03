@@ -282,6 +282,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#kmp-viewmodel-and-navigation-for-jetbrains-compose-multiplatform-httpsgithubcomhoc081098solivagant" class="md-nav__link">
+    <span class="md-ellipsis">
+      kmp-viewmodel and Navigation for JetBrains Compose Multiplatform 👉 https://github.com/hoc081098/solivagant
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#author-petrus-nguyen-thai-hoc" class="md-nav__link">
     <span class="md-ellipsis">
       Author: Petrus Nguyễn Thái Học
@@ -373,6 +382,15 @@
   <a href="#4-kmp-viewmodel-compose-library" class="md-nav__link">
     <span class="md-ellipsis">
       4. kmp-viewmodel-compose library
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-kmp-viewmodel-and-navigation-for-jetbrains-compose-multiplatform" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. kmp-viewmodel and Navigation for JetBrains Compose Multiplatform.
     </span>
   </a>
   
@@ -609,6 +627,7 @@ Supports <strong>Compose Multiplatform</strong> Framework (Android, Desktop, Web
 It exposes state to the UI and encapsulates related business logic.
 Its principal advantage is that it caches state and persists it through configuration changes (on Android).</p>
 </blockquote>
+<h2 id="kmp-viewmodel-and-navigation-for-jetbrains-compose-multiplatform-httpsgithubcomhoc081098solivagant">kmp-viewmodel and Navigation for JetBrains Compose Multiplatform 👉 <a href="https://github.com/hoc081098/solivagant">https://github.com/hoc081098/solivagant</a><a class="headerlink" href="#kmp-viewmodel-and-navigation-for-jetbrains-compose-multiplatform-httpsgithubcomhoc081098solivagant" title="Permanent link">&para;</a></h2>
 <p><a href="https://search.maven.org/search?q=g:io.github.hoc081098%20kmp-viewmodel"><img alt="maven-central" src="https://img.shields.io/maven-central/v/io.github.hoc081098/kmp-viewmodel" /></a>
 <a href="https://codecov.io/gh/hoc081098/kmp-viewmodel"><img alt="codecov" src="https://codecov.io/gh/hoc081098/kmp-viewmodel/branch/master/graph/badge.svg?token=jBFg12osvP" /></a>
 <a href="https://github.com/hoc081098/kmp-viewmodel/actions/workflows/build.yml"><img alt="Build and publish snapshot" src="https://github.com/hoc081098/kmp-viewmodel/actions/workflows/build.yml/badge.svg" /></a>
@@ -641,9 +660,10 @@ Its principal advantage is that it caches state and persists it through configur
 </ul>
 <blockquote>
 <p>[!NOTE]
-If you are targeting <code>Desktop</code> and not using <code>JetBrains Compose Multiplatform</code>, you should provide the dependency <code>org.jetbrains.kotlinx:kotlinx-coroutines-swing</code> <strong>or</strong> <code>org.jetbrains.kotlinx:kotlinx-coroutines-javafx</code>,
-the <code>ViewModel.viewModelScope</code> depends on <code>Dispatchers.Main</code> provided by this library on Desktop.</p>
-<p>If you are using <code>JetBrains Compose Multiplatform</code> and targeting <code>Desktop</code>, you should provide <code>org.jetbrains.kotlinx:kotlinx-coroutines-swing</code>.</p>
+If you are targeting <code>Desktop</code> and:
+  - not using <code>JetBrains Compose Multiplatform</code>, you should provide the dependency <code>org.jetbrains.kotlinx:kotlinx-coroutines-swing</code> <strong>or</strong> <code>org.jetbrains.kotlinx:kotlinx-coroutines-javafx</code>.
+  - using <code>JetBrains Compose Multiplatform</code>, you should provide <code>org.jetbrains.kotlinx:kotlinx-coroutines-swing</code>.</p>
+<p>Because the <code>ViewModel.viewModelScope</code> depends on <code>Dispatchers.Main</code> provided by that libraries on Desktop.</p>
 </blockquote>
 <ul>
 <li><code>js</code> (<code>IR</code>).</li>
@@ -667,6 +687,8 @@ the <code>ViewModel.viewModelScope</code> depends on <code>Dispatchers.Main</cod
 <p>For more information check out the <a href="https://hoc081098.github.io/kmp-viewmodel/docs/latest/swift-interop/">docs</a>.</p>
 <h3 id="4-kmp-viewmodel-compose-library">4. <code>kmp-viewmodel-compose</code> library<a class="headerlink" href="#4-kmp-viewmodel-compose-library" title="Permanent link">&para;</a></h3>
 <p>For more information check out the <a href="https://hoc081098.github.io/kmp-viewmodel/docs/latest/viewmodel-compose/">docs</a>.</p>
+<h3 id="5-kmp-viewmodel-and-navigation-for-jetbrains-compose-multiplatform">5. <code>kmp-viewmodel</code> and Navigation for JetBrains Compose Multiplatform.<a class="headerlink" href="#5-kmp-viewmodel-and-navigation-for-jetbrains-compose-multiplatform" title="Permanent link">&para;</a></h3>
+<p>For more information check out <a href="https://github.com/hoc081098/solivagant">https://github.com/hoc081098/solivagant</a></p>
 <h2 id="sample">Sample<a class="headerlink" href="#sample" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://github.com/hoc081098/kmp-viewmodel/tree/master/sample">KMM sample</a>: shares business logic and <code>ViewHolder</code>s, using Jetpack Compose for Android and SwiftUi for iOS.</li>
