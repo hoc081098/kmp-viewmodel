@@ -12,13 +12,13 @@
         <meta name="author" content="Petrus Nguyễn Thái Học">
       
       
-        <link rel="canonical" href="https://hoc081098.github.io/kmp-viewmodel/docs/0.x/multiplatform/">
+        <link rel="canonical" href="https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-koin-compose/">
       
       
-        <link rel="prev" href="..">
+        <link rel="prev" href="../viewmodel-compose/">
       
       
-        <link rel="next" href="../viewmodel/">
+        <link rel="next" href="../swift-interop/">
       
       
       <link rel="icon" href="../images/logo.jpeg">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Multiplatform - KMP ViewModel</title>
+        <title>ViewModel Koin Compose - KMP ViewModel</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#multiplatform" class="md-skip">
+        <a href="#viewmodel-compose-multiplatform-and-koin" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Multiplatform
+              ViewModel Koin Compose
             
           </span>
         </div>
@@ -246,30 +246,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Multiplatform
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../multiplatform/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -278,35 +258,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#supported-targets" class="md-nav__link">
-    <span class="md-ellipsis">
-      Supported targets
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -395,10 +346,30 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../viewmodel-koin-compose/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    ViewModel Koin Compose
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -407,6 +378,53 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-add-dependency" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Add dependency
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-declare-viewmodel-in-a-koin-module-using-factory-or-factoryof" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Declare ViewModel in a Koin Module using factory or factoryOf
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-retrieve-viewmodel-in-composables-function-via-koinkmpviewmodel-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Retrieve ViewModel in @Composables function via koinKmpViewModel function
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -489,30 +507,108 @@
   
 
 
-<h1 id="multiplatform">Multiplatform<a class="headerlink" href="#multiplatform" title="Permanent link">&para;</a></h1>
-<h2 id="supported-targets">Supported targets<a class="headerlink" href="#supported-targets" title="Permanent link">&para;</a></h2>
+<h1 id="viewmodel-compose-multiplatform-and-koin">ViewModel Compose Multiplatform and Koin<a class="headerlink" href="#viewmodel-compose-multiplatform-and-koin" title="Permanent link">&para;</a></h1>
+<p>Koin integration with <strong>Kotlin Multiplatform ViewModel</strong> and <strong>Jetpack Compose Multiplatform</strong>.</p>
+<p><strong>Koin</strong> is the pragmatic <strong>Kotlin &amp; Kotlin Multiplatform Dependency Injection framework</strong>.
+For more information check out the <a href="https://insert-koin.io/">Koin documentation</a>.</p>
+<p>The <code>kmp-viewmodel-koin-compose</code> library the integration of <code>kmp-viewmodel-compose</code> and <code>Koin</code>,
+helps us to retrieve <code>ViewModel</code> in <code>@Composable</code> functions from the Koin DI container
+without manually dependency injection.</p>
+<h2 id="1-add-dependency">1. Add dependency<a class="headerlink" href="#1-add-dependency" title="Permanent link">&para;</a></h2>
 <ul>
-<li><code>android</code>.</li>
-<li><code>jvm</code> (must add <code>kotlinx-coroutines-swing</code>/<code>kotlinx-coroutines-javafx</code> to your dependencies to
-  make sure <code>Dispatchers.Main</code> available).</li>
+<li>Add <code>mavenCentral()</code> to <code>repositories</code> list in <code>build.gradle.kts</code>/<code>settings.gradle.kts</code>.</li>
 </ul>
+<div class="highlight"><pre><span></span><code><span class="c1">// settings.gradle.kts</span>
+<span class="n">dependencyResolutionManagement</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="o">[</span><span class="p">...</span><span class="o">]</span>
+<span class="w">  </span><span class="n">repositories</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">mavenCentral</span><span class="p">()</span>
+<span class="w">    </span><span class="o">[</span><span class="p">...</span><span class="o">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>Add dependency to <code>build.gradle.kts</code> of your shared module.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1">// build.gradle.kts</span>
+<span class="n">kotlin</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">sourceSets</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">commonMain</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">getting</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">api</span><span class="p">(</span><span class="s">&quot;io.github.hoc081098:kmp-viewmodel-koin-compose:0.6.1&quot;</span><span class="p">)</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<details>
+<summary>Snapshots of the development version are available in Sonatype's snapshots repository.</summary>
+<p>
+
+<div class="highlight"><pre><span></span><code><span class="c1">// settings.gradle.kts</span>
+<span class="n">dependencyResolutionManagement</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">repositoriesMode</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">RepositoriesMode</span><span class="p">.</span><span class="na">PREFER_PROJECT</span><span class="p">)</span>
+<span class="w">  </span><span class="n">repositories</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">maven</span><span class="p">(</span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;https://s01.oss.sonatype.org/content/repositories/snapshots/&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="o">[</span><span class="p">...</span><span class="o">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// build.gradle.kts</span>
+<span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">api</span><span class="p">(</span><span class="s">&quot;io.github.hoc081098:kmp-viewmodel-koin-compose:0.6.2-SNAPSHOT&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</p>
+</details>
+
+<h2 id="2-declare-viewmodel-in-a-koin-module-using-factory-or-factoryof">2. Declare <code>ViewModel</code> in a Koin Module using <code>factory</code> or <code>factoryOf</code><a class="headerlink" href="#2-declare-viewmodel-in-a-koin-module-using-factory-or-factoryof" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nn">com.hoc081098.kmp.viewmodel.ViewModel</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">org.koin.core.module.Module</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">org.koin.core.module.dsl.factoryOf</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">org.koin.dsl.module</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyRepository</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyViewModel</span><span class="p">(</span>
+<span class="w">  </span><span class="kd">val</span><span class="w"> </span><span class="nv">myRepository</span><span class="p">:</span><span class="w"> </span><span class="n">MyRepository</span><span class="p">,</span>
+<span class="w">  </span><span class="kd">val</span><span class="w"> </span><span class="nv">savedStateHandle</span><span class="p">:</span><span class="w"> </span><span class="n">SavedStateHandle</span><span class="p">,</span>
+<span class="w">  </span><span class="kd">val</span><span class="w"> </span><span class="nv">id</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span>
+<span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ViewModel</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="kd">val</span><span class="w"> </span><span class="nv">myModule</span><span class="p">:</span><span class="w"> </span><span class="n">Module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">module</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">factoryOf</span><span class="p">(</span><span class="o">::</span><span class="n">MyRepository</span><span class="p">)</span>
+<span class="w">  </span><span class="n">factoryOf</span><span class="p">(</span><span class="o">::</span><span class="n">MyViewModel</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
 <blockquote>
 <p>[!NOTE]
-If you are targeting <code>Desktop</code> and:
-  - not using <code>JetBrains Compose Multiplatform</code>, you should provide the dependency <code>org.jetbrains.kotlinx:kotlinx-coroutines-swing</code> <strong>or</strong> <code>org.jetbrains.kotlinx:kotlinx-coroutines-javafx</code>.
-  - using <code>JetBrains Compose Multiplatform</code>, you should provide <code>org.jetbrains.kotlinx:kotlinx-coroutines-swing</code>.</p>
-<p>Because the <code>ViewModel.viewModelScope</code> depends on <code>Dispatchers.Main</code> provided by that libraries on Desktop.</p>
+Make sure to include your module definition in the Koin DI container, for example:</p>
+<p><div class="highlight"><pre><span></span><code><span class="n">startKoin</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// others ...</span>
+<span class="w">  </span><span class="n">modules</span><span class="p">(</span><span class="n">myModule</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+For more information check out the <a href="https://insert-koin.io/docs/reference/koin-core/start-koin#the-startkoin-function">Start Koin documentation</a>.</p>
 </blockquote>
-<ul>
-<li><code>js</code> (<code>IR</code>).</li>
-<li><code>Darwin</code> targets:<ul>
-<li><code>iosArm64</code>, <code>iosX64</code>, <code>iosSimulatorArm64</code>.</li>
-<li><code>watchosArm32</code>, <code>watchosArm64</code>, <code>watchosX64</code>, <code>watchosSimulatorArm64</code>.</li>
-<li><code>tvosX64</code>, <code>tvosSimulatorArm64</code>, <code>tvosArm64</code>.</li>
-<li><code>macosX64</code>, <code>macosArm64</code>.</li>
-</ul>
-</li>
-</ul>
+<h2 id="3-retrieve-viewmodel-in-composables-function-via-koinkmpviewmodel-function">3. Retrieve <code>ViewModel</code> in <code>@Composable</code>s function via <code>koinKmpViewModel</code> function<a class="headerlink" href="#3-retrieve-viewmodel-in-composables-function-via-koinkmpviewmodel-function" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nn">org.koin.core.parameter.parametersOf</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">com.hoc081098.kmp.viewmodel.koin.compose.koinKmpViewModel</span>
+
+<span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">MyScreen</span><span class="p">(</span>
+<span class="w">  </span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span>
+<span class="w">  </span><span class="n">viewModel</span><span class="p">:</span><span class="w"> </span><span class="n">MyViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">koinKmpViewModel</span><span class="p">(</span>
+<span class="w">    </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;MyViewModel-</span><span class="si">$</span><span class="n">id</span><span class="s">&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">parameters</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">parametersOf</span><span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div>
 
 
 
