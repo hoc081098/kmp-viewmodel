@@ -135,3 +135,7 @@ private fun <T : Route> NavEntryContent(
 
 > Full example is available at:
 > https://github.com/hoc081098/kmp-viewmodel/blob/892cbe109fe623c57d3769b830ffda198159aee4/standalone-sample/kmpviewmodel_compose_sample/common/src/commonMain/kotlin/com/hoc081098/common/navigation/NavHost.kt#L123
+
+## 5. Navigation for Compose Multiplatform
+
+Check out https://github.com/hoc081098/solivagant
