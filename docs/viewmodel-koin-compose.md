@@ -32,7 +32,7 @@ kotlin {
   sourceSets {
     val commonMain by getting {
       dependencies {
-        api("io.github.hoc081098:kmp-viewmodel-koin-compose:0.6.1")
+        implementation("io.github.hoc081098:kmp-viewmodel-koin-compose:0.6.1")
       }
     }
   }
