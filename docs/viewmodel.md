@@ -1,4 +1,4 @@
-# Get started
+# ViewModel
 
 ## 1. Add dependency
 

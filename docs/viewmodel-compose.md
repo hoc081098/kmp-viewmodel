@@ -1,4 +1,4 @@
-# Get started
+# ViewModel Compose Multiplatform
 
 ## 1. Add dependency
 

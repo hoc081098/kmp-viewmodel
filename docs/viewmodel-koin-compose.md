@@ -1,4 +1,4 @@
-# Get started
+# ViewModel Compose Multiplatform and Koin
 
 **Koin** is the pragmatic **Kotlin & Kotlin Multiplatform Dependency Injection framework**.
 For more information check out the [Koin documentation](https://insert-koin.io/).
