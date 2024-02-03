@@ -111,7 +111,7 @@ For more information check out https://github.com/hoc081098/solivagant
 
 ```license
 MIT License
-Copyright (c) 2023 Petrus Nguyễn Thái Học
+Copyright (c) 2023-2024 Petrus Nguyễn Thái Học
 ```
 
 [badge-android]: http://img.shields.io/badge/android-6EDB8D.svg?style=flat

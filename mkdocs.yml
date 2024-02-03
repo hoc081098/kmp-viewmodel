@@ -7,7 +7,7 @@ site_author: Petrus Nguyễn Thái Học
 remote_branch: gh-pages
 edit_uri: edit/master/docs/
 
-copyright: 'Copyright &copy; 2023 Petrus Nguyễn Thái Học.'
+copyright: 'Copyright &copy; 2023-2024 Petrus Nguyễn Thái Học.'
 
 theme:
   name: 'material'
@@ -49,6 +49,7 @@ nav:
   - 'Safe SavedStateHandle': viewmodel-savedstate-safe.md
   - 'ViewModel Compose': viewmodel-compose.md
   - 'ViewModel Koin Compose': viewmodel-koin-compose.md
+  - 'ViewModel and Compose Navigation': viewmodel-compose-navigation.md
   - 'Swift Interop': swift-interop.md
   - 'Change Log': changelog.md
   - 'API': API
