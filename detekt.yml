@@ -2,10 +2,10 @@ build:
   maxIssues: 0
   excludeCorrectable: false
   weights:
-    # complexity: 2
-    # LongParameterList: 1
-    # style: 1
-    # comments: 1
+  # complexity: 2
+  # LongParameterList: 1
+  # style: 1
+  # comments: 1
 
 config:
   validation: true
@@ -34,11 +34,11 @@ processors:
 console-reports:
   active: true
   exclude:
-     - 'ProjectStatisticsReport'
-     - 'ComplexityReport'
-     - 'NotificationReport'
-     - 'FindingsReport'
-     - 'FileBasedFindingsReport'
+    - 'ProjectStatisticsReport'
+    - 'ComplexityReport'
+    - 'NotificationReport'
+    - 'FindingsReport'
+    - 'FileBasedFindingsReport'
   #  - 'LiteFindingsReport'
 
 output-reports:
@@ -66,7 +66,7 @@ comments:
     endOfSentenceFormat: '([.?!][ \t\n\r\f<])|([.?!:]$)'
   KDocReferencesNonPublicProperty:
     active: false
-    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
+    excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
   OutdatedDocumentation:
     active: false
     matchTypeParameters: true
@@ -74,7 +74,7 @@ comments:
     allowParamOnConstructorProperties: false
   UndocumentedPublicClass:
     active: false
-    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
+    excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
     searchInNestedClass: true
     searchInInnerClass: true
     searchInInnerObject: true
@@ -82,11 +82,11 @@ comments:
     searchInProtectedClass: false
   UndocumentedPublicFunction:
     active: false
-    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
+    excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
     searchProtectedFunction: false
   UndocumentedPublicProperty:
     active: false
-    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
+    excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
     searchProtectedProperty: false
 
 complexity:
@@ -121,7 +121,7 @@ complexity:
       - 'with'
   LabeledExpression:
     active: false
-    ignoredLabels: []
+    ignoredLabels: [ ]
   LargeClass:
     active: true
     threshold: 600
@@ -132,9 +132,9 @@ complexity:
     active: true
     functionThreshold: 6
     constructorThreshold: 7
-    ignoreDefaultParameters: false
+    ignoreDefaultParameters: true
     ignoreDataClasses: true
-    ignoreAnnotatedParameter: []
+    ignoreAnnotatedParameter: [ ]
   MethodOverloading:
     active: false
     threshold: 6
@@ -158,14 +158,14 @@ complexity:
     active: false
   StringLiteralDuplication:
     active: false
-    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
+    excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
     threshold: 3
     ignoreAnnotation: true
     excludeStringsWithLessThan5Characters: true
     ignoreStringsRegex: '$^'
   TooManyFunctions:
     active: true
-    excludes: ['**/test/**', '**/*Test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
+    excludes: [ '**/test/**', '**/*Test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
     thresholdInFiles: 11
     thresholdInClasses: 11
     thresholdInInterfaces: 11
@@ -240,7 +240,7 @@ exceptions:
       - 'toString'
   InstanceOfCheckForException:
     active: true
-    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
+    excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
   NotImplementedDeclaration:
     active: false
   ObjectExtendsThrowable:
@@ -266,7 +266,7 @@ exceptions:
     active: false
   ThrowingExceptionsWithoutMessageOrCause:
     active: true
-    excludes: ['**/test/**', '**/*Test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
+    excludes: [ '**/test/**', '**/*Test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
     exceptions:
       - 'ArrayIndexOutOfBoundsException'
       - 'Exception'
@@ -281,7 +281,7 @@ exceptions:
     active: true
   TooGenericExceptionCaught:
     active: true
-    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
+    excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
     exceptionNames:
       - 'ArrayIndexOutOfBoundsException'
       - 'Error'
@@ -319,7 +319,7 @@ naming:
     enumEntryPattern: '[A-Z][_a-zA-Z0-9]*'
   ForbiddenClassName:
     active: false
-    forbiddenName: []
+    forbiddenName: [ ]
   FunctionMaxLength:
     active: false
     maximumFunctionNameLength: 30
@@ -334,6 +334,8 @@ naming:
     ignoreAnnotated:
       - 'Composable'
       - 'androidx.compose.runtime.Composable'
+      - 'Preview'
+      - 'androidx.compose.ui.tooling.preview.Preview'
   FunctionParameterNaming:
     active: true
     parameterPattern: '[a-z][A-Za-z0-9]*'
@@ -389,10 +391,10 @@ performance:
     threshold: 3
   ForEachOnRange:
     active: true
-    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
+    excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
   SpreadOperator:
     active: true
-    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
+    excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
   UnnecessaryPartOfBinaryExpression:
     active: false
   UnnecessaryTemporaryInstantiation:
@@ -445,7 +447,7 @@ potential-bugs:
       - 'kotlin.sequences.Sequence'
       - 'kotlinx.coroutines.flow.*Flow'
       - 'java.util.stream.*Stream'
-    ignoreFunctionCall: []
+    ignoreFunctionCall: [ ]
   ImplicitDefaultLocale:
     active: true
   ImplicitUnitReturnType:
@@ -459,13 +461,13 @@ potential-bugs:
     active: true
   LateinitUsage:
     active: false
-    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
+    excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
     ignoreOnClassesPattern: ''
   MapGetWithNotNullAssertionOperator:
     active: true
   MissingPackageDeclaration:
     active: false
-    excludes: ['**/*.kts']
+    excludes: [ '**/*.kts' ]
   NullCheckOnMutableProperty:
     active: false
   NullableToStringCall:
@@ -484,7 +486,7 @@ potential-bugs:
     active: true
   UnsafeCallOnNullableType:
     active: true
-    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
+    excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
   UnsafeCast:
     active: true
   UnusedUnaryOperator:
@@ -531,7 +533,7 @@ style:
     active: false
   ForbiddenImport:
     active: false
-    imports: []
+    imports: [ ]
     forbiddenPatterns: ''
   ForbiddenMethodCall:
     active: false
@@ -542,7 +544,7 @@ style:
         value: 'kotlin.io.println'
   ForbiddenSuppress:
     active: false
-    rules: []
+    rules: [ ]
   ForbiddenVoid:
     active: true
     ignoreOverridden: false
@@ -551,20 +553,20 @@ style:
     active: true
     ignoreOverridableFunction: true
     ignoreActualFunction: true
-    excludedFunctions: []
+    excludedFunctions: [ ]
   LoopWithTooManyJumpStatements:
     active: true
     maxJumpCount: 1
   MagicNumber:
     active: true
-    excludes: ['**/test/**', '**/*Test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**', '**/*.kts']
+    excludes: [ '**/test/**', '**/*Test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**', '**/*.kts' ]
     ignoreNumbers:
       - '-1'
       - '0'
       - '1'
       - '2'
     ignoreHashCodeFunction: true
-    ignorePropertyDeclaration: false
+    ignorePropertyDeclaration: true
     ignoreLocalVariableDeclaration: false
     ignoreConstantDeclaration: true
     ignoreCompanionObjectPropertyDeclaration: true
@@ -573,6 +575,7 @@ style:
     ignoreEnums: false
     ignoreRanges: false
     ignoreExtensionFunctions: true
+    ignoreAnnotated: [ 'Preview', 'androidx.compose.ui.tooling.preview.Preview' ]
   MandatoryBracesLoops:
     active: false
   MaxChainedCallsOnSameLine:
@@ -674,6 +677,7 @@ style:
   UnusedPrivateMember:
     active: true
     allowedNames: '(_|ignored|expected|serialVersionUID)'
+    ignoreAnnotated: [ 'Preview', 'androidx.compose.ui.tooling.preview.Preview' ]
   UseAnyOrNoneInsteadOfFind:
     active: true
   UseArrayLiteralsInAnnotations:
@@ -714,56 +718,90 @@ style:
       - 'java.util.*'
 
 Compose:
+  ComposableAnnotationNaming:
+    active: true
+  ComposableNaming:
+    active: true
+    # -- You can optionally disable the checks in this rule for regex matches against the composable name (e.g. molecule presenters)
+    # allowedComposableFunctionNames: .*Presenter,.*MoleculePresenter
+  ComposableParamOrder:
+    active: true
+    # -- You can optionally have a list of types to be treated as lambdas (e.g. typedefs or fun interfaces not picked up automatically)
+    # treatAsLambda: MyLambdaType
   CompositionLocalAllowlist:
     active: true
-    # You can optionally define a list of CompositionLocals that are allowed here
+    # -- You can optionally define a list of CompositionLocals that are allowed here
     allowedCompositionLocals: LocalViewModelStoreOwner
+  CompositionLocalNaming:
+    active: true
   ContentEmitterReturningValues:
     active: true
-    # You can optionally add your own composables here
+    # -- You can optionally add your own composables here
     # contentEmitters: MyComposable,MyOtherComposable
   DefaultsVisibility:
     active: true
+  LambdaParameterInRestartableEffect:
+    active: true
+    # -- You can optionally have a list of types to be treated as lambdas (e.g. typedefs or fun interfaces not picked up automatically)
+    # treatAsLambda: MyLambdaType
+  ModifierClickableOrder:
+    active: true
+    # -- You can optionally add your own Modifier types
+    # customModifiers: BananaModifier,PotatoModifier
   ModifierComposable:
     active: true
+    # -- You can optionally add your own Modifier types
+    # customModifiers: BananaModifier,PotatoModifier
   ModifierMissing:
     active: true
-    # You can optionally control the visibility of which composables to check for here
-    # Possible values are: `only_public`, `public_and_internal` and `all` (default is `only_public`)
+    # -- You can optionally control the visibility of which composables to check for here
+    # -- Possible values are: `only_public`, `public_and_internal` and `all` (default is `only_public`)
     # checkModifiersForVisibility: only_public
+    # -- You can optionally add your own Modifier types
+    # customModifiers: BananaModifier,PotatoModifier
   ModifierNaming:
     active: true
+    # -- You can optionally add your own Modifier types
+    # customModifiers: BananaModifier,PotatoModifier
   ModifierNotUsedAtRoot:
     active: true
-    # You can optionally add your own composables here
+    # -- You can optionally add your own composables here
     # contentEmitters: MyComposable,MyOtherComposable
+    # -- You can optionally add your own Modifier types
+    # customModifiers: BananaModifier,PotatoModifier
   ModifierReused:
     active: true
+    # -- You can optionally add your own Modifier types
+    # customModifiers: BananaModifier,PotatoModifier
   ModifierWithoutDefault:
     active: true
   MultipleEmitters:
     active: true
-    # You can optionally add your own composables here
+    # -- You can optionally add your own composables here that will count as content emitters
     # contentEmitters: MyComposable,MyOtherComposable
+    # -- You can add composables here that you don't want to count as content emitters (e.g. custom dialogs or modals)
+    # contentEmittersDenylist: MyNonEmitterComposable
   MutableParams:
     active: true
-  ComposableNaming:
+  MutableStateParam:
     active: true
-    # You can optionally disable the checks in this rule for regex matches against the composable name (e.g. molecule presenters)
-    # allowedComposableFunctionNames: .*Presenter,.*MoleculePresenter
-  ComposableParamOrder:
-    active: true
-  PreviewNaming:
+  PreviewAnnotationNaming:
     active: true
   PreviewPublic:
     active: true
   RememberMissing:
     active: true
+  RememberContentMissing:
+    active: true
   UnstableCollections:
     active: true
   ViewModelForwarding:
     active: true
+    # -- You can optionally use this rule on things other than types ending in "ViewModel" or "Presenter" (which are the defaults). You can add your own via a regex here:
+    # allowedStateHolderNames: .*ViewModel,.*Presenter
+    # -- You can optionally add an allowlist for Composable names that won't be affected by this rule
+    # allowedForwarding: .*Content,.*FancyStuff
   ViewModelInjection:
     active: true
-    # You can optionally add your own ViewModel factories here
-    viewModelFactories: hiltViewModel, koinViewModel, kmpViewModel
+    # -- You can optionally add your own ViewModel factories here
+    viewModelFactories: hiltViewModel,potatoViewModel,koinViewModel,kmpViewModel,koinKmpViewModel

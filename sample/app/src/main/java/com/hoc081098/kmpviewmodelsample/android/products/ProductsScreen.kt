@@ -150,6 +150,7 @@ private fun ListContentPreview(
   }
 }
 
+@Suppress("MagicNumber")
 private class ListContentParameterProvider : CollectionPreviewParameterProvider<ProductsState>(
   run {
     val products = List(10) {

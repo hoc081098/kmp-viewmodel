@@ -138,6 +138,7 @@ private fun ListContentPreview(
   }
 }
 
+@Suppress("MagicNumber")
 private class ListContentParameterProvider : CollectionPreviewParameterProvider<SearchProductsState>(
   listOf(
     SearchProductsState(
