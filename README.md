@@ -89,9 +89,13 @@ For more information check out the [docs][3].
 
 For more information check out the [docs][4].
 
-### 5. `kmp-viewmodel` and Navigation for JetBrains Compose Multiplatform.
+### 5. `kmp-viewmodel-koin-compose` library
 
-For more information check out https://github.com/hoc081098/solivagant
+For more information check out the [docs][5].
+
+### 6. `kmp-viewmodel` and Navigation for JetBrains Compose Multiplatform.
+
+For more information check out https://github.com/hoc081098/solivagant library.
 
 ## Sample
 
@@ -106,6 +110,7 @@ For more information check out https://github.com/hoc081098/solivagant
 - [x] add extensions for `Flow`/`StateFlow`, to use the ViewModel easily on `ios`/`macOS`/`tvOS`/`watchOS` platforms
   (since [0.3.0](https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.3.0)).
 - [x] support `Compose Multiplatform Framework` (since [0.5.0](https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.5.0)).
+- [ ] support Koin integration with ViewModel and JetBrains Compose Multiplatform.
 
 ## License
 
@@ -135,3 +140,4 @@ Copyright (c) 2023-2024 Petrus Nguyễn Thái Học
 [2]: https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-savedstate/
 [3]: https://hoc081098.github.io/kmp-viewmodel/docs/0.x/swift-interop/
 [4]: https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-compose/
+[5]: https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-koin-compose/
