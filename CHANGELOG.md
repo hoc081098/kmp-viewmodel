@@ -2,6 +2,113 @@
 
 ## [Unreleased] - TBD
 
+## [0.6.2] - Feb 5, 2024
+
+### Update dependencies
+
+- Updated to [Kotlin `1.9.22`](https://github.com/JetBrains/kotlin/releases/tag/v1.9.22).
+- [JetBrains Compose Multiplatform `1.5.12`](https://github.com/JetBrains/compose-multiplatform/releases/tag/v1.5.12).
+- [Touchlab Stately `2.0.6`](https://github.com/touchlab/Stately/releases/tag/2.0.6).
+
+### Added `kmp-viewmodel-koin` and `kmp-viewmodel-koin-compose` artifacts
+
+- For more information check out the [docs/0.x/viewmodel-koin-compose](https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-koin-compose/)
+
+- The Koin dependencies are used in `kmp-viewmodel-koin-compose`:
+  - `io.insert-koin:koin-core:3.5.3`.
+  - `io.insert-koin:koin-compose:1.1.2`.
+
+- **New** The `kmp-viewmodel-koin` artifact provides the integration of `kmp-viewmodel`, `kmp-viewmodel-compose` and `Koin`,
+  helps us to retrieve `ViewModel` from the Koin DI container without manually dependency injection.
+
+  ```kotlin
+  class MyRepository
+
+  class MyViewModel(
+    val myRepository: MyRepository,
+    val savedStateHandle: SavedStateHandle,
+    val id: Int,
+  ) : ViewModel() {
+    // ...
+  }
+
+  val myModule: Module = module {
+    factoryOf(::MyRepository)
+    factoryOf(::MyViewModel)
+  }
+
+  @Composable
+  fun MyScreen(
+    id: Int,
+    viewModel: MyViewModel = koinKmpViewModel(
+      key = "MyViewModel-$id",
+      parameters = { parametersOf(id) }
+    )
+  ) {
+    // ...
+  }
+  ```
+
+### Added type-safe API for `SavedStateHandle`
+
+- For more information check out the [docs/0.x/viewmodel-savedstate-safe](https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-savedstate-safe/)
+
+- **New** The `kmp-viewmodel-savedstate` artifact provides the type-safe API
+  that allows you to access `SavedStateHandle` in a type-safe way.
+
+  ```kotlin
+  private val searchTermKey: NonNullSavedStateHandleKey<String> = NonNullSavedStateHandleKey.string(
+    key = "search_term",
+    defaultValue = ""
+  )
+
+  // Use `SavedStateHandle.safe` extension function to access `SavedStateHandle` in a type-safe way.
+  savedStateHandle.safe { it[searchTermKey] = searchTerm }
+  savedStateHandle.safe { it.getStateFlow(searchTermKey) }
+
+  // Or use `SavedStateHandle.safe` extension property to access `SavedStateHandle` in a type-safe way.
+  savedStateHandle.safe[searchTermKey] = searchTerm
+  savedStateHandle.safe.getStateFlow(searchTermKey)
+  ```
+
+### `kmp-viewmodel-compose` artifact
+
+-  **New** Add `rememberViewModelFactory`s to remember the `ViewModelFactory`s in `@Composable` functions.
+  They accept `builder: @DisallowComposableCalls CreationExtras.() -> VM`s.
+
+  ```kotlin
+  class MyViewModel(savedStateHandle: SavedStateHandle): ViewModel()
+
+  @Composable
+  fun MyScreen() {
+    val factory: ViewModelFactory<MyViewModel> = rememberViewModelFactory {
+      MyViewModel(savedStateHandle = createSavedStateHandle())
+    }
+    val viewModel: MyViewModel = kmpViewModel(factory = factory)
+    // ...
+  }
+  ```
+
+- **New** Add a new `kmpViewModel` overload that accepts `factory: @DisallowComposableCalls CreationExtras.() -> VM`
+  (Previously, it only accepts `factory: ViewModelFactory<VM>`).
+
+  ```kotlin
+  class MyViewModel(savedStateHandle: SavedStateHandle): ViewModel()
+
+  @Composable
+  fun MyScreen(
+    viewModel: MyViewModel = kmpViewModel {
+      MyViewModel(savedStateHandle = createSavedStateHandle())
+    }
+  ) {
+    // ...
+  }
+  ```
+
+> The above `kmpViewModel` uses `rememberViewModelFactory` internally.
+> Use `rememberViewModelFactory { ... }` and `kmpViewModel(factory = factory)`
+> is the same as using `kmpViewModel { ... }`.
+
 ## [0.6.1] - Dec 10, 2023
 
 ### viewmodel
@@ -249,7 +356,9 @@ Share everything including data, domain, presentation, and UI.
 
 - Initial release.
 
-[Unreleased]: https://github.com/hoc081098/kmp-viewmodel/compare/0.6.1...HEAD
+[Unreleased]: https://github.com/hoc081098/kmp-viewmodel/compare/0.6.2...HEAD
+
+[0.6.2]: https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.6.2
 
 [0.6.1]: https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.6.1
 

@@ -1,11 +1,13 @@
 # ViewModel Compose Multiplatform and Koin
 
+[![maven-central](https://img.shields.io/maven-central/v/io.github.hoc081098/kmp-viewmodel-koin-compose)](https://search.maven.org/search?q=g:io.github.hoc081098%20kmp-viewmodel-koin-compose)
+
 Koin integration with **Kotlin Multiplatform ViewModel** and **Jetpack Compose Multiplatform**.
 
 **Koin** is the pragmatic **Kotlin & Kotlin Multiplatform Dependency Injection framework**.
 For more information check out the [Koin documentation](https://insert-koin.io/).
 
-The `kmp-viewmodel-koin-compose` library provides the integration of `kmp-viewmodel-compose` and `Koin`,
+The `kmp-viewmodel-koin-compose` artifact provides the integration of `kmp-viewmodel-compose` and `Koin`,
 helps us to retrieve `ViewModel` in `@Composable` functions from the Koin DI container
 without manually dependency injection.
 
@@ -33,6 +35,10 @@ kotlin {
     val commonMain by getting {
       dependencies {
         implementation("io.github.hoc081098:kmp-viewmodel-koin-compose:0.6.1")
+
+        // NOTE: You can add `koin-core` dependency to your project to specify the version of Koin.
+        // For more information check out the [Koin KMP documentation](https://insert-koin.io/docs/reference/koin-mp/kmp#gradle-dependencies).
+        implementation("io.insert-koin:koin-core:${koinVersion}")
       }
     }
   }
