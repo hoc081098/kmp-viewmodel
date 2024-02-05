@@ -10,7 +10,7 @@
 - [JetBrains Compose Multiplatform `1.5.12`](https://github.com/JetBrains/compose-multiplatform/releases/tag/v1.5.12).
 - [Touchlab Stately `2.0.6`](https://github.com/touchlab/Stately/releases/tag/2.0.6).
 
-### **New** Added `kmp-viewmodel-koin` and `kmp-viewmodel-koin-compose` artifacts
+### Added `kmp-viewmodel-koin` and `kmp-viewmodel-koin-compose` artifacts
 
 - For more information check out the [docs/0.x/viewmodel-koin-compose](https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-koin-compose/)
 
