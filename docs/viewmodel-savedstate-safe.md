@@ -1,5 +1,7 @@
 # Type-safe access to SavedStateHandle
 
+[![maven-central](https://img.shields.io/maven-central/v/io.github.hoc081098/kmp-viewmodel-savedstate)](https://search.maven.org/search?q=g:io.github.hoc081098%20kmp-viewmodel-savedstate)
+
 - The `kmp-viewmodel-savedstate` artifact provides the type-safe API
   that allows you to access `SavedStateHandle` in a type-safe way.
 

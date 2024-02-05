@@ -1,6 +1,8 @@
 # ViewModel SavedState
 
-This library brings:
+[![maven-central](https://img.shields.io/maven-central/v/io.github.hoc081098/kmp-viewmodel-savedstate)](https://search.maven.org/search?q=g:io.github.hoc081098%20kmp-viewmodel-savedstate)
+
+This artifact brings:
 
 - [Android Parcelable](https://developer.android.com/reference/android/os/Parcelable) interface.
 - The `@Parcelize` annotation

@@ -1,5 +1,7 @@
 # ViewModel Compose Multiplatform
 
+[![maven-central](https://img.shields.io/maven-central/v/io.github.hoc081098/kmp-viewmodel-compose)](https://search.maven.org/search?q=g:io.github.hoc081098%20kmp-viewmodel-compose)
+
 ## 1. Add dependency
 
 - Add `mavenCentral()` to `repositories` list in `build.gradle.kts`/`settings.gradle.kts`.
