@@ -6,11 +6,11 @@
 
 ### Update dependencies
 
-- Supports for [Kotlin `1.9.22`](https://github.com/JetBrains/kotlin/releases/tag/v1.9.22).
+- Updated to [Kotlin `1.9.22`](https://github.com/JetBrains/kotlin/releases/tag/v1.9.22).
 - [JetBrains Compose Multiplatform `1.5.12`](https://github.com/JetBrains/compose-multiplatform/releases/tag/v1.5.12).
 - [Touchlab Stately `2.0.6`](https://github.com/touchlab/Stately/releases/tag/2.0.6).
 
-### Added `kmp-viewmodel-koin` and `kmp-viewmodel-koin-compose`
+### **New** Added `kmp-viewmodel-koin` and `kmp-viewmodel-koin-compose` artifacts
 
 - For more information check out the [docs/0.x/viewmodel-koin-compose](https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-koin-compose/)
 
@@ -18,7 +18,7 @@
   - `io.insert-koin:koin-core:3.5.3`.
   - `io.insert-koin:koin-compose:1.1.2`.
 
-- The `kmp-viewmodel-koin` library provides the integration of `kmp-viewmodel`, `kmp-viewmodel-compose` and `Koin`,
+- **New** The `kmp-viewmodel-koin` artifact provides the integration of `kmp-viewmodel`, `kmp-viewmodel-compose` and `Koin`,
   helps us to retrieve `ViewModel` from the Koin DI container without manually dependency injection.
 
   ```kotlin
@@ -53,7 +53,7 @@
 
 - For more information check out the [docs/0.x/viewmodel-savedstate-safe](https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-savedstate-safe/)
 
-- The `kmp-viewmodel-savedstate` library provides the type-safe API
+- **New** The `kmp-viewmodel-savedstate` artifact provides the type-safe API
   that allows you to access `SavedStateHandle` in a type-safe way.
 
   ```kotlin
@@ -71,9 +71,9 @@
   savedStateHandle.safe.getStateFlow(searchTermKey)
   ```
 
-### `kmp-viewmodel-compose`
+### `kmp-viewmodel-compose` artifact
 
-- Add `rememberViewModelFactory`s to remember the `ViewModelFactory`s in `@Composable` functions.
+-  **New** Add `rememberViewModelFactory`s to remember the `ViewModelFactory`s in `@Composable` functions.
   They accept `builder: @DisallowComposableCalls CreationExtras.() -> VM`s.
 
   ```kotlin
@@ -89,7 +89,7 @@
   }
   ```
 
-- Add a new `kmpViewModel` overload that accepts `factory: @DisallowComposableCalls CreationExtras.() -> VM`
+- **New** Add a new `kmpViewModel` overload that accepts `factory: @DisallowComposableCalls CreationExtras.() -> VM`
   (Previously, it only accepts `factory: ViewModelFactory<VM>`).
 
   ```kotlin

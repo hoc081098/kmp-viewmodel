@@ -1,6 +1,6 @@
 # Type-safe access to SavedStateHandle
 
-- Module `kmp-viewmodel-savedstate` provides the type-safe API
+- The `kmp-viewmodel-savedstate` artifact provides the type-safe API
   that allows you to access `SavedStateHandle` in a type-safe way.
 
 - All API are available on all platforms and are located in the `com.hoc081098.kmp.viewmodel.safe`
