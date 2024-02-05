@@ -2,6 +2,22 @@
 
 ## [Unreleased] - TBD
 
+## [0.6.2] - Feb 5, 2024
+
+### Update dependencies
+
+- Supports for [Kotlin `1.9.22`](https://github.com/JetBrains/kotlin/releases/tag/v1.9.22).
+- [JetBrains Compose Multiplatform `1.5.12`](https://github.com/JetBrains/compose-multiplatform/releases/tag/v1.5.12).
+- [Touchlab Stately `2.0.6`](https://github.com/touchlab/Stately/releases/tag/2.0.6).
+
+### Add `kmp-viewmodel-koin` and `kmp-viewmodel-koin-compose`
+
+https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-koin-compose/
+
+### Type-safe access to `SavedStateHandle`
+
+https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-savedstate-safe/
+
 ## [0.6.1] - Dec 10, 2023
 
 ### viewmodel
@@ -249,7 +265,9 @@ Share everything including data, domain, presentation, and UI.
 
 - Initial release.
 
-[Unreleased]: https://github.com/hoc081098/kmp-viewmodel/compare/0.6.1...HEAD
+[Unreleased]: https://github.com/hoc081098/kmp-viewmodel/compare/0.6.2...HEAD
+
+[0.6.2]: https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.6.2
 
 [0.6.1]: https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.6.1
 
