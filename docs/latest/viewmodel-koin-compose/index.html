@@ -528,10 +528,11 @@
 
 
 <h1 id="viewmodel-compose-multiplatform-and-koin">ViewModel Compose Multiplatform and Koin<a class="headerlink" href="#viewmodel-compose-multiplatform-and-koin" title="Permanent link">&para;</a></h1>
+<p><a href="https://search.maven.org/search?q=g:io.github.hoc081098%20kmp-viewmodel-koin-compose"><img alt="maven-central" src="https://img.shields.io/maven-central/v/io.github.hoc081098/kmp-viewmodel-koin-compose" /></a></p>
 <p>Koin integration with <strong>Kotlin Multiplatform ViewModel</strong> and <strong>Jetpack Compose Multiplatform</strong>.</p>
 <p><strong>Koin</strong> is the pragmatic <strong>Kotlin &amp; Kotlin Multiplatform Dependency Injection framework</strong>.
 For more information check out the <a href="https://insert-koin.io/">Koin documentation</a>.</p>
-<p>The <code>kmp-viewmodel-koin-compose</code> library provides the integration of <code>kmp-viewmodel-compose</code> and <code>Koin</code>,
+<p>The <code>kmp-viewmodel-koin-compose</code> artifact provides the integration of <code>kmp-viewmodel-compose</code> and <code>Koin</code>,
 helps us to retrieve <code>ViewModel</code> in <code>@Composable</code> functions from the Koin DI container
 without manually dependency injection.</p>
 <h2 id="1-add-dependency">1. Add dependency<a class="headerlink" href="#1-add-dependency" title="Permanent link">&para;</a></h2>
@@ -555,7 +556,11 @@ without manually dependency injection.</p>
 <span class="w">  </span><span class="n">sourceSets</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">commonMain</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">getting</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">api</span><span class="p">(</span><span class="s">&quot;io.github.hoc081098:kmp-viewmodel-koin-compose:0.6.1&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;io.github.hoc081098:kmp-viewmodel-koin-compose:0.6.2&quot;</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// NOTE: You can add `koin-core` dependency to your project to specify the version of Koin.</span>
+<span class="w">        </span><span class="c1">// For more information check out the [Koin KMP documentation](https://insert-koin.io/docs/reference/koin-mp/kmp#gradle-dependencies).</span>
+<span class="w">        </span><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;io.insert-koin:koin-core:</span><span class="si">${</span><span class="n">koinVersion</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
@@ -576,7 +581,7 @@ without manually dependency injection.</p>
 
 <span class="c1">// build.gradle.kts</span>
 <span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">api</span><span class="p">(</span><span class="s">&quot;io.github.hoc081098:kmp-viewmodel-koin-compose:0.6.2-SNAPSHOT&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="n">api</span><span class="p">(</span><span class="s">&quot;io.github.hoc081098:kmp-viewmodel-koin-compose:0.6.3-SNAPSHOT&quot;</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
 

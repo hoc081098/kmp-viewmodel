@@ -462,6 +462,57 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#062-feb-5-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.6.2 - Feb 5, 2024
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.6.2 - Feb 5, 2024">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#update-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update dependencies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#added-kmp-viewmodel-koin-and-kmp-viewmodel-koin-compose-artifacts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added kmp-viewmodel-koin and kmp-viewmodel-koin-compose artifacts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#added-type-safe-api-for-savedstatehandle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added type-safe API for SavedStateHandle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kmp-viewmodel-compose-artifact" class="md-nav__link">
+    <span class="md-ellipsis">
+      kmp-viewmodel-compose artifact
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#061-dec-10-2023" class="md-nav__link">
     <span class="md-ellipsis">
       0.6.1 - Dec 10, 2023
@@ -505,7 +556,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#update-dependencies" class="md-nav__link">
+  <a href="#update-dependencies_1" class="md-nav__link">
     <span class="md-ellipsis">
       Update dependencies
     </span>
@@ -547,7 +598,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#update-dependencies_1" class="md-nav__link">
+  <a href="#update-dependencies_2" class="md-nav__link">
     <span class="md-ellipsis">
       Update dependencies
     </span>
@@ -617,7 +668,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#update-dependencies_2" class="md-nav__link">
+  <a href="#update-dependencies_3" class="md-nav__link">
     <span class="md-ellipsis">
       Update dependencies
     </span>
@@ -808,7 +859,120 @@
 
 
 <h1 id="change-log">Change Log<a class="headerlink" href="#change-log" title="Permanent link">&para;</a></h1>
-<h2 id="unreleased-tbd"><a href="https://github.com/hoc081098/kmp-viewmodel/compare/0.6.1...HEAD">Unreleased</a> - TBD<a class="headerlink" href="#unreleased-tbd" title="Permanent link">&para;</a></h2>
+<h2 id="unreleased-tbd"><a href="https://github.com/hoc081098/kmp-viewmodel/compare/0.6.2...HEAD">Unreleased</a> - TBD<a class="headerlink" href="#unreleased-tbd" title="Permanent link">&para;</a></h2>
+<h2 id="062-feb-5-2024"><a href="https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.6.2">0.6.2</a> - Feb 5, 2024<a class="headerlink" href="#062-feb-5-2024" title="Permanent link">&para;</a></h2>
+<h3 id="update-dependencies">Update dependencies<a class="headerlink" href="#update-dependencies" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Updated to <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.9.22">Kotlin <code>1.9.22</code></a>.</li>
+<li><a href="https://github.com/JetBrains/compose-multiplatform/releases/tag/v1.5.12">JetBrains Compose Multiplatform <code>1.5.12</code></a>.</li>
+<li><a href="https://github.com/touchlab/Stately/releases/tag/2.0.6">Touchlab Stately <code>2.0.6</code></a>.</li>
+</ul>
+<h3 id="added-kmp-viewmodel-koin-and-kmp-viewmodel-koin-compose-artifacts">Added <code>kmp-viewmodel-koin</code> and <code>kmp-viewmodel-koin-compose</code> artifacts<a class="headerlink" href="#added-kmp-viewmodel-koin-and-kmp-viewmodel-koin-compose-artifacts" title="Permanent link">&para;</a></h3>
+<ul>
+<li>For more information check out the <a href="https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-koin-compose/">docs/0.x/viewmodel-koin-compose</a></li>
+</ul>
+<ul>
+<li>The Koin dependencies are used in <code>kmp-viewmodel-koin-compose</code>:<ul>
+<li><code>io.insert-koin:koin-core:3.5.3</code>.</li>
+<li><code>io.insert-koin:koin-compose:1.1.2</code>.</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<p><strong>New</strong> The <code>kmp-viewmodel-koin</code> artifact provides the integration of <code>kmp-viewmodel</code>, <code>kmp-viewmodel-compose</code> and <code>Koin</code>,
+  helps us to retrieve <code>ViewModel</code> from the Koin DI container without manually dependency injection.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">MyRepository</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyViewModel</span><span class="p">(</span>
+<span class="w">  </span><span class="kd">val</span><span class="w"> </span><span class="nv">myRepository</span><span class="p">:</span><span class="w"> </span><span class="n">MyRepository</span><span class="p">,</span>
+<span class="w">  </span><span class="kd">val</span><span class="w"> </span><span class="nv">savedStateHandle</span><span class="p">:</span><span class="w"> </span><span class="n">SavedStateHandle</span><span class="p">,</span>
+<span class="w">  </span><span class="kd">val</span><span class="w"> </span><span class="nv">id</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span>
+<span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ViewModel</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="kd">val</span><span class="w"> </span><span class="nv">myModule</span><span class="p">:</span><span class="w"> </span><span class="n">Module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">module</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">factoryOf</span><span class="p">(</span><span class="o">::</span><span class="n">MyRepository</span><span class="p">)</span>
+<span class="w">  </span><span class="n">factoryOf</span><span class="p">(</span><span class="o">::</span><span class="n">MyViewModel</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">MyScreen</span><span class="p">(</span>
+<span class="w">  </span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span>
+<span class="w">  </span><span class="n">viewModel</span><span class="p">:</span><span class="w"> </span><span class="n">MyViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">koinKmpViewModel</span><span class="p">(</span>
+<span class="w">    </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;MyViewModel-</span><span class="si">$</span><span class="n">id</span><span class="s">&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">parameters</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">parametersOf</span><span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+</ul>
+<h3 id="added-type-safe-api-for-savedstatehandle">Added type-safe API for <code>SavedStateHandle</code><a class="headerlink" href="#added-type-safe-api-for-savedstatehandle" title="Permanent link">&para;</a></h3>
+<ul>
+<li>For more information check out the <a href="https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-savedstate-safe/">docs/0.x/viewmodel-savedstate-safe</a></li>
+</ul>
+<ul>
+<li>
+<p><strong>New</strong> The <code>kmp-viewmodel-savedstate</code> artifact provides the type-safe API
+  that allows you to access <code>SavedStateHandle</code> in a type-safe way.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">searchTermKey</span><span class="p">:</span><span class="w"> </span><span class="n">NonNullSavedStateHandleKey</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NonNullSavedStateHandleKey</span><span class="p">.</span><span class="na">string</span><span class="p">(</span>
+<span class="w">  </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;search_term&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">defaultValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">// Use `SavedStateHandle.safe` extension function to access `SavedStateHandle` in a type-safe way.</span>
+<span class="n">savedStateHandle</span><span class="p">.</span><span class="na">safe</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="o">[</span><span class="n">searchTermKey</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">searchTerm</span><span class="w"> </span><span class="p">}</span>
+<span class="n">savedStateHandle</span><span class="p">.</span><span class="na">safe</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">getStateFlow</span><span class="p">(</span><span class="n">searchTermKey</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+
+<span class="c1">// Or use `SavedStateHandle.safe` extension property to access `SavedStateHandle` in a type-safe way.</span>
+<span class="n">savedStateHandle</span><span class="p">.</span><span class="na">safe</span><span class="o">[</span><span class="n">searchTermKey</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">searchTerm</span>
+<span class="n">savedStateHandle</span><span class="p">.</span><span class="na">safe</span><span class="p">.</span><span class="na">getStateFlow</span><span class="p">(</span><span class="n">searchTermKey</span><span class="p">)</span>
+</code></pre></div>
+</li>
+</ul>
+<h3 id="kmp-viewmodel-compose-artifact"><code>kmp-viewmodel-compose</code> artifact<a class="headerlink" href="#kmp-viewmodel-compose-artifact" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>New</strong> Add <code>rememberViewModelFactory</code>s to remember the <code>ViewModelFactory</code>s in <code>@Composable</code> functions.
+  They accept <code>builder: @DisallowComposableCalls CreationExtras.() -&gt; VM</code>s.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">MyViewModel</span><span class="p">(</span><span class="n">savedStateHandle</span><span class="p">:</span><span class="w"> </span><span class="n">SavedStateHandle</span><span class="p">):</span><span class="w"> </span><span class="n">ViewModel</span><span class="p">()</span>
+
+<span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">MyScreen</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">val</span><span class="w"> </span><span class="nv">factory</span><span class="p">:</span><span class="w"> </span><span class="n">ViewModelFactory</span><span class="o">&lt;</span><span class="n">MyViewModel</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rememberViewModelFactory</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">MyViewModel</span><span class="p">(</span><span class="n">savedStateHandle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">createSavedStateHandle</span><span class="p">())</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="kd">val</span><span class="w"> </span><span class="nv">viewModel</span><span class="p">:</span><span class="w"> </span><span class="n">MyViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">kmpViewModel</span><span class="p">(</span><span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">factory</span><span class="p">)</span>
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+</ul>
+<ul>
+<li>
+<p><strong>New</strong> Add a new <code>kmpViewModel</code> overload that accepts <code>factory: @DisallowComposableCalls CreationExtras.() -&gt; VM</code>
+  (Previously, it only accepts <code>factory: ViewModelFactory&lt;VM&gt;</code>).</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">MyViewModel</span><span class="p">(</span><span class="n">savedStateHandle</span><span class="p">:</span><span class="w"> </span><span class="n">SavedStateHandle</span><span class="p">):</span><span class="w"> </span><span class="n">ViewModel</span><span class="p">()</span>
+
+<span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">MyScreen</span><span class="p">(</span>
+<span class="w">  </span><span class="n">viewModel</span><span class="p">:</span><span class="w"> </span><span class="n">MyViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">kmpViewModel</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">MyViewModel</span><span class="p">(</span><span class="n">savedStateHandle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">createSavedStateHandle</span><span class="p">())</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+</ul>
+<blockquote>
+<p>The above <code>kmpViewModel</code> uses <code>rememberViewModelFactory</code> internally.
+Use <code>rememberViewModelFactory { ... }</code> and <code>kmpViewModel(factory = factory)</code>
+is the same as using <code>kmpViewModel { ... }</code>.</p>
+</blockquote>
 <h2 id="061-dec-10-2023"><a href="https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.6.1">0.6.1</a> - Dec 10, 2023<a class="headerlink" href="#061-dec-10-2023" title="Permanent link">&para;</a></h2>
 <h3 id="viewmodel">viewmodel<a class="headerlink" href="#viewmodel" title="Permanent link">&para;</a></h3>
 <ul>
@@ -821,7 +985,7 @@
 <li>Add <strong>NOTE</strong> about the <code>kotlinx-coroutines</code> dependency when targeting <code>Desktop</code> (aka. <code>jvm</code>).</li>
 </ul>
 <h2 id="060-dec-8-2023"><a href="https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.6.0">0.6.0</a> - Dec 8, 2023<a class="headerlink" href="#060-dec-8-2023" title="Permanent link">&para;</a></h2>
-<h3 id="update-dependencies">Update dependencies<a class="headerlink" href="#update-dependencies" title="Permanent link">&para;</a></h3>
+<h3 id="update-dependencies_1">Update dependencies<a class="headerlink" href="#update-dependencies_1" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Supports for <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.9.21">Kotlin <code>1.9.21</code></a>.</li>
 <li><a href="https://developer.android.com/jetpack/androidx/releases/lifecycle#2.6.2">AndroidX Lifecycle <code>2.6.2</code></a>.</li>
@@ -874,7 +1038,7 @@ So we have to use wrapper class instead.</p>
 </li>
 </ul>
 <h2 id="050-sep-27-2023"><a href="https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.5.0">0.5.0</a> - Sep 27, 2023<a class="headerlink" href="#050-sep-27-2023" title="Permanent link">&para;</a></h2>
-<h3 id="update-dependencies_1">Update dependencies<a class="headerlink" href="#update-dependencies_1" title="Permanent link">&para;</a></h3>
+<h3 id="update-dependencies_2">Update dependencies<a class="headerlink" href="#update-dependencies_2" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Kotlin <code>1.9.0</code>.</li>
 <li>AndroidX Lifecycle <code>2.6.1</code>.</li>
@@ -938,7 +1102,7 @@ Share everything including data, domain, presentation, and UI.</li>
 </ul>
 <h2 id="040-apr-7-2023"><a href="https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.4.0">0.4.0</a> - Apr 7, 2023<a class="headerlink" href="#040-apr-7-2023" title="Permanent link">&para;</a></h2>
 <h3 id="changed">Changed<a class="headerlink" href="#changed" title="Permanent link">&para;</a></h3>
-<h4 id="update-dependencies_2">Update dependencies<a class="headerlink" href="#update-dependencies_2" title="Permanent link">&para;</a></h4>
+<h4 id="update-dependencies_3">Update dependencies<a class="headerlink" href="#update-dependencies_3" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Kotlin <code>1.8.10</code>.</li>
 <li>Target <code>Java 11</code>.</li>
