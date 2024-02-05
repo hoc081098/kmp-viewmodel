@@ -22,7 +22,7 @@
       
       
       <link rel="icon" href="../images/logo.jpeg">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.1">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.3">
     
     
       
@@ -30,7 +30,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.45e1311d.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.50c56a3b.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#get-started" class="md-skip">
+        <a href="#viewmodel" class="md-skip">
           Skip to content
         </a>
       
@@ -409,11 +409,71 @@
   
   
     <li class="md-nav__item">
+      <a href="../viewmodel-savedstate-safe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Safe SavedStateHandle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../viewmodel-compose/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     ViewModel Compose
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../viewmodel-koin-compose/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ViewModel Koin Compose
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../viewmodel-compose-navigation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ViewModel and Compose Navigation
   </span>
   
 
@@ -500,7 +560,8 @@
   
 
 
-<h1 id="get-started">Get started<a class="headerlink" href="#get-started" title="Permanent link">&para;</a></h1>
+<h1 id="viewmodel">ViewModel<a class="headerlink" href="#viewmodel" title="Permanent link">&para;</a></h1>
+<p><a href="https://search.maven.org/search?q=g:io.github.hoc081098%20kmp-viewmodel"><img alt="maven-central" src="https://img.shields.io/maven-central/v/io.github.hoc081098/kmp-viewmodel" /></a></p>
 <h2 id="1-add-dependency">1. Add dependency<a class="headerlink" href="#1-add-dependency" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Add <code>mavenCentral()</code> to <code>repositories</code> list in <code>build.gradle.kts</code>/<code>settings.gradle.kts</code>.</li>
@@ -522,7 +583,7 @@
 <span class="w">  </span><span class="n">sourceSets</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">commonMain</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">getting</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">api</span><span class="p">(</span><span class="s">&quot;io.github.hoc081098:kmp-viewmodel:0.6.1&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="n">api</span><span class="p">(</span><span class="s">&quot;io.github.hoc081098:kmp-viewmodel:0.6.2&quot;</span><span class="p">)</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
@@ -537,7 +598,7 @@
 <span class="w">    </span><span class="o">[</span><span class="p">...</span><span class="o">]</span>
 <span class="w">    </span><span class="n">framework</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="n">baseName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;shared&quot;</span>
-<span class="w">      </span><span class="n">export</span><span class="p">(</span><span class="s">&quot;io.github.hoc081098:kmp-viewmodel:0.6.1&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// required to expose the classes to iOS.</span>
+<span class="w">      </span><span class="n">export</span><span class="p">(</span><span class="s">&quot;io.github.hoc081098:kmp-viewmodel:0.6.2&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// required to expose the classes to iOS.</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
@@ -550,7 +611,7 @@
 <span class="w">    </span><span class="n">binaries</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="n">framework</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">baseName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;shared&quot;</span>
-<span class="w">        </span><span class="n">export</span><span class="p">(</span><span class="s">&quot;io.github.hoc081098:kmp-viewmodel:0.6.1&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// required to expose the classes to iOS.</span>
+<span class="w">        </span><span class="n">export</span><span class="p">(</span><span class="s">&quot;io.github.hoc081098:kmp-viewmodel:0.6.2&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// required to expose the classes to iOS.</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
@@ -571,7 +632,7 @@
 
 <span class="c1">// build.gradle.kts</span>
 <span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">api</span><span class="p">(</span><span class="s">&quot;io.github.hoc081098:kmp-viewmodel:0.6.2-SNAPSHOT&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="n">api</span><span class="p">(</span><span class="s">&quot;io.github.hoc081098:kmp-viewmodel:0.6.3-SNAPSHOT&quot;</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -590,21 +651,19 @@
 <span class="p">}</span>
 </code></pre></div>
 <ul>
-<li>
-<p>The ViewModel has a <code>viewModelScope</code> which is a <code>CoroutineScope</code> that is cancelled when the
+<li>The ViewModel has a <code>viewModelScope</code> which is a <code>CoroutineScope</code> that is cancelled when the
   ViewModel
   is cleared. Once the ViewModel is cleared, all coroutines launched in this scope will be
-  cancelled.</p>
-</li>
-<li>
-<p><code>addCloseable</code> method is used to add <code>Closeable</code> that will be closed directly before <code>onCleared</code>
-  is called.</p>
-</li>
-<li>
-<p><code>onCleared</code> is called when the ViewModel is cleared, you can override this method to do some clean
+  cancelled.</li>
+</ul>
+<ul>
+<li><code>addCloseable</code> method is used to add <code>Closeable</code> that will be closed directly before <code>onCleared</code>
+  is called.</li>
+</ul>
+<ul>
+<li><code>onCleared</code> is called when the ViewModel is cleared, you can override this method to do some clean
   up work.
-  But it is recommended to use the <code>addCloseable</code> method instead of overriding <code>onCleared</code> method.</p>
-</li>
+  But it is recommended to use the <code>addCloseable</code> method instead of overriding <code>onCleared</code> method.</li>
 </ul>
 <h2 id="3-create-your-viewmodel-in-commonmain-source-set">3. Create your <code>ViewModel</code> in <code>commonMain</code> source set.<a class="headerlink" href="#3-create-your-viewmodel-in-commonmain-source-set" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nn">com.hoc081098.kmp.viewmodel.Closeable</span>
@@ -659,18 +718,16 @@
 </code></pre></div>
 <h3 id="42-non-android">4.2. non-Android<a class="headerlink" href="#42-non-android" title="Permanent link">&para;</a></h3>
 <ul>
-<li>
-<p>Make sure that you call <code>clear()</code> on your ViewModel when it&rsquo;s no longer needed,
+<li>Make sure that you call <code>clear()</code> on your ViewModel when it&rsquo;s no longer needed,
   to properly cancel the <code>CoroutineScope</code> and close resources.
   For example, you should call <code>clear()</code> in <code>deinit</code> block when using <code>ViewModel</code> in <code>Darwin</code>
-  targets (<code>ios</code>, <code>macos</code>, <code>tvos</code>, <code>watchos</code>).</p>
-</li>
-<li>
-<p>In addition, you should create a wrapper of the common <code>ViewModel</code> in each platform and use
+  targets (<code>ios</code>, <code>macos</code>, <code>tvos</code>, <code>watchos</code>).</li>
+</ul>
+<ul>
+<li>In addition, you should create a wrapper of the common <code>ViewModel</code> in each platform and use
   flow wrappers provided by this library (<code>NonNullFlowWrapper</code>, <code>NullableFlowWrapper</code>
   , <code>NonNullStateFlowWrapper</code>, <code>NullableStateFlowWrapper</code>), to consume
-  the common <code>ViewModel</code> easily and safely.</p>
-</li>
+  the common <code>ViewModel</code> easily and safely.</li>
 </ul>
 <blockquote>
 <p>For more details, please
@@ -728,7 +785,7 @@ to consume the <code>Flow</code>s in <code>Darwin</code> targets (Swift language
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2023 Petrus Nguyễn Thái Học.
+      Copyright &copy; 2023-2024 Petrus Nguyễn Thái Học.
     </div>
   
   

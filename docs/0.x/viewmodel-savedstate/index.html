@@ -18,11 +18,11 @@
         <link rel="prev" href="../viewmodel/">
       
       
-        <link rel="next" href="../viewmodel-compose/">
+        <link rel="next" href="../viewmodel-savedstate-safe/">
       
       
       <link rel="icon" href="../images/logo.jpeg">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.1">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.3">
     
     
       
@@ -30,7 +30,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.45e1311d.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.50c56a3b.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#get-started" class="md-skip">
+        <a href="#viewmodel-savedstate" class="md-skip">
           Skip to content
         </a>
       
@@ -385,10 +385,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#4-type-safe-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Type-safe access
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../viewmodel-savedstate-safe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Safe SavedStateHandle
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -405,6 +434,46 @@
   
   <span class="md-ellipsis">
     ViewModel Compose
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../viewmodel-koin-compose/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ViewModel Koin Compose
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../viewmodel-compose-navigation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ViewModel and Compose Navigation
   </span>
   
 
@@ -491,8 +560,9 @@
   
 
 
-<h1 id="get-started">Get started<a class="headerlink" href="#get-started" title="Permanent link">&para;</a></h1>
-<p>This library brings:</p>
+<h1 id="viewmodel-savedstate">ViewModel SavedState<a class="headerlink" href="#viewmodel-savedstate" title="Permanent link">&para;</a></h1>
+<p><a href="https://search.maven.org/search?q=g:io.github.hoc081098%20kmp-viewmodel-savedstate"><img alt="maven-central" src="https://img.shields.io/maven-central/v/io.github.hoc081098/kmp-viewmodel-savedstate" /></a></p>
+<p>This artifact brings:</p>
 <ul>
 <li><a href="https://developer.android.com/reference/android/os/Parcelable">Android Parcelable</a> interface.</li>
 <li>The <code>@Parcelize</code> annotation
@@ -526,7 +596,7 @@ and <a href="https://developer.android.com/topic/libraries/architecture/viewmode
 <span class="w">  </span><span class="n">sourceSets</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">commonMain</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">getting</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">api</span><span class="p">(</span><span class="s">&quot;io.github.hoc081098:kmp-viewmodel-savedstate:0.6.1&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="n">api</span><span class="p">(</span><span class="s">&quot;io.github.hoc081098:kmp-viewmodel-savedstate:0.6.2&quot;</span><span class="p">)</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
@@ -541,7 +611,7 @@ and <a href="https://developer.android.com/topic/libraries/architecture/viewmode
 <span class="w">    </span><span class="o">[</span><span class="p">...</span><span class="o">]</span>
 <span class="w">    </span><span class="n">framework</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="n">baseName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;shared&quot;</span>
-<span class="w">      </span><span class="n">export</span><span class="p">(</span><span class="s">&quot;io.github.hoc081098:kmp-viewmodel-savedstate:0.6.1&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// required to expose the classes to iOS.</span>
+<span class="w">      </span><span class="n">export</span><span class="p">(</span><span class="s">&quot;io.github.hoc081098:kmp-viewmodel-savedstate:0.6.2&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// required to expose the classes to iOS.</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
@@ -554,7 +624,7 @@ and <a href="https://developer.android.com/topic/libraries/architecture/viewmode
 <span class="w">    </span><span class="n">binaries</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="n">framework</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">baseName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;shared&quot;</span>
-<span class="w">        </span><span class="n">export</span><span class="p">(</span><span class="s">&quot;io.github.hoc081098:kmp-viewmodel-savedstate:0.6.1&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// required to expose the classes to iOS.</span>
+<span class="w">        </span><span class="n">export</span><span class="p">(</span><span class="s">&quot;io.github.hoc081098:kmp-viewmodel-savedstate:0.6.2&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// required to expose the classes to iOS.</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
@@ -584,7 +654,7 @@ and <a href="https://developer.android.com/topic/libraries/architecture/viewmode
 
 <span class="c1">// build.gradle.kts</span>
 <span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">api</span><span class="p">(</span><span class="s">&quot;io.github.hoc081098:kmp-viewmodel-savedstate:0.6.2-SNAPSHOT&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="n">api</span><span class="p">(</span><span class="s">&quot;io.github.hoc081098:kmp-viewmodel-savedstate:0.6.3-SNAPSHOT&quot;</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -779,6 +849,8 @@ for more details.</p>
 <p>For more details, please
 check <a href="https://github.com/hoc081098/kmp-viewmodel/tree/master/sample">kmp viewmodel sample</a>.</p>
 </blockquote>
+<h2 id="4-type-safe-access">4. Type-safe access<a class="headerlink" href="#4-type-safe-access" title="Permanent link">&para;</a></h2>
+<p>Please check <a href="/viewmodel-savedstate-safe">Type-safe access to SavedStateHandle</a> for more details.</p>
 
 
 
@@ -808,7 +880,7 @@ check <a href="https://github.com/hoc081098/kmp-viewmodel/tree/master/sample">km
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2023 Petrus Nguyễn Thái Học.
+      Copyright &copy; 2023-2024 Petrus Nguyễn Thái Học.
     </div>
   
   

@@ -22,7 +22,7 @@
       
       
       <link rel="icon" href="../images/logo.jpeg">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.1">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.3">
     
     
       
@@ -30,7 +30,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.45e1311d.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.50c56a3b.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
@@ -358,11 +358,71 @@
   
   
     <li class="md-nav__item">
+      <a href="../viewmodel-savedstate-safe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Safe SavedStateHandle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../viewmodel-compose/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     ViewModel Compose
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../viewmodel-koin-compose/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ViewModel Koin Compose
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../viewmodel-compose-navigation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ViewModel and Compose Navigation
   </span>
   
 
@@ -457,18 +517,21 @@
   make sure <code>Dispatchers.Main</code> available).</li>
 </ul>
 <blockquote>
-<p>[!NOTE]<br />
-If you are targeting <code>Desktop</code> and not using <code>JetBrains Compose Multiplatform</code>, you should provide the dependency <code>org.jetbrains.kotlinx:kotlinx-coroutines-swing</code> <strong>or</strong> <code>org.jetbrains.kotlinx:kotlinx-coroutines-javafx</code>,
-the <code>ViewModel.viewModelScope</code> depends on <code>Dispatchers.Main</code> provided by this library on Desktop.</p>
-<p>If you are using <code>JetBrains Compose Multiplatform</code> and targeting <code>Desktop</code>, you should provide <code>org.jetbrains.kotlinx:kotlinx-coroutines-swing</code>.</p>
+<p>[!NOTE]
+If you are targeting <code>Desktop</code> and:
+  - not using <code>JetBrains Compose Multiplatform</code>, you should provide the dependency <code>org.jetbrains.kotlinx:kotlinx-coroutines-swing</code> <strong>or</strong> <code>org.jetbrains.kotlinx:kotlinx-coroutines-javafx</code>.
+  - using <code>JetBrains Compose Multiplatform</code>, you should provide <code>org.jetbrains.kotlinx:kotlinx-coroutines-swing</code>.</p>
+<p>Because the <code>ViewModel.viewModelScope</code> depends on <code>Dispatchers.Main</code> provided by that libraries on Desktop.</p>
 </blockquote>
 <ul>
 <li><code>js</code> (<code>IR</code>).</li>
-<li><code>Darwin</code> targets:</li>
+<li><code>Darwin</code> targets:<ul>
 <li><code>iosArm64</code>, <code>iosX64</code>, <code>iosSimulatorArm64</code>.</li>
 <li><code>watchosArm32</code>, <code>watchosArm64</code>, <code>watchosX64</code>, <code>watchosSimulatorArm64</code>.</li>
 <li><code>tvosX64</code>, <code>tvosSimulatorArm64</code>, <code>tvosArm64</code>.</li>
 <li><code>macosX64</code>, <code>macosArm64</code>.</li>
+</ul>
+</li>
 </ul>
 
 
@@ -499,7 +562,7 @@ the <code>ViewModel.viewModelScope</code> depends on <code>Dispatchers.Main</cod
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2023 Petrus Nguyễn Thái Học.
+      Copyright &copy; 2023-2024 Petrus Nguyễn Thái Học.
     </div>
   
   
