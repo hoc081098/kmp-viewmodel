@@ -73,22 +73,6 @@
 
 ### `kmp-viewmodel-compose`
 
-- Add a new `kmpViewModel` overload that accepts `factory: @DisallowComposableCalls CreationExtras.() -> VM`
-  (Previously, it only accepts `factory: ViewModelFactory<VM>`).
-
-  ```kotlin
-  class MyViewModel(savedStateHandle: SavedStateHandle): ViewModel()
-
-  @Composable
-  fun MyScreen(
-    viewModel: MyViewModel = kmpViewModel {
-      MyViewModel(savedStateHandle = createSavedStateHandle())
-    }
-  ) {
-    // ...
-  }
-  ```
-
 - Add `rememberViewModelFactory`s to remember the `ViewModelFactory`s in `@Composable` functions.
   They accept `builder: @DisallowComposableCalls CreationExtras.() -> VM`s.
 
@@ -101,6 +85,22 @@
       MyViewModel(savedStateHandle = createSavedStateHandle())
     }
     val viewModel: MyViewModel = kmpViewModel(factory = factory)
+    // ...
+  }
+  ```
+
+- Add a new `kmpViewModel` overload that accepts `factory: @DisallowComposableCalls CreationExtras.() -> VM`
+  (Previously, it only accepts `factory: ViewModelFactory<VM>`).
+
+  ```kotlin
+  class MyViewModel(savedStateHandle: SavedStateHandle): ViewModel()
+
+  @Composable
+  fun MyScreen(
+    viewModel: MyViewModel = kmpViewModel {
+      MyViewModel(savedStateHandle = createSavedStateHandle())
+    }
+  ) {
     // ...
   }
   ```
