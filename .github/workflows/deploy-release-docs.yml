@@ -1,0 +1,90 @@
+name: Publish Release
+
+on:
+  workflow_dispatch:
+
+
+env:
+  GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx4g -Dorg.gradle.daemon=false -Dkotlin.incremental=false -XX:+UseParallelGC -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8"
+
+permissions:
+  contents: write
+
+jobs:
+  deploy-release-docs:
+    if: ${{ github.repository == 'hoc081098/kmp-viewmodel' }}
+    strategy:
+      matrix:
+        os: [ macos-11 ]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Cache gradle, wrapper and buildSrc
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ matrix.os }}-gradle-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}-${{ hashFiles('**/buildSrc/**/*.kt') }}
+          restore-keys: |
+            ${{ matrix.os }}-gradle-
+      - name: Cache konan
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.konan/cache
+            ~/.konan/dependencies
+            ~/.konan/kotlin-native-macos*
+            ~/.konan/kotlin-native-mingw*
+            ~/.konan/kotlin-native-windows*
+            ~/.konan/kotlin-native-linux*
+            ~/.konan/kotlin-native-prebuilt-macos*
+            ~/.konan/kotlin-native-prebuilt-mingw*
+            ~/.konan/kotlin-native-prebuilt-windows*
+            ~/.konan/kotlin-native-prebuilt-linux*
+          key: ${{ matrix.os }}-konan-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ matrix.os }}-konan-
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
+      - name: Build release
+        run: ./gradlew :viewmodel:assemble :viewmodel-savedstate:assemble :viewmodel-compose:assemble :viewmodel-koin:assemble :viewmodel-koin-compose:assemble
+
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+
+      - name: Install MkDocs Material
+        run: pip install -r docs/requirements.txt
+
+      - name: Generate docs
+        run: ./gradlew :dokkaHtmlMultiModule --no-parallel --stacktrace
+
+      - name: Copy docs
+        run: |
+          cp README.md docs/index.md
+          cp CHANGELOG.md docs/changelog.md
+          mkdir -p docs/API
+          cp -R build/dokka/htmlMultiModule/. docs/API
+
+      - name: Build MkDocs
+        run: mkdocs build --verbose
+
+      - name: Deploy docs 🚀 to website
+        if: ${{ contains(matrix.os, 'macos') }}
+        uses: JamesIves/github-pages-deploy-action@v4.5.0
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: site # The folder the action should deploy.
+          target-folder: docs/0.x/
+          clean: true
