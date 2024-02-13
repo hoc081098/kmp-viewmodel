@@ -50,7 +50,7 @@ private fun createDemoViewModel(closeable: List<Closeable> = emptyList()): Pair<
 
   return DemoViewModel(closeable)
     .also { viewModelStore.put("DemoViewModel#${it.hashCode()}", it) } to
-      viewModelStore::clear
+    viewModelStore::clear
 }
 
 internal class TestCloseable : Closeable {
@@ -110,7 +110,6 @@ class ViewModelTest {
 
     closeables.forEach { assertTrue { it.closed } }
   }
-
 
   @Test
   fun constructor_addCloseablesThatWillBeClosedWhenClear() = runTest {
