@@ -1,6 +1,7 @@
 package com.hoc081098.kmp.viewmodel
 
 import com.hoc081098.kmp.viewmodel.utils.TestAtomicBoolean
+import com.hoc081098.kmp.viewmodel.utils.TestCloseable
 import com.hoc081098.kmp.viewmodel.utils.delegated
 import com.hoc081098.kmp.viewmodel.utils.runBlockInNewThread
 import kotlin.test.AfterTest
@@ -51,16 +52,6 @@ private fun createDemoViewModel(closeable: List<Closeable> = emptyList()): Pair<
   return DemoViewModel(closeable)
     .also { viewModelStore.put("DemoViewModel#${it.hashCode()}", it) } to
     viewModelStore::clear
-}
-
-internal class TestCloseable : Closeable {
-  var closed by TestAtomicBoolean().delegated()
-    private set
-
-  override fun close() {
-    check(!closed) { "Already closed!" }
-    closed = true
-  }
 }
 
 @OptIn(ExperimentalStdlibApi::class)
