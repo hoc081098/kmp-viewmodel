@@ -5,6 +5,7 @@ package com.hoc081098.kmpviewmodelsample.android
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
@@ -42,9 +43,10 @@ import com.hoc081098.kmpviewmodelsample.android.products.ProductsScreen
 import com.hoc081098.kmpviewmodelsample.android.search_products.SearchProductsScreen
 
 class StartActivity : ComponentActivity() {
+  private val viewModel by viewModels<StartViewModel>()
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-
     setContent {
       MyApplicationTheme {
         Surface(
@@ -100,6 +102,8 @@ class StartActivity : ComponentActivity() {
         }
       }
     }
+
+    viewModel.toString()
   }
 }
 

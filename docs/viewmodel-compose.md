@@ -1,4 +1,6 @@
-# Get started
+# ViewModel Compose Multiplatform
+
+[![maven-central](https://img.shields.io/maven-central/v/io.github.hoc081098/kmp-viewmodel-compose)](https://search.maven.org/search?q=g:io.github.hoc081098%20kmp-viewmodel-compose)
 
 ## 1. Add dependency
 
@@ -23,7 +25,7 @@ kotlin {
   sourceSets {
     val commonMain by getting {
       dependencies {
-        api("io.github.hoc081098:kmp-viewmodel-compose:0.5.0")
+        api("io.github.hoc081098:kmp-viewmodel-compose:0.6.2")
       }
     }
   }
@@ -46,7 +48,7 @@ dependencyResolutionManagement {
 
 // build.gradle.kts
 dependencies {
-  api("io.github.hoc081098:kmp-viewmodel-compose:0.5.1-SNAPSHOT")
+  api("io.github.hoc081098:kmp-viewmodel-compose:0.6.3-SNAPSHOT")
 }
 ```
 
@@ -135,3 +137,7 @@ private fun <T : Route> NavEntryContent(
 
 > Full example is available at:
 > https://github.com/hoc081098/kmp-viewmodel/blob/892cbe109fe623c57d3769b830ffda198159aee4/standalone-sample/kmpviewmodel_compose_sample/common/src/commonMain/kotlin/com/hoc081098/common/navigation/NavHost.kt#L123
+
+## 5. Navigation for Compose Multiplatform
+
+Check out https://github.com/hoc081098/solivagant

@@ -10,6 +10,10 @@ plugins {
 group = "com.hoc08198"
 version = "1.0-SNAPSHOT"
 
+compose {
+  kotlinCompilerPlugin.set(libs.versions.jetbrains.compose.compiler)
+}
+
 kotlin {
   jvmToolchain {
     languageVersion.set(JavaLanguageVersion.of(libs.versions.java.toolchain.get()))
@@ -54,6 +58,8 @@ kotlin {
         api("io.github.hoc081098:kmp-viewmodel")
         api("io.github.hoc081098:kmp-viewmodel-savedstate")
         api("io.github.hoc081098:kmp-viewmodel-compose")
+        api("io.github.hoc081098:kmp-viewmodel-koin")
+        api("io.github.hoc081098:kmp-viewmodel-koin-compose")
 
         implementation(libs.uuid)
       }

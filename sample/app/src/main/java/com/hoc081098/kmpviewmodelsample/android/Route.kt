@@ -7,6 +7,7 @@ import androidx.compose.runtime.remember
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
+import com.hoc081098.kmp.viewmodel.safe.DelicateSafeSavedStateHandleApi
 import com.hoc081098.kmpviewmodelsample.product_detail.ProductDetailViewModel
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
@@ -43,7 +44,8 @@ internal sealed class Route {
   }
 
   data object ProductDetail : Route() {
-    val idNavArg = navArgument(name = ProductDetailViewModel.ID_KEY) { type = NavType.IntType }
+    @OptIn(DelicateSafeSavedStateHandleApi::class)
+    val idNavArg = navArgument(name = ProductDetailViewModel.ID_SAVED_KEY.key) { type = NavType.IntType }
 
     private inline val idNavArgName get() = idNavArg.name
 

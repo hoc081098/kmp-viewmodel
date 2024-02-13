@@ -19,7 +19,12 @@ class IosProductsViewModel {
   init() {
     self.state$ = self.commonVm
       .stateFlow
-      .asNonNullObservable(ProductsState.self)
+      .asNonNullObservable(
+        ProductsState.self,
+        dispatcher: DIContainer.shared
+          .get(for: AppDispatchers.self)
+          .immediateMain
+      )
       .asDriver(onErrorDriveWith: .empty())
   }
 
@@ -38,7 +43,12 @@ class IosProductsViewModel {
 
   private lazy var ticker$: Observable<NSString?> = self.commonVm
     .tickerFlow
-    .asNullableObservable()
+    .asNullableObservable(
+      NSString.self,
+      dispatcher: DIContainer.shared
+        .get(for: AppDispatchers.self)
+        .immediateMain
+    )
 
   func onActive() {
     Napier.d("onActive")

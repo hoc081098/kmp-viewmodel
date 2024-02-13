@@ -1,5 +1,3 @@
-@file:Suppress("PackageNaming")
-
 package com.hoc081098.kmpviewmodelsample.android.product_detail
 
 import androidx.compose.foundation.layout.Column
@@ -30,6 +28,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImagePainter
@@ -38,6 +37,7 @@ import coil.compose.SubcomposeAsyncImageContent
 import com.hoc081098.kmpviewmodelsample.ProductItemUi
 import com.hoc081098.kmpviewmodelsample.android.common.ErrorMessageAndRetryButton
 import com.hoc081098.kmpviewmodelsample.android.common.LoadingIndicator
+import com.hoc081098.kmpviewmodelsample.android.common.MyApplicationTheme
 import com.hoc081098.kmpviewmodelsample.android.common.OnLifecycleEventWithBuilder
 import com.hoc081098.kmpviewmodelsample.product_detail.ProductDetailState
 import com.hoc081098.kmpviewmodelsample.product_detail.ProductDetailViewModel
@@ -178,6 +178,31 @@ private fun SimpleTile(
       style = MaterialTheme.typography.bodyMedium,
       fontWeight = FontWeight.Normal,
       textAlign = TextAlign.End,
+    )
+  }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun ProductDetailContentPreview() {
+  MyApplicationTheme {
+    ProductDetailContent(
+      product = ProductItemUi(
+        id = 2987,
+        title = "commune",
+        price = 3440,
+        description = "duo",
+        images = persistentListOf(),
+        creationAt = "deserunt",
+        updatedAt = "iisque",
+        category = ProductItemUi.CategoryUi(
+          id = 6965,
+          name = "Mavis Oliver",
+          image = "sit",
+          creationAt = "mauris",
+          updatedAt = "persequeris",
+        ),
+      ),
     )
   }
 }

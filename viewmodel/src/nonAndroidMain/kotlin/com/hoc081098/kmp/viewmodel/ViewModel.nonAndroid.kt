@@ -17,8 +17,7 @@ private inline fun CoroutineDispatcher.test() = apply {
 
 private fun viewModelScopeDispatcher(): CoroutineDispatcher =
   runCatching { Dispatchers.Main.immediate.test() }
-    .recoverCatching { Dispatchers.Main.test() }
-    .getOrDefault(Dispatchers.Default)
+    .getOrElse { Dispatchers.Main.test() }
 
 public actual abstract class ViewModel : Any {
   private val lockable = Lockable()
@@ -60,14 +59,17 @@ public actual abstract class ViewModel : Any {
   @Suppress("unused") // Called by platform code
   public fun clear() {
     if (isCleared.compareAndSet(expectedValue = false, newValue = true)) {
+      // Cancel the scope if it was initialized
       if (coroutineScopeLazy.isInitialized()) {
         coroutineScopeLazy.value.cancel()
       }
 
+      // Close all closeables in synchronized block
       synchronized(lockable) {
         closeables.forEach { it.closeWithRuntimeException() }
         closeables.clear()
 
+        // FIXME: Should we put onCleared() in synchronized block?
         onCleared()
       }
     }

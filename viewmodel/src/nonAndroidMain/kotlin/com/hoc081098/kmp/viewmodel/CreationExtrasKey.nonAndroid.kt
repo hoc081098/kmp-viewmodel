@@ -30,7 +30,8 @@ public actual object EmptyCreationExtras : CreationExtras() {
   override fun <T> get(key: Key<T>): T? = null
 }
 
-public actual class MutableCreationExtras actual constructor(initialExtras: CreationExtras) : CreationExtras() {
+public actual class MutableCreationExtrasBuilder public actual constructor(initialExtras: CreationExtras) :
+  CreationExtras() {
   init {
     map.putAll(initialExtras.map)
   }
@@ -42,10 +43,12 @@ public actual class MutableCreationExtras actual constructor(initialExtras: Crea
     map[key] = t
   }
 
-  public override fun <T> get(key: Key<T>): T? {
+  public actual override fun <T> get(key: Key<T>): T? {
     @Suppress("UNCHECKED_CAST")
     return map[key] as T?
   }
+
+  public actual fun asCreationExtras(): CreationExtras = this
 }
 
 @JvmField

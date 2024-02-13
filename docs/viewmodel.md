@@ -1,4 +1,6 @@
-# Get started
+# ViewModel
+
+[![maven-central](https://img.shields.io/maven-central/v/io.github.hoc081098/kmp-viewmodel)](https://search.maven.org/search?q=g:io.github.hoc081098%20kmp-viewmodel)
 
 ## 1. Add dependency
 
@@ -23,7 +25,7 @@ kotlin {
   sourceSets {
     val commonMain by getting {
       dependencies {
-        api("io.github.hoc081098:kmp-viewmodel:0.5.0")
+        api("io.github.hoc081098:kmp-viewmodel:0.6.2")
       }
     }
   }
@@ -39,7 +41,7 @@ kotlin {
     [...]
     framework {
       baseName = "shared"
-      export("io.github.hoc081098:kmp-viewmodel:0.5.0") // required to expose the classes to iOS.
+      export("io.github.hoc081098:kmp-viewmodel:0.6.2") // required to expose the classes to iOS.
     }
   }
 }
@@ -52,7 +54,7 @@ kotlin {
     binaries {
       framework {
         baseName = "shared"
-        export("io.github.hoc081098:kmp-viewmodel:0.5.0") // required to expose the classes to iOS.
+        export("io.github.hoc081098:kmp-viewmodel:0.6.2") // required to expose the classes to iOS.
       }
     }
   }
@@ -75,7 +77,7 @@ dependencyResolutionManagement {
 
 // build.gradle.kts
 dependencies {
-  api("io.github.hoc081098:kmp-viewmodel:0.5.1-SNAPSHOT")
+  api("io.github.hoc081098:kmp-viewmodel:0.6.3-SNAPSHOT")
 }
 ```
 

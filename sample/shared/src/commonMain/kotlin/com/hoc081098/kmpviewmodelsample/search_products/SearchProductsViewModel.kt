@@ -1,4 +1,3 @@
-@file:Suppress("PackageNaming")
 
 package com.hoc081098.kmpviewmodelsample.search_products
 
@@ -6,11 +5,14 @@ import com.hoc081098.flowext.flowFromSuspend
 import com.hoc081098.flowext.startWith
 import com.hoc081098.kmp.viewmodel.SavedStateHandle
 import com.hoc081098.kmp.viewmodel.ViewModel
+import com.hoc081098.kmp.viewmodel.safe.NullableSavedStateHandleKey
+import com.hoc081098.kmp.viewmodel.safe.safe
+import com.hoc081098.kmp.viewmodel.safe.string
 import com.hoc081098.kmp.viewmodel.wrapper.NonNullStateFlowWrapper
 import com.hoc081098.kmp.viewmodel.wrapper.NullableStateFlowWrapper
 import com.hoc081098.kmp.viewmodel.wrapper.wrap
-import com.hoc081098.kmpviewmodelsample.Immutable
 import com.hoc081098.kmpviewmodelsample.ProductItemUi
+import com.hoc081098.kmpviewmodelsample.common.Immutable
 import com.hoc081098.kmpviewmodelsample.toProductItemUi
 import io.github.aakira.napier.Napier
 import kotlin.time.Duration.Companion.milliseconds
@@ -52,7 +54,7 @@ class SearchProductsViewModel(
   private val savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
   val searchTermStateFlow: NullableStateFlowWrapper<String?> =
-    savedStateHandle.getStateFlow<String?>(SEARCH_TERM_KEY, null).wrap()
+    savedStateHandle.safe { it.getStateFlow(SEARCH_TERM_KEY) }.wrap()
 
   val stateFlow: NonNullStateFlowWrapper<SearchProductsState> = searchTermStateFlow
     .debounce(400.milliseconds)
@@ -67,11 +69,11 @@ class SearchProductsViewModel(
     .wrap()
 
   fun search(term: String) {
-    savedStateHandle[SEARCH_TERM_KEY] = term
+    savedStateHandle.safe { it[SEARCH_TERM_KEY] = term }
   }
 
   companion object {
-    const val SEARCH_TERM_KEY = "com.hoc081098.kmpviewmodelsample.search_term"
+    private val SEARCH_TERM_KEY = NullableSavedStateHandleKey.string("com.hoc081098.kmpviewmodelsample.search_term")
   }
 }
 

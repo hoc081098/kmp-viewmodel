@@ -25,21 +25,23 @@ public expect abstract class ViewModel {
    * This scope will be canceled when ViewModel will be cleared, i.e [ViewModel.onCleared] is called.
    *
    * ### On Android
-   * - This scope is bound to
-   * [Dispatchers.Main.immediate][kotlinx.coroutines.MainCoroutineDispatcher.immediate].
-   * - This scope is created lazily, and should be only accessed on the main thread.
+   * - This scope is `androidx.lifecycle.viewModelScope` from AndroidX.
    *
+   * - It is bound to
+   * [Dispatchers.Main.immediate][kotlinx.coroutines.MainCoroutineDispatcher.immediate].
+   *
+   * - It is created lazily, and can be accessed from any thread (it is thread-safe).
    *
    * ### Other platforms
    * - This scope is bound to the first available in the order:
-   *   [Dispatchers.Main.immediate][kotlinx.coroutines.MainCoroutineDispatcher.immediate],
-   *   [Dispatchers.Main][kotlinx.coroutines.MainCoroutineDispatcher],
-   *   [Dispatchers.Default][kotlinx.coroutines.Dispatchers.Default].
+   *   [Dispatchers.Main.immediate][kotlinx.coroutines.MainCoroutineDispatcher.immediate] or
+   *   [Dispatchers.Main][kotlinx.coroutines.MainCoroutineDispatcher].
    *
    *   You should make sure that you add the corresponding dependency to your project,
    *   to ensure that the [kotlinx.coroutines.MainCoroutineDispatcher] is available
    *   (eg. `kotlinx-coroutines-swing`, `kotlinx-coroutines-javafx`, ...).
-   * - This scope is created lazily, and can be accessed from any thread (it is thread-safe).
+   *
+   * - It is created lazily, and can be accessed from any thread (it is thread-safe).
    */
   public val viewModelScope: CoroutineScope
 

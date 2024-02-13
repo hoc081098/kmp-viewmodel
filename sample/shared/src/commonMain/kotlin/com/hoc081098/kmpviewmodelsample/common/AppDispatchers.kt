@@ -1,4 +1,4 @@
-package com.hoc081098.kmpviewmodelsample
+package com.hoc081098.kmpviewmodelsample.common
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.MainCoroutineDispatcher

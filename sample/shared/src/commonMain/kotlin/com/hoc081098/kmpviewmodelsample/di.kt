@@ -1,5 +1,6 @@
 package com.hoc081098.kmpviewmodelsample
 
+import com.hoc081098.kmpviewmodelsample.common.SingleEventChannel
 import com.hoc081098.kmpviewmodelsample.product_detail.GetProductById
 import com.hoc081098.kmpviewmodelsample.products.GetProducts
 import com.hoc081098.kmpviewmodelsample.search_products.SearchProducts
@@ -13,11 +14,14 @@ private val CommonModule = module {
   factoryOf(::GetProducts)
   factoryOf(::SearchProducts)
   factoryOf(::GetProductById)
+  factory { SingleEventChannel<Any?>() }
 }
 
 internal expect val PlatformModule: Module
 
 expect fun setupNapier()
+
+expect fun isDebug(): Boolean
 
 fun startKoinCommon(
   appDeclaration: KoinAppDeclaration = {},

@@ -3,8 +3,12 @@ package com.hoc081098.common.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
+import com.hoc081098.kmp.viewmodel.InternalKmpViewModelApi
+import com.hoc081098.kmp.viewmodel.compose.internal.kClassOf
 import com.hoc081098.kmp.viewmodel.parcelable.Parcelable
+import kotlin.experimental.ExperimentalObjCRefinement
 import kotlin.jvm.JvmInline
+import kotlin.native.HiddenFromObjC
 import kotlin.reflect.KClass
 
 /**
@@ -44,28 +48,17 @@ interface RouteContent<T : Route> {
   fun Content(route: T)
 }
 
-// TODO: Use reified type parameter when KT-57727 is fixed
-// TODO: Issue https://github.com/JetBrains/compose-multiplatform/issues/3147
-// TODO: Issue https://youtrack.jetbrains.com/issue/KT-57727
-// @OptIn(ExperimentalObjCRefinement::class)
-// @HiddenFromObjC
-// inline fun <reified T : Route> routeContent(
-//  noinline content: @Composable (route: T) -> Unit,
-// ): RouteContent<T> =
-//  object : RouteContent<T> {
-//    override val id: RouteContent.Id<T> = RouteContent.Id(T::class)
-//
-//    @Composable
-//    override fun Content(route: T) = content(route)
-//  }
+@OptIn(ExperimentalObjCRefinement::class, InternalKmpViewModelApi::class)
+@HiddenFromObjC
+inline fun <reified T : Route> routeContent(
+  noinline content: @Composable (route: T) -> Unit,
+): RouteContent<T> {
+  val id = RouteContent.Id(kClassOf<T>())
 
-@Deprecated("Use routeContent instead", ReplaceWith("routeContent(content)"))
-fun <T : Route> routeContent(
-  clazz: KClass<T>,
-  content: @Composable (route: T) -> Unit,
-): RouteContent<T> = object : RouteContent<T> {
-  override val id: RouteContent.Id<T> = RouteContent.Id(clazz)
+  return object : RouteContent<T> {
+    override val id: RouteContent.Id<T> get() = id
 
-  @Composable
-  override fun Content(route: T) = content(route)
+    @Composable
+    override fun Content(route: T) = content(route)
+  }
 }

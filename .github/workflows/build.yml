@@ -64,7 +64,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build
-        run: ./gradlew :viewmodel:build :viewmodel-savedstate:build :viewmodel-compose:build --stacktrace
+        run: ./gradlew :viewmodel:build :viewmodel-savedstate:build :viewmodel-compose:build :viewmodel-koin:build :viewmodel-koin-compose:build --stacktrace
 
       - name: Kover Xml Report
         run: ./gradlew :koverXmlReport
@@ -86,7 +86,7 @@ jobs:
       matrix:
         os: [ macos-11 ]
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -145,8 +145,8 @@ jobs:
         with:
           python-version: 3.x
 
-      - name: Install MkDocs Material
-        run: pip install mkdocs-material
+      - name: Install MkDocs MaterialRequirements
+        run: pip install -r docs/requirements.txt
 
       - name: Generate docs
         run: ./gradlew :dokkaHtmlMultiModule --no-parallel --stacktrace
@@ -154,16 +154,17 @@ jobs:
       - name: Copy docs
         run: |
           cp README.md docs/index.md
+          cp CHANGELOG.md docs/changelog.md
           sh scripts/update_docs_url.sh "snapshot"
           mkdir -p docs/API
           cp -R build/dokka/htmlMultiModule/. docs/API
 
       - name: Build MkDocs
-        run: mkdocs build
+        run: mkdocs build --verbose
 
       - name: Deploy docs 🚀 to website
         if: ${{ contains(matrix.os, 'macos') }}
-        uses: JamesIves/github-pages-deploy-action@v4.4.3
+        uses: JamesIves/github-pages-deploy-action@v4.5.0
         with:
           branch: gh-pages # The branch the action should deploy to.
           folder: site # The folder the action should deploy.

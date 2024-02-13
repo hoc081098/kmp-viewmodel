@@ -44,6 +44,7 @@ internal class DefaultViewModelStoreOwner : ViewModelStoreOwner, RememberObserve
  * It clears its [ViewModelStoreOwner.viewModelStore] when the current @Composable leaves the composition.
  * Basically, its scope ties the lifecycle of the current composition.
  */
+@Suppress("NOTHING_TO_INLINE")
 @Composable
 internal inline fun rememberDefaultViewModelStoreOwner(): ViewModelStoreOwner =
   remember { DefaultViewModelStoreOwner() }

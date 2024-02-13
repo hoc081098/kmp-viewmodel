@@ -2,7 +2,6 @@
   ExperimentalMaterial3Api::class,
   ExperimentalMaterialApi::class,
 )
-@file:Suppress("PackageNaming")
 
 package com.hoc081098.kmpviewmodelsample.android.search_products
 
@@ -20,22 +19,27 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.datasource.CollectionPreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.hoc081098.kmpviewmodelsample.AppDispatchers
 import com.hoc081098.kmpviewmodelsample.ProductItemUi
 import com.hoc081098.kmpviewmodelsample.android.common.EmptyProducts
 import com.hoc081098.kmpviewmodelsample.android.common.ErrorMessageAndRetryButton
 import com.hoc081098.kmpviewmodelsample.android.common.LoadingIndicator
+import com.hoc081098.kmpviewmodelsample.android.common.MyApplicationTheme
 import com.hoc081098.kmpviewmodelsample.android.common.OnLifecycleEventWithBuilder
 import com.hoc081098.kmpviewmodelsample.android.common.ProductItemsList
+import com.hoc081098.kmpviewmodelsample.common.AppDispatchers
 import com.hoc081098.kmpviewmodelsample.search_products.SearchProductsState
 import com.hoc081098.kmpviewmodelsample.search_products.SearchProductsViewModel
 import io.github.aakira.napier.Napier
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toImmutableList
 import org.koin.androidx.compose.koinViewModel
-import org.koin.compose.rememberKoinInject
+import org.koin.compose.koinInject
 
-@Suppress("ReturnCount")
 @Composable
 fun SearchProductsScreen(
   navigateToProductDetail: (Int) -> Unit,
@@ -48,7 +52,7 @@ fun SearchProductsScreen(
 
   val state by viewModel.stateFlow.collectAsStateWithLifecycle()
   val searchTerm by viewModel.searchTermStateFlow.collectAsStateWithLifecycle(
-    context = rememberKoinInject<AppDispatchers>().immediateMain,
+    context = koinInject<AppDispatchers>().immediateMain,
   )
 
   Column(
@@ -86,41 +90,97 @@ fun SearchProductsScreen(
   }
 }
 
-@Suppress("ReturnCount", "ModifierReused")
 @Composable
 private fun ListContent(
   state: SearchProductsState,
   onItemClick: (ProductItemUi) -> Unit,
   modifier: Modifier = Modifier,
 ) {
-  if (state.isLoading) {
-    LoadingIndicator(
-      modifier = modifier,
-    )
-    return
-  }
+  when {
+    state.isLoading -> {
+      LoadingIndicator(modifier = modifier)
+    }
 
-  state.error?.let { error ->
-    ErrorMessageAndRetryButton(
-      modifier = modifier,
-      onRetry = { },
-      errorMessage = error.message ?: "Unknown error",
-    )
-    return
-  }
+    state.error != null -> {
+      ErrorMessageAndRetryButton(
+        modifier = modifier,
+        onRetry = { },
+        errorMessage = state.error?.message ?: "Unknown error",
+      )
+    }
 
-  val products = state.products.ifEmpty {
-    EmptyProducts(
-      modifier = modifier,
-    )
-    return
-  }
+    state.products.isEmpty() -> {
+      EmptyProducts(modifier = modifier)
+    }
 
-  ProductItemsList(
-    modifier = Modifier.fillMaxSize(),
-    products = products,
-    isRefreshing = false,
-    pullRefreshState = null,
-    onItemClick = onItemClick,
-  )
+    else -> {
+      ProductItemsList(
+        modifier = modifier.fillMaxSize(),
+        products = state.products,
+        isRefreshing = false,
+        pullRefreshState = null,
+        onItemClick = onItemClick,
+      )
+    }
+  }
 }
+
+@Preview(showBackground = true)
+@Composable
+private fun ListContentPreview(
+  @PreviewParameter(ListContentParameterProvider::class) state: SearchProductsState,
+) {
+  MyApplicationTheme {
+    ListContent(
+      state = state,
+      onItemClick = {},
+    )
+  }
+}
+
+@Suppress("MagicNumber")
+private class ListContentParameterProvider : CollectionPreviewParameterProvider<SearchProductsState>(
+  listOf(
+    SearchProductsState(
+      isLoading = true,
+      error = null,
+      products = persistentListOf(),
+      submittedTerm = null,
+    ),
+    SearchProductsState(
+      isLoading = false,
+      error = RuntimeException("Network error"),
+      products = persistentListOf(),
+      submittedTerm = null,
+    ),
+    SearchProductsState(
+      isLoading = false,
+      error = null,
+      products = persistentListOf(),
+      submittedTerm = null,
+    ),
+    SearchProductsState(
+      isLoading = false,
+      error = null,
+      products = List(10) {
+        ProductItemUi(
+          id = it,
+          title = "title $it",
+          price = it,
+          description = "description $it",
+          images = persistentListOf(),
+          creationAt = "2023-02-11T02:45:59.000Z",
+          updatedAt = "2023-02-11T14:54:14.000Z",
+          category = ProductItemUi.CategoryUi(
+            id = it,
+            name = "category name $it",
+            image = "image",
+            creationAt = "2023-02-11T02:45:59.000Z",
+            updatedAt = "2023-02-11T14:54:14.000Z",
+          ),
+        )
+      }.toImmutableList(),
+      submittedTerm = null,
+    ),
+  ),
+)

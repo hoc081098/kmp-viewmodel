@@ -30,7 +30,7 @@ package com.hoc081098.kmp.viewmodel
  * [Thread annotations](https://developer.android.com/studio/write/annotations#thread-annotations).
  */
 @MustBeDocumented
-@Retention(AnnotationRetention.SOURCE)
+@Retention(AnnotationRetention.BINARY)
 @Target(
   AnnotationTarget.FUNCTION,
   AnnotationTarget.PROPERTY_GETTER,

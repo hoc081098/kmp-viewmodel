@@ -49,15 +49,43 @@ public expect abstract class CreationExtras internal constructor() {
 public expect object EmptyCreationExtras : CreationExtras
 
 /**
- * Mutable implementation of [CreationExtras]
- *
- * @param initialExtras extras that will be filled into the resulting [MutableCreationExtras]
+ * Alias for [MutableCreationExtrasBuilder]
  */
-public expect class MutableCreationExtras(initialExtras: CreationExtras = EmptyCreationExtras) : CreationExtras {
+@Deprecated(
+  message = "Use MutableCreationExtrasBuilder instead",
+  replaceWith = ReplaceWith("MutableCreationExtrasBuilder"),
+)
+public typealias MutableCreationExtras = MutableCreationExtrasBuilder
+
+@Deprecated(
+  message = "Use MutableCreationExtrasBuilder(CreationExtras) instead",
+  replaceWith = ReplaceWith("MutableCreationExtrasBuilder(initialExtras.asCreationExtras())"),
+)
+public fun MutableCreationExtrasBuilder(initialExtras: MutableCreationExtrasBuilder): MutableCreationExtrasBuilder =
+  MutableCreationExtrasBuilder(initialExtras.asCreationExtras())
+
+/**
+ * Mutable builder for [CreationExtras].
+ *
+ * @param initialExtras extras that will be filled into the resulting [MutableCreationExtrasBuilder]
+ */
+public expect class MutableCreationExtrasBuilder
+constructor(initialExtras: CreationExtras = EmptyCreationExtras) {
+
   /**
    * Associates the given [key] with [t]
    */
   public operator fun <T> set(key: Key<T>, t: T)
+
+  /**
+   * Returns an element associated with the given [key]
+   */
+  public operator fun <T> get(key: Key<T>): T?
+
+  /**
+   * Returns a [CreationExtras] with the same content as this builder.
+   */
+  public fun asCreationExtras(): CreationExtras
 }
 
 /**

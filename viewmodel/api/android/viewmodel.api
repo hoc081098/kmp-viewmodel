@@ -1,3 +1,7 @@
+public final class com/hoc081098/kmp/viewmodel/CreationExtrasKt {
+	public static final fun MutableCreationExtrasBuilder (Lcom/hoc081098/kmp/viewmodel/MutableCreationExtrasBuilder;)Lcom/hoc081098/kmp/viewmodel/MutableCreationExtrasBuilder;
+}
+
 public final class com/hoc081098/kmp/viewmodel/CreationExtrasKtxKt {
 	public static final fun buildCreationExtras (Landroidx/lifecycle/viewmodel/CreationExtras;Lkotlin/jvm/functions/Function1;)Landroidx/lifecycle/viewmodel/CreationExtras;
 	public static synthetic fun buildCreationExtras$default (Landroidx/lifecycle/viewmodel/CreationExtras;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Landroidx/lifecycle/viewmodel/CreationExtras;
@@ -11,6 +15,15 @@ public final class com/hoc081098/kmp/viewmodel/CreationExtras_androidKt {
 public abstract interface annotation class com/hoc081098/kmp/viewmodel/InternalKmpViewModelApi : java/lang/annotation/Annotation {
 }
 
+public final class com/hoc081098/kmp/viewmodel/MutableCreationExtrasBuilder {
+	public fun <init> ()V
+	public fun <init> (Landroidx/lifecycle/viewmodel/CreationExtras;)V
+	public synthetic fun <init> (Landroidx/lifecycle/viewmodel/CreationExtras;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun asCreationExtras ()Landroidx/lifecycle/viewmodel/CreationExtras;
+	public final fun get (Landroidx/lifecycle/viewmodel/CreationExtras$Key;)Ljava/lang/Object;
+	public final fun set (Landroidx/lifecycle/viewmodel/CreationExtras$Key;Ljava/lang/Object;)V
+}
+
 public abstract class com/hoc081098/kmp/viewmodel/ViewModel : androidx/lifecycle/ViewModel {
 	public fun <init> ()V
 	public fun <init> ([Ljava/io/Closeable;)V
@@ -22,6 +35,10 @@ public abstract class com/hoc081098/kmp/viewmodel/ViewModel : androidx/lifecycle
 public abstract interface class com/hoc081098/kmp/viewmodel/ViewModelFactory {
 	public abstract fun create (Landroidx/lifecycle/viewmodel/CreationExtras;)Lcom/hoc081098/kmp/viewmodel/ViewModel;
 	public abstract fun getViewModelClass ()Lkotlin/reflect/KClass;
+}
+
+public final class com/hoc081098/kmp/viewmodel/ViewModelFactoryKt {
+	public static final fun viewModelFactory (Lkotlin/reflect/KClass;Lkotlin/jvm/functions/Function1;)Lcom/hoc081098/kmp/viewmodel/ViewModelFactory;
 }
 
 public final class com/hoc081098/kmp/viewmodel/ViewModelFactory_androidKt {

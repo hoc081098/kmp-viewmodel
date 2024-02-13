@@ -1,5 +1,8 @@
 package com.hoc081098.kmp.viewmodel
 
+import com.hoc081098.kmp.viewmodel.safe.NonNullSavedStateHandleKey
+import com.hoc081098.kmp.viewmodel.safe.NullableSavedStateHandleKey
+import com.hoc081098.kmp.viewmodel.safe.SafeSavedStateHandle
 import kotlinx.coroutines.flow.StateFlow
 
 /**
@@ -17,6 +20,15 @@ import kotlinx.coroutines.flow.StateFlow
  * ### On other platforms
  *
  * This acts as a simple key-value map.
+ *
+ * ### Type-safe access to [SavedStateHandle]
+ *
+ * You can use [SafeSavedStateHandle] with [NonNullSavedStateHandleKey] and [NullableSavedStateHandleKey]
+ * to enable type-safe access to [SavedStateHandle]
+ *
+ * @see [SafeSavedStateHandle]
+ * @see [NonNullSavedStateHandleKey]
+ * @see [NullableSavedStateHandleKey]
  */
 public expect class SavedStateHandle {
   /**

@@ -9,6 +9,7 @@ plugins {
   alias(libs.plugins.android.library)
   alias(libs.plugins.kotlin.parcelize)
 
+  alias(libs.plugins.poko)
   alias(libs.plugins.vanniktech.maven.publish)
 
   alias(libs.plugins.dokka)
@@ -53,7 +54,6 @@ kotlin {
   }
 
   iosArm64()
-  iosArm32()
   iosX64()
   iosSimulatorArm64()
 
@@ -67,17 +67,18 @@ kotlin {
   watchosArm32()
   watchosArm64()
   watchosX64()
-  watchosX86()
   watchosSimulatorArm64()
 
+  applyDefaultHierarchyTemplate()
+
   sourceSets {
-    val commonMain by getting {
+    commonMain {
       dependencies {
         api(libs.coroutines.core)
         api(projects.viewmodel)
       }
     }
-    val commonTest by getting {
+    commonTest {
       dependencies {
         implementation(kotlin("test-common"))
         implementation(kotlin("test-annotations-common"))
@@ -86,35 +87,28 @@ kotlin {
       }
     }
 
-    val androidMain by getting {
-      dependsOn(commonMain)
-
+    androidMain {
       dependencies {
         api(libs.androidx.lifecycle.viewmodel.savedstate)
       }
     }
     val androidUnitTest by getting {
-      dependsOn(commonTest)
-
       dependencies {
         implementation(kotlin("test-junit"))
       }
     }
 
     val nonAndroidMain by creating {
-      dependsOn(commonMain)
-
-      dependencies {
-      }
+      dependsOn(commonMain.get())
     }
     val nonAndroidTest by creating {
-      dependsOn(commonTest)
+      dependsOn(commonTest.get())
     }
 
-    val jvmMain by getting {
+    jvmMain {
       dependsOn(nonAndroidMain)
     }
-    val jvmTest by getting {
+    jvmTest {
       dependsOn(nonAndroidTest)
 
       dependencies {
@@ -122,49 +116,21 @@ kotlin {
       }
     }
 
-    val jsMain by getting {
+    jsMain {
       dependsOn(nonAndroidMain)
     }
-    val jsTest by getting {
+    jsTest {
       dependsOn(nonAndroidTest)
       dependencies {
         implementation(kotlin("test-js"))
       }
     }
 
-    val nativeMain by creating {
+    nativeMain {
       dependsOn(nonAndroidMain)
-      dependencies {
-      }
     }
-    val nativeTest by creating {
+    nativeTest {
       dependsOn(nonAndroidTest)
-    }
-
-    val appleTargets = listOf(
-      "iosX64",
-      "iosSimulatorArm64",
-      "iosArm64",
-      "iosArm32",
-      "macosX64",
-      "macosArm64",
-      "tvosArm64",
-      "tvosX64",
-      "tvosSimulatorArm64",
-      "watchosArm32",
-      "watchosArm64",
-      "watchosX86",
-      "watchosSimulatorArm64",
-      "watchosX64",
-    )
-
-    appleTargets.forEach {
-      getByName("${it}Main") {
-        dependsOn(nativeMain)
-      }
-      getByName("${it}Test") {
-        dependsOn(nativeTest)
-      }
     }
   }
 
@@ -172,6 +138,19 @@ kotlin {
     languageSettings {
       optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
     }
+  }
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.dsl.KotlinCompile<*>>().configureEach {
+  kotlinOptions {
+    // 'expect'/'actual' classes (including interfaces, objects, annotations, enums,
+    // and 'actual' typealiases) are in Beta.
+    // You can use -Xexpect-actual-classes flag to suppress this warning.
+    // Also see: https://youtrack.jetbrains.com/issue/KT-61573
+    freeCompilerArgs +=
+      listOf(
+        "-Xexpect-actual-classes",
+      )
   }
 }
 
@@ -188,6 +167,17 @@ android {
   compileOptions {
     sourceCompatibility = JavaVersion.toVersion(libs.versions.java.target.get())
     targetCompatibility = JavaVersion.toVersion(libs.versions.java.target.get())
+  }
+
+  testOptions {
+    unitTests {
+      isIncludeAndroidResources = true
+    }
+  }
+
+  dependencies {
+    testImplementation(libs.junit)
+    testImplementation(libs.robolectric)
   }
 }
 

@@ -120,6 +120,7 @@ jobs:
       - name: Install pod
         run: |
           ./gradlew :sample:shared:podGenIOS --stacktrace
+          ./gradlew :sample:shared:generateDummyFramework
           cd sample/iosApp
           pod install
 

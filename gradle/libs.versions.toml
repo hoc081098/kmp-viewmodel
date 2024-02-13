@@ -1,8 +1,9 @@
 [versions]
-kotlin = "1.9.10"
+junit = "4.13.2"
+kotlin = "1.9.22"
 coroutines = "1.7.3"
-kotlinx-serialization-json = "1.6.0"
-kotlinx-collections-immutable = "0.3.6"
+kotlinx-serialization-json = "1.6.2"
+kotlinx-collections-immutable = "0.3.7"
 
 # the Java version that the Java and Kotlin compilers will target
 java-target = "11"
@@ -17,35 +18,39 @@ android-target = "33"
 android-compile = "33"
 
 # the Android target to use in sample
+robolectric = "4.11.1"
 sample-android-target = "34"
 # the Android compileSdkVersion to use in sample
 sample-android-compile = "34"
 
-jetbrains-compose = "1.5.3"
+jetbrains-compose = "1.5.12"
+jetbrains-compose-compiler = "1.5.8"
 
-touchlab-stately = "1.2.5"
-napier = "2.6.1"
-flowExt = "0.7.3"
-koin = "3.5.0"
-koin-androidx-compose = "3.5.0"
-coil = "2.4.0"
-compose-rules-detekt = "0.3.2"
+touchlab-stately = "2.0.6"
+napier = "2.7.1"
+flowExt = "0.7.5"
+koin = "3.5.3"
+koin-androidx-compose = "3.5.3"
+koin-compose = "1.1.2"
+coil = "2.5.0"
+compose-rules-detekt = "0.3.11"
 
-androidx-lifecycle = "2.7.0-beta01"
-androidx-annotation = "1.7.0"
-androidx-activity = "1.8.0"
-androidx-compose-compiler = "1.5.3"
-androidx-navigation = "2.7.4"
-android-gradle = "8.1.2"
+androidx-lifecycle = "2.7.0"
+androidx-annotation = "1.7.1"
+androidx-activity = "1.8.2"
+androidx-compose-compiler = "1.5.8"
+androidx-navigation = "2.7.6"
+android-gradle = "8.2.1"
 
-spotless = "6.22.0"
-detekt = "1.23.1"
+spotless = "6.25.0"
+detekt = "1.23.5"
 
-kotlinx-kover = "0.7.4"
+kotlinx-kover = "0.7.5"
 dokka = "1.9.10"
-kotlinx-binary-compatibility-validator = "0.13.2"
+kotlinx-binary-compatibility-validator = "0.14.0"
+poko = "0.15.2"
 
-vanniktech-maven-publish = "0.25.3"
+vanniktech-maven-publish = "0.27.0"
 ktlint = "0.50.0"
 
 [libraries]
@@ -53,17 +58,20 @@ coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", ve
 coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 coroutines-jdk8 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8", version.ref = "coroutines" }
+junit = { module = "junit:junit", version.ref = "junit" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
 kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlinx-collections-immutable" }
 
 jetbrains-compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "jetbrains-compose" }
 
+robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 touchlab-stately-concurrency = { module = "co.touchlab:stately-concurrency", version.ref = "touchlab-stately" }
 napier = { module = "io.github.aakira:napier", version.ref = "napier" }
 flowExt = { module = "io.github.hoc081098:FlowExt", version.ref = "flowExt" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin-androidx-compose" }
+koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koin-compose" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 compose-rules-detekt = { module = "io.nlopez.compose.rules:detekt", version.ref = "compose-rules-detekt" }
 
@@ -71,9 +79,10 @@ androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmode
 androidx-lifecycle-viewmodel-savedstate = { module = "androidx.lifecycle:lifecycle-viewmodel-savedstate", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version = "androidx-lifecycle" }
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version = "androidx-lifecycle" }
+androidx-lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "androidx-lifecycle" }
 androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "androidx-annotation" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
-androidx-compose-bom = { module = "androidx.compose:compose-bom", version = "2023.10.01" }
+androidx-compose-bom = { module = "androidx.compose:compose-bom", version = "2024.01.00" }
 androidx-compose-ui-ui = { module = "androidx.compose.ui:ui" }
 androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
@@ -102,6 +111,7 @@ kotlinx-kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kotlinx-kov
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 kotlinx-binary-compatibility-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "kotlinx-binary-compatibility-validator" }
 
+poko = { id = "dev.drewhamilton.poko", version.ref = "poko" }
 vanniktech-maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "vanniktech-maven-publish" }
 
 [bundles]

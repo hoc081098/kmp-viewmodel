@@ -1,8 +1,7 @@
-@file:Suppress("PackageNaming")
 
 package com.hoc081098.kmpviewmodelsample.product_detail
 
-import com.hoc081098.kmpviewmodelsample.AppDispatchers
+import com.hoc081098.kmpviewmodelsample.common.AppDispatchers
 import com.hoc081098.kmpviewmodelsample.data.FakeProductsJson
 import com.hoc081098.kmpviewmodelsample.data.ProductItem
 import kotlinx.coroutines.delay
