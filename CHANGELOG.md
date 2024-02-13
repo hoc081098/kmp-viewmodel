@@ -2,6 +2,14 @@
 
 ## [Unreleased] - TBD
 
+### Update dependencies
+
+- [AndroidX Lifecycle `2.7.0`](https://developer.android.com/jetpack/androidx/releases/lifecycle#2.7.0).
+
+  The behavior of `ViewModel.addCloseable(Closeable)` on _non-Android targets_ has been changed to be consistent with _Android targets_.
+  `ViewModel`'s `addCloseable()` now immediately closes the `Closeable` if the `ViewModel` has already received a call to `onCleared()`.
+  Now, this behavior is the same for all targets.
+
 ## [0.6.2] - Feb 5, 2024
 
 ### Update dependencies

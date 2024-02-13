@@ -40,9 +40,14 @@ public actual abstract class ViewModel : Any {
 
   protected actual open fun onCleared(): Unit = Unit
 
-  public actual fun addCloseable(closeable: Closeable): Unit = synchronized(lockable) {
-    check(!isCleared.value) { "Cannot addCloseable on a cleared ViewModel" }
-    closeables += closeable
+  public actual fun addCloseable(closeable: Closeable) {
+    // Although no logic should be done after user calls onCleared(), we will
+    // ensure that if it has already been called, the closeable attempting to
+    // be added will be closed immediately to ensure there will be no leaks.
+    if (isCleared.value) {
+      return closeable.closeWithRuntimeException()
+    }
+    synchronized(lockable) { closeables += closeable }
   }
 
   /**

@@ -13,9 +13,9 @@ java-toolchain = "17"
 # the Android minSdkVersion to use
 android-min = "21"
 # the Android target to use
-android-target = "33"
+android-target = "34"
 # the Android compileSdkVersion to use
-android-compile = "33"
+android-compile = "34"
 
 # the Android target to use in sample
 robolectric = "4.11.1"
@@ -35,12 +35,12 @@ koin-compose = "1.1.2"
 coil = "2.5.0"
 compose-rules-detekt = "0.3.11"
 
-androidx-lifecycle = "2.6.2"
+androidx-lifecycle = "2.7.0"
 androidx-annotation = "1.7.1"
 androidx-activity = "1.8.2"
 androidx-compose-compiler = "1.5.8"
-androidx-navigation = "2.7.6"
-android-gradle = "8.2.1"
+androidx-navigation = "2.7.7"
+android-gradle = "8.2.2"
 
 spotless = "6.25.0"
 detekt = "1.23.5"
@@ -82,7 +82,7 @@ androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-
 androidx-lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "androidx-lifecycle" }
 androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "androidx-annotation" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
-androidx-compose-bom = { module = "androidx.compose:compose-bom", version = "2024.01.00" }
+androidx-compose-bom = { module = "androidx.compose:compose-bom", version = "2024.02.00" }
 androidx-compose-ui-ui = { module = "androidx.compose.ui:ui" }
 androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }

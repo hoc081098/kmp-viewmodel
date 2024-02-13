@@ -57,6 +57,9 @@ public expect abstract class ViewModel {
 
   /**
    * Add a new [Closeable] object that will be closed directly before [onCleared] is called.
+   *
+   * If [onCleared] has already been called, the closeable will not be added,
+   * and will instead be closed immediately.
    */
   public fun addCloseable(closeable: Closeable)
 }
