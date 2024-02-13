@@ -1,4 +1,4 @@
-package com.hoc081098.kmp.viewmodel
+package com.hoc081098.kmp.viewmodel.utils
 
 import kotlin.native.concurrent.ObsoleteWorkersApi
 import kotlin.native.concurrent.TransferMode

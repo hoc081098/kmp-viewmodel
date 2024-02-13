@@ -1,4 +1,4 @@
-package com.hoc081098.kmp.viewmodel
+package com.hoc081098.kmp.viewmodel.utils
 
 import java.util.concurrent.Executors
 import kotlinx.coroutines.suspendCancellableCoroutine

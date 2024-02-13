@@ -1,6 +1,7 @@
 package com.hoc081098.kmp.viewmodel
 
 import com.hoc081098.kmp.viewmodel.internal.AtomicBoolean
+import com.hoc081098.kmp.viewmodel.utils.runBlockInNewThread
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
