@@ -7,7 +7,6 @@ import com.hoc081098.kmp.viewmodel.utils.runBlockInNewThread
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
-import kotlin.test.assertFailsWith
 import kotlin.test.assertIs
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
@@ -26,7 +25,7 @@ import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 
-class DemoViewModel : ViewModel {
+class TestViewModel : ViewModel {
   constructor() : super()
 
   constructor(closeables: List<Closeable>) : super(*closeables.toTypedArray())
@@ -46,10 +45,10 @@ class DemoViewModel : ViewModel {
 }
 
 @OptIn(InternalKmpViewModelApi::class)
-private fun createDemoViewModel(closeable: List<Closeable> = emptyList()): Pair<DemoViewModel, () -> Unit> {
+private fun createTestViewModel(closeable: List<Closeable> = emptyList()): Pair<TestViewModel, () -> Unit> {
   val viewModelStore = createViewModelStore()
 
-  return DemoViewModel(closeable)
+  return TestViewModel(closeable)
     .also { viewModelStore.put("DemoViewModel#${it.hashCode()}", it) } to
     viewModelStore::clear
 }
@@ -68,7 +67,7 @@ class ViewModelTest {
 
   @Test
   fun createAndAccessScope() = runTest {
-    val vm = DemoViewModel()
+    val vm = TestViewModel()
     vm.scope
       .launch { delay(100) }
       .join()
@@ -76,13 +75,13 @@ class ViewModelTest {
 
   @Test
   fun scopeMustHaveAJob() {
-    val vm = DemoViewModel()
+    val vm = TestViewModel()
     assertNotNull(vm.scope.coroutineContext[Job])
   }
 
   @Test
   fun scopeMustHaveAMainDispatcher() {
-    val vm = DemoViewModel()
+    val vm = TestViewModel()
     assertIs<MainCoroutineDispatcher>(
       vm.scope.coroutineContext[CoroutineDispatcher],
     )
@@ -92,7 +91,7 @@ class ViewModelTest {
 
   @Test
   fun addCloseablesThatWillBeClosedWhenClear() = runTest {
-    val (vm, clear) = createDemoViewModel()
+    val (vm, clear) = createTestViewModel()
 
     val closeables = List(100) { TestCloseable() }
 
@@ -106,7 +105,7 @@ class ViewModelTest {
   fun constructor_addCloseablesThatWillBeClosedWhenClear() = runTest {
     val closeables = List(100) { TestCloseable() }
 
-    val (_, clear) = createDemoViewModel(closeables)
+    val (_, clear) = createTestViewModel(closeables)
     delay(1)
     clear()
 
@@ -115,7 +114,7 @@ class ViewModelTest {
 
   @Test
   fun addCloseablesThatWillBeClosedWhenClear_multiThreads() = runTest {
-    val (vm, clear) = createDemoViewModel()
+    val (vm, clear) = createTestViewModel()
 
     val closeables = List(100) { TestCloseable() }
 
@@ -130,27 +129,24 @@ class ViewModelTest {
   }
 
   @Test
-  fun cannotAddCloseableAfterClear() = runTest {
-    val (vm, clear) = createDemoViewModel()
+  fun addCloseableAfterCleared() = runTest {
+    val (vm, clear) = createTestViewModel()
     clear()
 
-    val closeable = Closeable { error("Cannot reach here!") }
+    val closeable = TestCloseable()
+    vm.addCloseable(closeable)
 
-    assertFailsWith<IllegalStateException> {
-      vm.addCloseable(closeable)
-    }
+    assertTrue { closeable.closed }
   }
 
   @Test
-  fun cannotAddCloseableAfterClear_multiThreads() = runTest {
-    val (vm, clear) = createDemoViewModel()
+  fun addCloseableAfterCleared_multiThreads() = runTest {
+    val (vm, clear) = createTestViewModel()
     var isCleared by TestAtomicBoolean().delegated()
 
     repeat(10) {
       launch {
-        runBlockInNewThread {
-          clear()
-        }
+        runBlockInNewThread { clear() }
         isCleared = true
       }
     }
@@ -162,7 +158,9 @@ class ViewModelTest {
         launch {
           runBlockInNewThread {
             if (isCleared) {
-              assertFailsWith<IllegalStateException> { vm.addCloseable { error("Cannot reach here!") } }
+              val closeable = TestCloseable()
+              vm.addCloseable(closeable)
+              assertTrue { closeable.closed }
             }
           }
         }
