@@ -102,6 +102,13 @@ kotlin {
         implementation(kotlin("test-junit"))
       }
     }
+    val androidInstrumentedTest by getting {
+      dependencies {
+        implementation(kotlin("test-junit"))
+        implementation("androidx.compose.ui:ui-test-junit4:1.5.4")
+        implementation("androidx.test.ext:junit:1.1.5")
+      }
+    }
 
     val nonAndroidMain by creating {
       dependsOn(commonMain.get())
@@ -177,6 +184,7 @@ android {
 
   defaultConfig {
     minSdk = libs.versions.android.min.get().toInt()
+    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
   }
 
   // still needed for Android projects despite toolchain
