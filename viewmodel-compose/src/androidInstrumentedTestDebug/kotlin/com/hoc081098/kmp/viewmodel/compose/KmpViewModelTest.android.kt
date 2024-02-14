@@ -33,7 +33,7 @@ class KmpViewModelTest {
   val composeTestRule = createComposeRule()
 
   @Test
-  fun default() {
+  fun viewModelCreatedViaFactory() {
     val owner = FakeViewModelStoreOwner()
     var createdInComposition1: TestViewModel? = null
     var createdInComposition2: TestViewModel? = null
@@ -53,8 +53,34 @@ class KmpViewModelTest {
     assertNotNull(createdInComposition2)
     assertSame(createdInComposition1, createdInComposition2)
     assertEquals(
-      "androidx.lifecycle.ViewModelProvider.DefaultKey:com.hoc081098.kmp.viewmodel.compose.TestViewModel",
-      createdInComposition1!!.extras[VIEW_MODEL_KEY],
+      expected = "androidx.lifecycle.ViewModelProvider.DefaultKey:com.hoc081098.kmp.viewmodel.compose.TestViewModel",
+      actual = createdInComposition1!!.extras[VIEW_MODEL_KEY],
+    )
+  }
+
+  @Test
+  fun viewModelCreatedViaFactoryKey() {
+    val owner = FakeViewModelStoreOwner()
+    var createdInComposition1: TestViewModel? = null
+    var createdInComposition2: TestViewModel? = null
+
+    composeTestRule.setContent {
+      ViewModelStoreOwnerProvider(owner) {
+        createdInComposition1 = kmpViewModel(key = "test") {
+          TestViewModel(extras = this)
+        }
+        createdInComposition2 = kmpViewModel(key = "test") {
+          TestViewModel(extras = this)
+        }
+      }
+    }
+
+    assertNotNull(createdInComposition1)
+    assertNotNull(createdInComposition2)
+    assertSame(createdInComposition1, createdInComposition2)
+    assertEquals(
+      expected = "test",
+      actual = createdInComposition1!!.extras[VIEW_MODEL_KEY],
     )
   }
 }
