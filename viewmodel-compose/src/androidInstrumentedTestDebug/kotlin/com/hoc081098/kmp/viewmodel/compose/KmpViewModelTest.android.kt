@@ -7,6 +7,7 @@ import com.hoc081098.kmp.viewmodel.VIEW_MODEL_KEY
 import com.hoc081098.kmp.viewmodel.ViewModel
 import com.hoc081098.kmp.viewmodel.ViewModelStore
 import com.hoc081098.kmp.viewmodel.ViewModelStoreOwner
+import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertSame
 import org.junit.Rule
@@ -51,6 +52,9 @@ class KmpViewModelTest {
     assertNotNull(createdInComposition1)
     assertNotNull(createdInComposition2)
     assertSame(createdInComposition1, createdInComposition2)
-    assertNotNull(createdInComposition1!!.extras[VIEW_MODEL_KEY])
+    assertEquals(
+      "androidx.lifecycle.ViewModelProvider.DefaultKey:com.hoc081098.kmp.viewmodel.compose.TestViewModel",
+      createdInComposition1!!.extras[VIEW_MODEL_KEY],
+    )
   }
 }
