@@ -19,7 +19,7 @@ private class TestViewModel(
   val extras: CreationExtras,
 ) : ViewModel() {
   init {
-    println("$this::init")
+    println(">>> $this::init with $extras")
   }
 }
 
