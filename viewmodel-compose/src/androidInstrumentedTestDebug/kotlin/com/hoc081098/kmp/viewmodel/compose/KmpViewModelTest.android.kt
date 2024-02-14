@@ -2,11 +2,13 @@ package com.hoc081098.kmp.viewmodel.compose
 
 import androidx.compose.ui.test.junit4.createComposeRule
 import com.hoc081098.kmp.viewmodel.CreationExtras
+import com.hoc081098.kmp.viewmodel.CreationExtrasKey
 import com.hoc081098.kmp.viewmodel.InternalKmpViewModelApi
 import com.hoc081098.kmp.viewmodel.VIEW_MODEL_KEY
 import com.hoc081098.kmp.viewmodel.ViewModel
 import com.hoc081098.kmp.viewmodel.ViewModelStore
 import com.hoc081098.kmp.viewmodel.ViewModelStoreOwner
+import com.hoc081098.kmp.viewmodel.buildCreationExtras
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertSame
@@ -59,7 +61,7 @@ class KmpViewModelTest {
   }
 
   @Test
-  fun viewModelCreatedViaFactoryKey() {
+  fun viewModelCreatedViaFactoryWithKey() {
     val owner = FakeViewModelStoreOwner()
     var createdInComposition1: TestViewModel? = null
     var createdInComposition2: TestViewModel? = null
@@ -81,6 +83,42 @@ class KmpViewModelTest {
     assertEquals(
       expected = "test",
       actual = createdInComposition1!!.extras[VIEW_MODEL_KEY],
+    )
+  }
+
+  @Test
+  fun viewModelCreatedViaFactoryWithKeyAndCreationExtras() {
+    val owner = FakeViewModelStoreOwner()
+    val extrasKey = object : CreationExtrasKey<String> {}
+    val extras = buildCreationExtras {
+      this[extrasKey] = "value"
+    }
+
+    var createdInComposition1: TestViewModel? = null
+    var createdInComposition2: TestViewModel? = null
+
+    composeTestRule.setContent {
+      ViewModelStoreOwnerProvider(owner) {
+        createdInComposition1 = kmpViewModel(key = "test", extras = extras) {
+          TestViewModel(extras = this)
+        }
+        createdInComposition2 = kmpViewModel(key = "test", extras = extras) {
+          TestViewModel(extras = this)
+        }
+      }
+    }
+
+    assertNotNull(createdInComposition1)
+    assertNotNull(createdInComposition2)
+    assertSame(createdInComposition1, createdInComposition2)
+
+    assertEquals(
+      expected = "test",
+      actual = createdInComposition1!!.extras[VIEW_MODEL_KEY],
+    )
+    assertEquals(
+      expected = "value",
+      actual = createdInComposition1!!.extras[extrasKey],
     )
   }
 }
