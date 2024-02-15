@@ -79,7 +79,7 @@ kotlin {
   sourceSets {
     commonMain {
       dependencies {
-        api(libs.jetbrains.compose.runtime)
+        api(compose.runtime)
         api(projects.viewmodel)
         api(projects.viewmodelSavedstate)
       }
