@@ -126,7 +126,7 @@ class KmpViewModelTest {
     assertNull(androidXOwner)
     assertIs<ComponentActivity>(
       assertNotNull(owner)
-        .toAndroidX()
+        .toAndroidX(),
     )
   }
 
