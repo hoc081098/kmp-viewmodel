@@ -25,6 +25,7 @@ import org.koin.dsl.module
 val TestViewModelModule = module {
   factoryOf(::TestViewModel)
   factoryOf(::TestViewModelWithParams)
+  factoryOf(::TestSavedStateViewModel)
 }
 
 @OptIn(KoinInternalApi::class)
