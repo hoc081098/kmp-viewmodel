@@ -6,6 +6,7 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.platform.LocalSavedStateRegistryOwner
+import androidx.compose.ui.test.junit4.ComposeContentTestRule
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.lifecycle.setViewTreeLifecycleOwner
 import androidx.savedstate.setViewTreeSavedStateRegistryOwner
@@ -44,11 +45,12 @@ private class FakeViewModelStoreOwner : ViewModelStoreOwner {
 
 class KmpViewModelTest {
   @get:Rule
-  val composeTestRule = createComposeRule()
+  val composeTestRule: ComposeContentTestRule = createComposeRule()
 
   @Test
-  public fun nullViewModelStoreOwner() {
+  fun nullViewModelStoreOwnerViaLocalViewModelStoreOwner() {
     var owner: ViewModelStoreOwner? = null
+    var androidXOwner: androidx.lifecycle.ViewModelStoreOwner? = null
 
     composeTestRule.setContent {
       val context = LocalContext.current
@@ -59,6 +61,7 @@ class KmpViewModelTest {
           val composeView = ComposeView(context)
           composeView.setContent {
             // This should return null because no LocalViewModelStoreOwner was set
+            androidXOwner = androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner.current
             owner = LocalViewModelStoreOwner.current
           }
           setContentView(composeView)
@@ -77,6 +80,48 @@ class KmpViewModelTest {
     }
 
     assertNull(owner)
+    assertNull(androidXOwner)
+  }
+
+  @Test
+  fun nonNullViewModelStoreOwnerViaDefaultViewModelStoreOwner() {
+    var ownerViaLocalViewModelStoreOwner: ViewModelStoreOwner? = null
+    var owner: ViewModelStoreOwner? = null
+    var androidXOwner: androidx.lifecycle.ViewModelStoreOwner? = null
+
+    composeTestRule.setContent {
+      val context = LocalContext.current
+      val lifecycleOwner = LocalLifecycleOwner.current
+      val savedStateRegistryOwner = LocalSavedStateRegistryOwner.current
+      DisposableEffect(context, lifecycleOwner, savedStateRegistryOwner) {
+        val dialog = Dialog(context).apply {
+          val composeView = ComposeView(context)
+          composeView.setContent {
+            // This should return null because no LocalViewModelStoreOwner was set
+            androidXOwner = androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner.current
+            ownerViaLocalViewModelStoreOwner = LocalViewModelStoreOwner.current
+
+            // This should return non-null because it uses defaultPlatformViewModelStoreOwner as the fallback.
+            owner = defaultViewModelStoreOwner()
+          }
+          setContentView(composeView)
+        }
+        dialog.show()
+        dialog.window?.decorView?.run {
+          // Specifically only set the LifecycleOwner and SavedStateRegistryOwner
+          setViewTreeLifecycleOwner(lifecycleOwner)
+          setViewTreeSavedStateRegistryOwner(savedStateRegistryOwner)
+        }
+
+        onDispose {
+          dialog.dismiss()
+        }
+      }
+    }
+
+    assertNull(ownerViaLocalViewModelStoreOwner)
+    assertNull(androidXOwner)
+    assertNotNull(owner)
   }
 
   @Test
