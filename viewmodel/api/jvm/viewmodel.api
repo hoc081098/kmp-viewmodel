@@ -5,10 +5,6 @@ public abstract class com/hoc081098/kmp/viewmodel/CreationExtras {
 public abstract interface class com/hoc081098/kmp/viewmodel/CreationExtrasKey {
 }
 
-public final class com/hoc081098/kmp/viewmodel/CreationExtrasKey_nonAndroidKt {
-	public static final field VIEW_MODEL_KEY Lcom/hoc081098/kmp/viewmodel/CreationExtrasKey;
-}
-
 public final class com/hoc081098/kmp/viewmodel/CreationExtrasKt {
 	public static final fun MutableCreationExtrasBuilder (Lcom/hoc081098/kmp/viewmodel/MutableCreationExtrasBuilder;)Lcom/hoc081098/kmp/viewmodel/MutableCreationExtrasBuilder;
 }
@@ -17,6 +13,10 @@ public final class com/hoc081098/kmp/viewmodel/CreationExtrasKtxKt {
 	public static final fun buildCreationExtras (Lcom/hoc081098/kmp/viewmodel/CreationExtras;Lkotlin/jvm/functions/Function1;)Lcom/hoc081098/kmp/viewmodel/CreationExtras;
 	public static synthetic fun buildCreationExtras$default (Lcom/hoc081098/kmp/viewmodel/CreationExtras;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lcom/hoc081098/kmp/viewmodel/CreationExtras;
 	public static final fun edit (Lcom/hoc081098/kmp/viewmodel/CreationExtras;Lkotlin/jvm/functions/Function1;)Lcom/hoc081098/kmp/viewmodel/CreationExtras;
+}
+
+public final class com/hoc081098/kmp/viewmodel/CreationExtras_nonAndroidKt {
+	public static final field VIEW_MODEL_KEY Lcom/hoc081098/kmp/viewmodel/CreationExtrasKey;
 }
 
 public final class com/hoc081098/kmp/viewmodel/EmptyCreationExtras : com/hoc081098/kmp/viewmodel/CreationExtras {
