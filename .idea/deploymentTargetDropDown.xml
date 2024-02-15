@@ -5,13 +5,10 @@
       <entry key="KmpViewModelTest">
         <State />
       </entry>
-      <entry key="default()">
+      <entry key="nullViewModelStoreOwnerViaDefaultViewModelStoreOwner()">
         <State />
       </entry>
       <entry key="sample.app">
-        <State />
-      </entry>
-      <entry key="test()">
         <State />
       </entry>
     </value>
