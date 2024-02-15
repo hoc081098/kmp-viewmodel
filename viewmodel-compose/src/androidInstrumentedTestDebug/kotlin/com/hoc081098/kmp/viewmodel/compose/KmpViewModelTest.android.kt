@@ -1,6 +1,7 @@
 package com.hoc081098.kmp.viewmodel.compose
 
 import android.app.Dialog
+import androidx.activity.ComponentActivity
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalContext
@@ -19,8 +20,10 @@ import com.hoc081098.kmp.viewmodel.ViewModelStore
 import com.hoc081098.kmp.viewmodel.ViewModelStoreOwner
 import com.hoc081098.kmp.viewmodel.buildCreationExtras
 import com.hoc081098.kmp.viewmodel.edit
+import com.hoc081098.kmp.viewmodel.toAndroidX
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertIs
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertSame
@@ -120,6 +123,7 @@ class KmpViewModelTest {
     }
 
     assertNull(ownerViaLocalViewModelStoreOwner)
+    assertIs<ComponentActivity>(ownerViaLocalViewModelStoreOwner!!.toAndroidX())
     assertNull(androidXOwner)
     assertNotNull(owner)
   }
