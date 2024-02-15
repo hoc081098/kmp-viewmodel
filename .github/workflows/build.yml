@@ -174,7 +174,11 @@ jobs:
   android-instrumented-test:
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    if: ${{ github.repository == 'hoc081098/kmp-viewmodel' && ( !contains(github.event.head_commit.message, '[ci skip]') && !contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.pull_request.title, '[skip ci]') && !contains(github.event.pull_request.title, '[ci skip]') ) }}
+    if: ${{ github.repository == 'hoc081098/kmp-viewmodel' &&
+      !contains(github.event.head_commit.message, '[ci skip]') &&
+      !contains(github.event.head_commit.message, '[skip ci]') &&
+      !contains(github.event.pull_request.title, '[skip ci]') &&
+      !contains(github.event.pull_request.title, '[ci skip]') }}
     strategy:
       fail-fast: true
       matrix:
