@@ -19,6 +19,7 @@ import org.koin.core.scope.Scope
  * with the given [qualifier] and [parameters].
  *
  * [SavedStateHandle] will be created and passed to the constructor of [VM] if it's requested.
+ * [CreationExtras] passed to [ViewModelFactory.create] will be passed to the constructor of [VM] if it's requested.
  *
  * ### Example
  * ```kotlin
@@ -67,6 +68,7 @@ public inline fun <reified VM : ViewModel> koinViewModelFactory(
  * with the given [qualifier] and [parameters].
  *
  * [SavedStateHandle] will be created and passed to the constructor of [VM] if it's requested.
+ * [CreationExtras] passed to [ViewModelFactory.create] will be passed to the constructor of [VM] if it's requested.
  *
  * ### Example
  * ```kotlin
@@ -124,19 +126,26 @@ internal class KmpViewModelParametersHolder(
 ) {
 
   override fun <T> elementAt(i: Int, clazz: KClass<*>): T {
-    return createSavedStateHandleOrElse(clazz) { super.elementAt(i, clazz) }
+    return createSavedStateHandleOrCreationExtrasOrElse(clazz) { super.elementAt(i, clazz) }
   }
 
   override fun <T> getOrNull(clazz: KClass<*>): T? {
-    return createSavedStateHandleOrElse(clazz) { super.getOrNull(clazz) }
+    return createSavedStateHandleOrCreationExtrasOrElse(clazz) { super.getOrNull(clazz) }
   }
 
-  private inline fun <T> createSavedStateHandleOrElse(clazz: KClass<*>, block: () -> T): T {
-    return if (clazz == SavedStateHandle::class) {
-      @Suppress("UNCHECKED_CAST")
-      extras.createSavedStateHandle() as T
-    } else {
-      block()
+  private inline fun <T> createSavedStateHandleOrCreationExtrasOrElse(clazz: KClass<*>, block: () -> T): T {
+    return when (clazz) {
+      SavedStateHandle::class -> {
+        @Suppress("UNCHECKED_CAST")
+        extras.createSavedStateHandle() as T
+      }
+
+      CreationExtras::class -> {
+        @Suppress("UNCHECKED_CAST")
+        extras as T
+      }
+
+      else -> block()
     }
   }
 }
