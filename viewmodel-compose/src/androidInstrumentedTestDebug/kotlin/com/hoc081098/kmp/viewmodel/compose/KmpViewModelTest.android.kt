@@ -9,6 +9,7 @@ import com.hoc081098.kmp.viewmodel.ViewModel
 import com.hoc081098.kmp.viewmodel.ViewModelStore
 import com.hoc081098.kmp.viewmodel.ViewModelStoreOwner
 import com.hoc081098.kmp.viewmodel.buildCreationExtras
+import com.hoc081098.kmp.viewmodel.edit
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertSame
@@ -104,6 +105,39 @@ class KmpViewModelTest {
         }
         createdInComposition2 = kmpViewModel(key = "test", extras = extras) {
           TestViewModel(extras = this)
+        }
+      }
+    }
+
+    assertNotNull(createdInComposition1)
+    assertNotNull(createdInComposition2)
+    assertSame(createdInComposition1, createdInComposition2)
+
+    assertEquals(
+      expected = "test",
+      actual = createdInComposition1!!.extras[VIEW_MODEL_KEY],
+    )
+    assertEquals(
+      expected = "value",
+      actual = createdInComposition1!!.extras[extrasKey],
+    )
+  }
+
+  @Test
+  fun viewModelCreatedCreationExtrasInitializer() {
+    val owner = FakeViewModelStoreOwner()
+    val extrasKey = object : CreationExtrasKey<String> {}
+
+    var createdInComposition1: TestViewModel? = null
+    var createdInComposition2: TestViewModel? = null
+
+    composeTestRule.setContent {
+      ViewModelStoreOwnerProvider(owner) {
+        createdInComposition1 = kmpViewModel(key = "test") {
+          TestViewModel(extras = edit { this[extrasKey] = "value" })
+        }
+        createdInComposition2 = kmpViewModel(key = "test") {
+          TestViewModel(extras = edit { this[extrasKey] = "value" })
         }
       }
     }
