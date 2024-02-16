@@ -5,6 +5,7 @@
 ### Update dependencies
 
 - [AndroidX Lifecycle `2.7.0`](https://developer.android.com/jetpack/androidx/releases/lifecycle#2.7.0).
+- Update `Compile SDK` and `Target SDK` to `34`.  
 
   The behavior of `ViewModel.addCloseable(Closeable)` on _non-Android targets_ has been changed to be consistent with _Android targets_.
   `ViewModel`'s `addCloseable()` now **immediately closes** the `Closeable` if the `ViewModel` has been cleared.
