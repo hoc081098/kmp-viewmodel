@@ -59,6 +59,7 @@ Liked some of my work? Buy me a coffee (or more likely a beer)
 > Because the `ViewModel.viewModelScope` depends on `Dispatchers.Main` provided by that libraries on Desktop.
 
 - `js` (`IR`).
+- `wasmJs`.
 - `Darwin` targets:
   - `iosArm64`, `iosX64`, `iosSimulatorArm64`.
   - `watchosArm32`, `watchosArm64`, `watchosX64`, `watchosSimulatorArm64`.
