@@ -5,11 +5,13 @@
 ### Update dependencies
 
 - [AndroidX Lifecycle `2.7.0`](https://developer.android.com/jetpack/androidx/releases/lifecycle#2.7.0).
-- Update `Compile SDK` and `Target SDK` to `34`.  
+- Android target: update `Compile SDK` and `Target SDK` to `34`.  
 
   The behavior of `ViewModel.addCloseable(Closeable)` on _non-Android targets_ has been changed to be consistent with _Android targets_.
   `ViewModel`'s `addCloseable()` now **immediately closes** the `Closeable` if the `ViewModel` has been cleared.
   **This behavior is the same across all targets**.  
+
+- [KotlinX Coroutines `1.8.0`](https://github.com/Kotlin/kotlinx.coroutines/releases/tag/1.8.0).
 
 ### `kmp-viewmodel-koin`
 
