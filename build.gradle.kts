@@ -46,6 +46,7 @@ subprojects {
 dependencies {
   kover(project(":viewmodel"))
   kover(project(":viewmodel-savedstate"))
+  kover(project(":viewmodel-compose"))
   kover(project(":viewmodel-koin"))
   kover(project(":viewmodel-koin-compose"))
 }
