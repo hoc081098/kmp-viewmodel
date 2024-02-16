@@ -35,6 +35,9 @@ private class FakeViewModelStoreOwner : ViewModelStoreOwner {
   override val viewModelStore: ViewModelStore = store
 }
 
+/**
+ * [Reference](https://github.com/androidx/androidx/blob/35af38142ae8a8d6ca4622bf48cfbeca2f7f8be0/lifecycle/lifecycle-viewmodel-compose/src/androidTest/java/androidx/lifecycle/viewmodel/compose/ViewModelTest.kt)
+ */
 class KmpViewModelTest {
   @get:Rule
   val composeTestRule: ComposeContentTestRule = createComposeRule()

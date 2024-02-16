@@ -34,6 +34,9 @@ internal val TestViewModelModule = module {
   factoryOf(::TestViewModelWithExtras)
 }
 
+/**
+ * [Reference](https://github.com/mori-atsushi/koject/blob/581b568260645db798d5e2c64d8bdbf305430ae4/android/koject-android-viewmodel/src/test/java/com/moriatsushi/koject/android/viewmodel/KojectViewModelFactoryTest.kt)
+ */
 @OptIn(KoinInternalApi::class)
 class KoinViewModelFactoryTest {
   private lateinit var koin: Koin
