@@ -7,25 +7,25 @@
 - [AndroidX Lifecycle `2.7.0`](https://developer.android.com/jetpack/androidx/releases/lifecycle#2.7.0).
 
   The behavior of `ViewModel.addCloseable(Closeable)` on _non-Android targets_ has been changed to be consistent with _Android targets_.
-  `ViewModel`'s `addCloseable()` now immediately closes the `Closeable` if the `ViewModel` has already received a call to `onCleared()`.
-  Now, this behavior is the same for all targets.
+  `ViewModel`'s `addCloseable()` now **immediately closes** the `Closeable` if the `ViewModel` has been cleared.
+  **This behavior is the same across all targets**.  
 
 ### `kmp-viewmodel-koin`
 
 - **Fix** `koinViewModelFactory`: `CreationExtras` passed to `ViewModelFactory.create` will now be
-  passed to the constructor of the ViewModel if it's requested.
+  passed to the constructor of the ViewModel if it's requested.  
 
   ```kotlin
   class MyViewModel(val extras: CreationExtras) : ViewModel()
-
   val myModule: Module = module {
     factoryOf(::MyViewModel)
   }
-
+  
   val factory = koinViewModelFactory<MyViewModel>(
     scope = KoinPlatformTools.defaultContext().get().scopeRegistry.rootScope,
   )
   val extras = buildCreationExtras { /* ... */ }
+  
   val viewModel: MyViewModel = factory.create(extras)
   viewModel.extras === extras // true <--- `extras` is the same as `extras` passed to `factory.create(extras)`
   ```
