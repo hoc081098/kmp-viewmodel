@@ -47,6 +47,7 @@ dependencies {
   kover(project(":viewmodel"))
   kover(project(":viewmodel-savedstate"))
   kover(project(":viewmodel-koin"))
+  kover(project(":viewmodel-koin-compose"))
 }
 
 val ktlintVersion = libs.versions.ktlint.get()
