@@ -29,29 +29,29 @@ class ViewModelKeyTest {
 
     assertEquals(
       expected = null,
-      actual = getViewModelKey(qualifier = null, scope = root, key = null)
+      actual = getViewModelKey(qualifier = null, scope = root, key = null),
     )
     assertEquals(
       expected = q.value,
-      actual = getViewModelKey(qualifier = q, scope = root, key = null)
+      actual = getViewModelKey(qualifier = q, scope = root, key = null),
     )
     assertEquals(
       expected = key,
-      actual = getViewModelKey(qualifier = null, scope = root, key = key)
+      actual = getViewModelKey(qualifier = null, scope = root, key = key),
     )
     assertEquals(
       expected = nonRootScope.id,
-      actual = getViewModelKey(qualifier = null, scope = nonRootScope, key = null)
+      actual = getViewModelKey(qualifier = null, scope = nonRootScope, key = null),
     )
 
     assertEquals(
       expected = key + nonRootScope.id,
-      actual = getViewModelKey(qualifier = null, scope = nonRootScope, key = key)
+      actual = getViewModelKey(qualifier = null, scope = nonRootScope, key = key),
     )
 
     assertEquals(
       expected = q.value + key + nonRootScope.id,
-      actual = getViewModelKey(qualifier = q, scope = nonRootScope, key = key)
+      actual = getViewModelKey(qualifier = q, scope = nonRootScope, key = key),
     )
   }
 }
