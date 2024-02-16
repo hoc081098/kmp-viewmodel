@@ -62,8 +62,6 @@ junit = { module = "junit:junit", version.ref = "junit" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
 kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlinx-collections-immutable" }
 
-jetbrains-compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "jetbrains-compose" }
-
 robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 touchlab-stately-concurrency = { module = "co.touchlab:stately-concurrency", version.ref = "touchlab-stately" }
 napier = { module = "io.github.aakira:napier", version.ref = "napier" }

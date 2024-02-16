@@ -79,7 +79,7 @@ kotlin {
   sourceSets {
     commonMain {
       dependencies {
-        api(libs.jetbrains.compose.runtime)
+        api(compose.runtime)
 
         api(projects.viewmodel)
         api(projects.viewmodelSavedstate)
@@ -133,6 +133,8 @@ kotlin {
 
       dependencies {
         implementation(kotlin("test-junit"))
+        implementation(compose.desktop.uiTestJUnit4)
+        implementation(compose.desktop.currentOs)
       }
     }
 
@@ -160,19 +162,6 @@ kotlin {
     languageSettings {
       optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
     }
-  }
-}
-
-tasks.withType<org.jetbrains.kotlin.gradle.dsl.KotlinCompile<*>>().configureEach {
-  kotlinOptions {
-    // 'expect'/'actual' classes (including interfaces, objects, annotations, enums,
-    // and 'actual' typealiases) are in Beta.
-    // You can use -Xexpect-actual-classes flag to suppress this warning.
-    // Also see: https://youtrack.jetbrains.com/issue/KT-61573
-    freeCompilerArgs +=
-      listOf(
-        "-Xexpect-actual-classes",
-      )
   }
 }
 

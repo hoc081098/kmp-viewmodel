@@ -17,6 +17,7 @@ import com.hoc081098.kmp.viewmodel.compose.defaultViewModelStoreOwner
 import com.hoc081098.kmp.viewmodel.compose.internal.kClassOf
 import com.hoc081098.kmp.viewmodel.compose.kmpViewModel
 import com.hoc081098.kmp.viewmodel.koin.koinViewModelFactory
+import kotlin.jvm.JvmSynthetic
 import kotlin.reflect.KClass
 import org.koin.compose.currentKoinScope
 import org.koin.core.parameter.ParametersDefinition
@@ -90,7 +91,8 @@ public inline fun <reified VM : ViewModel> koinKmpViewModel(
 
 // Copied from https://github.com/InsertKoinIO/koin/blob/e1f58a69d762d26c485b2ca7b7200e621c8ee6c0/android/koin-android/src/main/java/org/koin/androidx/viewmodel/GetViewModel.kt#L28
 @InternalKmpViewModelApi
-private fun getViewModelKey(qualifier: Qualifier?, scope: Scope, key: String?): String? {
+@JvmSynthetic
+internal fun getViewModelKey(qualifier: Qualifier?, scope: Scope, key: String?): String? {
   return if (qualifier == null && key == null && scope.isRoot) {
     null
   } else {

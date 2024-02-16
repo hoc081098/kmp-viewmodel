@@ -79,7 +79,7 @@ kotlin {
   sourceSets {
     commonMain {
       dependencies {
-        api(libs.jetbrains.compose.runtime)
+        api(compose.runtime)
         api(projects.viewmodel)
         api(projects.viewmodelSavedstate)
       }
@@ -100,6 +100,14 @@ kotlin {
     val androidUnitTest by getting {
       dependencies {
         implementation(kotlin("test-junit"))
+      }
+    }
+    val androidInstrumentedTest by getting {
+      dependencies {
+        implementation(kotlin("test-junit"))
+        implementation("androidx.compose.ui:ui-test-junit4:1.0.1")
+        implementation("androidx.compose.ui:ui-test-manifest:1.0.1")
+        implementation("androidx.test.ext:junit:1.1.5")
       }
     }
 
@@ -127,6 +135,8 @@ kotlin {
 
       dependencies {
         implementation(kotlin("test-junit"))
+        implementation(compose.desktop.uiTestJUnit4)
+        implementation(compose.desktop.currentOs)
       }
     }
 
@@ -177,6 +187,7 @@ android {
 
   defaultConfig {
     minSdk = libs.versions.android.min.get().toInt()
+    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
   }
 
   // still needed for Android projects despite toolchain
