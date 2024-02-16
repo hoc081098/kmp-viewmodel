@@ -133,6 +133,8 @@ kotlin {
 
       dependencies {
         implementation(kotlin("test-junit"))
+        implementation(compose.desktop.uiTestJUnit4)
+        implementation(compose.desktop.currentOs)
       }
     }
 
