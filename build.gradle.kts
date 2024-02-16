@@ -4,6 +4,8 @@ import io.gitlab.arturbosch.detekt.DetektPlugin
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
+import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension
+import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootPlugin
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
@@ -49,6 +51,16 @@ dependencies {
   kover(project(":viewmodel-compose"))
   kover(project(":viewmodel-koin"))
   kover(project(":viewmodel-koin-compose"))
+}
+
+// Reference: https://github.com/drewhamilton/Poko/blob/72ec8d24cf48a74b3d1125c94f0e625ab956b93f/build.gradle.kts#L15-L22
+plugins.withType<NodeJsRootPlugin> {
+  extensions.getByType<NodeJsRootExtension>().apply {
+    // WASM requires a canary Node.js version. This is the last v21 canary, and has both
+    // darwin-arm64 and darwin-x64 artifacts:
+    nodeVersion = "21.6.0-v8-canary20231024d0ddc81258"
+    nodeDownloadBaseUrl = "https://nodejs.org/download/v8-canary"
+  }
 }
 
 val ktlintVersion = libs.versions.ktlint.get()
