@@ -8,9 +8,6 @@ import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
 import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension
 import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootPlugin
 import org.jetbrains.kotlin.gradle.targets.js.npm.tasks.KotlinNpmInstallTask
-import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnLockMismatchReport
-import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin
-import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
