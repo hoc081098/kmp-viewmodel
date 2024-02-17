@@ -13,6 +13,10 @@
 
 - [KotlinX Coroutines `1.8.0`](https://github.com/Kotlin/kotlinx.coroutines/releases/tag/1.8.0).
 
+### `kmp-viewmodel` and `kmp-viewmodel-savedstate`
+
+- **New** Add support for Kotlin/Wasm (`wasmJs` target).  
+
 ### `kmp-viewmodel-koin`
 
 - **Fix** `koinViewModelFactory`: `CreationExtras` passed to `ViewModelFactory.create` will now be
