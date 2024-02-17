@@ -28,6 +28,8 @@ Its principal advantage is that it caches state and persists it through configur
 ![badge][badge-jvm]
 ![badge][badge-android]
 ![badge][badge-js]
+![badge][badge-wasm]
+![badge][badge-nodejs]
 ![badge][badge-ios]
 ![badge][badge-mac]
 ![badge][badge-tvos]
