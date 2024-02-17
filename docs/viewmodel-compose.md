@@ -25,7 +25,7 @@ kotlin {
   sourceSets {
     val commonMain by getting {
       dependencies {
-        api("io.github.hoc081098:kmp-viewmodel-compose:0.6.2")
+        api("io.github.hoc081098:kmp-viewmodel-compose:0.7.0")
       }
     }
   }
@@ -48,7 +48,7 @@ dependencyResolutionManagement {
 
 // build.gradle.kts
 dependencies {
-  api("io.github.hoc081098:kmp-viewmodel-compose:0.6.3-SNAPSHOT")
+  api("io.github.hoc081098:kmp-viewmodel-compose:0.7.1-SNAPSHOT")
 }
 ```
 

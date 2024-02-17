@@ -2,42 +2,45 @@
 
 ## [Unreleased] - TBD
 
+## [0.7.0] - Feb 17, 2024
+
 ### Update dependencies
 
-- [AndroidX Lifecycle `2.7.0`](https://developer.android.com/jetpack/androidx/releases/lifecycle#2.7.0).  
-- Android target: update `Compile SDK` and `Target SDK` to `34`.  
-- [KotlinX Coroutines `1.8.0`](https://github.com/Kotlin/kotlinx.coroutines/releases/tag/1.8.0).  
+- [AndroidX Lifecycle `2.7.0`](https://developer.android.com/jetpack/androidx/releases/lifecycle#2.7.0).
+- Android target: update `Compile SDK` and `Target SDK` to `34`.
+- [KotlinX Coroutines `1.8.0`](https://github.com/Kotlin/kotlinx.coroutines/releases/tag/1.8.0).
 
 ### `kmp-viewmodel` and `kmp-viewmodel-savedstate`
 
-- **New**: Add support for Kotlin/Wasm (`wasmJs` target) 🎉.  
+- **New**: Add support for Kotlin/Wasm (`wasmJs` target) 🎉.
 - The behavior of `ViewModel.addCloseable(Closeable)` on _non-Android targets_ has been changed to be consistent with _Android target_.
   `ViewModel`'s `addCloseable()` now **immediately closes** the `Closeable` if the `ViewModel` has been cleared.
-  **This behavior is the same across all targets ✅**.  
+  **This behavior is the same across all targets ✅**.
 
 ### `kmp-viewmodel-koin`
 
 - **Fixed**: `koinViewModelFactory`: `CreationExtras` passed to `ViewModelFactory.create` will now be
-  passed to the constructor of the ViewModel if it's requested.  
+  passed to the constructor of the ViewModel if it's requested.
 
   ```kotlin
   class MyViewModel(val extras: CreationExtras) : ViewModel()
   val myModule: Module = module {
     factoryOf(::MyViewModel)
   }
-  
+
   val factory = koinViewModelFactory<MyViewModel>(
     scope = KoinPlatformTools.defaultContext().get().scopeRegistry.rootScope,
   )
   val extras = buildCreationExtras { /* ... */ }
-  
+
   val viewModel: MyViewModel = factory.create(extras)
-  viewModel.extras === extras // true <--- `extras` is the same as `extras` passed to `factory.create(extras)`
+  viewModel.extras === extras // true <--- `viewModel.extras` is the same as `extras` passed to `factory.create(extras)`
   ```
 
 ### Example, docs and tests
 
-- Add more tests to `kmp-viewmodel-compose` (android & jvm), `kmp-viewmodel-koin` (common), and `kmp-viewmodel-koin-compose` (common & jvm).  
+- Add more tests to `kmp-viewmodel-compose` (android & jvm), `kmp-viewmodel-koin` (common),
+  and `kmp-viewmodel-koin-compose` (common & jvm).
 
 ## [0.6.2] - Feb 5, 2024
 
@@ -393,7 +396,9 @@ Share everything including data, domain, presentation, and UI.
 
 - Initial release.
 
-[Unreleased]: https://github.com/hoc081098/kmp-viewmodel/compare/0.6.2...HEAD
+[Unreleased]: https://github.com/hoc081098/kmp-viewmodel/compare/0.7.0...HEAD
+
+[0.7.0]: https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.7.0
 
 [0.6.2]: https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.6.2
 
