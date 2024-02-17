@@ -5,7 +5,7 @@ java-target = "11"
 # the Java version that is used to run the Java and Kotlin compilers and various other tasks
 java-toolchain = "17"
 coroutines = "1.8.0"
-kotlinx-serialization-json = "1.6.2"
+kotlinx-serialization-json = "1.6.3"
 kotlinx-collections-immutable = "0.3.7"
 
 # the Android minSdkVersion to use
@@ -38,7 +38,7 @@ android-gradle = "8.2.2"
 spotless = "6.25.0"
 detekt = "1.23.5"
 
-kotlinx-kover = "0.7.5"
+kotlinx-kover = "0.7.6"
 dokka = "1.9.10"
 kotlinx-binary-compatibility-validator = "0.14.0"
 
