@@ -25,6 +25,7 @@ include(":viewmodel")
 include(":viewmodel-compose")
 include(":viewmodel-koin")
 include(":viewmodel-koin-compose")
+include(":viewmodel-koject")
 include(":viewmodel-savedstate")
 include(":sample:app", ":sample:shared")
 
