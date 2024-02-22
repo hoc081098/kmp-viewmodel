@@ -56,7 +56,7 @@ kotlin {
       // Coroutines
       implementation(libs.kotlinx.coroutines.android)
 
-      implementation("com.moriatsushi.koject:koject-android-core:1.3.0")
+      implementation(libs.koject.android.core)
     }
     commonMain.dependencies {
       implementation(compose.runtime)
@@ -73,8 +73,8 @@ kotlin {
       implementation("io.github.hoc081098:solivagant-navigation:0.1.0")
 
       // Koject
-      implementation("com.moriatsushi.koject:koject-compose-core:1.3.0")
-      implementation("com.moriatsushi.koject:koject-core:1.3.0")
+      implementation(libs.koject.compose.core)
+      implementation(libs.koject.core)
 
       // Coroutines & FlowExt
       implementation(libs.kotlinx.coroutines.core)

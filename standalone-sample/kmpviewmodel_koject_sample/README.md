@@ -20,7 +20,7 @@ Like some of my work? Buy me a coffee (or more likely a beer)
   - Kotlin Multiplatform
   - [JetBrains Compose Multiplatform](https://github.com/JetBrains/compose-multiplatform)
   - [Kotlin Coroutines & Flows](https://github.com/hoc081098/FlowExt)
-  - [Koin Dependency Injection](https://github.com/InsertKoinIO/koin)
+  - [Koject Dependency Injection](https://github.com/mori-atsushi/koject)
   - Model-View-Intent (MVI) / FlowRedux state management
   - [Kotlin Multiplatform ViewModel](https://github.com/hoc081098/kmp-viewmodel)
   - Clean Architecture
