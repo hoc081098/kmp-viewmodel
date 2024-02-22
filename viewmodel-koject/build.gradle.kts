@@ -14,7 +14,7 @@ plugins {
   alias(libs.plugins.kotlinx.binary.compatibility.validator)
   alias(libs.plugins.kotlinx.kover)
 
-  id("com.google.devtools.ksp") version "1.9.22-1.0.17"
+  alias(libs.plugins.ksp)
 }
 
 kotlin {
@@ -69,7 +69,7 @@ kotlin {
   //  tvosArm64()
 
   //  watchosArm32()
-  //  watchosArm64()
+  watchosArm64()
   //  watchosX64()
   //  watchosSimulatorArm64()
 
@@ -80,7 +80,7 @@ kotlin {
       dependencies {
         api(projects.viewmodel)
         api(projects.viewmodelSavedstate)
-        implementation("com.moriatsushi.koject:koject-core:1.3.0")
+        implementation(libs.koject.core)
       }
     }
     commonTest {
@@ -181,17 +181,25 @@ tasks.withType<org.jetbrains.dokka.gradle.DokkaTask>().configureEach {
 
 dependencies {
   // Add it according to your targets.
-  val processor = "com.moriatsushi.koject:koject-processor-lib:1.3.0"
+  val processor = libs.koject.processor.lib
   add("kspAndroid", processor)
   add("kspJvm", processor)
   add("kspJs", processor)
   add("kspIosX64", processor)
   add("kspIosArm64", processor)
   add("kspIosSimulatorArm64", processor)
+  //  add("kspTvosX64", processor)
+  //  add("kspTvosSimulatorArm64", processor)
+  //  add("kspTvosArm64", processor)
+  //  add("kspWatchosArm32", processor)
+  add("kspWatchosArm64", processor)
+  //  add("kspWatchosX64", processor)
+  //  add("kspWatchosSimulatorArm64", processor)
   add("kspMacosX64", processor)
   add("kspMacosArm64", processor)
 }
 
 ksp {
   arg("moduleName", project.name)
+  arg("measureDuration", "true")
 }

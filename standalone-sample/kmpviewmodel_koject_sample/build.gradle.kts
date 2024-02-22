@@ -6,5 +6,5 @@ plugins {
   alias(libs.plugins.jetbrainsCompose) apply false
   alias(libs.plugins.kotlinMultiplatform) apply false
   alias(libs.plugins.kotlinParcelize) apply false
-  id("com.google.devtools.ksp") version "1.9.22-1.0.17" apply false
+  alias(libs.plugins.ksp) apply false
 }

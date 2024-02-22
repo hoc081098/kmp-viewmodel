@@ -5,7 +5,7 @@ plugins {
   alias(libs.plugins.androidApplication)
   alias(libs.plugins.kotlinParcelize)
   alias(libs.plugins.jetbrainsCompose)
-  id("com.google.devtools.ksp")
+  alias(libs.plugins.ksp)
 }
 
 kotlin {
