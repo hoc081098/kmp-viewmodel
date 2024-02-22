@@ -84,10 +84,9 @@ kotlin {
         api(projects.viewmodel)
         api(projects.viewmodelSavedstate)
         api(projects.viewmodelCompose)
-        api(projects.viewmodelKoin)
+        api(projects.viewmodelKoject)
 
-        api(libs.koin.core)
-        api(libs.koin.compose)
+        api(libs.koject.core)
       }
     }
     commonTest {
@@ -166,7 +165,7 @@ kotlin {
 android {
   compileSdk = libs.versions.android.compile.get().toInt()
   sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-  namespace = "com.hoc081098.kmp.viewmodel.koin.compose"
+  namespace = "com.hoc081098.kmp.viewmodel.koject.compose"
 
   defaultConfig {
     minSdk = libs.versions.android.min.get().toInt()
@@ -191,7 +190,7 @@ tasks.withType<org.jetbrains.dokka.gradle.DokkaTask>().configureEach {
 
       sourceLink {
         localDirectory.set(projectDir.resolve("src"))
-        remoteUrl.set(URL("https://github.com/hoc081098/kmp-viewmodel/tree/master/viewmodel-koin-compose/src"))
+        remoteUrl.set(URL("https://github.com/hoc081098/kmp-viewmodel/tree/master/viewmodel-koject-compose/src"))
         remoteLineSuffix.set("#L")
       }
     }
