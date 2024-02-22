@@ -8,6 +8,8 @@ import com.moriatsushi.koject.Qualifier
 import com.moriatsushi.koject.inject
 import kotlin.reflect.KClass
 
+// Copied from https://github.com/mori-atsushi/koject/blob/581b568260645db798d5e2c64d8bdbf305430ae4/android/koject-android-viewmodel/src/main/kotlin/com/moriatsushi/koject/android/viewmodel/KojectViewModelFactory.kt
+
 /**
  * Instantiate [ViewModel]s provided by Koject.
  *
