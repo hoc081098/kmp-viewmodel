@@ -13,6 +13,8 @@ plugins {
   alias(libs.plugins.dokka)
   alias(libs.plugins.kotlinx.binary.compatibility.validator)
   alias(libs.plugins.kotlinx.kover)
+
+  id("com.google.devtools.ksp") version "1.9.22-1.0.17"
 }
 
 kotlin {
@@ -55,7 +57,7 @@ kotlin {
     nodejs()
   }
 
-  //  iosArm64()
+  iosArm64()
   iosX64()
   iosSimulatorArm64()
 
@@ -175,4 +177,21 @@ tasks.withType<org.jetbrains.dokka.gradle.DokkaTask>().configureEach {
       }
     }
   }
+}
+
+dependencies {
+  // Add it according to your targets.
+  val processor = "com.moriatsushi.koject:koject-processor-lib:1.3.0"
+  add("kspAndroid", processor)
+  add("kspJvm", processor)
+  add("kspJs", processor)
+  add("kspIosX64", processor)
+  add("kspIosArm64", processor)
+  add("kspIosSimulatorArm64", processor)
+  add("kspMacosX64", processor)
+  add("kspMacosArm64", processor)
+}
+
+ksp {
+  arg("moduleName", project.name)
 }
