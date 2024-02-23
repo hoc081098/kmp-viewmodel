@@ -30,8 +30,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.hoc081098.kmp.viewmodel.compose.kmpViewModel
-import com.hoc081098.kmp.viewmodel.koject.kojectViewModelFactory
+import com.hoc081098.kmp.viewmodel.koject.compose.kojectKmpViewModel
 import com.hoc081098.solivagant.lifecycle.compose.LifecycleResumeEffect
 import com.hoc081098.solivagant.lifecycle.compose.collectAsStateWithLifecycle
 import com.hoc081098.solivagant.sample.todo.features.utils.CollectWithLifecycleEffect
@@ -42,7 +41,7 @@ import kotlinx.coroutines.flow.onEach
 @Composable
 internal fun AddScreen(
   modifier: Modifier = Modifier,
-  viewModel: AddViewModel = kmpViewModel(kojectViewModelFactory()),
+  viewModel: AddViewModel = kojectKmpViewModel(),
 ) {
   val uiState by viewModel.uiStateFlow.collectAsStateWithLifecycle(
     context = viewModel.viewModelScope.coroutineContext,

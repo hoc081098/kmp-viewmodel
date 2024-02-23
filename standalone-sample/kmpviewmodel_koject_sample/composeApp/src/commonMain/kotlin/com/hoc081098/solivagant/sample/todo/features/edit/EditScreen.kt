@@ -37,8 +37,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.hoc081098.kmp.viewmodel.compose.kmpViewModel
-import com.hoc081098.kmp.viewmodel.koject.kojectViewModelFactory
+import com.hoc081098.kmp.viewmodel.koject.compose.kojectKmpViewModel
 import com.hoc081098.solivagant.lifecycle.compose.LifecycleResumeEffect
 import com.hoc081098.solivagant.lifecycle.compose.collectAsStateWithLifecycle
 import com.hoc081098.solivagant.sample.todo.features.utils.CollectWithLifecycleEffect
@@ -50,7 +49,7 @@ import kotlinx.coroutines.flow.onEach
 internal fun EditScreen(
   route: EditScreenRoute,
   modifier: Modifier = Modifier,
-  viewModel: EditViewModel = kmpViewModel(kojectViewModelFactory()),
+  viewModel: EditViewModel = kojectKmpViewModel(),
 ) {
   val uiState by viewModel.uiStateFlow.collectAsStateWithLifecycle(
     context = viewModel.viewModelScope.coroutineContext,

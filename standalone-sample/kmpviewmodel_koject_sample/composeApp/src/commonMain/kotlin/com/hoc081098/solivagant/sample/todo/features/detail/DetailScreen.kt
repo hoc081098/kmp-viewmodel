@@ -35,8 +35,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.hoc081098.kmp.viewmodel.compose.kmpViewModel
-import com.hoc081098.kmp.viewmodel.koject.kojectViewModelFactory
+import com.hoc081098.kmp.viewmodel.koject.compose.kojectKmpViewModel
 import com.hoc081098.solivagant.lifecycle.compose.collectAsStateWithLifecycle
 import com.hoc081098.solivagant.sample.todo.features.detail.DetailUiState.TodoItemUi
 
@@ -45,7 +44,7 @@ import com.hoc081098.solivagant.sample.todo.features.detail.DetailUiState.TodoIt
 internal fun DetailScreen(
   route: DetailScreenRoute,
   modifier: Modifier = Modifier,
-  viewModel: DetailViewModel = kmpViewModel(kojectViewModelFactory()),
+  viewModel: DetailViewModel = kojectKmpViewModel(),
 ) {
   val uiState by viewModel.uiStateFlow.collectAsStateWithLifecycle()
 

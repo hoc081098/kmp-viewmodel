@@ -41,8 +41,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.hoc081098.kmp.viewmodel.compose.kmpViewModel
-import com.hoc081098.kmp.viewmodel.koject.kojectViewModelFactory
+import com.hoc081098.kmp.viewmodel.koject.compose.kojectKmpViewModel
 import com.hoc081098.solivagant.lifecycle.compose.collectAsStateWithLifecycle
 import com.hoc081098.solivagant.sample.todo.features.home.HomeUiState.TodoItemUi
 import com.hoc081098.solivagant.sample.todo.features.utils.MARGIN_SCROLLBAR
@@ -57,7 +56,7 @@ import org.jetbrains.compose.resources.painterResource
 @Composable
 internal fun HomeScreen(
   modifier: Modifier = Modifier,
-  viewModel: HomeViewModel = kmpViewModel(kojectViewModelFactory()),
+  viewModel: HomeViewModel = kojectKmpViewModel(),
 ) {
   val uiState by viewModel.uiStateFlow.collectAsStateWithLifecycle()
 
