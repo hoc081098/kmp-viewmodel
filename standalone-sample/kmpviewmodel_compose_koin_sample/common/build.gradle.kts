@@ -35,12 +35,11 @@ kotlin {
     }
   }
 
-  val iosTargets = listOf(
+  listOf(
     iosX64(),
     iosArm64(),
     iosSimulatorArm64(),
-  )
-  iosTargets.forEach { iosTarget ->
+  ).forEach { iosTarget ->
     iosTarget.binaries.framework {
       baseName = "kmpviewmodel_compose_sample_common"
       isStatic = true
@@ -59,8 +58,10 @@ kotlin {
     }
   }
 
+  applyDefaultHierarchyTemplate()
+
   sourceSets {
-    val commonMain by getting {
+    commonMain {
       dependencies {
         api(compose.runtime)
         api(compose.foundation)
@@ -82,12 +83,12 @@ kotlin {
         implementation(libs.uuid)
       }
     }
-    val commonTest by getting {
+    commonTest {
       dependencies {
         implementation(kotlin("test"))
       }
     }
-    val androidMain by getting {
+    androidMain {
       dependencies {
         api(libs.androidx.appcompat)
         api(libs.androidx.core.ktx)
@@ -101,38 +102,29 @@ kotlin {
     }
 
     val nonAndroidMain by creating {
-      dependsOn(commonMain)
+      dependsOn(commonMain.get())
     }
     val nonAndroidTest by creating {
-      dependsOn(commonTest)
+      dependsOn(commonTest.get())
     }
 
-    val desktopMain by getting {
+    jvmMain {
       dependsOn(nonAndroidMain)
 
       dependencies {
         api(compose.preview)
       }
     }
-    val desktopTest by getting {
+    jvmTest {
       dependsOn(nonAndroidTest)
     }
 
-    val iosMain by creating {
+    iosMain {
       dependsOn(nonAndroidMain)
-
-      iosTargets.forEach {
-        it.compilations.getByName("main").defaultSourceSet.dependsOn(this@creating)
-      }
-
       dependencies {}
     }
-    val iosTest by creating {
+    iosTest {
       dependsOn(nonAndroidTest)
-
-      iosTargets.forEach {
-        it.compilations.getByName("test").defaultSourceSet.dependsOn(this@creating)
-      }
     }
   }
 }
