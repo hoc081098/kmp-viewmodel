@@ -1,4 +1,0 @@
-public final class com/hoc081098/kmp/viewmodel/koin/compose/KoinKmpViewModelKt {
-	public static final fun koinKmpViewModel (Lkotlin/reflect/KClass;Lcom/hoc081098/kmp/viewmodel/ViewModelStoreOwner;Ljava/lang/String;Lcom/hoc081098/kmp/viewmodel/CreationExtras;Lcom/hoc081098/kmp/viewmodel/SavedStateHandleFactory;Lorg/koin/core/qualifier/Qualifier;Lorg/koin/core/scope/Scope;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)Lcom/hoc081098/kmp/viewmodel/ViewModel;
-}
-

@@ -1,0 +1,4 @@
+public final class com/hoc081098/kmp/viewmodel/koject/compose/KojectKmpViewModelKt {
+	public static final synthetic fun getViewModelKey (Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/String;
+}
+
