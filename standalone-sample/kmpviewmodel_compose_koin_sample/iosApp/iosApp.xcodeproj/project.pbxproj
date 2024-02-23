@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		356B94BC2AC05DDB0094D595 /* iosAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356B94BB2AC05DDB0094D595 /* iosAppApp.swift */; };
+		356B94BC2AC05DDB0094D595 /* KmpViewModelComposeKoinApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356B94BB2AC05DDB0094D595 /* KmpViewModelComposeKoinApp.swift */; };
 		356B94BE2AC05DDB0094D595 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356B94BD2AC05DDB0094D595 /* ContentView.swift */; };
 		356B94C02AC05DE50094D595 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 356B94BF2AC05DE50094D595 /* Assets.xcassets */; };
 		356B94C32AC05DE50094D595 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 356B94C22AC05DE50094D595 /* Preview Assets.xcassets */; };
@@ -15,7 +15,7 @@
 
 /* Begin PBXFileReference section */
 		356B94B82AC05DDB0094D595 /* KmpViewModel Compose Multiplatform.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KmpViewModel Compose Multiplatform.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		356B94BB2AC05DDB0094D595 /* iosAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iosAppApp.swift; sourceTree = "<group>"; };
+		356B94BB2AC05DDB0094D595 /* KmpViewModelComposeKoinApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KmpViewModelComposeKoinApp.swift; sourceTree = "<group>"; };
 		356B94BD2AC05DDB0094D595 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		356B94BF2AC05DE50094D595 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		356B94C22AC05DE50094D595 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -51,7 +51,7 @@
 		356B94BA2AC05DDB0094D595 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
-				356B94BB2AC05DDB0094D595 /* iosAppApp.swift */,
+				356B94BB2AC05DDB0094D595 /* KmpViewModelComposeKoinApp.swift */,
 				356B94BD2AC05DDB0094D595 /* ContentView.swift */,
 				356B94BF2AC05DE50094D595 /* Assets.xcassets */,
 				356B94C12AC05DE50094D595 /* Preview Content */,
@@ -159,7 +159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				356B94BE2AC05DDB0094D595 /* ContentView.swift in Sources */,
-				356B94BC2AC05DDB0094D595 /* iosAppApp.swift in Sources */,
+				356B94BC2AC05DDB0094D595 /* KmpViewModelComposeKoinApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,7 +16,9 @@ import com.hoc081098.common.screens.ScreenCContent
 import com.hoc081098.common.screens.ScreenCViewModel
 import com.hoc081098.solivagant.navigation.NavEventNavigator
 import com.hoc081098.solivagant.navigation.NavHost
+import kotlin.experimental.ExperimentalObjCName
 import kotlin.jvm.JvmField
+import kotlin.native.ObjCName
 import kotlinx.collections.immutable.persistentSetOf
 import org.koin.compose.KoinContext
 import org.koin.compose.koinInject
@@ -44,6 +46,8 @@ internal val RepositoryModule = module {
   singleOf(::DemoRepository)
 }
 
+@OptIn(ExperimentalObjCName::class)
+@ObjCName("startKoinCommon")
 @KoinApplicationDslMarker
 fun startKoinCommon(appDeclaration: KoinAppDeclaration) {
   startKoin {
