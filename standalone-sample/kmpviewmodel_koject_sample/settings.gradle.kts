@@ -31,6 +31,9 @@ includeBuild("../..") {
 
     substitute(module("io.github.hoc081098:kmp-viewmodel-koject"))
       .using(project(":viewmodel-koject"))
+
+    substitute(module("io.github.hoc081098:kmp-viewmodel-koject-compose"))
+      .using(project(":viewmodel-koject-compose"))
   }
 }
 

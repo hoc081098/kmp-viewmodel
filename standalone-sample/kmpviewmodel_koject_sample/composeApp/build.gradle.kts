@@ -70,6 +70,7 @@ kotlin {
       implementation("io.github.hoc081098:kmp-viewmodel-savedstate")
       implementation("io.github.hoc081098:kmp-viewmodel-compose")
       implementation("io.github.hoc081098:kmp-viewmodel-koject")
+      implementation("io.github.hoc081098:kmp-viewmodel-koject-compose")
       implementation("io.github.hoc081098:solivagant-navigation:0.1.0")
 
       // Koject
