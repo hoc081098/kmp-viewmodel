@@ -44,6 +44,18 @@ kotlin {
     iosTarget.binaries.framework {
       baseName = "kmpviewmodel_compose_sample_common"
       isStatic = true
+
+      // KMP Viewmodel & Solivagant Navigation
+      export("io.github.hoc081098:kmp-viewmodel")
+      export("io.github.hoc081098:kmp-viewmodel-savedstate")
+      export("io.github.hoc081098:kmp-viewmodel-compose")
+      export("io.github.hoc081098:kmp-viewmodel-koin")
+      export("io.github.hoc081098:kmp-viewmodel-koin-compose")
+      export(libs.solivagant.navigation)
+
+      // Koin
+      export(libs.koin.core)
+      export(libs.koin.compose)
     }
   }
 
@@ -55,11 +67,17 @@ kotlin {
         api(compose.material)
         api(compose.runtimeSaveable)
 
+        // KMP Viewmodel & Solivagant Navigation
         api("io.github.hoc081098:kmp-viewmodel")
         api("io.github.hoc081098:kmp-viewmodel-savedstate")
         api("io.github.hoc081098:kmp-viewmodel-compose")
         api("io.github.hoc081098:kmp-viewmodel-koin")
         api("io.github.hoc081098:kmp-viewmodel-koin-compose")
+        api(libs.solivagant.navigation)
+
+        // Koin
+        api(libs.koin.core)
+        api(libs.koin.compose)
 
         implementation(libs.uuid)
       }

@@ -16,13 +16,14 @@ android-target = "34"
 android-compile = "34"
 
 jetbrains-compose = "1.5.12"
-jetbrains-compose-compiler = "1.5.7.1"
+jetbrains-compose-compiler = "1.5.8"
 
 touchlab-stately = "2.0.6"
 napier = "2.7.1"
 flowExt = "0.7.5"
 koin = "3.5.3"
 koin-androidx-compose = "3.5.3"
+koin-compose = "1.1.2"
 coil = "2.5.0"
 compose-rules-detekt = "0.3.11"
 
@@ -35,14 +36,14 @@ androidx-core-ktx = "1.12.0"
 androidx-navigation = "2.7.7"
 android-gradle = "8.2.2"
 
+uuid = "0.8.2"
+solivagant-navigation = "0.1.0"
+
 spotless = "6.25.0"
 detekt = "1.23.5"
-
 kotlinx-kover = "0.7.6"
 dokka = "1.9.10"
 kotlinx-binary-compatibility-validator = "0.14.0"
-
-uuid = "0.8.2"
 vanniktech-maven-publish = "0.27.0"
 ktlint = "0.50.0"
 
@@ -63,6 +64,7 @@ flowExt = { module = "io.github.hoc081098:FlowExt", version.ref = "flowExt" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin-androidx-compose" }
+koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koin-compose" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 compose-rules-detekt = { module = "io.nlopez.compose.rules:detekt", version.ref = "compose-rules-detekt" }
 
@@ -84,6 +86,7 @@ androidx-compose-runtime = { module = "androidx.compose.runtime:runtime" }
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidx-core-ktx" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidx-navigation" }
 uuid = { module = "com.benasher44:uuid", version.ref = "uuid" }
+solivagant-navigation = { module = "io.github.hoc081098:solivagant-navigation", version.ref = "solivagant-navigation" }
 
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
@@ -91,7 +94,6 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
-
 jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "jetbrains-compose" }
 
 android-app = { id = "com.android.application", version.ref = "android-gradle" }
@@ -99,11 +101,9 @@ android-library = { id = "com.android.library", version.ref = "android-gradle" }
 
 gradle-spotless = { id = "com.diffplug.gradle.spotless", version.ref = "spotless" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
-
 kotlinx-kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kotlinx-kover" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 kotlinx-binary-compatibility-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "kotlinx-binary-compatibility-validator" }
-
 vanniktech-maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "vanniktech-maven-publish" }
 
 [bundles]
