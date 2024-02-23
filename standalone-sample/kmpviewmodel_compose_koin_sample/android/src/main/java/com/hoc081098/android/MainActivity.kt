@@ -10,6 +10,7 @@ import com.hoc081098.common.App
 import com.hoc081098.kmp.viewmodel.compose.kmpViewModel
 import com.hoc081098.kmp.viewmodel.koin.compose.koinKmpViewModel
 import com.hoc081098.kmp.viewmodel.viewModelFactory
+import org.koin.androidx.compose.koinViewModel
 
 class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,6 +25,7 @@ class MainActivity : AppCompatActivity() {
 
 @Composable
 private fun TestAndroidCompatibility() {
+  // kmpViewModel with viewModelFactory
   val viewModel1 = kmpViewModel(
     factory = viewModelFactory {
       MainActivityViewModel(
@@ -32,17 +34,30 @@ private fun TestAndroidCompatibility() {
     },
   )
 
+  // kmpViewModel with lambda
   val viewModel2 = kmpViewModel {
     MainActivityViewModel(
       savedStateHandle = createSavedStateHandle(),
     )
   }
 
+  // koinKmpViewModel
   val viewModel3 = koinKmpViewModel<MainActivityViewModel>()
 
-  DisposableEffect(viewModel1, viewModel2, viewModel3) {
-    check(setOf(viewModel1, viewModel2, viewModel3).size == 1) {
-      "viewModel1=$viewModel1, viewModel2=$viewModel2, viewModel3=$viewModel3. They must be the same instance"
+  // koinViewModel
+  val viewModel4 = koinViewModel<MainActivityViewModel>()
+
+  DisposableEffect(viewModel1, viewModel2, viewModel3, viewModel4) {
+    check(
+      setOf(
+        viewModel1,
+        viewModel2,
+        viewModel3,
+        viewModel4,
+      ).size == 1
+    ) {
+      "viewModel1=$viewModel1, viewModel2=$viewModel2, viewModel3=$viewModel3, viewModel4=$viewModel4" +
+          "They must be the same instance"
     }
 
     println("DisposableEffect viewModel=$viewModel1")
