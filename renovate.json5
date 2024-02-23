@@ -1,21 +1,17 @@
 {
-  $schema: "https://docs.renovatebot.com/renovate-schema.json",
   extends: [
     "config:base",
-    ":disableRateLimiting",
     ":semanticCommitsDisabled"
   ],
+  commitBodyTable: true,
+  labels: ["dependencies"],
+  assignees: ["hoc081098"],
+  reviewers: ["hoc081098"],
   automerge: true,
   platformAutomerge: true,
   platformCommit: true,
   assignAutomerge: true,
-  reviewers: ["hoc081098"],
-  labels: ["dependencies"],
-  assignees: ["hoc081098"],
   rebaseWhen: "conflicted",
-  prBodyTemplate: "{{{header}}}{{{table}}}{{{notes}}}{{{changelogs}}}{{{controls}}}{{{footer}}}",
-  prBodyColumns: ["Package", "Change", "Age"],
-  prFooter: "🔕 Ignore: Close this PR and you won't be reminded about these updates again.",
   ignoreDeps: [
   ],
   packageRules: [
