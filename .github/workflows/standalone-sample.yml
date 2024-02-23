@@ -22,7 +22,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     defaults:
       run:
-        working-directory: standalone-sample/kmpviewmodel_compose_sample
+        working-directory: standalone-sample/kmpviewmodel_compose_koin_sample
     steps:
       - uses: actions/checkout@v3
 
@@ -71,7 +71,7 @@ jobs:
     timeout-minutes: 30
     defaults:
       run:
-        working-directory: standalone-sample/kmpviewmodel_compose_sample
+        working-directory: standalone-sample/kmpviewmodel_compose_koin_sample
     steps:
       - uses: actions/checkout@v3
 
@@ -126,7 +126,7 @@ jobs:
       - name: Build iosApp scheme
         uses: sersoft-gmbh/xcodebuild-action@v2
         with:
-          project: standalone-sample/kmpviewmodel_compose_sample/iosApp/iosApp.xcodeproj
+          project: standalone-sample/kmpviewmodel_compose_koin_sample/iosApp/iosApp.xcodeproj
           scheme: iosApp
           action: build
           sdk: iphonesimulator
