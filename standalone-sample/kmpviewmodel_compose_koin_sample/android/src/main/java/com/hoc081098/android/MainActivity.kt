@@ -32,10 +32,18 @@ private fun TestAndroidCompatibility() {
     },
   )
 
-  val viewModel2 = koinKmpViewModel<MainActivityViewModel>()
+  val viewModel2 = kmpViewModel {
+    MainActivityViewModel(
+      savedStateHandle = createSavedStateHandle(),
+    )
+  }
 
-  DisposableEffect(viewModel1, viewModel2) {
-    check(viewModel1 === viewModel2)
+  val viewModel3 = koinKmpViewModel<MainActivityViewModel>()
+
+  DisposableEffect(viewModel1, viewModel2, viewModel3) {
+    check(setOf(viewModel1, viewModel2, viewModel3).size == 1) {
+      "viewModel1=$viewModel1, viewModel2=$viewModel2, viewModel3=$viewModel3. They must be the same instance"
+    }
 
     println("DisposableEffect viewModel=$viewModel1")
     onDispose { println("DisposableEffect disposed viewModel=$viewModel1") }
