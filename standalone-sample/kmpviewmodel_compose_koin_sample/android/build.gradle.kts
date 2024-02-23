@@ -20,7 +20,9 @@ repositories {
 dependencies {
   implementation(projects.common)
   implementation(libs.androidx.activity.compose)
+
   implementation(libs.koin.android)
+  implementation(libs.koin.androidx.compose)
 }
 
 android {

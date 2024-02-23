@@ -101,31 +101,15 @@ kotlin {
       }
     }
 
-    val nonAndroidMain by creating {
-      dependsOn(commonMain.get())
-    }
-    val nonAndroidTest by creating {
-      dependsOn(commonTest.get())
-    }
-
-    jvmMain {
-      dependsOn(nonAndroidMain)
-
+    val desktopMain by getting {
       dependencies {
         api(compose.preview)
       }
     }
-    jvmTest {
-      dependsOn(nonAndroidTest)
-    }
+    val desktopTest by getting {}
 
-    iosMain {
-      dependsOn(nonAndroidMain)
-      dependencies {}
-    }
-    iosTest {
-      dependsOn(nonAndroidTest)
-    }
+    iosMain {}
+    iosTest {}
   }
 }
 
