@@ -47,8 +47,7 @@ internal class AddViewModel(
   private val navigator: NavEventNavigator,
   private val singleEventChannel: SingleEventChannel<AddSingleEvent>,
   private val savedStateHandle: SavedStateHandle,
-) : ViewModel(),
-  HasSingleEventFlow<AddSingleEvent> by singleEventChannel {
+) : ViewModel(), HasSingleEventFlow<AddSingleEvent> by singleEventChannel {
   internal val uiStateFlow: StateFlow<AddUiState> = savedStateHandle.safe.getStateFlow(UiStateKey)
   internal val backPressesFlow: Flow<Unit> = navigator.backPresses()
 

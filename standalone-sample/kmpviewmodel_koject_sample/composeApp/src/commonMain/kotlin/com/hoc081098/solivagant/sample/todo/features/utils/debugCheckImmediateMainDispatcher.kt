@@ -13,7 +13,7 @@ internal suspend inline fun debugCheckImmediateMainDispatcher() {
 
     check(
       dispatcher === Dispatchers.Main.immediate ||
-          !dispatcher.isDispatchNeeded(Dispatchers.Main.immediate),
+        !dispatcher.isDispatchNeeded(Dispatchers.Main.immediate),
     ) {
       "Expected CoroutineDispatcher to be Dispatchers.Main.immediate but was $dispatcher"
     }

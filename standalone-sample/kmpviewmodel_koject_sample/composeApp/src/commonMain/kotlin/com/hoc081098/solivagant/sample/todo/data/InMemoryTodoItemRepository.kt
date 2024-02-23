@@ -57,7 +57,10 @@ internal class InMemoryTodoItemRepository : TodoItemRepository {
       TodoItem(
         id = generateId(),
         text = TodoItem.Text
-          .of(value = "solivagant supports ViewModel, SavedStateHandle, Lifecycle, Multi-Backstacks, Transitions, Back-press handling, and more...")
+          .of(
+            value = "solivagant supports ViewModel, SavedStateHandle, Lifecycle, Multi-Backstacks, Transitions," +
+              " Back-press handling, and more...",
+          )
           .getOrThrow(),
         isDone = false,
       ),
@@ -108,8 +111,11 @@ internal class InMemoryTodoItemRepository : TodoItemRepository {
     fakeTimerDelay()
     val updated = itemsStateFlow.updateAndGet { items ->
       items.map {
-        if (it.id == id) it.copy(isDone = !it.isDone)
-        else it
+        if (it.id == id) {
+          it.copy(isDone = !it.isDone)
+        } else {
+          it
+        }
       }
     }
 
@@ -120,8 +126,11 @@ internal class InMemoryTodoItemRepository : TodoItemRepository {
     fakeTimerDelay()
     itemsStateFlow.update { items ->
       items.map {
-        if (it.id == item.id) item
-        else it
+        if (it.id == item.id) {
+          item
+        } else {
+          it
+        }
       }
     }
 

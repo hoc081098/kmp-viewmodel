@@ -54,8 +54,7 @@ internal class EditViewModel(
   private val updateTodoItem: UpdateTodoItem,
   savedStateHandle: SavedStateHandle,
   private val singleEventChannel: SingleEventChannel<EditSingleEvent>,
-) : ViewModel(singleEventChannel),
-  HasSingleEventFlow<EditSingleEvent> by singleEventChannel {
+) : ViewModel(singleEventChannel), HasSingleEventFlow<EditSingleEvent> by singleEventChannel {
 
   private val route = savedStateHandle.requireRoute<EditScreenRoute>()
   private val _uiStateFlow = MutableStateFlow<EditUiState>(EditUiState.Loading)
@@ -144,4 +143,3 @@ internal class EditViewModel(
     }
   }
 }
-
