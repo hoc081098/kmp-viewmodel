@@ -71,7 +71,7 @@ kotlin {
       implementation("io.github.hoc081098:kmp-viewmodel-compose")
       implementation("io.github.hoc081098:kmp-viewmodel-koject")
       implementation("io.github.hoc081098:kmp-viewmodel-koject-compose")
-      implementation("io.github.hoc081098:solivagant-navigation:0.1.0")
+      implementation(libs.solivagant.navigation)
 
       // Koject
       implementation(libs.koject.compose.core)
@@ -148,7 +148,7 @@ compose.experimental {
 
 dependencies {
   // Add it according to your targets.
-  val processor = "com.moriatsushi.koject:koject-processor-app:1.3.0"
+  val processor = libs.koject.processor.app
   add("kspAndroid", processor)
   add("kspDesktop", processor)
   add("kspIosX64", processor)

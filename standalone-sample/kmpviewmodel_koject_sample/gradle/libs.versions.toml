@@ -20,12 +20,14 @@ ksp = "1.9.22-1.0.17"
 flow-ext = "0.7.5"
 kotlinx-collections-immutable = "0.3.7"
 kotlinx-coroutines = "1.8.0"
+solivagant-navigation = "0.1.0"
 
 [libraries]
 
 koject-android-core = { module = "com.moriatsushi.koject:koject-android-core", version.ref = "koject" }
 koject-core = { module = "com.moriatsushi.koject:koject-core", version.ref = "koject" }
 koject-compose-core = { module = "com.moriatsushi.koject:koject-compose-core", version.ref = "koject" }
+koject-processor-app = { module = "com.moriatsushi.koject:koject-processor-app", version.ref = "koject" }
 
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
@@ -46,6 +48,7 @@ kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collec
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
 kotlinx-coroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "kotlinx-coroutines" }
+solivagant-navigation = { module = "io.github.hoc081098:solivagant-navigation", version.ref = "solivagant-navigation" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
