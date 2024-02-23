@@ -2,10 +2,10 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="android">
+      <entry key="kmp-viewmodel.sample.app">
         <State />
       </entry>
-      <entry key="kmp-viewmodel.sample.app">
+      <entry key="kmpviewmodel_compose_koin_sample">
         <State />
       </entry>
     </value>
