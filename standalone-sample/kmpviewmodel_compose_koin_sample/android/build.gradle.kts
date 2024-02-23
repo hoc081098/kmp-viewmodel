@@ -20,6 +20,7 @@ repositories {
 dependencies {
   implementation(projects.common)
   implementation(libs.androidx.activity.compose)
+  implementation(libs.koin.android)
 }
 
 android {
@@ -49,5 +50,9 @@ android {
 
   kotlinOptions {
     jvmTarget = JvmTarget.fromTarget(libs.versions.java.target.get()).target
+  }
+
+  buildFeatures {
+    buildConfig = true
   }
 }

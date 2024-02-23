@@ -14,7 +14,6 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,19 +21,21 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.hoc081098.common.domain.DemoRepository
-import com.hoc081098.common.navigation.LocalNavigator
-import com.hoc081098.common.navigation.Route
-import com.hoc081098.common.navigation.requireRoute
-import com.hoc081098.common.navigation.routeContent
 import com.hoc081098.kmp.viewmodel.SavedStateHandle
 import com.hoc081098.kmp.viewmodel.ViewModel
 import com.hoc081098.kmp.viewmodel.koin.compose.koinKmpViewModel
 import com.hoc081098.kmp.viewmodel.parcelable.Parcelize
+import com.hoc081098.solivagant.lifecycle.compose.collectAsStateWithLifecycle
+import com.hoc081098.solivagant.navigation.NavEventNavigator
+import com.hoc081098.solivagant.navigation.NavRoute
+import com.hoc081098.solivagant.navigation.ScreenDestination
+import com.hoc081098.solivagant.navigation.requireRoute
 import kotlin.jvm.JvmField
 import kotlinx.coroutines.launch
+import org.koin.compose.koinInject
 
 @Parcelize
-data class ScreenC(val id: Int) : Route
+data class ScreenC(val id: Int) : NavRoute
 
 class ScreenCViewModel(
   private val savedStateHandle: SavedStateHandle,
@@ -63,13 +64,14 @@ class ScreenCViewModel(
 }
 
 @JvmField
-val ScreenCContent = routeContent<ScreenC> { route ->
-  val navigator = LocalNavigator.current
+val ScreenCContent = ScreenDestination<ScreenC> { route, modifier ->
   val viewModel = koinKmpViewModel<ScreenCViewModel>()
+  val navigator = koinInject<NavEventNavigator>()
 
-  val savedCount by viewModel.countStateFlow.collectAsState()
+  val savedCount by viewModel.countStateFlow.collectAsStateWithLifecycle()
 
   Scaffold(
+    modifier = modifier,
     topBar = {
       TopAppBar(
         title = {
