@@ -17,6 +17,8 @@
                   <project path="$PROJECT_DIR$/../../viewmodel-compose" />
                   <project path="$PROJECT_DIR$/../../viewmodel-koin" />
                   <project path="$PROJECT_DIR$/../../viewmodel-koin-compose" />
+                  <project path="$PROJECT_DIR$/../../viewmodel-koject" />
+                  <project path="$PROJECT_DIR$/../../viewmodel-koject-compose" />
                   <project path="$PROJECT_DIR$/../../viewmodel-savedstate" />
                 </projects>
               </build>
@@ -39,6 +41,8 @@
             <option value="$PROJECT_DIR$/../../viewmodel-compose" />
             <option value="$PROJECT_DIR$/../../viewmodel-koin" />
             <option value="$PROJECT_DIR$/../../viewmodel-koin-compose" />
+            <option value="$PROJECT_DIR$/../../viewmodel-koject" />
+            <option value="$PROJECT_DIR$/../../viewmodel-koject-compose" />
             <option value="$PROJECT_DIR$/../../viewmodel-savedstate" />
           </set>
         </option>
