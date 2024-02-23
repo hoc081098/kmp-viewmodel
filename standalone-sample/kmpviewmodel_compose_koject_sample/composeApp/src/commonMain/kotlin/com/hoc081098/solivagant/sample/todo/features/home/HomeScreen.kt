@@ -47,8 +47,8 @@ import com.hoc081098.solivagant.sample.todo.features.home.HomeUiState.TodoItemUi
 import com.hoc081098.solivagant.sample.todo.features.utils.MARGIN_SCROLLBAR
 import com.hoc081098.solivagant.sample.todo.features.utils.VerticalScrollbar
 import com.hoc081098.solivagant.sample.todo.features.utils.rememberScrollbarAdapter
-import kmpviewmodel_koject_sample.composeapp.generated.resources.Res
-import kmpviewmodel_koject_sample.composeapp.generated.resources.compose_multiplatform
+import kmpviewmodel_compose_koject_sample.composeapp.generated.resources.Res
+import kmpviewmodel_compose_koject_sample.composeapp.generated.resources.compose_multiplatform
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 
