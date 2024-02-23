@@ -1,4 +1,4 @@
-rootProject.name = "kmpviewmodel_koject_sample"
+rootProject.name = "kmpviewmodel_compose_koject_sample"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
