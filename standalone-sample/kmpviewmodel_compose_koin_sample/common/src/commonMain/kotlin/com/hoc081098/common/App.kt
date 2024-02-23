@@ -80,7 +80,7 @@ fun App(modifier: Modifier = Modifier) {
           navEventNavigator = koinInject(),
           destinationChangedCallback = { route ->
             println("Destination changed: $route")
-          }
+          },
         )
       }
     }

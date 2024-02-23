@@ -54,10 +54,10 @@ private fun TestAndroidCompatibility() {
         viewModel2,
         viewModel3,
         viewModel4,
-      ).size == 1
+      ).size == 1,
     ) {
       "viewModel1=$viewModel1, viewModel2=$viewModel2, viewModel3=$viewModel3, viewModel4=$viewModel4" +
-          "They must be the same instance"
+        "They must be the same instance"
     }
 
     println("DisposableEffect viewModel=$viewModel1")

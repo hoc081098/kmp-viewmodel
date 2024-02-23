@@ -24,7 +24,6 @@ import com.hoc081098.kmp.viewmodel.parcelable.Parcelize
 import com.hoc081098.solivagant.lifecycle.compose.collectAsStateWithLifecycle
 import com.hoc081098.solivagant.navigation.NavEventNavigator
 import com.hoc081098.solivagant.navigation.NavRoot
-import com.hoc081098.solivagant.navigation.NavRoute
 import com.hoc081098.solivagant.navigation.ScreenDestination
 import com.hoc081098.solivagant.navigation.requireRoute
 import kotlin.jvm.JvmField
