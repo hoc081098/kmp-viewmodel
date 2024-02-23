@@ -93,6 +93,10 @@ allprojects {
   configure<SpotlessExtension> {
     kotlin {
       target("**/*.kt")
+      targetExclude(
+        "**/Res.kt", // Compose Multiplatform Res class
+        "**/build/**/*.kt", // Kotlin generated files
+      )
 
       ktlint(ktlintVersion)
 
@@ -103,6 +107,7 @@ allprojects {
 
     format("xml") {
       target("**/res/**/*.xml")
+      targetExclude("**/build/**/*.xml")
 
       trimTrailingWhitespace()
       indentWithSpaces()
@@ -111,6 +116,7 @@ allprojects {
 
     kotlinGradle {
       target("**/*.gradle.kts", "*.gradle.kts")
+      targetExclude("**/build/**/*.kts")
 
       ktlint(ktlintVersion)
 
