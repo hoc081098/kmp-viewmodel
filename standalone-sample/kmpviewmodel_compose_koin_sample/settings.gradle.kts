@@ -9,7 +9,7 @@ pluginManagement {
   }
 }
 
-rootProject.name = "kmpviewmodel_compose_sample"
+rootProject.name = "kmpviewmodel_compose_koin_sample"
 
 includeBuild("../..") {
   dependencySubstitution {
