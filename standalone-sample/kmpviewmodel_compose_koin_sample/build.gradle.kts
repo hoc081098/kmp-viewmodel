@@ -1,3 +1,12 @@
+allprojects {
+  repositories {
+    google()
+    mavenCentral()
+    maven(url = "https://maven.pkg.jetbrains.space/public/p/compose/dev")
+    maven(url = "https://s01.oss.sonatype.org/content/repositories/snapshots/")
+  }
+}
+
 plugins {
   alias(libs.plugins.kotlin.multiplatform) apply false
   alias(libs.plugins.kotlin.android) apply false

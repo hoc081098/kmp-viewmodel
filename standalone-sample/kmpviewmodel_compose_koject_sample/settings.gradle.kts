@@ -10,15 +10,6 @@ pluginManagement {
   }
 }
 
-dependencyResolutionManagement {
-  repositories {
-    google()
-    mavenCentral()
-    maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
-    maven(url = "https://s01.oss.sonatype.org/content/repositories/snapshots/")
-  }
-}
-
 includeBuild("../..") {
   dependencySubstitution {
     substitute(module("io.github.hoc081098:kmp-viewmodel"))
