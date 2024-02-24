@@ -9,6 +9,16 @@ pluginManagement {
   }
 }
 
+dependencyResolutionManagement {
+  repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
+  repositories {
+    google()
+    mavenCentral()
+    maven(url = "https://maven.pkg.jetbrains.space/public/p/compose/dev")
+    maven(url = "https://s01.oss.sonatype.org/content/repositories/snapshots/")
+  }
+}
+
 rootProject.name = "kmpviewmodel_compose_koin_sample"
 
 includeBuild("../..") {
