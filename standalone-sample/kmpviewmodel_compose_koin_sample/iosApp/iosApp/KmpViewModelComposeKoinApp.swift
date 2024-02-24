@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import kmpviewmodel_compose_sample_common
 
 @main
 struct KmpViewModelComposeKoinApp: App {
