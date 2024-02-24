@@ -35,7 +35,7 @@ jobs:
           java-version: '17'
 
       - name: Cache gradle, wrapper and buildSrc
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             ~/.gradle/caches
@@ -44,7 +44,7 @@ jobs:
           restore-keys: |
             ${{ matrix.os }}-gradle-
       - name: Cache konan
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             ~/.konan/cache
@@ -98,7 +98,7 @@ jobs:
           java-version: '17'
 
       - name: Cache gradle, wrapper and buildSrc
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             ~/.gradle/caches
@@ -107,7 +107,7 @@ jobs:
           restore-keys: |
             ${{ matrix.os }}-gradle-
       - name: Cache konan
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             ~/.konan/cache
@@ -200,7 +200,7 @@ jobs:
           java-version: '17'
 
       - name: Cache gradle, wrapper and buildSrc
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             ~/.gradle/caches
@@ -209,7 +209,7 @@ jobs:
           restore-keys: |
             ${{ matrix.os }}-gradle-
       - name: Cache konan
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             ~/.konan/cache
@@ -231,7 +231,7 @@ jobs:
       - name: Build projects before running emulator
         run: ./gradlew :viewmodel-compose:assembleDebugAndroidTest
 
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         id: avd-cache
         with:
           path: |

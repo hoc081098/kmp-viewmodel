@@ -30,7 +30,7 @@ jobs:
           java-version: '17'
 
       - name: Cache gradle, wrapper and buildSrc
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             ~/.gradle/caches
@@ -39,7 +39,7 @@ jobs:
           restore-keys: |
             ${{ matrix.os }}-gradle-
       - name: Cache konan
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             ~/.konan/cache
@@ -87,7 +87,7 @@ jobs:
           open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app
 
       - name: Cache gradle, wrapper and buildSrc
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             ~/.gradle/caches
@@ -97,7 +97,7 @@ jobs:
             ${{ matrix.os }}-gradle-
 
       - name: Cache konan
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             ~/.konan/cache
