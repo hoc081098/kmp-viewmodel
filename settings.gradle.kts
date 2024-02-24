@@ -17,6 +17,7 @@ dependencyResolutionManagement {
     maven(url = "https://maven.pkg.jetbrains.space/public/p/compose/dev")
     gradlePluginPortal()
     maven(url = "https://androidx.dev/storage/compose-compiler/repository/")
+    maven(url = "https://s01.oss.sonatype.org/content/repositories/snapshots/")
   }
 }
 
@@ -25,6 +26,8 @@ include(":viewmodel")
 include(":viewmodel-compose")
 include(":viewmodel-koin")
 include(":viewmodel-koin-compose")
+include(":viewmodel-koject")
+include(":viewmodel-koject-compose")
 include(":viewmodel-savedstate")
 include(":sample:app", ":sample:shared")
 

@@ -1,0 +1,19 @@
+public final class com/hoc081098/kmp/viewmodel/koject/KojectViewModelFactoryKt {
+	public static final fun kojectViewModelFactory (Lkotlin/reflect/KClass;Lkotlin/jvm/functions/Function1;)Lcom/hoc081098/kmp/viewmodel/ViewModelFactory;
+}
+
+public abstract interface annotation class com/hoc081098/kmp/viewmodel/koject/ViewModelComponent : java/lang/annotation/Annotation {
+}
+
+public final class com/moriatsushi/koject/generated/component/_com_hoc081098_kmp_viewmodel_koject_ViewModelComponentExtras_Holder {
+	public static final field Companion Lcom/moriatsushi/koject/generated/component/_com_hoc081098_kmp_viewmodel_koject_ViewModelComponentExtras_Holder$Companion;
+	public static final field name Ljava/lang/String;
+	public fun <init> (Ljava/lang/Object;)V
+	public final fun getProvide_com_hoc081098_kmp_viewmodel_SavedStateHandle ()Lkotlin/jvm/functions/Function0;
+}
+
+public final class com/moriatsushi/koject/generated/component/_com_hoc081098_kmp_viewmodel_koject_ViewModelComponentExtras_Holder$Companion {
+	public final fun getKClass ()Lkotlin/reflect/KClass;
+	public final fun getMessage ()Ljava/lang/String;
+}
+

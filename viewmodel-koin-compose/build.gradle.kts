@@ -99,8 +99,6 @@ kotlin {
 
     androidMain {
       dependencies {
-        implementation(libs.androidx.lifecycle.viewmodel)
-        implementation(libs.androidx.lifecycle.viewmodel.compose)
       }
     }
     val androidUnitTest by getting {

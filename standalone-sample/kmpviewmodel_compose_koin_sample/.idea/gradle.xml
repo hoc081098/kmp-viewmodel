@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <compositeConfiguration>
+          <compositeBuild compositeDefinitionSource="SCRIPT">
+            <builds>
+              <build path="$PROJECT_DIR$/../.." name="kmp-viewmodel">
+                <projects>
+                  <project path="$PROJECT_DIR$/../.." />
+                  <project path="$PROJECT_DIR$/../../sample" />
+                  <project path="$PROJECT_DIR$/../../sample/app" />
+                  <project path="$PROJECT_DIR$/../../sample/shared" />
+                  <project path="$PROJECT_DIR$/../../viewmodel" />
+                  <project path="$PROJECT_DIR$/../../viewmodel-compose" />
+                  <project path="$PROJECT_DIR$/../../viewmodel-koin" />
+                  <project path="$PROJECT_DIR$/../../viewmodel-koin-compose" />
+                  <project path="$PROJECT_DIR$/../../viewmodel-koject" />
+                  <project path="$PROJECT_DIR$/../../viewmodel-koject-compose" />
+                  <project path="$PROJECT_DIR$/../../viewmodel-savedstate" />
+                </projects>
+              </build>
+            </builds>
+          </compositeBuild>
+        </compositeConfiguration>
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleJvm" value="#GRADLE_LOCAL_JAVA_HOME" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/../.." />
+            <option value="$PROJECT_DIR$/../../sample" />
+            <option value="$PROJECT_DIR$/../../sample/app" />
+            <option value="$PROJECT_DIR$/../../sample/shared" />
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/android" />
+            <option value="$PROJECT_DIR$/common" />
+            <option value="$PROJECT_DIR$/desktop" />
+            <option value="$PROJECT_DIR$/../../viewmodel" />
+            <option value="$PROJECT_DIR$/../../viewmodel-compose" />
+            <option value="$PROJECT_DIR$/../../viewmodel-koin" />
+            <option value="$PROJECT_DIR$/../../viewmodel-koin-compose" />
+            <option value="$PROJECT_DIR$/../../viewmodel-koject" />
+            <option value="$PROJECT_DIR$/../../viewmodel-koject-compose" />
+            <option value="$PROJECT_DIR$/../../viewmodel-savedstate" />
+          </set>
+        </option>
+        <option name="resolveExternalAnnotations" value="false" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

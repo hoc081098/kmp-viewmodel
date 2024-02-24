@@ -256,8 +256,8 @@
 
 - Refactor example code.
 
-- Add [Compose Multiplatform sample](https://github.com/hoc081098/kmp-viewmodel/tree/master/standalone-sample/kmpviewmodel_compose_sample)
-which shares `ViewModel`s and integrates with `Navigation` in Compose Multiplatform.
+- Add [Compose Multiplatform Koin sample](https://github.com/hoc081098/kmp-viewmodel/tree/master/standalone-sample/kmpviewmodel_compose_koin_sample)
+  which shares `ViewModel`s and integrates with `Navigation` in Compose Multiplatform.
 
 - Add [Compose Multiplatform KmpViewModel KMM Unsplash Sample](https://github.com/hoc081098/Compose-Multiplatform-KmpViewModel-KMM-Unsplash-Sample),
 a KMP template of the Unsplash App using Compose multiplatform for Android, Desktop, iOS.
