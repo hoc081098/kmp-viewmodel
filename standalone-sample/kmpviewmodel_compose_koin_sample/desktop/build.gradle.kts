@@ -6,9 +6,6 @@ plugins {
   alias(libs.plugins.jetbrains.compose)
 }
 
-group = "com.hoc08198"
-version = "1.0-SNAPSHOT"
-
 compose {
   kotlinCompilerPlugin.set(libs.versions.jetbrains.compose.compiler)
 }
