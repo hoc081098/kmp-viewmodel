@@ -57,7 +57,16 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build release
-        run: ./gradlew :viewmodel:assemble :viewmodel-savedstate:assemble :viewmodel-compose:assemble :viewmodel-koin:assemble :viewmodel-koin-compose:assemble
+        run: |
+          ./gradlew \
+          :viewmodel:assemble \
+          :viewmodel-savedstate:assemble \
+          :viewmodel-compose:assemble \
+          :viewmodel-koin:assemble \
+          :viewmodel-koin-compose:assemble \
+          :viewmodel-koject:assemble \
+          :viewmodel-koject-compose:assemble \
+          --stacktrace
 
       - name: Install Python
         uses: actions/setup-python@v5

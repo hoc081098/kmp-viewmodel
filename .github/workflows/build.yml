@@ -64,7 +64,16 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build
-        run: ./gradlew :viewmodel:build :viewmodel-savedstate:build :viewmodel-compose:build :viewmodel-koin:build :viewmodel-koin-compose:build --stacktrace
+        run: |
+          ./gradlew \
+          :viewmodel:build \
+          :viewmodel-savedstate:build \
+          :viewmodel-compose:build \
+          :viewmodel-koin:build \
+          :viewmodel-koin-compose:build \
+          :viewmodel-koject:build \
+          :viewmodel-koject-compose:build \
+          --stacktrace
 
       - name: Kover Xml Report
         run: ./gradlew :koverXmlReport
