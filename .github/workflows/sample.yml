@@ -125,7 +125,7 @@ jobs:
           pod install
 
       - name: Build iosApp scheme
-        uses: sersoft-gmbh/xcodebuild-action@v2
+        uses: sersoft-gmbh/xcodebuild-action@v3
         with:
           workspace: sample/iosApp/iosApp.xcworkspace
           scheme: iosApp
@@ -136,7 +136,7 @@ jobs:
           build-settings: CODE_SIGNING_REQUIRED=NO
 
       - name: Build iosApp-RxSwift scheme
-        uses: sersoft-gmbh/xcodebuild-action@v2
+        uses: sersoft-gmbh/xcodebuild-action@v3
         with:
           workspace: sample/iosApp/iosApp.xcworkspace
           scheme: iosApp-RxSwift
