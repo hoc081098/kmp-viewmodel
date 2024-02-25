@@ -71,6 +71,8 @@ jobs:
 
       - name: Upload Test Report
         uses: codecov/codecov-action@v4.0.2
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Upload test report artifact
         if: ${{ failure() }}
