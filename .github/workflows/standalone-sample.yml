@@ -24,7 +24,7 @@ jobs:
       run:
         working-directory: standalone-sample/kmpviewmodel_compose_koin_sample
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up JDK
         uses: actions/setup-java@v3
@@ -73,7 +73,7 @@ jobs:
       run:
         working-directory: standalone-sample/kmpviewmodel_compose_koin_sample
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up JDK
         uses: actions/setup-java@v3
