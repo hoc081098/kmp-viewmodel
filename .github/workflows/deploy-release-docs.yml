@@ -60,7 +60,7 @@ jobs:
         run: ./gradlew :viewmodel:assemble :viewmodel-savedstate:assemble :viewmodel-compose:assemble :viewmodel-koin:assemble :viewmodel-koin-compose:assemble
 
       - name: Install Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: 3.x
 
