@@ -31,6 +31,13 @@
       prBodyNotes: "[Changelog](https://docs.gradle.org/{{{newVersion}}}/release-notes.html)"
     },
     {
+      matchPackageNames: [
+        "androidx.compose.ui:ui-test-junit4",
+        "androidx.compose.ui:ui-test-manifest",
+      ],
+      enabled: false,
+    }
+    {
       matchPackagePatterns: [
         "org.jetbrains.kotlin",
         "com.google.devtools.ksp",
