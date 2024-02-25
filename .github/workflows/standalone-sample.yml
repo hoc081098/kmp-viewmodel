@@ -124,7 +124,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build iosApp scheme
-        uses: sersoft-gmbh/xcodebuild-action@v2
+        uses: sersoft-gmbh/xcodebuild-action@v3
         with:
           project: standalone-sample/kmpviewmodel_compose_koin_sample/iosApp/iosApp.xcodeproj
           scheme: iosApp
