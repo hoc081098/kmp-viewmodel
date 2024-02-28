@@ -200,6 +200,6 @@ dependencies {
 }
 
 ksp {
-  arg("moduleName", project.name)
+  arg("moduleName", property("POM_ARTIFACT_ID")!!.toString())
   arg("measureDuration", "true")
 }
