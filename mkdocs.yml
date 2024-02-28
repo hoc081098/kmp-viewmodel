@@ -49,6 +49,7 @@ nav:
   - 'Safe SavedStateHandle': viewmodel-savedstate-safe.md
   - 'ViewModel Compose': viewmodel-compose.md
   - 'ViewModel Koin Compose': viewmodel-koin-compose.md
+  - 'ViewModel Koject Compose': viewmodel-koject-compose.md
   - 'ViewModel and Compose Navigation': viewmodel-compose-navigation.md
   - 'Swift Interop': swift-interop.md
   - 'Change Log': changelog.md
