@@ -182,8 +182,11 @@ tasks.withType<org.jetbrains.dokka.gradle.DokkaTask>().configureEach {
 
 dependencies {
   fun String.capitalizeUS() = replaceFirstChar {
-    if (it.isLowerCase()) it.titlecase(Locale.US)
-    else it.toString()
+    if (it.isLowerCase()) {
+      it.titlecase(Locale.US)
+    } else {
+      it.toString()
+    }
   }
 
   kotlin
@@ -192,7 +195,7 @@ dependencies {
     .map { it.capitalizeUS() }
     .forEach { target ->
       val targetConfigSuffix = if (target == "Metadata") "CommonMainMetadata" else target
-      add("ksp${targetConfigSuffix}", libs.koject.processor.lib)
+      add("ksp$targetConfigSuffix", libs.koject.processor.lib)
     }
 }
 
