@@ -2,6 +2,18 @@
 
 ## [Unreleased] - TBD
 
+### `kmp-viewmodel-compose` artifact
+
+- [JetBrains Compose Multiplatform `1.6.0`](https://github.com/JetBrains/compose-multiplatform/releases/tag/v1.6.0).
+- **New**: Add support for Kotlin/Wasm (`wasmJs` target) 🎉.
+
+### Added `kmp-viewmodel-koject` and `kmp-viewmodel-koject-compose` artifacts
+
+### Example, docs and tests
+
+- Add [Compose Multiplatform Koject sample](https://github.com/hoc081098/kmp-viewmodel/tree/master/standalone-sample/kmpviewmodel_compose_koject_sample)
+  which shares `ViewModel`s and integrates with `Navigation` in Compose Multiplatform. It uses `Koject` for DI.
+
 ## [0.7.0] - Feb 17, 2024
 
 ### Update dependencies
