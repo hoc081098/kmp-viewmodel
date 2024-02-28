@@ -57,7 +57,6 @@ kotlin {
       }
     }
     browser()
-    nodejs()
   }
   @OptIn(org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl::class)
   wasmJs {
@@ -65,7 +64,6 @@ kotlin {
     // otherwise IC tasks that start clashing different modules with the same module name
     moduleName = property("POM_ARTIFACT_ID")!!.toString() + "Wasm"
     browser()
-    nodejs()
   }
 
   iosArm64()
