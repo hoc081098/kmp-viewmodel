@@ -12,13 +12,13 @@
         <meta name="author" content="Petrus Nguyễn Thái Học">
       
       
-        <link rel="canonical" href="https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-compose/">
+        <link rel="canonical" href="https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-koject-compose/">
       
       
-        <link rel="prev" href="../viewmodel-savedstate-safe/">
+        <link rel="prev" href="../viewmodel-koin-compose/">
       
       
-        <link rel="next" href="../viewmodel-koin-compose/">
+        <link rel="next" href="../viewmodel-compose-navigation/">
       
       
       <link rel="icon" href="../images/logo.jpeg">
@@ -26,7 +26,7 @@
     
     
       
-        <title>ViewModel Compose - KMP ViewModel</title>
+        <title>ViewModel Koject Compose - KMP ViewModel</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#viewmodel-compose-multiplatform" class="md-skip">
+        <a href="#viewmodel-compose-multiplatform-and-koject" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ViewModel Compose
+              ViewModel Koject Compose
             
           </span>
         </div>
@@ -326,6 +326,46 @@
       
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../viewmodel-compose/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ViewModel Compose
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../viewmodel-koin-compose/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ViewModel Koin Compose
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -342,7 +382,7 @@
           
   
   <span class="md-ellipsis">
-    ViewModel Compose
+    ViewModel Koject Compose
   </span>
   
 
@@ -353,7 +393,7 @@
         
   
   <span class="md-ellipsis">
-    ViewModel Compose
+    ViewModel Koject Compose
   </span>
   
 
@@ -384,36 +424,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-create-your-viewmodel-in-commonmain-source-set" class="md-nav__link">
+  <a href="#2-add-provides-and-viewmodelcomponent-to-viewmodel" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Create your ViewModel in commonMain source set
+      2. Add @Provides and @ViewModelComponent to ViewModel
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-use-viewmodel-in-compose-multiplatform" class="md-nav__link">
+  <a href="#3-retrieve-viewmodel-in-composables-function-via-kojectkmpviewmodel-function" class="md-nav__link">
     <span class="md-ellipsis">
-      3. Use ViewModel in Compose Multiplatform
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-customize-savedstatehandlefactory-and-viewmodelstoreowner" class="md-nav__link">
-    <span class="md-ellipsis">
-      4. Customize SavedStateHandleFactory and ViewModelStoreOwner
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-navigation-for-compose-multiplatform" class="md-nav__link">
-    <span class="md-ellipsis">
-      5. Navigation for Compose Multiplatform
+      3. Retrieve ViewModel in @Composables function via kojectKmpViewModel function
     </span>
   </a>
   
@@ -423,46 +445,6 @@
   
 </nav>
       
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../viewmodel-koin-compose/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    ViewModel Koin Compose
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../viewmodel-koject-compose/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    ViewModel Koject Compose
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -565,8 +547,15 @@
   
 
 
-<h1 id="viewmodel-compose-multiplatform">ViewModel Compose Multiplatform<a class="headerlink" href="#viewmodel-compose-multiplatform" title="Permanent link">&para;</a></h1>
-<p><a href="https://search.maven.org/search?q=g:io.github.hoc081098%20kmp-viewmodel-compose"><img alt="maven-central" src="https://img.shields.io/maven-central/v/io.github.hoc081098/kmp-viewmodel-compose" /></a></p>
+<h1 id="viewmodel-compose-multiplatform-and-koject">ViewModel Compose Multiplatform and Koject<a class="headerlink" href="#viewmodel-compose-multiplatform-and-koject" title="Permanent link">&para;</a></h1>
+<p><a href="https://search.maven.org/search?q=g:io.github.hoc081098%20kmp-viewmodel-koject-compose"><img alt="maven-central" src="https://img.shields.io/maven-central/v/io.github.hoc081098/kmp-viewmodel-koject-compose" /></a></p>
+<p>Koject integration with <strong>Kotlin Multiplatform ViewModel</strong> and <strong>Jetpack Compose Multiplatform</strong>.</p>
+<p><strong>Koject</strong> is a DI Container Library for <strong>Kolin Multiplatform</strong> using KSP.
+For more information check out the <a href="https://mori-atsushi.github.io/koject/">Koject documentation</a>.</p>
+<p>The <code>kmp-viewmodel-koject-compose</code> artifact provides the integration of <code>kmp-viewmodel-compose</code>
+and <code>Koject</code>,
+helps us to retrieve <code>ViewModel</code> in <code>@Composable</code> functions from the Koject DI container
+without manually dependency injection.</p>
 <h2 id="1-add-dependency">1. Add dependency<a class="headerlink" href="#1-add-dependency" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Add <code>mavenCentral()</code> to <code>repositories</code> list in <code>build.gradle.kts</code>/<code>settings.gradle.kts</code>.</li>
@@ -588,10 +577,35 @@
 <span class="w">  </span><span class="n">sourceSets</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">commonMain</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">getting</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">api</span><span class="p">(</span><span class="s">&quot;io.github.hoc081098:kmp-viewmodel-compose:0.7.0&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;io.github.hoc081098:kmp-viewmodel-koject-compose:0.7.0&quot;</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// NOTE: You can add `koject-core` dependency to your project to specify the version of Koject.</span>
+<span class="w">        </span><span class="c1">// For more information check out the [Koject Setup documentation](https://mori-atsushi.github.io/koject/docs/setup#multiplatform).</span>
+<span class="w">        </span><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;com.moriatsushi.koject:koject-core:</span><span class="si">${</span><span class="n">kojectVersion</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">val</span><span class="w"> </span><span class="nv">processor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;com.moriatsushi.koject:koject-processor-app:</span><span class="si">${</span><span class="n">kojectVersion</span><span class="si">}</span><span class="s">&quot;</span>
+
+<span class="w">  </span><span class="kd">fun</span><span class="w"> </span><span class="n">String</span><span class="p">.</span><span class="nf">capitalizeUS</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">replaceFirstChar</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">it</span><span class="p">.</span><span class="na">isLowerCase</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nb">it</span><span class="p">.</span><span class="na">titlecase</span><span class="p">(</span><span class="n">Locale</span><span class="p">.</span><span class="na">US</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nb">it</span><span class="p">.</span><span class="na">toString</span><span class="p">()</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="n">kotlin</span>
+<span class="w">    </span><span class="p">.</span><span class="na">targets</span>
+<span class="w">    </span><span class="p">.</span><span class="na">names</span>
+<span class="w">    </span><span class="p">.</span><span class="na">map</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">capitalizeUS</span><span class="p">()</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">.</span><span class="na">forEach</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">target</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">      </span><span class="kd">val</span><span class="w"> </span><span class="nv">targetConfigSuffix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">target</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;Metadata&quot;</span><span class="p">)</span><span class="w"> </span><span class="s">&quot;CommonMainMetadata&quot;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="n">target</span>
+<span class="w">      </span><span class="n">add</span><span class="p">(</span><span class="s">&quot;ksp</span><span class="si">$</span><span class="n">targetConfigSuffix</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">processor</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <details>
@@ -609,88 +623,57 @@
 
 <span class="c1">// build.gradle.kts</span>
 <span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">api</span><span class="p">(</span><span class="s">&quot;io.github.hoc081098:kmp-viewmodel-compose:0.7.1-SNAPSHOT&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="n">api</span><span class="p">(</span><span class="s">&quot;io.github.hoc081098:kmp-viewmodel-koject-compose:0.7.1-SNAPSHOT&quot;</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
 
 </p>
 </details>
 
-<h2 id="2-create-your-viewmodel-in-commonmain-source-set">2. Create your <code>ViewModel</code> in <code>commonMain</code> source set<a class="headerlink" href="#2-create-your-viewmodel-in-commonmain-source-set" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">ScreenAViewModel</span><span class="p">(</span>
-<span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">savedStateHandle</span><span class="p">:</span><span class="w"> </span><span class="n">SavedStateHandle</span><span class="p">,</span>
+<blockquote>
+<p>[!NOTE]
+Make sure to setup KSP in your project.
+For more information check out
+the <a href="https://mori-atsushi.github.io/koject/docs/setup#multiplatform">Koject Setup documentation</a>.</p>
+</blockquote>
+<h2 id="2-add-provides-and-viewmodelcomponent-to-viewmodel">2. Add <code>@Provides</code> and <code>@ViewModelComponent</code> to <code>ViewModel</code><a class="headerlink" href="#2-add-provides-and-viewmodelcomponent-to-viewmodel" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nn">com.hoc081098.kmp.viewmodel.ViewModel</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">com.hoc081098.kmp.viewmodel.SavedStateHandle</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">com.hoc081098.kmp.viewmodel.koject.ViewModelComponent</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">com.moriatsushi.koject.Provides</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">com.moriatsushi.koject.Singleton</span>
+
+<span class="nd">@Provides</span>
+<span class="nd">@Singleton</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyRepository</span>
+
+<span class="nd">@Provides</span>
+<span class="nd">@ViewModelComponent</span><span class="w"> </span><span class="c1">// &lt;-- To inject SavedStateHandle</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyViewModel</span><span class="p">(</span>
+<span class="w">  </span><span class="kd">val</span><span class="w"> </span><span class="nv">myRepository</span><span class="p">:</span><span class="w"> </span><span class="n">MyRepository</span><span class="p">,</span>
+<span class="w">  </span><span class="kd">val</span><span class="w"> </span><span class="nv">savedStateHandle</span><span class="p">:</span><span class="w"> </span><span class="n">SavedStateHandle</span><span class="p">,</span>
 <span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ViewModel</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">val</span><span class="w"> </span><span class="nv">countStateFlow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">savedStateHandle</span><span class="p">.</span><span class="na">getStateFlow</span><span class="p">(</span><span class="s">&quot;count&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">)</span>
-
-<span class="w">  </span><span class="k">init</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;</span><span class="si">$</span><span class="n">this</span><span class="s"> init&quot;</span><span class="p">)</span>
-
-<span class="w">    </span><span class="n">addCloseable</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;</span><span class="si">$</span><span class="n">this</span><span class="s"> close&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="kd">fun</span><span class="w"> </span><span class="nf">inc</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">savedStateHandle</span><span class="o">[</span><span class="s">&quot;count&quot;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">countStateFlow</span><span class="p">.</span><span class="na">value</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<h2 id="3-use-viewmodel-in-compose-multiplatform">3. Use <code>ViewModel</code> in Compose Multiplatform<a class="headerlink" href="#3-use-viewmodel-in-compose-multiplatform" title="Permanent link">&para;</a></h2>
-<p>Using <code>kmpViewModel</code> to retrieve <code>ViewModel</code> in <code>@Composable</code> functions.</p>
-<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
-<span class="kd">fun</span><span class="w"> </span><span class="nf">ScreenAContent</span><span class="p">(</span>
-<span class="w">  </span><span class="n">viewModel</span><span class="p">:</span><span class="w"> </span><span class="n">ScreenAViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">kmpViewModel</span><span class="p">(</span>
-<span class="w">    </span><span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModelFactory</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">ScreenAViewModel</span><span class="p">(</span><span class="n">savedStateHandle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">createSavedStateHandle</span><span class="p">())</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">  </span><span class="p">),</span>
-<span class="w">  </span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">,</span>
-<span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">val</span><span class="w"> </span><span class="nv">count</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">viewModel</span><span class="p">.</span><span class="na">countStateFlow</span><span class="p">.</span><span class="na">collectAsState</span><span class="p">()</span>
-
-<span class="w">  </span><span class="n">Column</span><span class="p">(</span>
-<span class="w">    </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">(),</span>
-<span class="w">    </span><span class="n">verticalArrangement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrangement</span><span class="p">.</span><span class="na">Center</span><span class="p">,</span>
-<span class="w">    </span><span class="n">horizontalAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">CenterHorizontally</span><span class="p">,</span>
-<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Count: </span><span class="si">$</span><span class="n">count</span><span class="s">&quot;</span><span class="p">)</span>
-
-<span class="w">    </span><span class="n">Spacer</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">))</span>
-
-<span class="w">    </span><span class="n">Button</span><span class="p">(</span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="o">::</span><span class="n">inc</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Increment&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<h2 id="4-customize-savedstatehandlefactory-and-viewmodelstoreowner">4. Customize <code>SavedStateHandleFactory</code> and <code>ViewModelStoreOwner</code><a class="headerlink" href="#4-customize-savedstatehandlefactory-and-viewmodelstoreowner" title="Permanent link">&para;</a></h2>
-<p><code>LocalSavedStateHandleFactory</code> and <code>LocalViewModelStoreOwner</code> are used to easily provide <code>SavedStateHandleFactory</code>
-and <code>ViewModelStoreOwner</code> in <code>@Composable</code> functions.
-It allows integration with any navigation library.</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// https://github.com/hoc081098/kmp-viewmodel/blob/892cbe109fe623c57d3769b830ffda198159aee4/standalone-sample/kmpviewmodel_compose_sample/common/src/commonMain/kotlin/com/hoc081098/common/navigation/NavHost.kt#L123</span>
-
-<span class="nd">@Composable</span>
-<span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="o">&lt;</span><span class="n">T</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Route</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">NavEntryContent</span><span class="p">(</span>
-<span class="w">  </span><span class="n">navEntry</span><span class="p">:</span><span class="w"> </span><span class="n">NavEntry</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">,</span>
-<span class="w">  </span><span class="n">navStoreViewModel</span><span class="p">:</span><span class="w"> </span><span class="n">NavStoreViewModel</span><span class="p">,</span>
-<span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">ViewModelStoreOwnerProvider</span><span class="p">(</span>
-<span class="w">    </span><span class="n">navStoreViewModel</span><span class="w"> </span><span class="n">provideViewModelStoreOwner</span><span class="w"> </span><span class="n">navEntry</span><span class="p">.</span><span class="na">id</span><span class="p">,</span>
-<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">SavedStateHandleFactoryProvider</span><span class="p">(</span>
-<span class="w">      </span><span class="n">navStoreViewModel</span><span class="w"> </span><span class="n">provideSavedStateHandleFactory</span><span class="w"> </span><span class="n">navEntry</span><span class="p">,</span>
-<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">navEntry</span><span class="p">.</span><span class="na">content</span><span class="p">.</span><span class="na">Content</span><span class="p">(</span><span class="n">route</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">navEntry</span><span class="p">.</span><span class="na">route</span><span class="p">)</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="c1">// ...</span>
 <span class="p">}</span>
 </code></pre></div>
 <blockquote>
-<p>Full example is available at:
-<a href="https://github.com/hoc081098/kmp-viewmodel/blob/892cbe109fe623c57d3769b830ffda198159aee4/standalone-sample/kmpviewmodel_compose_sample/common/src/commonMain/kotlin/com/hoc081098/common/navigation/NavHost.kt#L123">https://github.com/hoc081098/kmp-viewmodel/blob/892cbe109fe623c57d3769b830ffda198159aee4/standalone-sample/kmpviewmodel_compose_sample/common/src/commonMain/kotlin/com/hoc081098/common/navigation/NavHost.kt#L123</a></p>
+<p>[!NOTE]
+Make sure to start Koject in your project, for example:</p>
+<p><div class="highlight"><pre><span></span><code><span class="n">Koject</span><span class="p">.</span><span class="na">start</span><span class="p">()</span>
+</code></pre></div>
+For more information check out
+the <a href="https://mori-atsushi.github.io/koject/docs/core/basic">Start Koject documentation</a>.</p>
 </blockquote>
-<h2 id="5-navigation-for-compose-multiplatform">5. Navigation for Compose Multiplatform<a class="headerlink" href="#5-navigation-for-compose-multiplatform" title="Permanent link">&para;</a></h2>
-<p>Check out <a href="https://github.com/hoc081098/solivagant">https://github.com/hoc081098/solivagant</a></p>
+<h2 id="3-retrieve-viewmodel-in-composables-function-via-kojectkmpviewmodel-function">3. Retrieve <code>ViewModel</code> in <code>@Composable</code>s function via <code>kojectKmpViewModel</code> function<a class="headerlink" href="#3-retrieve-viewmodel-in-composables-function-via-kojectkmpviewmodel-function" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nn">com.hoc081098.kmp.viewmodel.koject.compose.kojectKmpViewModel</span>
+
+<span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">MyScreen</span><span class="p">(</span>
+<span class="w">  </span><span class="n">viewModel</span><span class="p">:</span><span class="w"> </span><span class="n">MyViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">kojectKmpViewModel</span><span class="p">(),</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div>
 
 
 
