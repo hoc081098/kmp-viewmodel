@@ -11,7 +11,7 @@
 
 - For more information check out the [docs/0.x/viewmodel-koject-compose](https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-koject-compose/)
 
-- The `Koject` dependency are used in `kmp-viewmodel-koject-compose`: `com.moriatsushi.koject:koject-core:1.3.0`.
+- The [Koject](https://mori-atsushi.github.io/koject/) dependency are used in `kmp-viewmodel-koject-compose`: `com.moriatsushi.koject:koject-core:1.3.0`.
 
 - **New** The `kmp-viewmodel-koject` artifact provides the integration of `kmp-viewmodel`, `kmp-viewmodel-compose` and `Koject`,
   helps us to retrieve `ViewModel` from the Koject DI container without manually dependency injection.
