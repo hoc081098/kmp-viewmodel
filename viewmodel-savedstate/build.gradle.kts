@@ -44,7 +44,7 @@ kotlin {
     }
   }
   js(IR) {
-    moduleName = project.name
+    moduleName = property("POM_ARTIFACT_ID")!!.toString()
     compilations.configureEach {
       compilerOptions.configure {
         sourceMap.set(true)
@@ -58,7 +58,7 @@ kotlin {
   wasmJs {
     // Module name should be different from the one from JS
     // otherwise IC tasks that start clashing different modules with the same module name
-    moduleName = project.name + "Wasm"
+    moduleName = property("POM_ARTIFACT_ID")!!.toString() + "Wasm"
     browser()
     nodejs()
   }

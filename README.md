@@ -96,7 +96,11 @@ For more information check out the [docs][4].
 
 For more information check out the [docs][5].
 
-### 6. `kmp-viewmodel` and Navigation for JetBrains Compose Multiplatform.
+### 6. `kmp-viewmodel-koject-compose` library
+
+For more information check out the [docs][6].
+
+### 7. `kmp-viewmodel` and Navigation for JetBrains Compose Multiplatform.
 
 For more information check out https://github.com/hoc081098/solivagant library.
 
@@ -145,3 +149,4 @@ Copyright (c) 2023-2024 Petrus Nguyễn Thái Học
 [3]: https://hoc081098.github.io/kmp-viewmodel/docs/0.x/swift-interop/
 [4]: https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-compose/
 [5]: https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-koin-compose/
+[6]: https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-koject-compose/

@@ -1,6 +1,7 @@
 @file:Suppress("ClassName")
 
 import java.net.URL
+import org.jetbrains.kotlin.gradle.dsl.JsModuleKind
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 @Suppress("DSL_SCOPE_VIOLATION")
@@ -48,14 +49,21 @@ kotlin {
   }
 
   js(IR) {
-    compilations.all {
-      kotlinOptions {
-        sourceMap = true
-        moduleKind = "commonjs"
+    moduleName = property("POM_ARTIFACT_ID")!!.toString()
+    compilations.configureEach {
+      compilerOptions.configure {
+        sourceMap.set(true)
+        moduleKind.set(JsModuleKind.MODULE_COMMONJS)
       }
     }
     browser()
-    nodejs()
+  }
+  @OptIn(org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl::class)
+  wasmJs {
+    // Module name should be different from the one from JS
+    // otherwise IC tasks that start clashing different modules with the same module name
+    moduleName = property("POM_ARTIFACT_ID")!!.toString() + "Wasm"
+    browser()
   }
 
   iosArm64()
@@ -140,13 +148,30 @@ kotlin {
       }
     }
 
-    jsMain {
+    val jsAndWasmMain by creating {
       dependsOn(nonAndroidMain)
     }
-    jsTest {
+    val jsAndWasmTest by creating {
       dependsOn(nonAndroidTest)
+    }
+
+    jsMain {
+      dependsOn(jsAndWasmMain)
+    }
+    jsTest {
+      dependsOn(jsAndWasmTest)
       dependencies {
         implementation(kotlin("test-js"))
+      }
+    }
+
+    val wasmJsMain by getting {
+      dependsOn(jsAndWasmMain)
+    }
+    val wasmJsTest by getting {
+      dependsOn(jsAndWasmTest)
+      dependencies {
+        implementation(kotlin("test-wasm-js"))
       }
     }
 

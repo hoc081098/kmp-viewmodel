@@ -1,6 +1,7 @@
 @file:Suppress("ClassName")
 
 import java.net.URL
+import java.util.Locale
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 @Suppress("DSL_SCOPE_VIOLATION")
@@ -180,26 +181,25 @@ tasks.withType<org.jetbrains.dokka.gradle.DokkaTask>().configureEach {
 }
 
 dependencies {
-  // Add it according to your targets.
-  val processor = libs.koject.processor.lib
-  add("kspAndroid", processor)
-  add("kspJvm", processor)
-  add("kspJs", processor)
-  add("kspIosX64", processor)
-  add("kspIosArm64", processor)
-  add("kspIosSimulatorArm64", processor)
-  //  add("kspTvosX64", processor)
-  //  add("kspTvosSimulatorArm64", processor)
-  //  add("kspTvosArm64", processor)
-  //  add("kspWatchosArm32", processor)
-  add("kspWatchosArm64", processor)
-  //  add("kspWatchosX64", processor)
-  //  add("kspWatchosSimulatorArm64", processor)
-  add("kspMacosX64", processor)
-  add("kspMacosArm64", processor)
+  fun String.capitalizeUS() = replaceFirstChar {
+    if (it.isLowerCase()) {
+      it.titlecase(Locale.US)
+    } else {
+      it.toString()
+    }
+  }
+
+  kotlin
+    .targets
+    .names
+    .map { it.capitalizeUS() }
+    .forEach { target ->
+      val targetConfigSuffix = if (target == "Metadata") "CommonMainMetadata" else target
+      add("ksp$targetConfigSuffix", libs.koject.processor.lib)
+    }
 }
 
 ksp {
-  arg("moduleName", project.name)
+  arg("moduleName", property("POM_ARTIFACT_ID")!!.toString())
   arg("measureDuration", "true")
 }

@@ -2,6 +2,47 @@
 
 ## [Unreleased] - TBD
 
+### `kmp-viewmodel-compose` artifact
+
+- [JetBrains Compose Multiplatform `1.6.0`](https://github.com/JetBrains/compose-multiplatform/releases/tag/v1.6.0).
+- **New**: Add support for Kotlin/Wasm (`wasmJs` target) 🎉.
+
+### Added `kmp-viewmodel-koject` and `kmp-viewmodel-koject-compose` artifacts
+
+- For more information check out the [docs/0.x/viewmodel-koject-compose](https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-koject-compose/)
+
+- The [Koject](https://mori-atsushi.github.io/koject/) dependency are used in `kmp-viewmodel-koject-compose`: `com.moriatsushi.koject:koject-core:1.3.0`.
+
+- **New** The `kmp-viewmodel-koject` artifact provides the integration of `kmp-viewmodel`, `kmp-viewmodel-compose` and `Koject`,
+  helps us to retrieve `ViewModel` from the Koject DI container without manually dependency injection.
+
+  ```kotlin
+  @Provides
+  @Singleton
+  class MyRepository
+
+  @Provides
+  @ViewModelComponent // <-- To inject SavedStateHandle
+  class MyViewModel(
+    val myRepository: MyRepository,
+    val savedStateHandle: SavedStateHandle,
+  ) : ViewModel() {
+    // ...
+  }
+
+  @Composable
+  fun MyScreen(
+    viewModel: MyViewModel = kojectKmpViewModel(),
+  ) {
+    // ...
+  }
+  ```
+
+### Example, docs and tests
+
+- Add [Compose Multiplatform Koject sample](https://github.com/hoc081098/kmp-viewmodel/tree/master/standalone-sample/kmpviewmodel_compose_koject_sample)
+  which shares `ViewModel`s and integrates with `Navigation` in Compose Multiplatform. It uses `Koject` for DI.
+
 ## [0.7.0] - Feb 17, 2024
 
 ### Update dependencies
