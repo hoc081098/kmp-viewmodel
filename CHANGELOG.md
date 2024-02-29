@@ -9,6 +9,35 @@
 
 ### Added `kmp-viewmodel-koject` and `kmp-viewmodel-koject-compose` artifacts
 
+- For more information check out the [docs/0.x/viewmodel-koject-compose](https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-koject-compose/)
+
+- The `Koject` dependency are used in `kmp-viewmodel-koject-compose`: `com.moriatsushi.koject:koject-core:1.3.0`.
+
+- **New** The `kmp-viewmodel-koject` artifact provides the integration of `kmp-viewmodel`, `kmp-viewmodel-compose` and `Koject`,
+  helps us to retrieve `ViewModel` from the Koject DI container without manually dependency injection.
+
+  ```kotlin
+  @Provides
+  @Singleton
+  class MyRepository
+
+  @Provides
+  @ViewModelComponent // <-- To inject SavedStateHandle
+  class MyViewModel(
+    val myRepository: MyRepository,
+    val savedStateHandle: SavedStateHandle,
+  ) : ViewModel() {
+    // ...
+  }
+
+  @Composable
+  fun MyScreen(
+    viewModel: MyViewModel = kojectKmpViewModel(),
+  ) {
+    // ...
+  }
+  ```
+
 ### Example, docs and tests
 
 - Add [Compose Multiplatform Koject sample](https://github.com/hoc081098/kmp-viewmodel/tree/master/standalone-sample/kmpviewmodel_compose_koject_sample)
