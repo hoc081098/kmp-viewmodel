@@ -40,6 +40,9 @@ markdown_extensions:
   - pymdownx.tilde
   - tables
   - mdx_truly_sane_lists
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
 
 nav:
   - 'Overview': index.md
