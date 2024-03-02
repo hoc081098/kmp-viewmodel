@@ -2,7 +2,9 @@
 
 ## [Unreleased] - TBD
 
-### `kmp-viewmodel-compose` artifact
+## [0.7.1] - March 2, 2024
+
+### `kmp-viewmodel-compose`
 
 - [JetBrains Compose Multiplatform `1.6.0`](https://github.com/JetBrains/compose-multiplatform/releases/tag/v1.6.0).
 - **New**: Add support for Kotlin/Wasm (`wasmJs` target) 🎉.
@@ -437,7 +439,9 @@ Share everything including data, domain, presentation, and UI.
 
 - Initial release.
 
-[Unreleased]: https://github.com/hoc081098/kmp-viewmodel/compare/0.7.0...HEAD
+[Unreleased]: https://github.com/hoc081098/kmp-viewmodel/compare/0.7.1...HEAD
+
+[0.7.1]: https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.7.1
 
 [0.7.0]: https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.7.0
 
