@@ -35,7 +35,7 @@ kotlin {
   sourceSets {
     val commonMain by getting {
       dependencies {
-        implementation("io.github.hoc081098:kmp-viewmodel-koject-compose:0.7.0")
+        implementation("io.github.hoc081098:kmp-viewmodel-koject-compose:0.7.1")
 
         // NOTE: You can add `koject-core` dependency to your project to specify the version of Koject.
         // For more information check out the [Koject Setup documentation](https://mori-atsushi.github.io/koject/docs/setup#multiplatform).
@@ -83,7 +83,7 @@ dependencyResolutionManagement {
 
 // build.gradle.kts
 dependencies {
-  api("io.github.hoc081098:kmp-viewmodel-koject-compose:0.7.1-SNAPSHOT")
+  implementation("io.github.hoc081098:kmp-viewmodel-koject-compose:0.7.2-SNAPSHOT")
 }
 ```
 
