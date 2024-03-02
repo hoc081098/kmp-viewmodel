@@ -11,6 +11,10 @@ module:viewmodel-koin
 com.hoc081098.kmp.viewmodel.koin
 module:viewmodel-koin-compose
 com.hoc081098.kmp.viewmodel.koin.compose
+module:viewmodel-koject
+com.hoc081098.kmp.viewmodel.koject
+module:viewmodel-koject-compose
+com.hoc081098.kmp.viewmodel.koject.compose
 module:viewmodel-savedstate
 com.hoc081098.kmp.viewmodel
 com.hoc081098.kmp.viewmodel.parcelable
