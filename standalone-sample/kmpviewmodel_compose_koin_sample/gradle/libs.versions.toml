@@ -37,7 +37,7 @@ androidx-navigation = "2.7.7"
 android-gradle = "8.3.0"
 
 uuid = "0.8.2"
-solivagant-navigation = "0.2.0"
+solivagant-navigation = "0.2.1"
 
 spotless = "6.25.0"
 detekt = "1.23.5"
