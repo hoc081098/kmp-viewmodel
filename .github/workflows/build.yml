@@ -279,4 +279,5 @@ jobs:
           script: |
             adb logcat -c
             adb logcat *:E &
+            adb uninstall "com.hoc081098.kmp.viewmodel.compose.test"
             ./gradlew :viewmodel-compose:connectedDebugAndroidTest
