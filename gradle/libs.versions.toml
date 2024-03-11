@@ -1,6 +1,6 @@
 [versions]
 junit = "4.13.2"
-kotlin = "1.9.22"
+kotlin = "1.9.23"
 coroutines = "1.8.0"
 kotlinx-serialization-json = "1.6.3"
 kotlinx-collections-immutable = "0.3.7"
