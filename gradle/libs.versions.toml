@@ -52,7 +52,7 @@ kotlinx-binary-compatibility-validator = "0.14.0"
 ksp = "1.9.22-1.0.18"
 poko = "0.15.2"
 
-vanniktech-maven-publish = "0.27.0"
+vanniktech-maven-publish = "0.28.0"
 ktlint = "0.50.0"
 
 [libraries]
