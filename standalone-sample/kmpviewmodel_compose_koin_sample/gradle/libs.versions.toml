@@ -1,5 +1,5 @@
 [versions]
-kotlin = "1.9.22"
+kotlin = "1.9.23"
 # the Java version that the Java and Kotlin compilers will target
 java-target = "11"
 # the Java version that is used to run the Java and Kotlin compilers and various other tasks
@@ -16,7 +16,7 @@ android-target = "34"
 android-compile = "34"
 
 jetbrains-compose = "1.6.1"
-jetbrains-compose-compiler = "1.5.8"
+jetbrains-compose-compiler = "1.5.10.1"
 
 touchlab-stately = "2.0.6"
 napier = "2.7.1"
