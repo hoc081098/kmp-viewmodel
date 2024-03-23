@@ -1,6 +1,8 @@
 package com.hoc081098.solivagant.sample.todo.features.detail
 
 import androidx.compose.runtime.Immutable
+import com.hoc081098.flowext.FlowExtPreview
+import com.hoc081098.flowext.catchAndReturn
 import com.hoc081098.kmp.viewmodel.SavedStateHandle
 import com.hoc081098.kmp.viewmodel.ViewModel
 import com.hoc081098.kmp.viewmodel.koject.ViewModelComponent
@@ -14,7 +16,6 @@ import com.hoc081098.solivagant.sample.todo.features.edit.EditScreenRoute
 import com.moriatsushi.koject.Provides
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
@@ -35,6 +36,7 @@ internal sealed interface DetailUiState {
   )
 }
 
+@OptIn(FlowExtPreview::class)
 @Provides
 @ViewModelComponent
 internal class DetailViewModel(
@@ -54,11 +56,9 @@ internal class DetailViewModel(
           item = item?.toTodoItemUi(),
         )
       }
-      .catch {
-        emit(
-          DetailUiState.Error(
-            message = it.message ?: "Unknown error",
-          ),
+      .catchAndReturn {
+        DetailUiState.Error(
+          message = it.message ?: "Unknown error",
         )
       }
       .stateIn(

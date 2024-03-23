@@ -1,6 +1,8 @@
 package com.hoc081098.solivagant.sample.todo.features.home
 
 import androidx.compose.runtime.Immutable
+import com.hoc081098.flowext.FlowExtPreview
+import com.hoc081098.flowext.catchAndReturn
 import com.hoc081098.kmp.viewmodel.ViewModel
 import com.hoc081098.kmp.viewmodel.koject.ViewModelComponent
 import com.hoc081098.solivagant.navigation.NavEventNavigator
@@ -37,6 +39,7 @@ internal sealed interface HomeUiState {
   )
 }
 
+@OptIn(FlowExtPreview::class)
 @Provides
 @ViewModelComponent
 internal class HomeViewModel(
@@ -56,11 +59,9 @@ internal class HomeViewModel(
             .toImmutableList(),
         )
       }
-      .catch {
-        emit(
-          HomeUiState.Error(
-            message = it.message ?: "Unknown error",
-          ),
+      .catchAndReturn {
+        HomeUiState.Error(
+          message = it.message ?: "Unknown error",
         )
       }
       .stateIn(

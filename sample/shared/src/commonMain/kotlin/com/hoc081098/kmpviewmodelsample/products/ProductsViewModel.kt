@@ -2,6 +2,8 @@
 
 package com.hoc081098.kmpviewmodelsample.products
 
+import com.hoc081098.flowext.FlowExtPreview
+import com.hoc081098.flowext.catchAndReturn
 import com.hoc081098.flowext.flatMapFirst
 import com.hoc081098.flowext.flowFromSuspend
 import com.hoc081098.flowext.interval
@@ -26,7 +28,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.filterIsInstance
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
@@ -70,6 +71,7 @@ private fun interface Reducer {
   operator fun invoke(state: ProductsState): ProductsState
 }
 
+@OptIn(FlowExtPreview::class)
 class ProductsViewModel(
   private val getProducts: GetProducts,
   private val singleEventChannel: SingleEventChannel<ProductSingleEvent>,
@@ -126,9 +128,9 @@ class ProductsViewModel(
             )
           }
         }
-        .catch { throwable ->
+        .catchAndReturn { throwable ->
           singleEventChannel.sendEvent(ProductSingleEvent.Refresh.Failure(throwable))
-          emit(Reducer { it.copy(isRefreshing = false) })
+          Reducer { it.copy(isRefreshing = false) }
         }
         .startWith { Reducer { it.copy(isRefreshing = true) } }
     }
@@ -147,15 +149,13 @@ class ProductsViewModel(
             )
           }
         }
-        .catch { error ->
-          emit(
-            Reducer {
-              it.copy(
-                isLoading = false,
-                error = error,
-              )
-            },
-          )
+        .catchAndReturn { error ->
+          Reducer {
+            it.copy(
+              isLoading = false,
+              error = error,
+            )
+          }
         }
         .startWith {
           Reducer {

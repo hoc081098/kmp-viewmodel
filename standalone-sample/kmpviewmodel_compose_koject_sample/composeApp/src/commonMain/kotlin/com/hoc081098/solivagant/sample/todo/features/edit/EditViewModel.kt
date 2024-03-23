@@ -1,6 +1,8 @@
 package com.hoc081098.solivagant.sample.todo.features.edit
 
 import androidx.compose.runtime.Immutable
+import com.hoc081098.flowext.FlowExtPreview
+import com.hoc081098.flowext.mapToResult
 import com.hoc081098.kmp.viewmodel.SavedStateHandle
 import com.hoc081098.kmp.viewmodel.ViewModel
 import com.hoc081098.kmp.viewmodel.koject.ViewModelComponent
@@ -15,7 +17,6 @@ import com.moriatsushi.koject.Provides
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
@@ -46,6 +47,7 @@ internal sealed interface EditSingleEvent {
 @Provides
 internal fun singleEventChannel() = SingleEventChannel<EditSingleEvent>()
 
+@OptIn(FlowExtPreview::class)
 @Provides
 @ViewModelComponent
 internal class EditViewModel(
@@ -65,8 +67,7 @@ internal class EditViewModel(
   init {
     viewModelScope.launch {
       _uiStateFlow.value = observeTodoItemById(TodoItem.Id(route.id))
-        .map { Result.success(it) }
-        .catch { emit(Result.failure(it)) }
+        .mapToResult()
         .first()
         .fold(
           onSuccess = { item ->
