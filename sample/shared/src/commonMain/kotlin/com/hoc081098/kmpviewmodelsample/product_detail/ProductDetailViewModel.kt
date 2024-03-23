@@ -1,6 +1,8 @@
 
 package com.hoc081098.kmpviewmodelsample.product_detail
 
+import com.hoc081098.flowext.FlowExtPreview
+import com.hoc081098.flowext.catchAndReturn
 import com.hoc081098.flowext.flatMapFirst
 import com.hoc081098.flowext.flowFromSuspend
 import com.hoc081098.flowext.startWith
@@ -37,7 +39,11 @@ sealed interface ProductDetailState {
   data class Error(val error: Throwable) : ProductDetailState
 }
 
-@OptIn(ExperimentalCoroutinesApi::class, DelicateSafeSavedStateHandleApi::class)
+@OptIn(
+  ExperimentalCoroutinesApi::class,
+  DelicateSafeSavedStateHandleApi::class,
+  FlowExtPreview::class,
+)
 class ProductDetailViewModel(
   savedStateHandle: SavedStateHandle,
   private val getProductById: GetProductById,
@@ -63,7 +69,7 @@ class ProductDetailViewModel(
       .flatMapLatest {
         productItemFlow
           .startWith(ProductDetailState.Loading)
-          .catch { emit(ProductDetailState.Error(it)) }
+          .catchAndReturn { ProductDetailState.Error(it) }
       },
     // refresh flow
     refreshFlow
