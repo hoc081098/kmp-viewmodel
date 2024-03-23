@@ -1,7 +1,7 @@
 [versions]
 junit = "4.13.2"
 kotlin = "1.9.23"
-coroutines = "1.8.0"
+coroutines = "1.8.1-Beta"
 kotlinx-serialization-json = "1.6.3"
 kotlinx-collections-immutable = "0.3.7"
 
@@ -28,7 +28,7 @@ jetbrains-compose-compiler = "1.5.10.1"
 
 touchlab-stately = "2.0.7"
 napier = "2.7.1"
-flowExt = "0.8.0"
+flowExt = "0.8.1-Beta"
 koin = "3.5.3"
 koin-androidx-compose = "3.5.3"
 koin-compose = "1.1.2"
