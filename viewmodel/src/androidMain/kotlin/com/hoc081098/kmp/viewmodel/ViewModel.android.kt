@@ -14,5 +14,6 @@ public actual abstract class ViewModel : AndroidXViewModel {
 
   protected actual override fun onCleared(): Unit = super.onCleared()
 
+  @Suppress("OVERRIDE_DEPRECATION")
   actual override fun addCloseable(closeable: Closeable): Unit = super.addCloseable(closeable)
 }
