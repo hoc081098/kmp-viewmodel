@@ -15,7 +15,7 @@ android-target = "34"
 # the Android compileSdkVersion to use
 android-compile = "34"
 
-jetbrains-compose = "1.6.1"
+jetbrains-compose = "1.6.2"
 jetbrains-compose-compiler = "1.5.10.1"
 
 touchlab-stately = "2.0.7"
