@@ -57,7 +57,7 @@ internal fun <VM : ViewModel> resolveViewModel(
   val androidXOwner = remember(viewModelStoreOwner, viewModelStoreOwner::toAndroidX)
 
   return viewModel(
-    modelClass = factory.viewModelClass.java,
+    modelClass = factory.viewModelClass,
     viewModelStoreOwner = androidXOwner,
     key = key,
     factory = remember(factory, factory::toAndroidX),
