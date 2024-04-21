@@ -11,7 +11,7 @@ target 'iosApp-RxSwift' do
   pod 'shared', :path => '../shared'
   pod 'Kingfisher', '~> 7.0'
   pod 'RxSwift', '~> 6.6.0'
-  pod 'RxCocoa', '~> 6.6.0'
+  pod 'RxCocoa', '~> 6.7.0'
   pod 'RxRelay', '~> 6.6.0'
   pod 'NSObject+Rx', '~> 5.2.2'
   pod 'RxDataSources', '~> 5.0'
