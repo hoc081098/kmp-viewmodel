@@ -47,7 +47,7 @@ public expect abstract class CreationExtras internal constructor() {
  * [get] of this object always returns `null`.
  */
 public expect object EmptyCreationExtras : CreationExtras {
-  public expect operator fun <T> get(key: Key<T>): T?
+  public override fun <T> get(key: Key<T>): T?
 }
 
 /**
