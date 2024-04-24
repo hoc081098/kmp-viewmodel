@@ -1,6 +1,6 @@
 [versions]
 junit = "4.13.2"
-kotlin = "2.0.0-RC01"
+kotlin = "2.0.0-RC1"
 coroutines = "1.8.1-Beta"
 kotlinx-serialization-json = "1.6.3"
 kotlinx-collections-immutable = "0.3.7"
@@ -23,7 +23,7 @@ sample-android-target = "34"
 # the Android compileSdkVersion to use in sample
 sample-android-compile = "34"
 
-jetbrains-compose = "1.6.2"
+jetbrains-compose = "1.6.10-Beta01"
 jetbrains-compose-compiler = "1.5.10.1"
 
 touchlab-stately = "2.0.7"
