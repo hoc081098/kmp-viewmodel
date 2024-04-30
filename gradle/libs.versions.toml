@@ -41,7 +41,7 @@ androidx-annotation = "1.7.1"
 androidx-activity = "1.9.0"
 androidx-compose-compiler = "1.5.11-dev-k1.9.23-96ef9dc6af1"
 androidx-navigation = "2.7.7"
-android-gradle = "8.3.2"
+android-gradle = "8.4.0"
 
 spotless = "6.25.0"
 detekt = "1.23.6"
