@@ -1,6 +1,6 @@
 [versions]
 junit = "4.13.2"
-kotlin = "1.9.23"
+kotlin = "1.9.24"
 coroutines = "1.8.1-Beta"
 kotlinx-serialization-json = "1.6.3"
 kotlinx-collections-immutable = "0.3.7"
@@ -49,7 +49,7 @@ detekt = "1.23.6"
 kotlinx-kover = "0.7.6"
 dokka = "1.9.20"
 kotlinx-binary-compatibility-validator = "0.14.0"
-ksp = "1.9.23-1.0.20"
+ksp = "1.9.24-1.0.20"
 poko = "0.15.2"
 
 vanniktech-maven-publish = "0.28.0"
