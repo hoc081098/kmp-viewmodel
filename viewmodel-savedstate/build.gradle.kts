@@ -97,12 +97,28 @@ kotlin {
       }
     }
 
+    val commonJvmMain by creating {
+      dependsOn(commonMain.get())
+    }
+    val commonJvmTest by creating {
+      dependsOn(commonTest.get())
+    }
+
+    val nonJvmMain by creating {
+      dependsOn(commonMain.get())
+    }
+    val nonJvmTest by creating {
+      dependsOn(commonTest.get())
+    }
+
     androidMain {
+      dependsOn(commonJvmMain)
       dependencies {
         api(libs.androidx.lifecycle.viewmodel.savedstate)
       }
     }
     val androidUnitTest by getting {
+      dependsOn(commonJvmTest)
       dependencies {
         implementation(kotlin("test-junit"))
       }
@@ -116,9 +132,11 @@ kotlin {
     }
 
     jvmMain {
+      dependsOn(commonJvmMain)
       dependsOn(nonAndroidMain)
     }
     jvmTest {
+      dependsOn(commonJvmTest)
       dependsOn(nonAndroidTest)
 
       dependencies {
@@ -128,9 +146,11 @@ kotlin {
 
     val jsAndWasmMain by creating {
       dependsOn(nonAndroidMain)
+      dependsOn(nonJvmMain)
     }
     val jsAndWasmTest by creating {
       dependsOn(nonAndroidTest)
+      dependsOn(nonJvmTest)
     }
 
     jsMain {
@@ -155,9 +175,11 @@ kotlin {
 
     nativeMain {
       dependsOn(nonAndroidMain)
+      dependsOn(nonJvmMain)
     }
     nativeTest {
       dependsOn(nonAndroidTest)
+      dependsOn(nonJvmTest)
     }
   }
 

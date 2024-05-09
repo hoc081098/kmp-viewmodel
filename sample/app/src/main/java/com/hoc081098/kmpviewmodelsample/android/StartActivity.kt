@@ -32,6 +32,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -41,9 +44,17 @@ import com.hoc081098.kmpviewmodelsample.android.common.MyApplicationTheme
 import com.hoc081098.kmpviewmodelsample.android.product_detail.ProductDetailScreen
 import com.hoc081098.kmpviewmodelsample.android.products.ProductsScreen
 import com.hoc081098.kmpviewmodelsample.android.search_products.SearchProductsScreen
+import com.hoc081098.kmpviewmodelsample.snippets.Gender
+import com.hoc081098.kmpviewmodelsample.snippets.SearchViewModel
+import io.github.aakira.napier.Napier
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 
 class StartActivity : ComponentActivity() {
   private val viewModel by viewModels<StartViewModel>()
+  private val searchViewModel by viewModels<SearchViewModel>()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -93,9 +104,9 @@ class StartActivity : ComponentActivity() {
           ) { innerPadding ->
             AppNavHost(
               modifier = Modifier
-                .padding(innerPadding)
-                .consumeWindowInsets(innerPadding)
-                .fillMaxSize(),
+                  .padding(innerPadding)
+                  .consumeWindowInsets(innerPadding)
+                  .fillMaxSize(),
               navController = navController,
             )
           }
@@ -104,6 +115,40 @@ class StartActivity : ComponentActivity() {
     }
 
     viewModel.toString()
+    searchViewModelPlayground(savedInstanceState)
+  }
+
+  private fun searchViewModelPlayground(savedInstanceState: Bundle?) {
+    if (savedInstanceState === null) {
+      lifecycleScope.launch {
+        delay(@Suppress("MagicNumber") 200)
+
+        searchViewModel.run {
+          changeSearchTerm("hoc081098")
+          setUserId("hoc081098")
+          setGender(Gender.MALE)
+        }
+      }
+    }
+
+    lifecycleScope.launch {
+      repeatOnLifecycle(Lifecycle.State.STARTED) {
+        searchViewModel
+          .genderStateFlow
+          .onEach { Napier.d("${this@StartActivity} genderStateFlow=$it") }
+          .launchIn(this)
+
+        searchViewModel
+          .searchTermStateFlow
+          .onEach { Napier.d("${this@StartActivity} searchTermStateFlow=$it") }
+          .launchIn(this)
+
+        searchViewModel
+          .userIdStateFlow
+          .onEach { Napier.d("${this@StartActivity} userIdStateFlow=$it") }
+          .launchIn(this)
+      }
+    }
   }
 }
 
