@@ -104,9 +104,9 @@ class StartActivity : ComponentActivity() {
           ) { innerPadding ->
             AppNavHost(
               modifier = Modifier
-                  .padding(innerPadding)
-                  .consumeWindowInsets(innerPadding)
-                  .fillMaxSize(),
+                .padding(innerPadding)
+                .consumeWindowInsets(innerPadding)
+                .fillMaxSize(),
               navController = navController,
             )
           }

@@ -119,7 +119,7 @@ public fun NullableSavedStateHandleKey.Companion.floatArray(
 ): NullableSavedStateHandleKey<FloatArray> =
   key(key, defaultValue)
 
-public fun <T: JvmSerializable> NullableSavedStateHandleKey.Companion.serializable(
+public fun <T : JvmSerializable> NullableSavedStateHandleKey.Companion.serializable(
   key: String,
   defaultValue: T? = null,
 ): NullableSavedStateHandleKey<T> =

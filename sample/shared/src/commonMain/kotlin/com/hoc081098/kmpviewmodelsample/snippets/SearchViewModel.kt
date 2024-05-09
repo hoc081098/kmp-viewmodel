@@ -16,7 +16,7 @@ import com.hoc081098.kmp.viewmodel.wrapper.wrap
 
 enum class Gender : JvmSerializable {
   MALE,
-  FEMALE
+  FEMALE,
 }
 
 class SearchViewModel(
