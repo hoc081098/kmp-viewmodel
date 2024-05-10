@@ -126,7 +126,7 @@ class StartActivity : ComponentActivity() {
         searchViewModel.run {
           changeSearchTerm("hoc081098")
           setUserId("hoc081098")
-          setGender(Gender.MALE)
+          setGender(Gender.FEMALE)
         }
       }
     }
