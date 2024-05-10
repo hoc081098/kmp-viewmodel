@@ -19,3 +19,4 @@ module:viewmodel-savedstate
 com.hoc081098.kmp.viewmodel
 com.hoc081098.kmp.viewmodel.parcelable
 com.hoc081098.kmp.viewmodel.safe
+com.hoc081098.kmp.viewmodel.serializable
