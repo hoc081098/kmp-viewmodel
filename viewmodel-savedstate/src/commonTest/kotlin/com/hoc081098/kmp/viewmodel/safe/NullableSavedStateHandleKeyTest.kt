@@ -2,6 +2,7 @@ package com.hoc081098.kmp.viewmodel.safe
 
 import com.hoc081098.kmp.viewmodel.SavedStateHandle
 import com.hoc081098.kmp.viewmodel.TestParcelable
+import com.hoc081098.kmp.viewmodel.TestSerializable
 import com.hoc081098.kmp.viewmodel.extendedAssertEquals
 import kotlin.test.Test
 import kotlin.test.assertFalse
@@ -49,6 +50,8 @@ private val nullableKeyWithNonNullInitialAndNextValues: List<Pair<NullableSavedS
     1f,
   NullableSavedStateHandleKey.floatArray("floatArray", floatArrayOf(0f)) to
     floatArrayOf(1f),
+  NullableSavedStateHandleKey.serializable("serializable", TestSerializable(0)) to
+    TestSerializable(1),
   NullableSavedStateHandleKey.parcelable("parcelable", TestParcelable(0)) to
     TestParcelable(1),
   NullableSavedStateHandleKey.parcelableArray("parcelableArray", arrayOf(TestParcelable(0), null)) to
@@ -103,6 +106,8 @@ private val nullableKeyWithNullInitialAndNextValues: List<Pair<NullableSavedStat
     1f,
   NullableSavedStateHandleKey.floatArray("floatArray_null") to
     floatArrayOf(1f),
+  NullableSavedStateHandleKey.serializable<TestSerializable>("serializable_null") to
+    TestSerializable(1),
   NullableSavedStateHandleKey.parcelable<TestParcelable>("parcelable_null") to
     TestParcelable(1),
   NullableSavedStateHandleKey.parcelableArray<TestParcelable>("parcelableArray_null") to

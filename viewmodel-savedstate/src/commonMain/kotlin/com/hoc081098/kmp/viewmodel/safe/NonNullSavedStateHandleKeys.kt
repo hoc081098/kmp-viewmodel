@@ -5,6 +5,7 @@ package com.hoc081098.kmp.viewmodel.safe
 import com.hoc081098.kmp.viewmodel.InternalKmpViewModelApi
 import com.hoc081098.kmp.viewmodel.parcelable.Parcelable
 import com.hoc081098.kmp.viewmodel.safe.internal.parcelableArrayTransform
+import com.hoc081098.kmp.viewmodel.serializable.JvmSerializable
 
 @OptIn(InternalKmpViewModelApi::class)
 @Suppress("NOTHING_TO_INLINE")
@@ -116,6 +117,12 @@ public fun NonNullSavedStateHandleKey.Companion.floatArray(
   key: String,
   defaultValue: FloatArray,
 ): NonNullSavedStateHandleKey<FloatArray> =
+  key(key, defaultValue)
+
+public fun <T : JvmSerializable> NonNullSavedStateHandleKey.Companion.serializable(
+  key: String,
+  defaultValue: T,
+): NonNullSavedStateHandleKey<T> =
   key(key, defaultValue)
 
 public fun <T : Parcelable> NonNullSavedStateHandleKey.Companion.parcelable(
