@@ -46,7 +46,7 @@ android-gradle = "8.4.0"
 spotless = "6.25.0"
 detekt = "1.23.6"
 
-kotlinx-kover = "0.7.6"
+kotlinx-kover = "0.8.0"
 dokka = "1.9.20"
 kotlinx-binary-compatibility-validator = "0.14.0"
 ksp = "1.9.24-1.0.20"
