@@ -18,7 +18,7 @@ android-target = "34"
 android-compile = "34"
 
 # the Android target to use in sample
-robolectric = "4.12.1"
+robolectric = "4.12.2"
 sample-android-target = "34"
 # the Android compileSdkVersion to use in sample
 sample-android-compile = "34"
