@@ -39,7 +39,7 @@ compose-rules-detekt = "0.4.1"
 androidx-lifecycle = "2.8.0"
 androidx-annotation = "1.8.0"
 androidx-activity = "1.9.0"
-androidx-compose-compiler = "1.5.14-dev-k1.9.24-50022def4af" # TODO: back to stable version
+androidx-compose-compiler = "1.5.14" # TODO: back to stable version
 androidx-navigation = "2.7.7"
 android-gradle = "8.4.0"
 
