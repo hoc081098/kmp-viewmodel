@@ -1,6 +1,7 @@
 package com.hoc081098.kmp.viewmodel
 
 import androidx.lifecycle.ViewModelProvider
+import kotlin.reflect.KClass
 
 public fun <VM : ViewModel> ViewModelFactory<VM>.toAndroidX(): ViewModelProvider.Factory =
   object : ViewModelProvider.Factory {
