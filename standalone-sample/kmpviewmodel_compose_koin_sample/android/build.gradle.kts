@@ -3,11 +3,21 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
   alias(libs.plugins.jetbrains.compose)
   alias(libs.plugins.android.app)
-  alias(libs.plugins.kotlin.android)
+  alias(libs.plugins.kotlin.multiplatform)
 }
 
 compose {
   kotlinCompilerPlugin.set(libs.versions.jetbrains.compose.compiler)
+}
+
+kotlin {
+  androidTarget {
+    compilations.configureEach {
+      compilerOptions.configure {
+        jvmTarget.set(JvmTarget.fromTarget(libs.versions.java.target.get()))
+      }
+    }
+  }
 }
 
 repositories {
@@ -45,10 +55,6 @@ android {
       isMinifyEnabled = true
       isShrinkResources = true
     }
-  }
-
-  kotlinOptions {
-    jvmTarget = JvmTarget.fromTarget(libs.versions.java.target.get()).target
   }
 
   buildFeatures {
