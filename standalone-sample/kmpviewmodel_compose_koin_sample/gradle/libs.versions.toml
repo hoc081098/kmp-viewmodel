@@ -27,7 +27,7 @@ koin-compose = "1.1.5"
 coil = "2.6.0"
 compose-rules-detekt = "0.4.1"
 
-androidx-lifecycle = "2.8.0"
+androidx-lifecycle = "2.8.1"
 androidx-annotation = "1.8.0"
 androidx-activity = "1.9.0"
 androidx-appcompat = "1.6.1"
