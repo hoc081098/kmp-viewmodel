@@ -31,27 +31,21 @@ kotlin {
   androidTarget {
     publishAllLibraryVariants()
 
-    compilations.configureEach {
-      compilerOptions.configure {
-        jvmTarget.set(JvmTarget.fromTarget(libs.versions.java.target.get()))
-      }
+    compilerOptions {
+      jvmTarget.set(JvmTarget.fromTarget(libs.versions.java.target.get()))
     }
   }
 
   jvm {
-    compilations.configureEach {
-      compilerOptions.configure {
-        jvmTarget.set(JvmTarget.fromTarget(libs.versions.java.target.get()))
-      }
+    compilerOptions {
+      jvmTarget.set(JvmTarget.fromTarget(libs.versions.java.target.get()))
     }
   }
   js(IR) {
     moduleName = property("POM_ARTIFACT_ID")!!.toString()
-    compilations.configureEach {
-      compilerOptions.configure {
-        sourceMap.set(true)
-        moduleKind.set(JsModuleKind.MODULE_COMMONJS)
-      }
+    compilerOptions {
+      sourceMap.set(true)
+      moduleKind.set(JsModuleKind.MODULE_COMMONJS)
     }
     browser()
     nodejs()
