@@ -36,6 +36,7 @@ kotlin {
     podfile = project.file("../iosApp/Podfile")
     framework {
       baseName = "shared"
+      isStatic = true
 
       export(projects.viewmodel)
       export(projects.viewmodelSavedstate)
