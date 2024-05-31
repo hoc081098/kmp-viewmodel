@@ -168,16 +168,17 @@ kotlin {
   }
 }
 
-tasks.withType<org.jetbrains.kotlin.gradle.dsl.KotlinCompile<*>>().configureEach {
-  kotlinOptions {
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask<*>>().configureEach {
+  compilerOptions {
     // 'expect'/'actual' classes (including interfaces, objects, annotations, enums,
     // and 'actual' typealiases) are in Beta.
     // You can use -Xexpect-actual-classes flag to suppress this warning.
     // Also see: https://youtrack.jetbrains.com/issue/KT-61573
-    freeCompilerArgs +=
+    freeCompilerArgs.addAll(
       listOf(
         "-Xexpect-actual-classes",
       )
+    )
   }
 }
 

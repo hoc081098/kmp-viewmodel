@@ -24,7 +24,6 @@ sample-android-target = "34"
 sample-android-compile = "34"
 
 jetbrains-compose = "1.6.10"
-jetbrains-compose-compiler = "1.5.13.1"
 
 touchlab-stately = "2.0.7"
 napier = "2.7.1"
@@ -39,7 +38,6 @@ compose-rules-detekt = "0.4.3"
 androidx-lifecycle = "2.8.1"
 androidx-annotation = "1.8.0"
 androidx-activity = "1.9.0"
-androidx-compose-compiler = "1.5.14" # TODO: back to stable version
 androidx-navigation = "2.7.7"
 android-gradle = "8.4.1"
 
@@ -100,6 +98,7 @@ androidx-navigation-compose = { module = "androidx.navigation:navigation-compose
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 

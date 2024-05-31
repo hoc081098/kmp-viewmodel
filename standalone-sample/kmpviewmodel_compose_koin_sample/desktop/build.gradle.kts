@@ -3,12 +3,11 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
   alias(libs.plugins.kotlin.multiplatform)
+  alias(libs.plugins.kotlin.compose)
   alias(libs.plugins.jetbrains.compose)
 }
 
-compose {
-  kotlinCompilerPlugin.set(libs.versions.jetbrains.compose.compiler)
-}
+composeCompiler {}
 
 java {
   sourceCompatibility = JavaVersion.toVersion(libs.versions.java.target.get())

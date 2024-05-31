@@ -4,6 +4,7 @@
 plugins {
   alias(libs.plugins.kotlin.multiplatform)
   alias(libs.plugins.kotlin.cocoapods)
+  alias(libs.plugins.kotlin.compose)
   alias(libs.plugins.kotlin.serialization)
   alias(libs.plugins.android.library)
   alias(libs.plugins.kotlin.parcelize)
@@ -16,10 +17,8 @@ kotlin {
   }
 
   androidTarget {
-    compilations.configureEach {
-      compilerOptions.configure {
-        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.fromTarget(libs.versions.java.target.get()))
-      }
+    compilerOptions {
+      jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.fromTarget(libs.versions.java.target.get()))
     }
   }
   iosX64()
@@ -85,16 +84,17 @@ kotlin {
   }
 }
 
-tasks.withType<org.jetbrains.kotlin.gradle.dsl.KotlinCompile<*>>().configureEach {
-  kotlinOptions {
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask<*>>().configureEach {
+  compilerOptions {
     // 'expect'/'actual' classes (including interfaces, objects, annotations, enums,
     // and 'actual' typealiases) are in Beta.
     // You can use -Xexpect-actual-classes flag to suppress this warning.
     // Also see: https://youtrack.jetbrains.com/issue/KT-61573
-    freeCompilerArgs +=
+    freeCompilerArgs .addAll(
       listOf(
         "-Xexpect-actual-classes",
       )
+    )
   }
 }
 
@@ -106,9 +106,6 @@ android {
   }
   buildFeatures {
     buildConfig = true
-  }
-  composeOptions {
-    kotlinCompilerExtensionVersion = libs.versions.androidx.compose.compiler.get()
   }
   // still needed for Android projects despite toolchain
   compileOptions {

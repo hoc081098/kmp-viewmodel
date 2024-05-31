@@ -2,6 +2,7 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
   alias(libs.plugins.kotlinMultiplatform)
+  alias(libs.plugins.kotlinCompose)
   alias(libs.plugins.androidApplication)
   alias(libs.plugins.kotlinParcelize)
   alias(libs.plugins.jetbrainsCompose)
@@ -140,10 +141,6 @@ compose.desktop {
       packageVersion = "1.0.0"
     }
   }
-}
-
-compose.experimental {
-  web.application {}
 }
 
 dependencies {
