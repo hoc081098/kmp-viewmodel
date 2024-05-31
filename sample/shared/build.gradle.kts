@@ -90,10 +90,10 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask<*>>().con
     // and 'actual' typealiases) are in Beta.
     // You can use -Xexpect-actual-classes flag to suppress this warning.
     // Also see: https://youtrack.jetbrains.com/issue/KT-61573
-    freeCompilerArgs .addAll(
+    freeCompilerArgs.addAll(
       listOf(
         "-Xexpect-actual-classes",
-      )
+      ),
     )
   }
 }

@@ -34,7 +34,6 @@ kotlin {
     compilerOptions {
       jvmTarget.set(JvmTarget.fromTarget(libs.versions.java.target.get()))
     }
-
   }
 
   jvm {

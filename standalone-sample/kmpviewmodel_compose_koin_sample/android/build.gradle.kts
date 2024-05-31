@@ -7,7 +7,7 @@ plugins {
   alias(libs.plugins.kotlin.multiplatform)
 }
 
-composeCompiler{}
+composeCompiler {}
 
 kotlin {
   androidTarget {
