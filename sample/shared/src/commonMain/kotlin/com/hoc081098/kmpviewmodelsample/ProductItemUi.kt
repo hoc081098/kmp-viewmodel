@@ -1,7 +1,7 @@
 package com.hoc081098.kmpviewmodelsample
 
+import androidx.compose.runtime.Immutable
 import com.hoc081098.kmpviewmodelsample.ProductItemUi.CategoryUi
-import com.hoc081098.kmpviewmodelsample.common.Immutable
 import com.hoc081098.kmpviewmodelsample.data.ProductItem
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList

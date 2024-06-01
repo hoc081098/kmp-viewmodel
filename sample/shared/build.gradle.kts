@@ -1,4 +1,4 @@
-@file:Suppress("UnstableApiUsage", "UNUSED_VARIABLE")
+@file:Suppress("UnstableApiUsage")
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
@@ -58,6 +58,8 @@ kotlin {
 
         implementation(libs.kotlinx.serialization.json)
         implementation(libs.flowExt)
+
+        compileOnly("org.jetbrains.compose.runtime:runtime:${libs.versions.jetbrains.compose.get()}")
       }
     }
     commonTest {
@@ -128,11 +130,6 @@ android {
   compileOptions {
     sourceCompatibility = JavaVersion.toVersion(libs.versions.java.target.get())
     targetCompatibility = JavaVersion.toVersion(libs.versions.java.target.get())
-  }
-
-  dependencies {
-    implementation(platform(libs.androidx.compose.bom))
-    compileOnly(libs.androidx.compose.runtime)
   }
 }
 

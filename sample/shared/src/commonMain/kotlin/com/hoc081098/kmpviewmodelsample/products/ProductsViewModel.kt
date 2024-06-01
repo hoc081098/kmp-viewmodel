@@ -2,6 +2,7 @@
 
 package com.hoc081098.kmpviewmodelsample.products
 
+import androidx.compose.runtime.Immutable
 import com.hoc081098.flowext.FlowExtPreview
 import com.hoc081098.flowext.catchAndReturn
 import com.hoc081098.flowext.flatMapFirst
@@ -14,7 +15,6 @@ import com.hoc081098.kmp.viewmodel.wrapper.NonNullFlowWrapper
 import com.hoc081098.kmp.viewmodel.wrapper.NonNullStateFlowWrapper
 import com.hoc081098.kmp.viewmodel.wrapper.wrap
 import com.hoc081098.kmpviewmodelsample.ProductItemUi
-import com.hoc081098.kmpviewmodelsample.common.Immutable
 import com.hoc081098.kmpviewmodelsample.common.SingleEventChannel
 import com.hoc081098.kmpviewmodelsample.toProductItemUi
 import io.github.aakira.napier.Napier
@@ -100,7 +100,7 @@ class ProductsViewModel(
       .onEach {
         Napier.d(
           "State: products=${it.products.size}, isLoading=${it.isLoading}," +
-            " error=${it.error}, isRefreshing=${it.isRefreshing}",
+              " error=${it.error}, isRefreshing=${it.isRefreshing}",
         )
       }
       .stateIn(

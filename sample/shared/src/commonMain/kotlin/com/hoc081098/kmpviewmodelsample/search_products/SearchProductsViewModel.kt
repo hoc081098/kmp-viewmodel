@@ -1,6 +1,6 @@
-
 package com.hoc081098.kmpviewmodelsample.search_products
 
+import androidx.compose.runtime.Immutable
 import com.hoc081098.flowext.flowFromSuspend
 import com.hoc081098.flowext.startWith
 import com.hoc081098.kmp.viewmodel.SavedStateHandle
@@ -12,7 +12,6 @@ import com.hoc081098.kmp.viewmodel.wrapper.NonNullStateFlowWrapper
 import com.hoc081098.kmp.viewmodel.wrapper.NullableStateFlowWrapper
 import com.hoc081098.kmp.viewmodel.wrapper.wrap
 import com.hoc081098.kmpviewmodelsample.ProductItemUi
-import com.hoc081098.kmpviewmodelsample.common.Immutable
 import com.hoc081098.kmpviewmodelsample.toProductItemUi
 import io.github.aakira.napier.Napier
 import kotlin.time.Duration.Companion.milliseconds
