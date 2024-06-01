@@ -11,11 +11,15 @@ on:
     paths-ignore: [ '**.md', '**.MD' ]
   workflow_dispatch:
 
+concurrency:
+  group: 'ci-${{ github.head_ref }}-${{ github.workflow }}'
+  cancel-in-progress: true
+
 env:
   GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx4g -Dorg.gradle.daemon=false -Dkotlin.incremental=false -XX:+UseParallelGC -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8"
 
 jobs:
-  kmpviewmodel-compose-sample-android:
+  kmpviewmodel_compose_koin_sample-android:
     strategy:
       matrix:
         os: [ ubuntu-latest ]
@@ -32,15 +36,11 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Cache gradle, wrapper and buildSrc
-        uses: actions/cache@v4
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
         with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ matrix.os }}-gradle-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}-${{ hashFiles('**/buildSrc/**/*.kt') }}
-          restore-keys: |
-            ${{ matrix.os }}-gradle-
+          gradle-home-cache-cleanup: true
+
       - name: Cache konan
         uses: actions/cache@v4
         with:
@@ -63,7 +63,7 @@ jobs:
 
       - name: Build
         run: ./gradlew :android:assembleDebug --stacktrace
-  kmpviewmodel-compose-sample-ios:
+  kmpviewmodel_compose_koin_sample-ios:
     strategy:
       matrix:
         os: [ macos-14 ]
@@ -92,15 +92,10 @@ jobs:
           xcrun simctl boot iphone-12-pro
           open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app
 
-      - name: Cache gradle, wrapper and buildSrc
-        uses: actions/cache@v4
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
         with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ matrix.os }}-gradle-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}-${{ hashFiles('**/buildSrc/**/*.kt') }}
-          restore-keys: |
-            ${{ matrix.os }}-gradle-
+          gradle-home-cache-cleanup: true
 
       - name: Cache konan
         uses: actions/cache@v4
@@ -127,6 +122,117 @@ jobs:
         uses: sersoft-gmbh/xcodebuild-action@v3
         with:
           project: standalone-sample/kmpviewmodel_compose_koin_sample/iosApp/iosApp.xcodeproj
+          scheme: iosApp
+          action: build
+          sdk: iphonesimulator
+          destination: platform=iOS Simulator,name=iphone-12-pro
+          configuration: Debug
+          build-settings: CODE_SIGNING_REQUIRED=NO
+
+
+  kmpviewmodel_compose_koject_sample-android:
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: standalone-sample/kmpviewmodel_compose_koject_sample
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-home-cache-cleanup: true
+
+      - name: Cache konan
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.konan/cache
+            ~/.konan/dependencies
+            ~/.konan/kotlin-native-macos*
+            ~/.konan/kotlin-native-mingw*
+            ~/.konan/kotlin-native-windows*
+            ~/.konan/kotlin-native-linux*
+            ~/.konan/kotlin-native-prebuilt-macos*
+            ~/.konan/kotlin-native-prebuilt-mingw*
+            ~/.konan/kotlin-native-prebuilt-windows*
+            ~/.konan/kotlin-native-prebuilt-linux*
+          key: ${{ matrix.os }}-konan-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ matrix.os }}-konan-
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
+      - name: Build
+        run: ./gradlew :composeApp:assembleDebug --stacktrace
+  kmpviewmodel_compose_koject_sample-ios:
+    strategy:
+      matrix:
+        os: [ macos-14 ]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: standalone-sample/kmpviewmodel_compose_koject_sample
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Setup Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: 'latest-stable'
+
+      - name: Prepare and open Simulator
+        run: |
+          xcrun simctl create iphone-12-pro "iPhone 12 Pro"
+          xcrun simctl boot iphone-12-pro
+          open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-home-cache-cleanup: true
+
+      - name: Cache konan
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.konan/cache
+            ~/.konan/dependencies
+            ~/.konan/kotlin-native-macos*
+            ~/.konan/kotlin-native-mingw*
+            ~/.konan/kotlin-native-windows*
+            ~/.konan/kotlin-native-linux*
+            ~/.konan/kotlin-native-prebuilt-macos*
+            ~/.konan/kotlin-native-prebuilt-mingw*
+            ~/.konan/kotlin-native-prebuilt-windows*
+            ~/.konan/kotlin-native-prebuilt-linux*
+          key: ${{ matrix.os }}-konan-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ matrix.os }}-konan-
+
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
+      - name: Build iosApp scheme
+        uses: sersoft-gmbh/xcodebuild-action@v3
+        with:
+          project: standalone-sample/kmpviewmodel_compose_koject_sample/iosApp/iosApp.xcodeproj
           scheme: iosApp
           action: build
           sdk: iphonesimulator
