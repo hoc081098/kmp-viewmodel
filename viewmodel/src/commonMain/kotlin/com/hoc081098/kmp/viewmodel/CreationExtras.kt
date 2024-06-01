@@ -46,7 +46,9 @@ public expect abstract class CreationExtras internal constructor() {
  *
  * [get] of this object always returns `null`.
  */
-public expect object EmptyCreationExtras : CreationExtras
+public expect object EmptyCreationExtras : CreationExtras {
+  override fun <T> get(key: Key<T>): T?
+}
 
 /**
  * Alias for [MutableCreationExtrasBuilder]
