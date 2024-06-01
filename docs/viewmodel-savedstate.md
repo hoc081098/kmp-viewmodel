@@ -84,7 +84,7 @@ plugins {
   id("kotlin-parcelize") // Apply the plugin for Android
 }
 
-// Since Kotlin 2.0.0, you must add the below code to your build.gradle.kts of the common/shared module
+// Since Kotlin 2.0.0, you must add the below code to your build.gradle.kts of the common/shared module (Kotlin Multiplatform module).
 kotlin {
   [...] // Other configurations
 
