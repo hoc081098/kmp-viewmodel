@@ -92,6 +92,22 @@ kotlin {
       implementation(libs.kotlinx.coroutines.swing)
     }
   }
+
+  targets.configureEach {
+    val isAndroidTarget = platformType == org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType.androidJvm
+    compilations.configureEach {
+      compileTaskProvider.configure {
+        compilerOptions {
+          if (isAndroidTarget) {
+            freeCompilerArgs.addAll(
+              "-P",
+              "plugin:org.jetbrains.kotlin.parcelize:additionalAnnotation=com.hoc081098.kmp.viewmodel.parcelable.Parcelize",
+            )
+          }
+        }
+      }
+    }
+  }
 }
 
 android {
@@ -128,22 +144,6 @@ android {
   }
   dependencies {
     debugImplementation(libs.compose.ui.tooling)
-  }
-
-  targets.configureEach {
-    val isAndroidTarget = platformType == org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType.androidJvm
-    compilations.configureEach {
-      compileTaskProvider.configure {
-        compilerOptions {
-          if (isAndroidTarget) {
-            freeCompilerArgs.addAll(
-              "-P",
-              "plugin:org.jetbrains.kotlin.parcelize:additionalAnnotation=com.hoc081098.kmp.viewmodel.parcelable.Parcelize",
-            )
-          }
-        }
-      }
-    }
   }
 }
 
