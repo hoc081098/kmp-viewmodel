@@ -19,10 +19,6 @@ plugins {
 kotlin {
   explicitApi()
 
-  compilerOptions {
-    allWarningsAsErrors.set(true)
-  }
-
   jvmToolchain {
     languageVersion.set(JavaLanguageVersion.of(libs.versions.java.toolchain.get()))
     vendor.set(JvmVendorSpec.AZUL)

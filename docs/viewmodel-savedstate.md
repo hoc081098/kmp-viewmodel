@@ -83,6 +83,27 @@ kotlin {
 plugins {
   id("kotlin-parcelize") // Apply the plugin for Android
 }
+
+// Since Kotlin 2.0.0, you must add the below code to your build.gradle.kts of the common/shared module
+kotlin {
+  [...] // Other configurations
+
+  targets.configureEach {
+    val isAndroidTarget = platformType == org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType.androidJvm
+    compilations.configureEach {
+      compileTaskProvider.configure {
+        compilerOptions {
+          if (isAndroidTarget) {
+            freeCompilerArgs.addAll(
+              "-P",
+              "plugin:org.jetbrains.kotlin.parcelize:additionalAnnotation=com.hoc081098.kmp.viewmodel.parcelable.Parcelize",
+            )
+          }
+        }
+      }
+    }
+  }
+}
 ```
 
 <details>

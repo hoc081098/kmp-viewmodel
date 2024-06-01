@@ -83,8 +83,9 @@ kotlin {
     iosTest {}
   }
 
+
   targets.configureEach {
-    val isAndroidTarget = platformType == KotlinPlatformType.androidJvm
+    val isAndroidTarget = platformType == org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType.androidJvm
     compilations.configureEach {
       compileTaskProvider.configure {
         compilerOptions {
