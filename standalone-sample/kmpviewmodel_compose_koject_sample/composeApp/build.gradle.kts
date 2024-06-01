@@ -129,6 +129,22 @@ android {
   dependencies {
     debugImplementation(libs.compose.ui.tooling)
   }
+
+  targets.configureEach {
+    val isAndroidTarget = platformType == KotlinPlatformType.androidJvm
+    compilations.configureEach {
+      compileTaskProvider.configure {
+        compilerOptions {
+          if (isAndroidTarget) {
+            freeCompilerArgs.addAll(
+              "-P",
+              "plugin:org.jetbrains.kotlin.parcelize:additionalAnnotation=com.hoc081098.kmp.viewmodel.parcelable.Parcelize",
+            )
+          }
+        }
+      }
+    }
+  }
 }
 
 compose.desktop {
