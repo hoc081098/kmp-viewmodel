@@ -3,7 +3,6 @@ package com.hoc081098.kmp.viewmodel.safe
 import com.hoc081098.kmp.viewmodel.InternalKmpViewModelApi
 import com.hoc081098.kmp.viewmodel.SavedStateHandle
 import dev.drewhamilton.poko.ArrayContentBased
-import dev.drewhamilton.poko.ArrayContentSupport
 import dev.drewhamilton.poko.Poko
 
 /**
@@ -18,7 +17,6 @@ import dev.drewhamilton.poko.Poko
  *
  * @see SafeSavedStateHandle
  */
-@OptIn(ArrayContentSupport::class)
 @Poko
 public class NullableSavedStateHandleKey<T : Any> @PublishedApi
 @InternalKmpViewModelApi
