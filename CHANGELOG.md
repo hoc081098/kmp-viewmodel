@@ -5,7 +5,7 @@
 ### Update dependencies
 
 - [Kotlin `2.0.0`](https://github.com/JetBrains/Kotlin/releases/tag/v2.0.0).
-- [AndroidX Lifecycle `2.8.0`](https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.0).
+- [AndroidX Lifecycle `2.8.1`](https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.1).
 - [JetBrains Compose Multiplatform `1.6.10`](https://github.com/JetBrains/compose-multiplatform/releases/tag/v1.6.10).
 
 ### `kmp-viewmodel-savedstate`
