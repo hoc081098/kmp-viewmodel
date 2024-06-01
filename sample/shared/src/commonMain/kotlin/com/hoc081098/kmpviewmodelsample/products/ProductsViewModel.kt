@@ -100,7 +100,7 @@ class ProductsViewModel(
       .onEach {
         Napier.d(
           "State: products=${it.products.size}, isLoading=${it.isLoading}," +
-              " error=${it.error}, isRefreshing=${it.isRefreshing}",
+            " error=${it.error}, isRefreshing=${it.isRefreshing}",
         )
       }
       .stateIn(
