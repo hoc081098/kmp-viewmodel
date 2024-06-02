@@ -658,6 +658,27 @@ and <a href="https://developer.android.com/topic/libraries/architecture/viewmode
 <span class="n">plugins</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">id</span><span class="p">(</span><span class="s">&quot;kotlin-parcelize&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// Apply the plugin for Android</span>
 <span class="p">}</span>
+
+<span class="c1">// Since Kotlin 2.0.0, you must add the below code to your build.gradle.kts of the common/shared module (Kotlin Multiplatform module).</span>
+<span class="n">kotlin</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="o">[</span><span class="p">...</span><span class="o">]</span><span class="w"> </span><span class="c1">// Other configurations</span>
+
+<span class="w">  </span><span class="n">targets</span><span class="p">.</span><span class="na">configureEach</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">isAndroidTarget</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">platformType</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">org</span><span class="p">.</span><span class="na">jetbrains</span><span class="p">.</span><span class="na">kotlin</span><span class="p">.</span><span class="na">gradle</span><span class="p">.</span><span class="na">plugin</span><span class="p">.</span><span class="na">KotlinPlatformType</span><span class="p">.</span><span class="na">androidJvm</span>
+<span class="w">    </span><span class="n">compilations</span><span class="p">.</span><span class="na">configureEach</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">compileTaskProvider</span><span class="p">.</span><span class="na">configure</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">compilerOptions</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isAndroidTarget</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">freeCompilerArgs</span><span class="p">.</span><span class="na">addAll</span><span class="p">(</span>
+<span class="w">              </span><span class="s">&quot;-P&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="s">&quot;plugin:org.jetbrains.kotlin.parcelize:additionalAnnotation=com.hoc081098.kmp.viewmodel.parcelable.Parcelize&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
 <details>
 <summary>Snapshots of the development version are available in Sonatype's snapshots repository.</summary>
