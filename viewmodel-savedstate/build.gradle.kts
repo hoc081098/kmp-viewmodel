@@ -128,17 +128,6 @@ kotlin {
       dependencies {
         implementation(kotlin("test-junit"))
       }
-
-      compilations.configureEach {
-        compileTaskProvider.configure {
-          compilerOptions {
-            freeCompilerArgs.addAll(
-              "-P",
-              "plugin:org.jetbrains.kotlin.parcelize:additionalAnnotation=com.hoc081098.kmp.viewmodel.parcelable.Parcelize",
-            )
-          }
-        }
-      }
     }
 
     val nonAndroidMain by creating {
@@ -203,6 +192,22 @@ kotlin {
   sourceSets.matching { it.name.contains("Test") }.all {
     languageSettings {
       optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
+    }
+  }
+
+  targets.configureEach {
+    val isAndroidTarget = platformType == org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType.androidJvm
+    compilations.configureEach {
+      compileTaskProvider.configure {
+        compilerOptions {
+          if (isAndroidTarget) {
+            freeCompilerArgs.addAll(
+              "-P",
+              "plugin:org.jetbrains.kotlin.parcelize:additionalAnnotation=com.hoc081098.kmp.viewmodel.parcelable.Parcelize",
+            )
+          }
+        }
+      }
     }
   }
 }
