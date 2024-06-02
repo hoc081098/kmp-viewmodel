@@ -6,6 +6,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
   alias(libs.plugins.kotlin.multiplatform)
+  alias(libs.plugins.kotlin.compose)
   alias(libs.plugins.android.library)
 
   alias(libs.plugins.jetbrains.compose)
@@ -17,9 +18,7 @@ plugins {
   alias(libs.plugins.kotlinx.kover)
 }
 
-compose {
-  kotlinCompilerPlugin.set(libs.versions.jetbrains.compose.compiler)
-}
+composeCompiler {}
 
 kotlin {
   explicitApi()
@@ -33,25 +32,31 @@ kotlin {
     publishAllLibraryVariants()
 
     compilations.configureEach {
-      compilerOptions.configure {
-        jvmTarget.set(JvmTarget.fromTarget(libs.versions.java.target.get()))
+      compileTaskProvider.configure {
+        compilerOptions {
+          jvmTarget.set(JvmTarget.fromTarget(libs.versions.java.target.get()))
+        }
       }
     }
   }
 
   jvm {
     compilations.configureEach {
-      compilerOptions.configure {
-        jvmTarget.set(JvmTarget.fromTarget(libs.versions.java.target.get()))
+      compileTaskProvider.configure {
+        compilerOptions {
+          jvmTarget.set(JvmTarget.fromTarget(libs.versions.java.target.get()))
+        }
       }
     }
   }
 
   js(IR) {
-    compilations.all {
-      kotlinOptions {
-        sourceMap = true
-        moduleKind = "commonjs"
+    compilations.configureEach {
+      compileTaskProvider.configure {
+        compilerOptions {
+          sourceMap = true
+          moduleKind = org.jetbrains.kotlin.gradle.dsl.JsModuleKind.MODULE_COMMONJS
+        }
       }
     }
     browser()
@@ -65,14 +70,14 @@ kotlin {
   macosX64()
   macosArm64()
 
-//  tvosX64()
-//  tvosSimulatorArm64()
-//  tvosArm64()
-//
-//  watchosArm32()
-//  watchosArm64()
-//  watchosX64()
-//  watchosSimulatorArm64()
+  //  tvosX64()
+  //  tvosSimulatorArm64()
+  //  tvosArm64()
+  //
+  //  watchosArm32()
+  //  watchosArm64()
+  //  watchosX64()
+  //  watchosSimulatorArm64()
 
   applyDefaultHierarchyTemplate()
 

@@ -1,6 +1,6 @@
-
 package com.hoc081098.kmpviewmodelsample.product_detail
 
+import androidx.compose.runtime.Immutable
 import com.hoc081098.flowext.FlowExtPreview
 import com.hoc081098.flowext.catchAndReturn
 import com.hoc081098.flowext.flatMapFirst
@@ -15,7 +15,6 @@ import com.hoc081098.kmp.viewmodel.safe.safe
 import com.hoc081098.kmp.viewmodel.wrapper.NonNullStateFlowWrapper
 import com.hoc081098.kmp.viewmodel.wrapper.wrap
 import com.hoc081098.kmpviewmodelsample.ProductItemUi
-import com.hoc081098.kmpviewmodelsample.common.Immutable
 import com.hoc081098.kmpviewmodelsample.toProductItemUi
 import io.github.aakira.napier.Napier
 import kotlin.jvm.JvmField

@@ -2,6 +2,7 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
   alias(libs.plugins.kotlinMultiplatform)
+  alias(libs.plugins.kotlinCompose)
   alias(libs.plugins.androidApplication)
   alias(libs.plugins.kotlinParcelize)
   alias(libs.plugins.jetbrainsCompose)
@@ -91,6 +92,22 @@ kotlin {
       implementation(libs.kotlinx.coroutines.swing)
     }
   }
+
+  targets.configureEach {
+    val isAndroidTarget = platformType == org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType.androidJvm
+    compilations.configureEach {
+      compileTaskProvider.configure {
+        compilerOptions {
+          if (isAndroidTarget) {
+            freeCompilerArgs.addAll(
+              "-P",
+              "plugin:org.jetbrains.kotlin.parcelize:additionalAnnotation=com.hoc081098.kmp.viewmodel.parcelable.Parcelize",
+            )
+          }
+        }
+      }
+    }
+  }
 }
 
 android {
@@ -140,10 +157,6 @@ compose.desktop {
       packageVersion = "1.0.0"
     }
   }
-}
-
-compose.experimental {
-  web.application {}
 }
 
 dependencies {

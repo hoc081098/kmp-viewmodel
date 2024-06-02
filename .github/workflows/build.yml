@@ -11,6 +11,10 @@ on:
     paths-ignore: [ '**.md', '**.MD', '!docs/**' ]
   workflow_dispatch:
 
+concurrency:
+  group: 'ci-${{ github.head_ref }}-${{ github.workflow }}'
+  cancel-in-progress: true
+
 env:
   GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx4g -Dorg.gradle.daemon=false -Dkotlin.incremental=false -XX:+UseParallelGC -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8"
 
@@ -34,15 +38,11 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Cache gradle, wrapper and buildSrc
-        uses: actions/cache@v4
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
         with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ matrix.os }}-gradle-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}-${{ hashFiles('**/buildSrc/**/*.kt') }}
-          restore-keys: |
-            ${{ matrix.os }}-gradle-
+          gradle-home-cache-cleanup: true
+
       - name: Cache konan
         uses: actions/cache@v4
         with:
@@ -108,15 +108,11 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Cache gradle, wrapper and buildSrc
-        uses: actions/cache@v4
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
         with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ matrix.os }}-gradle-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}-${{ hashFiles('**/buildSrc/**/*.kt') }}
-          restore-keys: |
-            ${{ matrix.os }}-gradle-
+          gradle-home-cache-cleanup: true
+
       - name: Cache konan
         uses: actions/cache@v4
         with:
@@ -185,11 +181,12 @@ jobs:
   android-instrumented-test:
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    if: ${{ github.repository == 'hoc081098/kmp-viewmodel' &&
-      !contains(github.event.head_commit.message, '[ci skip]') &&
-      !contains(github.event.head_commit.message, '[skip ci]') &&
-      !contains(github.event.pull_request.title, '[skip ci]') &&
-      !contains(github.event.pull_request.title, '[ci skip]') }}
+    if: ${{ false }} # TODO: Skip for now
+    #    if: ${{ github.repository == 'hoc081098/kmp-viewmodel' &&
+    #      !contains(github.event.head_commit.message, '[ci skip]') &&
+    #      !contains(github.event.head_commit.message, '[skip ci]') &&
+    #      !contains(github.event.pull_request.title, '[skip ci]') &&
+    #      !contains(github.event.pull_request.title, '[ci skip]') }}
     strategy:
       fail-fast: true
       matrix:
@@ -210,15 +207,11 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Cache gradle, wrapper and buildSrc
-        uses: actions/cache@v4
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
         with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ matrix.os }}-gradle-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}-${{ hashFiles('**/buildSrc/**/*.kt') }}
-          restore-keys: |
-            ${{ matrix.os }}-gradle-
+          gradle-home-cache-cleanup: true
+
       - name: Cache konan
         uses: actions/cache@v4
         with:

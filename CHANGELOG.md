@@ -2,6 +2,67 @@
 
 ## [Unreleased] - TBD
 
+### Update dependencies
+
+- [Kotlin `2.0.0`](https://github.com/JetBrains/Kotlin/releases/tag/v2.0.0).
+- [AndroidX Lifecycle `2.8.1`](https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.1).
+- [JetBrains Compose Multiplatform `1.6.10`](https://github.com/JetBrains/compose-multiplatform/releases/tag/v1.6.10).
+
+### `kmp-viewmodel-savedstate`
+
+- Added `JvmSerializable` - multiplatform reference to Java `java.io.Serializable` interface,
+  along with `NonNullSavedStateHandleKey.Companion.serializable` and `NullableSavedStateHandleKey.Companion.serializable`
+
+  ```kotlin
+  // Use `JvmSerializable` with enum classes.
+  enum class Gender : JvmSerializable {
+    MALE,
+    FEMALE,
+  }
+
+  // Create a `NonNullSavedStateHandleKey` for a serializable type.
+  private val genderKey: NonNullSavedStateHandleKey<Gender> = NonNullSavedStateHandleKey.serializable(
+    key = "gender",
+    defaultValue = Gender.MALE,
+  )
+
+  // Use `SavedStateHandle.safe` extension function to access `SavedStateHandle` in a type-safe way.
+  val genderStateFlow: NonNullStateFlowWrapper<Gender> = savedStateHandle
+    .safe { it.getStateFlow(genderKey) }
+    .wrap()
+  ```
+
+- Since Kotlin 2.0.0, you must add `"plugin:org.jetbrains.kotlin.parcelize:additionalAnnotation=com.hoc081098.kmp.viewmodel.parcelable.Parcelize"`
+  as a free compiler argument to able to use `@Parcelize` annotation in the common/shared module (Kotlin Multiplatform module).
+
+  ```kotlin
+  // build.gradle.kts
+  plugins {
+    id("kotlin-parcelize") // Apply the plugin for Android
+  }
+
+  // Since Kotlin 2.0.0, you must add the below code to your build.gradle.kts of the common/shared module (Kotlin Multiplatform module).
+  kotlin {
+    [...] // Other configurations
+
+    targets.configureEach {
+      val isAndroidTarget = platformType == org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType.androidJvm
+      compilations.configureEach {
+        compileTaskProvider.configure {
+          compilerOptions {
+            if (isAndroidTarget) {
+              freeCompilerArgs.addAll(
+                "-P",
+                "plugin:org.jetbrains.kotlin.parcelize:additionalAnnotation=com.hoc081098.kmp.viewmodel.parcelable.Parcelize",
+              )
+            }
+          }
+        }
+      }
+    }
+  }
+  ```
+
 ## [0.7.1] - March 2, 2024
 
 ### `kmp-viewmodel-compose`

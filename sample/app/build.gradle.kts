@@ -2,6 +2,7 @@
 plugins {
   alias(libs.plugins.android.app)
   alias(libs.plugins.kotlin.android)
+  alias(libs.plugins.kotlin.compose)
   alias(libs.plugins.kotlin.parcelize)
 }
 
@@ -17,9 +18,6 @@ android {
   }
   buildFeatures {
     compose = true
-  }
-  composeOptions {
-    kotlinCompilerExtensionVersion = libs.versions.androidx.compose.compiler.get()
   }
   packaging {
     resources {
@@ -62,20 +60,25 @@ dependencies {
   implementation(libs.kotlinx.collections.immutable)
 }
 
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-  kotlinOptions {
+// TODO: Recheck this
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask<*>>().configureEach {
+  compilerOptions {
     val buildDirAbsolutePath = project.layout.buildDirectory.map { it.asFile.absolutePath }.get()
 
     if (project.findProperty("composeCompilerReports") == "true") {
-      freeCompilerArgs = freeCompilerArgs + listOf(
-        "-P",
-        "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=$buildDirAbsolutePath/compose_compiler",
+      freeCompilerArgs.addAll(
+        listOf(
+          "-P",
+          "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=$buildDirAbsolutePath/compose_compiler",
+        ),
       )
     }
     if (project.findProperty("composeCompilerMetrics") == "true") {
-      freeCompilerArgs = freeCompilerArgs + listOf(
-        "-P",
-        "plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=$buildDirAbsolutePath/compose_compiler",
+      freeCompilerArgs.addAll(
+        listOf(
+          "-P",
+          "plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=$buildDirAbsolutePath/compose_compiler",
+        ),
       )
     }
   }

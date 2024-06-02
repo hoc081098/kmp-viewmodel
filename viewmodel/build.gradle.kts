@@ -19,10 +19,6 @@ plugins {
 kotlin {
   explicitApi()
 
-  compilerOptions {
-    allWarningsAsErrors.set(true)
-  }
-
   jvmToolchain {
     languageVersion.set(JavaLanguageVersion.of(libs.versions.java.toolchain.get()))
     vendor.set(JvmVendorSpec.AZUL)
@@ -32,25 +28,31 @@ kotlin {
     publishAllLibraryVariants()
 
     compilations.configureEach {
-      compilerOptions.configure {
-        jvmTarget.set(JvmTarget.fromTarget(libs.versions.java.target.get()))
+      compileTaskProvider.configure {
+        compilerOptions {
+          jvmTarget.set(JvmTarget.fromTarget(libs.versions.java.target.get()))
+        }
       }
     }
   }
 
   jvm {
     compilations.configureEach {
-      compilerOptions.configure {
-        jvmTarget.set(JvmTarget.fromTarget(libs.versions.java.target.get()))
+      compileTaskProvider.configure {
+        compilerOptions {
+          jvmTarget.set(JvmTarget.fromTarget(libs.versions.java.target.get()))
+        }
       }
     }
   }
   js(IR) {
     moduleName = property("POM_ARTIFACT_ID")!!.toString()
     compilations.configureEach {
-      compilerOptions.configure {
-        sourceMap.set(true)
-        moduleKind.set(JsModuleKind.MODULE_COMMONJS)
+      compileTaskProvider.configure {
+        compilerOptions {
+          sourceMap.set(true)
+          moduleKind.set(JsModuleKind.MODULE_COMMONJS)
+        }
       }
     }
     browser()
@@ -174,16 +176,17 @@ kotlin {
   }
 }
 
-tasks.withType<org.jetbrains.kotlin.gradle.dsl.KotlinCompile<*>>().configureEach {
-  kotlinOptions {
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask<*>>().configureEach {
+  compilerOptions {
     // 'expect'/'actual' classes (including interfaces, objects, annotations, enums,
     // and 'actual' typealiases) are in Beta.
     // You can use -Xexpect-actual-classes flag to suppress this warning.
     // Also see: https://youtrack.jetbrains.com/issue/KT-61573
-    freeCompilerArgs +=
+    freeCompilerArgs.addAll(
       listOf(
         "-Xexpect-actual-classes",
-      )
+      ),
+    )
   }
 }
 

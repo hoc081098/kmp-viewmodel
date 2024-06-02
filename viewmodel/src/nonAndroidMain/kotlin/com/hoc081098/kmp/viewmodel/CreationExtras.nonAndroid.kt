@@ -27,7 +27,7 @@ public actual abstract class CreationExtras internal actual constructor() {
 }
 
 public actual object EmptyCreationExtras : CreationExtras() {
-  override fun <T> get(key: Key<T>): T? = null
+  actual override fun <T> get(key: Key<T>): T? = null
 }
 
 public actual class MutableCreationExtrasBuilder public actual constructor(initialExtras: CreationExtras) :

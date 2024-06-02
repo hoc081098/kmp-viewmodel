@@ -47,15 +47,11 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Cache gradle, wrapper and buildSrc
-        uses: actions/cache@v4
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
         with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ matrix.os }}-gradle-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}-${{ hashFiles('**/buildSrc/**/*.kt') }}
-          restore-keys: |
-            ${{ matrix.os }}-gradle-
+          gradle-home-cache-cleanup: true
+
       - name: Cache konan
         uses: actions/cache@v4
         with:

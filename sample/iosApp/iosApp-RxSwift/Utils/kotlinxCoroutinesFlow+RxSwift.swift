@@ -10,24 +10,19 @@ import Foundation
 import shared
 import RxSwift
 
-private func supervisorJobScope(dispatcher: CoroutineDispatcher) -> CoroutineScope {
-  CoroutineScopeKt.CoroutineScope(
-    context: dispatcher.plus(context: SupervisorKt.SupervisorJob(parent: nil))
-  )
-}
-
-extension Flow {
+extension Kotlinx_coroutines_coreFlow {
   // MARK: - Flow<T>
 
   func asNonNullObservable<T: AnyObject>(
     _ type: T.Type = T.self,
-    dispatcher: CoroutineDispatcher = Dispatchers.shared.Unconfined
+    dispatcher: Kotlinx_coroutines_coreCoroutineDispatcher =
+      CoroutinesUtils.shared.coroutineDispatchers().Unconfined
   ) -> Observable<T> {
     Observable<T>.create { observer in
       let wrapper = NonNullFlowWrapperKt.wrap(self) as! NonNullFlowWrapper<T>
 
       let closable = wrapper.subscribe(
-        scope: supervisorJobScope(dispatcher: dispatcher),
+        scope: CoroutinesUtils.shared.supervisorJobCoroutineScope(dispatcher: dispatcher),
         onValue: observer.onNext,
         onError: { t in observer.onError(t.asNSError()) },
         onComplete: observer.onCompleted
@@ -41,13 +36,14 @@ extension Flow {
 
   func asNullableObservable<T: AnyObject>(
     _ type: T.Type = T.self,
-    dispatcher: CoroutineDispatcher = Dispatchers.shared.Unconfined
+    dispatcher: Kotlinx_coroutines_coreCoroutineDispatcher =
+      CoroutinesUtils.shared.coroutineDispatchers().Unconfined
   ) -> Observable<T?> {
     Observable<T?>.create { observer in
       let wrapper = NullableFlowWrapperKt.wrap(self) as! NullableFlowWrapper<T>
 
       let closable = wrapper.subscribe(
-        scope: supervisorJobScope(dispatcher: dispatcher),
+        scope: CoroutinesUtils.shared.supervisorJobCoroutineScope(dispatcher: dispatcher),
         onValue: observer.onNext,
         onError: { t in observer.onError(t.asNSError()) },
         onComplete: observer.onCompleted

@@ -16,7 +16,6 @@ android-target = "34"
 android-compile = "34"
 
 jetbrains-compose = "1.6.10"
-jetbrains-compose-compiler = "1.5.13.1"
 
 touchlab-stately = "2.0.7"
 napier = "2.7.1"
@@ -92,6 +91,7 @@ solivagant-navigation = { module = "io.github.hoc081098:solivagant-navigation", 
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "jetbrains-compose" }
