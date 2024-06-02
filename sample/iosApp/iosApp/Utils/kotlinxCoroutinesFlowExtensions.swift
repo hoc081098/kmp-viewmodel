@@ -10,12 +10,13 @@ import Foundation
 import shared
 import Combine
 
-extension Flow {
+extension Kotlinx_coroutines_coreFlow {
   // MARK: - Flow<T>
 
   func asNonNullPublisher<T: AnyObject>(
     _ type: T.Type = T.self,
-    dispatcher: CoroutineDispatcher = Dispatchers.shared.Unconfined
+    dispatcher: Kotlinx_coroutines_coreCoroutineDispatcher =
+      CoroutinesUtils.shared.coroutineDispatchers().Unconfined
   ) -> AnyPublisher<T, Error> {
     NonNullFlowPublisher(flow: self, dispatcher: dispatcher)
       .eraseToAnyPublisher()
@@ -25,17 +26,12 @@ extension Flow {
 
   func asNullablePublisher<T: AnyObject>(
     _ type: T.Type = T.self,
-    dispatcher: CoroutineDispatcher = Dispatchers.shared.Unconfined
+    dispatcher: Kotlinx_coroutines_coreCoroutineDispatcher =
+      CoroutinesUtils.shared.coroutineDispatchers().Unconfined
   ) -> AnyPublisher<T?, Error> {
     NullableFlowPublisher(flow: self, dispatcher: dispatcher)
       .eraseToAnyPublisher()
   }
-}
-
-private func supervisorScope(dispatcher: CoroutineDispatcher) -> CoroutineScope {
-  CoroutineScopeKt.CoroutineScope(
-    context: dispatcher.plus(context: SupervisorKt.SupervisorJob(parent: nil))
-  )
 }
 
 // MARK: - NonNullFlowPublisher
@@ -44,10 +40,10 @@ private struct NonNullFlowPublisher<T: AnyObject>: Publisher {
   typealias Output = T
   typealias Failure = Error
 
-  private let flow: Flow
-  private let dispatcher: CoroutineDispatcher
+  private let flow: Kotlinx_coroutines_coreFlow
+  private let dispatcher: Kotlinx_coroutines_coreCoroutineDispatcher
 
-  init(flow: Flow, dispatcher: CoroutineDispatcher) {
+  init(flow: Kotlinx_coroutines_coreFlow, dispatcher: Kotlinx_coroutines_coreCoroutineDispatcher) {
     self.flow = flow
     self.dispatcher = dispatcher
   }
@@ -68,15 +64,15 @@ private class NonNullFlowSubscription<T: AnyObject, S: Subscriber>: Subscription
   private var closable: Closeable?
 
   init(
-    flow: Flow,
+    flow: Kotlinx_coroutines_coreFlow,
     subscriber: S,
-    dispatcher: CoroutineDispatcher
+    dispatcher: Kotlinx_coroutines_coreCoroutineDispatcher
   ) {
     self.subscriber = subscriber
 
     let wrapper = NonNullFlowWrapperKt.wrap(flow) as! NonNullFlowWrapper<T>
     self.closable = wrapper.subscribe(
-      scope: supervisorScope(dispatcher: dispatcher),
+      scope: CoroutinesUtils.shared.supervisorJobCoroutineScope(dispatcher: dispatcher),
       onValue: {
         _ = subscriber.receive($0)
       },
@@ -105,10 +101,10 @@ private struct NullableFlowPublisher<T: AnyObject>: Publisher {
   typealias Output = T?
   typealias Failure = Error
 
-  private let flow: Flow
-  private let dispatcher: CoroutineDispatcher
+  private let flow: Kotlinx_coroutines_coreFlow
+  private let dispatcher: Kotlinx_coroutines_coreCoroutineDispatcher
 
-  init(flow: Flow, dispatcher: CoroutineDispatcher) {
+  init(flow: Kotlinx_coroutines_coreFlow, dispatcher: Kotlinx_coroutines_coreCoroutineDispatcher) {
     self.flow = flow
     self.dispatcher = dispatcher
   }
@@ -129,15 +125,15 @@ private class NullableFlowSubscription<T: AnyObject, S: Subscriber>: Subscriptio
   private var closable: Closeable?
 
   init(
-    flow: Flow,
+    flow: Kotlinx_coroutines_coreFlow,
     subscriber: S,
-    dispatcher: CoroutineDispatcher
+    dispatcher: Kotlinx_coroutines_coreCoroutineDispatcher
   ) {
     self.subscriber = subscriber
 
     let wrapper = NullableFlowWrapperKt.wrap(flow) as! NullableFlowWrapper<T>
     self.closable = wrapper.subscribe(
-      scope: supervisorScope(dispatcher: dispatcher),
+      scope: CoroutinesUtils.shared.supervisorJobCoroutineScope(dispatcher: dispatcher),
       onValue: {
         _ = subscriber.receive($0)
       },
