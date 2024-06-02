@@ -18,8 +18,14 @@ plugins {
 kotlin {
   explicitApi()
 
-  compilerOptions {
-    allWarningsAsErrors.set(true)
+  targets.configureEach {
+    compilations.configureEach {
+      compileTaskProvider.configure {
+        compilerOptions {
+          allWarningsAsErrors.set(true)
+        }
+      }
+    }
   }
 
   jvmToolchain {
@@ -30,20 +36,32 @@ kotlin {
   androidTarget {
     publishAllLibraryVariants()
 
-    compilerOptions {
-      jvmTarget.set(JvmTarget.fromTarget(libs.versions.java.target.get()))
+    compilations.configureEach {
+      compileTaskProvider.configure {
+        compilerOptions {
+          jvmTarget.set(JvmTarget.fromTarget(libs.versions.java.target.get()))
+        }
+      }
     }
   }
 
   jvm {
-    compilerOptions {
-      jvmTarget.set(JvmTarget.fromTarget(libs.versions.java.target.get()))
+    compilations.configureEach {
+      compileTaskProvider.configure {
+        compilerOptions {
+          jvmTarget.set(JvmTarget.fromTarget(libs.versions.java.target.get()))
+        }
+      }
     }
   }
   js(IR) {
-    compilerOptions {
-      sourceMap = true
-      moduleKind = org.jetbrains.kotlin.gradle.dsl.JsModuleKind.MODULE_COMMONJS
+    compilations.configureEach {
+      compileTaskProvider.configure {
+        compilerOptions {
+          sourceMap = true
+          moduleKind = org.jetbrains.kotlin.gradle.dsl.JsModuleKind.MODULE_COMMONJS
+        }
+      }
     }
     browser()
     nodejs()

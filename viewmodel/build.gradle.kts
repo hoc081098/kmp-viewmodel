@@ -27,21 +27,33 @@ kotlin {
   androidTarget {
     publishAllLibraryVariants()
 
-    compilerOptions {
-      jvmTarget.set(JvmTarget.fromTarget(libs.versions.java.target.get()))
+    compilations.configureEach {
+      compileTaskProvider.configure {
+        compilerOptions {
+          jvmTarget.set(JvmTarget.fromTarget(libs.versions.java.target.get()))
+        }
+      }
     }
   }
 
   jvm {
-    compilerOptions {
-      jvmTarget.set(JvmTarget.fromTarget(libs.versions.java.target.get()))
+    compilations.configureEach {
+      compileTaskProvider.configure {
+        compilerOptions {
+          jvmTarget.set(JvmTarget.fromTarget(libs.versions.java.target.get()))
+        }
+      }
     }
   }
   js(IR) {
     moduleName = property("POM_ARTIFACT_ID")!!.toString()
-    compilerOptions {
-      sourceMap.set(true)
-      moduleKind.set(JsModuleKind.MODULE_COMMONJS)
+    compilations.configureEach {
+      compileTaskProvider.configure {
+        compilerOptions {
+          sourceMap.set(true)
+          moduleKind.set(JsModuleKind.MODULE_COMMONJS)
+        }
+      }
     }
     browser()
     nodejs()
