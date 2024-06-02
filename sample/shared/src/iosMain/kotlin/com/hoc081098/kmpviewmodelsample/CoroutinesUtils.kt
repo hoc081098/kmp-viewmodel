@@ -12,4 +12,3 @@ object CoroutinesUtils {
   fun supervisorJobCoroutineScope(dispatcher: CoroutineDispatcher): CoroutineScope =
     CoroutineScope(dispatcher + SupervisorJob())
 }
-
