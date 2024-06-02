@@ -128,6 +128,17 @@ kotlin {
       dependencies {
         implementation(kotlin("test-junit"))
       }
+
+      compilations.configureEach {
+        compileTaskProvider.configure {
+          compilerOptions {
+            freeCompilerArgs.addAll(
+              "-P",
+              "plugin:org.jetbrains.kotlin.parcelize:additionalAnnotation=com.hoc081098.kmp.viewmodel.parcelable.Parcelize",
+            )
+          }
+        }
+      }
     }
 
     val nonAndroidMain by creating {
