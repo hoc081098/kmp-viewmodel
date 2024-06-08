@@ -60,26 +60,13 @@ dependencies {
   implementation(libs.kotlinx.collections.immutable)
 }
 
-// TODO: Recheck this
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask<*>>().configureEach {
-  compilerOptions {
-    val buildDirAbsolutePath = project.layout.buildDirectory.map { it.asFile.absolutePath }.get()
+composeCompiler {
+  val composeCompilerDir = layout.buildDirectory.dir("compose_compiler")
 
-    if (project.findProperty("composeCompilerReports") == "true") {
-      freeCompilerArgs.addAll(
-        listOf(
-          "-P",
-          "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=$buildDirAbsolutePath/compose_compiler",
-        ),
-      )
-    }
-    if (project.findProperty("composeCompilerMetrics") == "true") {
-      freeCompilerArgs.addAll(
-        listOf(
-          "-P",
-          "plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=$buildDirAbsolutePath/compose_compiler",
-        ),
-      )
-    }
+  if (project.findProperty("composeCompilerReports") == "true") {
+    reportsDestination = composeCompilerDir
+  }
+  if (project.findProperty("composeCompilerMetrics") == "true") {
+    metricsDestination = composeCompilerDir
   }
 }

@@ -1,6 +1,7 @@
 package com.hoc081098.kmpviewmodelsample.android
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
@@ -23,6 +24,7 @@ internal fun rememberCurrentRouteAsState(currentBackStackEntryAsState: State<Nav
     }
   }
 
+@Immutable
 internal sealed class Route {
   abstract val routePattern: String
 
