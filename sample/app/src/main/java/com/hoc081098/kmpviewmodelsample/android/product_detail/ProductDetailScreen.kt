@@ -50,10 +50,8 @@ fun ProductDetailScreen(
   modifier: Modifier = Modifier,
   viewModel: ProductDetailViewModel = koinViewModel(),
 ) {
-  val refresh = remember(viewModel) {
-    @Suppress("SuspiciousCallableReferenceInLambda")
-    viewModel::refresh
-  }
+  @Suppress("SuspiciousCallableReferenceInLambda")
+  val refresh = remember(viewModel) { viewModel::refresh }
 
   OnLifecycleEventWithBuilder(refresh) {
     onResume { refresh() }
