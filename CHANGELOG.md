@@ -4,9 +4,12 @@
 
 ### Update dependencies
 
-- [Kotlin `2.0.0`](https://github.com/JetBrains/Kotlin/releases/tag/v2.0.0).
+- [Kotlin `2.0.0`](https://github.com/JetBrains/Kotlin/releases/tag/v2.0.0) 🎉.
 - [AndroidX Lifecycle `2.8.1`](https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.1).
-- [JetBrains Compose Multiplatform `1.6.10`](https://github.com/JetBrains/compose-multiplatform/releases/tag/v1.6.10).
+- [JetBrains Compose Multiplatform `1.6.11`](https://github.com/JetBrains/compose-multiplatform/releases/tag/v1.6.11).
+- [KotlinX Coroutines `1.8.1`](https://github.com/Kotlin/kotlinx.coroutines/releases/tag/1.8.1).
+- [Touchlab Stately `2.0.7`](https://github.com/touchlab/Stately/releases/tag/2.0.7).
+- [Koin Core `3.5.6`, Koin Compose `1.1.5`](https://github.com/InsertKoinIO/koin/releases/tag/3.5.6).
 
 ### `kmp-viewmodel-savedstate`
 
