@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased] - TBD
+## [0.8.0] - Jun 9, 2024
 
 ### Update dependencies
 
@@ -503,7 +503,9 @@ Share everything including data, domain, presentation, and UI.
 
 - Initial release.
 
-[Unreleased]: https://github.com/hoc081098/kmp-viewmodel/compare/0.7.1...HEAD
+[Unreleased]: https://github.com/hoc081098/kmp-viewmodel/compare/0.8.0...HEAD
+
+[0.8.0]: https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.8.0
 
 [0.7.1]: https://github.com/hoc081098/kmp-viewmodel/releases/tag/0.7.1
 

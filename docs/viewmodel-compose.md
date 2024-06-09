@@ -25,7 +25,7 @@ kotlin {
   sourceSets {
     val commonMain by getting {
       dependencies {
-        implementation("io.github.hoc081098:kmp-viewmodel-compose:0.7.1")
+        implementation("io.github.hoc081098:kmp-viewmodel-compose:0.8.0")
       }
     }
   }

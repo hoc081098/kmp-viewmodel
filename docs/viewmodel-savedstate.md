@@ -39,7 +39,7 @@ kotlin {
   sourceSets {
     val commonMain by getting {
       dependencies {
-        api("io.github.hoc081098:kmp-viewmodel-savedstate:0.7.1")
+        api("io.github.hoc081098:kmp-viewmodel-savedstate:0.8.0")
       }
     }
   }
@@ -55,7 +55,7 @@ kotlin {
     [...]
     framework {
       baseName = "shared"
-      export("io.github.hoc081098:kmp-viewmodel-savedstate:0.7.1") // required to expose the classes to iOS.
+      export("io.github.hoc081098:kmp-viewmodel-savedstate:0.8.0") // required to expose the classes to iOS.
     }
   }
 }
@@ -68,7 +68,7 @@ kotlin {
     binaries {
       framework {
         baseName = "shared"
-        export("io.github.hoc081098:kmp-viewmodel-savedstate:0.7.1") // required to expose the classes to iOS.
+        export("io.github.hoc081098:kmp-viewmodel-savedstate:0.8.0") // required to expose the classes to iOS.
       }
     }
   }

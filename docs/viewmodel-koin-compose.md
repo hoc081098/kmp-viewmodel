@@ -34,7 +34,7 @@ kotlin {
   sourceSets {
     val commonMain by getting {
       dependencies {
-        implementation("io.github.hoc081098:kmp-viewmodel-koin-compose:0.7.1")
+        implementation("io.github.hoc081098:kmp-viewmodel-koin-compose:0.8.0")
 
         // NOTE: You can add `koin-core` dependency to your project to specify the version of Koin.
         // For more information check out the [Koin KMP documentation](https://insert-koin.io/docs/reference/koin-mp/kmp#gradle-dependencies).
