@@ -11,8 +11,8 @@ import com.hoc081098.kmp.viewmodel.safe.string
 import com.hoc081098.kmp.viewmodel.wrapper.NonNullStateFlowWrapper
 import com.hoc081098.kmp.viewmodel.wrapper.NullableStateFlowWrapper
 import com.hoc081098.kmp.viewmodel.wrapper.wrap
-import com.hoc081098.kmpviewmodelsample.ProductItemUi
-import com.hoc081098.kmpviewmodelsample.toProductItemUi
+import com.hoc081098.kmpviewmodelsample.ui.ProductItemUi
+import com.hoc081098.kmpviewmodelsample.ui.toProductItemUi
 import io.github.aakira.napier.Napier
 import kotlin.time.Duration.Companion.milliseconds
 import kotlinx.collections.immutable.ImmutableList

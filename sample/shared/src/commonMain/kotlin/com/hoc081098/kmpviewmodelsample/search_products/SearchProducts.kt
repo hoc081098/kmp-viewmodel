@@ -1,9 +1,10 @@
-
 package com.hoc081098.kmpviewmodelsample.search_products
 
 import com.hoc081098.kmpviewmodelsample.common.AppDispatchers
 import com.hoc081098.kmpviewmodelsample.data.FakeProductsJson
-import com.hoc081098.kmpviewmodelsample.data.ProductItem
+import com.hoc081098.kmpviewmodelsample.data.ProductResponse
+import com.hoc081098.kmpviewmodelsample.data.toProductItem
+import com.hoc081098.kmpviewmodelsample.domain.ProductItem
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -20,11 +21,12 @@ class SearchProducts(
       @Suppress("MagicNumber")
       (delay(2_000))
 
-      Json.decodeFromString<List<ProductItem>>(FakeProductsJson)
+      Json.decodeFromString<List<ProductResponse>>(FakeProductsJson)
         .filter {
           it.title.contains(term, ignoreCase = true) ||
             it.description.contains(term, ignoreCase = true)
         }
+        .map { it.toProductItem() }
     }
   }
 }
