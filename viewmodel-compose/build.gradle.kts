@@ -119,7 +119,7 @@ kotlin {
         implementation(kotlin("test-junit"))
         implementation("androidx.compose.ui:ui-test-junit4:1.0.1")
         implementation("androidx.compose.ui:ui-test-manifest:1.0.1")
-        implementation("androidx.test.ext:junit:1.1.5")
+        implementation("androidx.test.ext:junit:1.2.0")
       }
     }
 
