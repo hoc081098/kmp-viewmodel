@@ -1,6 +1,8 @@
 package com.hoc081098.kmpviewmodelsample.search_products
 
 import androidx.compose.runtime.Immutable
+import com.hoc081098.flowext.FlowExtPreview
+import com.hoc081098.flowext.catchAndReturn
 import com.hoc081098.flowext.flowFromSuspend
 import com.hoc081098.flowext.startWith
 import com.hoc081098.kmp.viewmodel.SavedStateHandle
@@ -22,7 +24,6 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flatMapLatest
@@ -72,10 +73,12 @@ class SearchProductsViewModel(
   }
 
   companion object {
-    private val SEARCH_TERM_KEY = NullableSavedStateHandleKey.string("com.hoc081098.kmpviewmodelsample.search_term")
+    private val SEARCH_TERM_KEY =
+      NullableSavedStateHandleKey.string("com.hoc081098.kmpviewmodelsample.search_term")
   }
 }
 
+@OptIn(FlowExtPreview::class)
 private fun SearchProducts.executeSearching(term: String): Flow<SearchProductsState> {
   return flowFromSuspend { if (term.isEmpty()) emptyList() else invoke(term) }
     .onStart { Napier.d("search products term=$term") }
@@ -97,15 +100,13 @@ private fun SearchProducts.executeSearching(term: String): Flow<SearchProductsSt
         products = persistentListOf(),
       )
     }
-    .catch { error ->
+    .catchAndReturn { error ->
       Napier.e("search products failed", error)
-      emit(
-        SearchProductsState(
-          isLoading = false,
-          error = error,
-          submittedTerm = term,
-          products = persistentListOf(),
-        ),
+      SearchProductsState(
+        isLoading = false,
+        error = error,
+        submittedTerm = term,
+        products = persistentListOf(),
       )
     }
 }
