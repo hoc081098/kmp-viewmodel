@@ -34,13 +34,13 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImagePainter
 import coil.compose.SubcomposeAsyncImage
 import coil.compose.SubcomposeAsyncImageContent
-import com.hoc081098.kmpviewmodelsample.ProductItemUi
 import com.hoc081098.kmpviewmodelsample.android.common.ErrorMessageAndRetryButton
 import com.hoc081098.kmpviewmodelsample.android.common.LoadingIndicator
 import com.hoc081098.kmpviewmodelsample.android.common.MyApplicationTheme
 import com.hoc081098.kmpviewmodelsample.android.common.OnLifecycleEventWithBuilder
 import com.hoc081098.kmpviewmodelsample.product_detail.ProductDetailState
 import com.hoc081098.kmpviewmodelsample.product_detail.ProductDetailViewModel
+import com.hoc081098.kmpviewmodelsample.ui.ProductItemUi
 import io.github.aakira.napier.Napier
 import kotlinx.collections.immutable.persistentListOf
 import org.koin.androidx.compose.koinViewModel
@@ -92,9 +92,6 @@ private fun ProductDetailContent(
       "Title: " to product.title,
       "Price: " to product.price.toString(),
       "Description: " to product.description,
-      "Category: " to product.category.name,
-      "Created at: " to product.creationAt,
-      "Updated at: " to product.updatedAt,
     )
   }
 
@@ -105,7 +102,7 @@ private fun ProductDetailContent(
       .padding(horizontal = 24.dp),
   ) {
     SubcomposeAsyncImage(
-      model = product.images.firstOrNull(),
+      model = product.image,
       contentDescription = product.title,
       contentScale = ContentScale.Crop,
       modifier = Modifier
@@ -186,20 +183,11 @@ private fun ProductDetailContentPreview() {
   MyApplicationTheme {
     ProductDetailContent(
       product = ProductItemUi(
-        id = 2987,
-        title = "commune",
-        price = 3440,
-        description = "duo",
-        images = persistentListOf(),
-        creationAt = "deserunt",
-        updatedAt = "iisque",
-        category = ProductItemUi.CategoryUi(
-          id = 6965,
-          name = "Mavis Oliver",
-          image = "sit",
-          creationAt = "mauris",
-          updatedAt = "persequeris",
-        ),
+        id = 9413,
+        title = "invidunt",
+        price = 8.9,
+        description = "liber",
+        image = "https://placeholder.pics/svg/300",
       ),
     )
   }

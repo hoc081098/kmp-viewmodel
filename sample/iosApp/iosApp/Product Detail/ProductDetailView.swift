@@ -69,24 +69,23 @@ private struct DetailContentView: View {
       ("Title: ", product.title),
       ("Price: ", String(product.price)),
       ("Description: ", product.description_),
-      ("Category: ", product.category.name),
-      ("Created at: ", product.creationAt.toDate(.isoDateTimeMilliSec)?.toLongString ?? "unknown"),
-      ("Updated at: ", product.updatedAt.toDate(.isoDateTimeMilliSec)?.toLongString ?? "unknown"),
+//      ("Created at: ", product.creationAt.toDate(.isoDateTimeMilliSec)?.toLongString ?? "unknown"),
+//      ("Updated at: ", product.updatedAt.toDate(.isoDateTimeMilliSec)?.toLongString ?? "unknown"),
     ]
   }
 
   var body: some View {
     ScrollView {
       VStack {
-        KFAnimatedImage(product.images.first.flatMap(URL.init(string:)))
+        KFAnimatedImage(URL.init(string: product.image))
           .configure { view in view.framePreloadCount = 3 }
           .cacheOriginalImage()
           .onFailure { e in
-          Napier.e(
-            error: e,
-            "err: url=\(String(describing: product.images.first)), e=\(e)"
-          )
-        }
+            Napier.e(
+              error: e,
+              "onFailure: url=\(product.image), error=\(e)"
+            )
+          }
           .placeholder { p in ProgressView(p) }
           .fade(duration: 1)
           .forceTransition()

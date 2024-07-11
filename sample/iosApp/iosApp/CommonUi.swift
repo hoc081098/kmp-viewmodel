@@ -17,7 +17,7 @@ struct ProductItemRow: View {
 
   init(item: ProductItemUi) {
     self.item = item
-    self.url = self.item.images.first.flatMap(URL.init(string:))
+    self.url = URL.init(string: self.item.image)
   }
 
   var body: some View {

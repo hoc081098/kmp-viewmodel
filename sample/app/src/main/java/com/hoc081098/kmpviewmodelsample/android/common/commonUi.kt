@@ -42,7 +42,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImagePainter
 import coil.compose.SubcomposeAsyncImage
 import coil.compose.SubcomposeAsyncImageContent
-import com.hoc081098.kmpviewmodelsample.ProductItemUi
+import com.hoc081098.kmpviewmodelsample.ui.ProductItemUi
 import kotlinx.collections.immutable.ImmutableList
 
 @Composable
@@ -152,7 +152,7 @@ internal fun ProductItemRow(
     modifier = modifier.clickable(onClick = onClick),
   ) {
     SubcomposeAsyncImage(
-      model = product.images.firstOrNull(),
+      model = product.image,
       contentDescription = product.title,
       contentScale = ContentScale.Crop,
       modifier = Modifier

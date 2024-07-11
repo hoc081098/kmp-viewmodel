@@ -2,7 +2,9 @@ package com.hoc081098.kmpviewmodelsample.products
 
 import com.hoc081098.kmpviewmodelsample.common.AppDispatchers
 import com.hoc081098.kmpviewmodelsample.data.FakeProductsJson
-import com.hoc081098.kmpviewmodelsample.data.ProductItem
+import com.hoc081098.kmpviewmodelsample.data.ProductResponse
+import com.hoc081098.kmpviewmodelsample.data.toProductItem
+import com.hoc081098.kmpviewmodelsample.domain.ProductItem
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -25,7 +27,9 @@ class GetProducts(
         throw RuntimeException("Fake error")
       }
 
-      Json.decodeFromString<List<ProductItem>>(FakeProductsJson).shuffled()
+      Json.decodeFromString<List<ProductResponse>>(FakeProductsJson)
+        .shuffled()
+        .map { it.toProductItem() }
     }
   }
 }

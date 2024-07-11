@@ -21,7 +21,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.datasource.CollectionPreviewParameterProvider
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.hoc081098.kmpviewmodelsample.ProductItemUi
 import com.hoc081098.kmpviewmodelsample.android.common.CollectWithLifecycleEffect
 import com.hoc081098.kmpviewmodelsample.android.common.EmptyProducts
 import com.hoc081098.kmpviewmodelsample.android.common.ErrorMessageAndRetryButton
@@ -33,6 +32,7 @@ import com.hoc081098.kmpviewmodelsample.products.ProductSingleEvent
 import com.hoc081098.kmpviewmodelsample.products.ProductsAction
 import com.hoc081098.kmpviewmodelsample.products.ProductsState
 import com.hoc081098.kmpviewmodelsample.products.ProductsViewModel
+import com.hoc081098.kmpviewmodelsample.ui.ProductItemUi
 import io.github.aakira.napier.Napier
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
@@ -156,19 +156,10 @@ private class ListContentParameterProvider : CollectionPreviewParameterProvider<
     val products = List(10) {
       ProductItemUi(
         id = it,
-        title = "title $it",
-        price = it,
-        description = "description $it",
-        images = persistentListOf(),
-        creationAt = "2023-02-11T02:45:59.000Z",
-        updatedAt = "2023-02-11T14:54:14.000Z",
-        category = ProductItemUi.CategoryUi(
-          id = it,
-          name = "category name $it",
-          image = "image",
-          creationAt = "2023-02-11T02:45:59.000Z",
-          updatedAt = "2023-02-11T14:54:14.000Z",
-        ),
+        title = "invidunt $it",
+        price = 8.9,
+        description = "liber $it",
+        image = "https://placeholder.pics/svg/300",
       )
     }.toImmutableList()
 

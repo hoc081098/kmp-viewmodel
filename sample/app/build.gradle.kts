@@ -61,8 +61,9 @@ dependencies {
 }
 
 composeCompiler {
-  val composeCompilerDir = layout.buildDirectory.dir("compose_compiler")
+  enableStrongSkippingMode = true
 
+  val composeCompilerDir = layout.buildDirectory.dir("compose_compiler")
   if (project.findProperty("composeCompilerReports") == "true") {
     reportsDestination = composeCompilerDir
   }

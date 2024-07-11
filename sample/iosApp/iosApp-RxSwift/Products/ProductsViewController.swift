@@ -22,11 +22,11 @@ class ProductTableViewCell: UITableViewCell {
   @IBOutlet weak var productImageView: UIImageView!
 
   func configure(with item: ProductItemUi) {
-    let url = item.images.first.flatMap(URL.init(string:))
+    let url = URL.init(string: item.image)
 
     KF.url(url)
       .cacheOriginalImage()
-      .onFailure { e in Napier.e(error: e, "err: url=\(String(describing: url)), e=\(e)") }
+      .onFailure { e in Napier.e(error: e, "onFailure: url=\(String(describing: url)), error=\(e)") }
       .fade(duration: 1)
       .forceTransition()
       .set(to: productImageView)
