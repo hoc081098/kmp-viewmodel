@@ -33,7 +33,7 @@ androidx-appcompat = "1.7.0"
 androidx-compose-compiler = "1.5.1"
 androidx-core-ktx = "1.13.1"
 androidx-navigation = "2.7.7"
-android-gradle = "8.5.0"
+android-gradle = "8.5.1"
 
 uuid = "0.8.4"
 solivagant-navigation = "0.3.0"
