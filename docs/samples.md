@@ -1,6 +1,6 @@
-# Multiplatform
+# Samples
 
-## [KMM sample](https://github.com/hoc081098/kmp-viewmodel/tree/master/sample)
+## 1. [KMM sample](https://github.com/hoc081098/kmp-viewmodel/tree/master/sample)
 
 Shares business logic and `ViewHolder`s, using Jetpack Compose for Android and SwiftUi for iOS.
 
@@ -11,18 +11,18 @@ Shares business logic and `ViewHolder`s, using Jetpack Compose for Android and S
 <!-- markdownlint-enable MD013 -->
 
 
-## [Compose Multiplatform Koin sample](https://github.com/hoc081098/kmp-viewmodel/tree/master/standalone-sample/kmpviewmodel_compose_koin_sample)
+## 2. [Compose Multiplatform Koin sample](https://github.com/hoc081098/kmp-viewmodel/tree/master/standalone-sample/kmpviewmodel_compose_koin_sample)
 
 Shares `ViewModel`s and integrates with `Navigation` in Compose Multiplatform. It uses `Koin` for DI.
 
-## [Compose Multiplatform Koject sample](https://github.com/hoc081098/kmp-viewmodel/tree/master/standalone-sample/kmpviewmodel_compose_koject_sample)
+## 3. [Compose Multiplatform Koject sample](https://github.com/hoc081098/kmp-viewmodel/tree/master/standalone-sample/kmpviewmodel_compose_koject_sample)
 
 Shares `ViewModel`s and integrates with `Navigation` in Compose Multiplatform. It uses `Koject` for DI.
 
-## [Compose Multiplatform KmpViewModel KMM Unsplash Sample](https://github.com/hoc081098/Compose-Multiplatform-KmpViewModel-KMM-Unsplash-Sample)
+## 4. [Compose Multiplatform KmpViewModel KMM Unsplash Sample](https://github.com/hoc081098/Compose-Multiplatform-KmpViewModel-KMM-Unsplash-Sample)
 
-A KMP template of the Unsplash App using Compose multiplatform for Android, Desktop, iOS. Share everything including data, domain, presentation, and UI.
+A KMP template of the Unsplash App using Compose multiplatform for Android, Desktop, and iOS. Share everything including data, domain, presentation, and UI.
 
-## [🍭 GithubSearchKMM - Github Repos Search KMM for Android and iOS](https://github.com/hoc081098/GithubSearchKMM)
+## 5. [🍭 GithubSearchKMM - GitHub Repos Search KMM for Android and iOS](https://github.com/hoc081098/GithubSearchKMM)
 
 Kotlin Multiplatform Mobile using Jetpack Compose, SwiftUI, FlowRedux, Coroutines Flow, Dagger Hilt, Koin Dependency Injection, shared KMP ViewModel, Clean Architecture.
