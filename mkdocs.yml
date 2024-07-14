@@ -44,6 +44,9 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
 
+extra_css:
+  - stylesheets/extra.css
+
 nav:
   - 'Overview': index.md
   - 'Multiplatform': multiplatform.md
@@ -55,5 +58,6 @@ nav:
   - 'ViewModel Koject Compose': viewmodel-koject-compose.md
   - 'ViewModel and Compose Navigation': viewmodel-compose-navigation.md
   - 'Swift Interop': swift-interop.md
+  - 'Samples': samples.md
   - 'Change Log': changelog.md
   - 'API': API
