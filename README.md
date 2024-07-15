@@ -153,4 +153,4 @@ Copyright (c) 2023-2024 Petrus Nguyễn Thái Học
 [4]: https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-compose/
 [5]: https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-koin-compose/
 [6]: https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-koject-compose/
-[6]: https://hoc081098.github.io/kmp-viewmodel/docs/0.x/samples
+[7]: https://hoc081098.github.io/kmp-viewmodel/docs/0.x/samples
