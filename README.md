@@ -105,7 +105,9 @@ For more information check out the [docs][6].
 
 For more information check out https://github.com/hoc081098/solivagant library.
 
-## Sample
+## Samples
+
+For more information check out the [docs][7].
 
 - [KMM sample](https://github.com/hoc081098/kmp-viewmodel/tree/master/sample): shares business logic and `ViewHolder`s, using Jetpack Compose for Android and SwiftUi for iOS.
 - [Compose Multiplatform Koin sample](https://github.com/hoc081098/kmp-viewmodel/tree/master/standalone-sample/kmpviewmodel_compose_koin_sample): shares `ViewModel`s and integrates with `Navigation` in Compose Multiplatform. It uses `Koin` for DI.
@@ -151,3 +153,4 @@ Copyright (c) 2023-2024 Petrus Nguyễn Thái Học
 [4]: https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-compose/
 [5]: https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-koin-compose/
 [6]: https://hoc081098.github.io/kmp-viewmodel/docs/0.x/viewmodel-koject-compose/
+[6]: https://hoc081098.github.io/kmp-viewmodel/docs/0.x/samples
