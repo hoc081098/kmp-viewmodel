@@ -40,7 +40,7 @@ solivagant-navigation = "0.3.0"
 
 spotless = "6.25.0"
 detekt = "1.23.6"
-kotlinx-kover = "0.8.2"
+kotlinx-kover = "0.8.3"
 dokka = "1.9.20"
 kotlinx-binary-compatibility-validator = "0.16.1"
 vanniktech-maven-publish = "0.29.0"
