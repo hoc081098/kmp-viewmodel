@@ -1,5 +1,5 @@
 [versions]
-kotlin = "2.0.0"
+kotlin = "2.0.10"
 # the Java version that the Java and Kotlin compilers will target
 java-target = "11"
 # the Java version that is used to run the Java and Kotlin compilers and various other tasks
