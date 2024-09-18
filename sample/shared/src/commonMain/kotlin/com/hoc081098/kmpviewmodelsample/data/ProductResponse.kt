@@ -1,3 +1,4 @@
+@file:Suppress("MaxLineLength")
 package com.hoc081098.kmpviewmodelsample.data
 
 import com.hoc081098.kmpviewmodelsample.domain.ProductItem
