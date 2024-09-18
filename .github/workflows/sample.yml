@@ -112,13 +112,6 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
-      - name: Install pod
-        run: |
-          ./gradlew :sample:shared:podGenIOS --stacktrace
-          ./gradlew :sample:shared:generateDummyFramework
-          cd sample/iosApp
-          pod install
-
       - name: Build iosApp scheme
         uses: sersoft-gmbh/xcodebuild-action@v3
         with:
