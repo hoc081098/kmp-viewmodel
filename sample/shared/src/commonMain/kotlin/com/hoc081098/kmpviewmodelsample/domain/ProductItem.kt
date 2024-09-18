@@ -1,4 +1,5 @@
 @file:Suppress("MaxLineLength")
+
 package com.hoc081098.kmpviewmodelsample.domain
 
 data class ProductItem(
