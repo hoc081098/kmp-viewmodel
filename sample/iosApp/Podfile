@@ -9,7 +9,7 @@ target 'iosApp-RxSwift' do
   use_frameworks!
   platform :ios, '14.1'
   pod 'shared', :path => '../shared'
-  pod 'Kingfisher', '~> 7.0'
+  pod 'Kingfisher', '~> 8.0.0'
   pod 'RxSwift', '~> 6.7.0'
   pod 'RxCocoa', '~> 6.7.0'
   pod 'RxRelay', '~> 6.7.0'
