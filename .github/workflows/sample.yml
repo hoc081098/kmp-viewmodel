@@ -63,7 +63,7 @@ jobs:
   ios:
     strategy:
       matrix:
-        os: [ macos-12 ]
+        os: [ macos-14 ]
     runs-on: ${{ matrix.os }}
     timeout-minutes: 30
     steps:
@@ -111,6 +111,12 @@ jobs:
 
       - name: Make gradlew executable
         run: chmod +x ./gradlew
+
+      - name: Install pod
+        run: |
+          ./gradlew :sample:shared:generateDummyFramework --stacktrace
+          cd sample/iosApp
+          pod install
 
       - name: Build iosApp scheme
         uses: sersoft-gmbh/xcodebuild-action@v3
