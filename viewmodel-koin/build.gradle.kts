@@ -137,13 +137,30 @@ kotlin {
       }
     }
 
-    jsMain {
+    val jsAndWasmMain by creating {
       dependsOn(nonAndroidMain)
     }
-    jsTest {
+    val jsAndWasmTest by creating {
       dependsOn(nonAndroidTest)
+    }
+
+    jsMain {
+      dependsOn(jsAndWasmMain)
+    }
+    jsTest {
+      dependsOn(jsAndWasmTest)
       dependencies {
         implementation(kotlin("test-js"))
+      }
+    }
+
+    val wasmJsMain by getting {
+      dependsOn(jsAndWasmMain)
+    }
+    val wasmJsTest by getting {
+      dependsOn(jsAndWasmTest)
+      dependencies {
+        implementation(kotlin("test-wasm-js"))
       }
     }
 
