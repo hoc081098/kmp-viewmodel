@@ -20,7 +20,8 @@ kotlin {
     compilations.configureEach {
       compileTaskProvider.configure {
         compilerOptions {
-          jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.fromTarget(libs.versions.java.target.get())
+          jvmTarget =
+            org.jetbrains.kotlin.gradle.dsl.JvmTarget.fromTarget(libs.versions.java.target.get())
         }
       }
     }
@@ -43,9 +44,9 @@ kotlin {
 
       export(projects.viewmodel)
       export(projects.viewmodelSavedstate)
-
       export(libs.napier)
       export(libs.coroutines.core)
+      export(libs.koin.core)
     }
   }
 
@@ -94,7 +95,8 @@ kotlin {
   }
 
   targets.configureEach {
-    val isAndroidTarget = platformType == org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType.androidJvm
+    val isAndroidTarget =
+      platformType == org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType.androidJvm
     compilations.configureEach {
       compileTaskProvider.configure {
         compilerOptions {
