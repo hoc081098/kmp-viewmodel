@@ -14,6 +14,7 @@ import com.hoc081098.kmp.viewmodel.ViewModelStoreOwner
 import com.hoc081098.kmp.viewmodel.compose.LocalSavedStateHandleFactory
 import com.hoc081098.kmp.viewmodel.compose.defaultPlatformCreationExtras
 import com.hoc081098.kmp.viewmodel.compose.defaultViewModelStoreOwner
+import com.hoc081098.kmp.viewmodel.compose.internal.getCanonicalName
 import com.hoc081098.kmp.viewmodel.compose.internal.kClassOf
 import com.hoc081098.kmp.viewmodel.compose.kmpViewModel
 import com.hoc081098.kmp.viewmodel.koin.koinViewModelFactory
@@ -51,8 +52,15 @@ public fun <VM : ViewModel> koinKmpViewModel(
     )
   }
 
-  val vmKey = remember(qualifier, scope, key) {
-    getViewModelKey(qualifier, scope, key)
+  val className = getCanonicalName(viewModelClass)
+    ?: throw IllegalArgumentException("Local and anonymous classes can not be ViewModels")
+
+  val vmKey = remember(qualifier, className, key) {
+    getViewModelKey(
+      qualifier = qualifier,
+      key = key,
+      className = className,
+    )
   }
 
   return kmpViewModel(
@@ -89,16 +97,13 @@ public inline fun <reified VM : ViewModel> koinKmpViewModel(
     parameters = parameters,
   )
 
-// Copied from https://github.com/InsertKoinIO/koin/blob/e1f58a69d762d26c485b2ca7b7200e621c8ee6c0/android/koin-android/src/main/java/org/koin/androidx/viewmodel/GetViewModel.kt#L28
+// Copied from https://github.com/InsertKoinIO/koin/blob/74f91987ef94e63e8ea23ac9ed0ce24d6650d742/projects/android/koin-android/src/main/java/org/koin/androidx/viewmodel/GetViewModel.kt#L49
 @InternalKmpViewModelApi
 @JvmSynthetic
-internal fun getViewModelKey(qualifier: Qualifier?, scope: Scope, key: String?): String? {
-  return if (qualifier == null && key == null && scope.isRoot) {
-    null
-  } else {
-    val q = qualifier?.value ?: ""
-    val k = key ?: ""
-    val s = if (!scope.isRoot) scope.id else ""
-    "$q$k$s"
+internal fun getViewModelKey(qualifier: Qualifier?, key: String?, className: String): String? {
+  return when {
+    key != null -> key
+    qualifier != null -> qualifier.value + "_" + className
+    else -> null
   }
 }

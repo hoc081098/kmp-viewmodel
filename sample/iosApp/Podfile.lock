@@ -1,6 +1,6 @@
 PODS:
   - Differentiator (5.0.0)
-  - Kingfisher (7.4.0)
+  - Kingfisher (8.0.1)
   - MBProgressHUD (1.2.0)
   - "NSObject+Rx (5.2.2)":
     - RxSwift (~> 6.2)
@@ -17,7 +17,7 @@ PODS:
   - shared (1.0)
 
 DEPENDENCIES:
-  - Kingfisher (~> 7.0)
+  - Kingfisher (~> 8.0.0)
   - MBProgressHUD (~> 1.2.0)
   - "NSObject+Rx (~> 5.2.2)"
   - RxCocoa (~> 6.7.0)
@@ -43,15 +43,15 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
-  Kingfisher: 596b207973051aae5e4c54a1c1cb39837ea10d36
+  Kingfisher: f08adbfe0e6806e9f5666e69b31fc4f17342d0cc
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   "NSObject+Rx": 61cf1f7306a73dcef8b36649198af0813ec18dfd
   RxCocoa: f5609cb4637587a7faa99c5d5787e3ad582b75a4
   RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
   RxRelay: 4151ba01152436b08271e08410135e099880eae5
   RxSwift: b9a93a26031785159e11abd40d1a55bcb8057e52
-  shared: 8f8e2e98ee373f15f6e92b7ea78c0492d76c50ef
+  shared: 0b4914dae8a9cdcffa0e9f3809cef3ac4fb15a4a
 
-PODFILE CHECKSUM: 3ed5fe6bce415ad464ddb8499fac6ac1b27c93ec
+PODFILE CHECKSUM: 0ee12c138ec5c79abd9b92789097f5515cdcdc29
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.15.2

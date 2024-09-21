@@ -20,7 +20,8 @@ kotlin {
     compilations.configureEach {
       compileTaskProvider.configure {
         compilerOptions {
-          jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.fromTarget(libs.versions.java.target.get())
+          jvmTarget =
+            org.jetbrains.kotlin.gradle.dsl.JvmTarget.fromTarget(libs.versions.java.target.get())
         }
       }
     }
@@ -35,7 +36,7 @@ kotlin {
     summary = "Some description for the Shared Module"
     homepage = "Link to the Shared Module homepage"
     version = "1.0"
-    ios.deploymentTarget = "14.1"
+    ios.deploymentTarget = "15"
     podfile = project.file("../iosApp/Podfile")
     framework {
       baseName = "shared"
@@ -43,9 +44,9 @@ kotlin {
 
       export(projects.viewmodel)
       export(projects.viewmodelSavedstate)
-
       export(libs.napier)
       export(libs.coroutines.core)
+      export(libs.koin.core)
     }
   }
 
@@ -81,7 +82,11 @@ kotlin {
     val iosX64Main by getting
     val iosArm64Main by getting
     val iosSimulatorArm64Main by getting
-    iosMain {}
+    iosMain {
+      dependencies {
+        api("org.jetbrains.compose.runtime:runtime:${libs.versions.jetbrains.compose.get()}")
+      }
+    }
 
     val iosX64Test by getting
     val iosArm64Test by getting
@@ -90,7 +95,8 @@ kotlin {
   }
 
   targets.configureEach {
-    val isAndroidTarget = platformType == org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType.androidJvm
+    val isAndroidTarget =
+      platformType == org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType.androidJvm
     compilations.configureEach {
       compileTaskProvider.configure {
         compilerOptions {

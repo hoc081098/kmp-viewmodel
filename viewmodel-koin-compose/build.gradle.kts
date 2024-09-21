@@ -1,6 +1,7 @@
 @file:Suppress("ClassName")
 
 import java.net.URL
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 @Suppress("DSL_SCOPE_VIOLATION")
@@ -59,6 +60,14 @@ kotlin {
         }
       }
     }
+    browser()
+    nodejs()
+  }
+  @OptIn(ExperimentalWasmDsl::class)
+  wasmJs {
+    // Module name should be different from the one from JS
+    // otherwise IC tasks that start clashing different modules with the same module name
+    moduleName = property("POM_ARTIFACT_ID")!!.toString() + "Wasm"
     browser()
     nodejs()
   }
@@ -141,13 +150,30 @@ kotlin {
       }
     }
 
-    jsMain {
+    val jsAndWasmMain by creating {
       dependsOn(nonAndroidMain)
     }
-    jsTest {
+    val jsAndWasmTest by creating {
       dependsOn(nonAndroidTest)
+    }
+
+    jsMain {
+      dependsOn(jsAndWasmMain)
+    }
+    jsTest {
+      dependsOn(jsAndWasmTest)
       dependencies {
         implementation(kotlin("test-js"))
+      }
+    }
+
+    val wasmJsMain by getting {
+      dependsOn(jsAndWasmMain)
+    }
+    val wasmJsTest by getting {
+      dependsOn(jsAndWasmTest)
+      dependencies {
+        implementation(kotlin("test-wasm-js"))
       }
     }
 

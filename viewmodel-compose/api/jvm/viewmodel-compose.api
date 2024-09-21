@@ -23,3 +23,7 @@ public final class com/hoc081098/kmp/viewmodel/compose/RememberDefaultViewModelK
 	public static final synthetic fun rememberDefaultViewModelKey (Lkotlin/reflect/KClass;Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
 }
 
+public final class com/hoc081098/kmp/viewmodel/compose/internal/GetClassName_nonAndroidKt {
+	public static final synthetic fun getCanonicalName (Lkotlin/reflect/KClass;)Ljava/lang/String;
+}
+

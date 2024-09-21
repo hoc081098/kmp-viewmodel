@@ -1,6 +1,7 @@
 @file:Suppress("ClassName")
 
 import java.net.URL
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JsModuleKind
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
@@ -60,7 +61,7 @@ kotlin {
     browser()
     nodejs()
   }
-  @OptIn(org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl::class)
+  @OptIn(ExperimentalWasmDsl::class)
   wasmJs {
     // Module name should be different from the one from JS
     // otherwise IC tasks that start clashing different modules with the same module name
