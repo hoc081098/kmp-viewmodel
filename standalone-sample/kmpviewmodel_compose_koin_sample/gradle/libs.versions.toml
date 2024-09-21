@@ -28,7 +28,7 @@ compose-rules-detekt = "0.4.10"
 
 androidx-lifecycle = "2.8.5"
 androidx-annotation = "1.8.2"
-androidx-activity = "1.9.1"
+androidx-activity = "1.9.2"
 androidx-appcompat = "1.7.0"
 androidx-compose-compiler = "1.5.1"
 androidx-core-ktx = "1.13.1"
