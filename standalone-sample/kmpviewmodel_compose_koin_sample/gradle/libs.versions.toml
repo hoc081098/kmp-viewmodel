@@ -6,7 +6,7 @@ java-target = "11"
 java-toolchain = "21"
 coroutines = "1.8.1"
 kotlinx-serialization-json = "1.7.3"
-kotlinx-collections-immutable = "0.3.7"
+kotlinx-collections-immutable = "0.3.8"
 
 # the Android minSdkVersion to use
 android-min = "26"
