@@ -18,15 +18,15 @@ class ViewModelKeyTest {
 
     assertEquals(
       expected = q.value + "_" + className,
-      actual = getViewModelKey(qualifier = q, key = null, className = className)
+      actual = getViewModelKey(qualifier = q, key = null, className = className),
     )
     assertEquals(
       expected = key,
-      actual = getViewModelKey(qualifier = q, key = key, className = className)
+      actual = getViewModelKey(qualifier = q, key = key, className = className),
     )
     assertEquals(
       expected = null,
-      actual = getViewModelKey(qualifier = null, key = null, className = className)
+      actual = getViewModelKey(qualifier = null, key = null, className = className),
     )
   }
 }
