@@ -104,12 +104,27 @@ kotlin {
     }
     val desktopTest by getting {}
 
-    iosMain {}
+    iosMain {
+      dependencies {
+        // KMP Viewmodel & Solivagant Navigation
+        api("io.github.hoc081098:kmp-viewmodel")
+        api("io.github.hoc081098:kmp-viewmodel-savedstate")
+        api("io.github.hoc081098:kmp-viewmodel-compose")
+        api("io.github.hoc081098:kmp-viewmodel-koin")
+        api("io.github.hoc081098:kmp-viewmodel-koin-compose")
+        api(libs.solivagant.navigation)
+
+        // Koin
+        api(libs.koin.core)
+        api(libs.koin.compose)
+      }
+    }
     iosTest {}
   }
 
   targets.configureEach {
-    val isAndroidTarget = platformType == org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType.androidJvm
+    val isAndroidTarget =
+      platformType == org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType.androidJvm
     compilations.configureEach {
       compileTaskProvider.configure {
         compilerOptions {
