@@ -19,7 +19,7 @@ jetbrains-compose = "1.6.11"
 
 touchlab-stately = "2.1.0"
 napier = "2.7.1"
-flowExt = "0.8.1"
+flowExt = "1.0.0"
 koin = "4.0.0"
 koin-androidx-compose = "4.0.0"
 koin-compose = "4.0.0"
