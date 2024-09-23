@@ -48,7 +48,7 @@ detekt = "1.23.7"
 kotlinx-kover = "0.8.3"
 dokka = "1.9.20"
 kotlinx-binary-compatibility-validator = "0.16.3"
-ksp = "2.0.20-1.0.24"
+ksp = "2.0.20-1.0.25"
 poko = "0.17.0"
 
 vanniktech-maven-publish = "0.29.0"
