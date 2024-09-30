@@ -1,13 +1,15 @@
+platform :ios, '15.0'
+
 target 'iosApp' do
   use_frameworks!
-  platform :ios, '15'
+  platform :ios, '15.0'
   pod 'shared', :path => '../shared'
   pod 'Kingfisher', '~> 8.0.0'
 end
 
 target 'iosApp-RxSwift' do
   use_frameworks!
-  platform :ios, '15'
+  platform :ios, '15.0'
   pod 'shared', :path => '../shared'
   pod 'Kingfisher', '~> 8.0.0'
   pod 'RxSwift', '~> 6.7.0'
@@ -16,4 +18,12 @@ target 'iosApp-RxSwift' do
   pod 'NSObject+Rx', '~> 5.2.2'
   pod 'RxDataSources', '~> 5.0'
   pod 'MBProgressHUD', '~> 1.2.0'
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings.delete 'IPHONEOS_DEPLOYMENT_TARGET'
+    end
+  end
 end

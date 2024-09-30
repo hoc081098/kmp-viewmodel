@@ -12,8 +12,8 @@ import shared
 extension DIContainer {
   func get<T>(
     for type: T.Type = T.self,
-    qualifier: Koin_coreQualifier? = nil,
-    parameters: (() -> Koin_coreParametersHolder)? = nil
+    qualifier: Qualifier? = nil,
+    parameters: (() -> ParametersHolder)? = nil
   ) -> T {
     self.get(
       type: type,
