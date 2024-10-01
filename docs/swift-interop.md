@@ -29,6 +29,37 @@ class SharedViewModel : ViewModel() {
 }
 ```
 
+### Expose `kmp-viewmodel` and `kotlinx-coroutines-core` to `Darwin` native side
+
+```kotlin
+// Cocoapods
+kotlin {
+  cocoapods {
+    [...]
+    framework {
+      baseName = "shared"
+      export("io.github.hoc081098:kmp-viewmodel:0.8.0") // required to expose the classes to iOS.
+      export("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0")
+    }
+  }
+}
+
+// -- OR --
+
+// Kotlin/Native as an Apple framework
+kotlin {
+  ios {
+    binaries {
+      framework {
+        baseName = "shared"
+        export("io.github.hoc081098:kmp-viewmodel:0.8.0") // required to expose the classes to iOS.
+        export("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0")
+      }
+    }
+  }
+}
+```
+
 ### Using wrappers in Swift
 
 Flow wrappers can be used in Swift as usual:
