@@ -476,6 +476,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#expose-kmp-viewmodel-and-kotlinx-coroutines-core-to-darwin-native-side" class="md-nav__link">
+    <span class="md-ellipsis">
+      Expose kmp-viewmodel and kotlinx-coroutines-core to Darwin native side
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#using-wrappers-in-swift" class="md-nav__link">
     <span class="md-ellipsis">
       Using wrappers in Swift
@@ -614,6 +623,34 @@ to <code>Swift</code>,
 <span class="kd">class</span><span class="w"> </span><span class="nc">SharedViewModel</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ViewModel</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MutableStateFlow</span><span class="p">(</span><span class="n">State</span><span class="p">())</span>
 <span class="w">  </span><span class="kd">val</span><span class="w"> </span><span class="nv">stateFlow</span><span class="p">:</span><span class="w"> </span><span class="n">NonNullStateFlowWrapper</span><span class="o">&lt;</span><span class="n">State</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_state</span><span class="p">.</span><span class="na">wrap</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="expose-kmp-viewmodel-and-kotlinx-coroutines-core-to-darwin-native-side">Expose <code>kmp-viewmodel</code> and <code>kotlinx-coroutines-core</code> to <code>Darwin</code> native side<a class="headerlink" href="#expose-kmp-viewmodel-and-kotlinx-coroutines-core-to-darwin-native-side" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// Cocoapods</span>
+<span class="n">kotlin</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">cocoapods</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="o">[</span><span class="p">...</span><span class="o">]</span>
+<span class="w">    </span><span class="n">framework</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">baseName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;shared&quot;</span>
+<span class="w">      </span><span class="n">export</span><span class="p">(</span><span class="s">&quot;io.github.hoc081098:kmp-viewmodel:0.8.0&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// required to expose the classes to iOS.</span>
+<span class="w">      </span><span class="n">export</span><span class="p">(</span><span class="s">&quot;org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// -- OR --</span>
+
+<span class="c1">// Kotlin/Native as an Apple framework</span>
+<span class="n">kotlin</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">ios</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">binaries</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">framework</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">baseName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;shared&quot;</span>
+<span class="w">        </span><span class="n">export</span><span class="p">(</span><span class="s">&quot;io.github.hoc081098:kmp-viewmodel:0.8.0&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// required to expose the classes to iOS.</span>
+<span class="w">        </span><span class="n">export</span><span class="p">(</span><span class="s">&quot;org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0&quot;</span><span class="p">)</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <h3 id="using-wrappers-in-swift">Using wrappers in Swift<a class="headerlink" href="#using-wrappers-in-swift" title="Permanent link">&para;</a></h3>
