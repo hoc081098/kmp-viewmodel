@@ -56,16 +56,44 @@ kotlin {
         }
       }
     }
-    browser()
-    nodejs()
+    browser {
+      testTask {
+        useKarma {
+          useChromeHeadless()
+          useConfigDirectory(File(project.rootProject.projectDir, "karma"))
+          timeout.set(Duration.ofMinutes(5))
+        }
+      }
+    }
+    nodejs {
+      testTask {
+        useMocha {
+          timeout = "10s"
+        }
+      }
+    }
   }
   @OptIn(ExperimentalWasmDsl::class)
   wasmJs {
     // Module name should be different from the one from JS
     // otherwise IC tasks that start clashing different modules with the same module name
     moduleName = property("POM_ARTIFACT_ID")!!.toString() + "Wasm"
-    browser()
-    nodejs()
+    browser {
+      testTask {
+        useKarma {
+          useChromeHeadless()
+          useConfigDirectory(File(project.rootProject.projectDir, "karma"))
+          timeout.set(Duration.ofMinutes(5))
+        }
+      }
+    }
+    nodejs {
+      testTask {
+        useMocha {
+          timeout = "10s"
+        }
+      }
+    }
   }
 
   iosArm64()
