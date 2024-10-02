@@ -61,7 +61,6 @@ kotlin {
         useKarma {
           useChromeHeadless()
           useConfigDirectory(File(project.rootProject.projectDir, "karma"))
-          timeout.set(Duration.ofMinutes(5))
         }
       }
     }
