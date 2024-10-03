@@ -40,7 +40,7 @@ androidx-lifecycle = "2.8.6"
 androidx-annotation = "1.8.2"
 androidx-activity = "1.9.2"
 androidx-navigation = "2.8.2"
-android-gradle = "8.6.1"
+android-gradle = "8.7.0"
 
 spotless = "6.25.0"
 detekt = "1.23.7"
