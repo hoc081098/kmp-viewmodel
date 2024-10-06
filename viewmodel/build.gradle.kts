@@ -61,6 +61,7 @@ kotlin {
         useKarma {
           useChromeHeadless()
           useConfigDirectory(File(project.rootProject.projectDir, "karma"))
+          timeout.set(java.time.Duration.ofMinutes(5))
         }
       }
     }
@@ -82,6 +83,7 @@ kotlin {
         useKarma {
           useChromeHeadless()
           useConfigDirectory(File(project.rootProject.projectDir, "karma"))
+          timeout.set(java.time.Duration.ofMinutes(5))
         }
       }
     }
