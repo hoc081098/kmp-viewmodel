@@ -1,6 +1,7 @@
 @file:Suppress("ClassName")
 
 import java.net.URL
+import java.time.Duration
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JsModuleKind
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
@@ -61,7 +62,7 @@ kotlin {
         useKarma {
           useChromeHeadless()
           useConfigDirectory(File(project.rootProject.projectDir, "karma"))
-          timeout.set(java.time.Duration.ofMinutes(5))
+          timeout.set(Duration.ofMinutes(5))
         }
       }
     }
@@ -83,7 +84,7 @@ kotlin {
         useKarma {
           useChromeHeadless()
           useConfigDirectory(File(project.rootProject.projectDir, "karma"))
-          timeout.set(java.time.Duration.ofMinutes(5))
+          timeout.set(Duration.ofMinutes(5))
         }
       }
     }
