@@ -23,7 +23,7 @@ sample-android-target = "34"
 # the Android compileSdkVersion to use in sample
 sample-android-compile = "34"
 
-jetbrains-compose = "1.6.11"
+jetbrains-compose = "1.7.0"
 
 touchlab-stately = "2.1.0"
 napier = "2.7.1"
