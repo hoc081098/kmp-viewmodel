@@ -27,7 +27,7 @@ coil = "2.7.0"
 compose-rules-detekt = "0.4.16"
 
 androidx-lifecycle = "2.8.6"
-androidx-annotation = "1.8.2"
+androidx-annotation = "1.9.0"
 androidx-activity = "1.9.2"
 androidx-appcompat = "1.7.0"
 androidx-compose-compiler = "1.5.1"
