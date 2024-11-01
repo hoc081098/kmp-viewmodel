@@ -31,7 +31,7 @@ androidx-annotation = "1.9.0"
 androidx-activity = "1.9.3"
 androidx-appcompat = "1.7.0"
 androidx-compose-compiler = "1.5.1"
-androidx-core-ktx = "1.13.1"
+androidx-core-ktx = "1.15.0"
 androidx-navigation = "2.8.3"
 android-gradle = "8.7.2"
 
