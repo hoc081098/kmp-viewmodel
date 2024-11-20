@@ -229,6 +229,9 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
+      - name: "./gradlew :composeApp:embedAndSignAppleFrameworkForXcode --stacktrace"
+        run: ./gradlew :composeApp:embedAndSignAppleFrameworkForXcode --stacktrace
+
       - name: Build iosApp scheme
         uses: sersoft-gmbh/xcodebuild-action@v3
         with:
