@@ -15,7 +15,7 @@ compose-plugin = "1.7.0"
 junit = "4.13.2"
 koject = "1.3.0"
 kotlin = "2.0.21"
-ksp = "2.0.21-1.0.27"
+ksp = "2.0.21-1.0.28"
 
 flow-ext = "1.0.0"
 kotlinx-collections-immutable = "0.3.8"
