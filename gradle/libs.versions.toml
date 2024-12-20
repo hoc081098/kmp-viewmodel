@@ -37,7 +37,7 @@ coil = "2.7.0"
 compose-rules-detekt = "0.4.22"
 
 androidx-lifecycle = "2.8.7"
-androidx-annotation = "1.9.0"
+androidx-annotation = "1.9.1"
 androidx-activity = "1.9.3"
 androidx-navigation = "2.8.5"
 android-gradle = "8.7.3"
