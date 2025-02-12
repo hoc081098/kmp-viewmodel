@@ -1445,22 +1445,22 @@ easily.
 <span class="p">}</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="c1">// Swift code</span>
-<span class="p">@</span><span class="n">MainActor</span> <span class="kd">class</span> <span class="nc">IosViewModel</span><span class="p">:</span> <span class="n">ObservableObject</span> <span class="p">{</span>
-  <span class="kd">private</span> <span class="kd">let</span> <span class="nv">vm</span><span class="p">:</span> <span class="n">SharedViewModel</span>
+<span class="p">@</span><span class="n">MainActor</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">IosViewModel</span><span class="p">:</span><span class="w"> </span><span class="n">ObservableObject</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">vm</span><span class="p">:</span><span class="w"> </span><span class="n">SharedViewModel</span>
 
-  <span class="p">@</span><span class="n">Published</span> <span class="kd">private</span><span class="p">(</span><span class="kr">set</span><span class="p">)</span> <span class="kd">var</span> <span class="nv">state</span><span class="p">:</span> <span class="n">State</span>
+<span class="w">  </span><span class="p">@</span><span class="n">Published</span><span class="w"> </span><span class="kd">private</span><span class="p">(</span><span class="kr">set</span><span class="p">)</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">state</span><span class="p">:</span><span class="w"> </span><span class="n">State</span>
 
-  <span class="kd">init</span><span class="p">(</span><span class="n">viewModel</span><span class="p">:</span> <span class="n">SharedViewModel</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">vm</span> <span class="p">=</span> <span class="n">viewModel</span>
+<span class="w">  </span><span class="kd">init</span><span class="p">(</span><span class="n">viewModel</span><span class="p">:</span><span class="w"> </span><span class="n">SharedViewModel</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">vm</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">viewModel</span>
 
-    <span class="n">state</span> <span class="p">=</span> <span class="n">vm</span><span class="p">.</span><span class="n">stateFlow</span><span class="p">.</span><span class="n">value</span>       <span class="c1">//  &lt;--- Use `value` property with type safety (do not need to cast).</span>
-    <span class="n">vm</span><span class="p">.</span><span class="n">stateFlow</span><span class="p">.</span><span class="n">subscribe</span><span class="p">(</span>          <span class="c1">//  &lt;--- Use `subscribe(scope:onValue:)` method directly.</span>
-      <span class="n">scope</span><span class="p">:</span> <span class="n">vm</span><span class="p">.</span><span class="n">viewModelScope</span><span class="p">,</span>
-      <span class="n">onValue</span><span class="p">:</span> <span class="p">{</span> <span class="p">[</span><span class="kr">weak</span> <span class="kc">self</span><span class="p">]</span> <span class="k">in</span> <span class="kc">self</span><span class="p">?.</span><span class="n">state</span> <span class="p">=</span> <span class="nv">$0</span> <span class="p">}</span>
-    <span class="p">)</span>
-  <span class="p">}</span>
+<span class="w">    </span><span class="n">state</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">vm</span><span class="p">.</span><span class="n">stateFlow</span><span class="p">.</span><span class="n">value</span><span class="w">       </span><span class="c1">//  &lt;--- Use `value` property with type safety (do not need to cast).</span>
+<span class="w">    </span><span class="n">vm</span><span class="p">.</span><span class="n">stateFlow</span><span class="p">.</span><span class="n">subscribe</span><span class="p">(</span><span class="w">          </span><span class="c1">//  &lt;--- Use `subscribe(scope:onValue:)` method directly.</span>
+<span class="w">      </span><span class="n">scope</span><span class="p">:</span><span class="w"> </span><span class="n">vm</span><span class="p">.</span><span class="n">viewModelScope</span><span class="p">,</span>
+<span class="w">      </span><span class="n">onValue</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">[</span><span class="kr">weak</span><span class="w"> </span><span class="kc">self</span><span class="p">]</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="kc">self</span><span class="p">?.</span><span class="n">state</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nv">$0</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="kd">deinit</span> <span class="p">{</span> <span class="n">vm</span><span class="p">.</span><span class="n">clear</span><span class="p">()</span> <span class="p">}</span>
+<span class="w">  </span><span class="kd">deinit</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">vm</span><span class="p">.</span><span class="n">clear</span><span class="p">()</span><span class="w"> </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></p>
 </li>
@@ -1481,9 +1481,9 @@ easily.
 <span class="kd">val</span><span class="w"> </span><span class="nv">flow</span><span class="p">:</span><span class="w"> </span><span class="n">StateFlow</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span>
 </code></pre></div>
   <div class="highlight"><pre><span></span><code><span class="c1">// Swift code</span>
-<span class="n">NonNullFlowWrapper</span><span class="p">&lt;</span><span class="n">KotlinInt</span><span class="p">&gt;(</span><span class="n">flow</span><span class="p">:</span> <span class="n">flow</span><span class="p">).</span><span class="n">subscribe</span><span class="p">(</span>
-  <span class="n">scope</span><span class="p">:</span> <span class="n">scope</span><span class="p">,</span>
-  <span class="n">onValue</span><span class="p">:</span> <span class="p">{</span> <span class="bp">print</span><span class="p">(</span><span class="s">&quot;Received &quot;</span><span class="p">,</span> <span class="nv">$0</span><span class="p">)</span> <span class="p">}</span>
+<span class="n">NonNullFlowWrapper</span><span class="p">&lt;</span><span class="n">KotlinInt</span><span class="p">&gt;(</span><span class="n">flow</span><span class="p">:</span><span class="w"> </span><span class="n">flow</span><span class="p">).</span><span class="n">subscribe</span><span class="p">(</span>
+<span class="w">  </span><span class="n">scope</span><span class="p">:</span><span class="w"> </span><span class="n">scope</span><span class="p">,</span>
+<span class="w">  </span><span class="n">onValue</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="bp">print</span><span class="p">(</span><span class="s">&quot;Received &quot;</span><span class="p">,</span><span class="w"> </span><span class="nv">$0</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
 <span class="p">)</span>
 </code></pre></div></li>
 </ul>

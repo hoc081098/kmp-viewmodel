@@ -656,24 +656,24 @@ to <code>Swift</code>,
 <h3 id="using-wrappers-in-swift">Using wrappers in Swift<a class="headerlink" href="#using-wrappers-in-swift" title="Permanent link">&para;</a></h3>
 <p>Flow wrappers can be used in Swift as usual:</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// Swift code</span>
-<span class="kd">func</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">let</span> <span class="nv">viewModel</span> <span class="p">=</span> <span class="n">SharedViewModel</span><span class="p">()</span>
+<span class="kd">func</span><span class="w"> </span><span class="nf">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nv">viewModel</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">SharedViewModel</span><span class="p">()</span>
 
-  <span class="n">val</span> <span class="n">closable</span> <span class="p">=</span> <span class="n">viewModel</span><span class="p">.</span><span class="n">stateFlow</span><span class="p">.</span><span class="n">subscribe</span><span class="p">(</span>
-    <span class="n">scope</span><span class="p">:</span> <span class="n">viewModel</span><span class="p">.</span><span class="n">viewModelScope</span><span class="p">,</span>
-    <span class="n">onValue</span><span class="p">:</span> <span class="p">{</span> <span class="n">state</span> <span class="k">in</span>
-      <span class="c1">// do something with state</span>
-    <span class="p">}</span>
-  <span class="p">)</span>
+<span class="w">  </span><span class="n">val</span><span class="w"> </span><span class="n">closable</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">.</span><span class="n">stateFlow</span><span class="p">.</span><span class="n">subscribe</span><span class="p">(</span>
+<span class="w">    </span><span class="n">scope</span><span class="p">:</span><span class="w"> </span><span class="n">viewModel</span><span class="p">.</span><span class="n">viewModelScope</span><span class="p">,</span>
+<span class="w">    </span><span class="n">onValue</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="k">in</span>
+<span class="w">      </span><span class="c1">// do something with state</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">)</span>
 
-  <span class="c1">// At some point later</span>
-  <span class="n">closable</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+<span class="w">  </span><span class="c1">// At some point later</span>
+<span class="w">  </span><span class="n">closable</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>If Kotlin Code does not wrap <code>Flow</code>s to <code>FlowWrapper</code>s, we can also wrap them in Swift code.</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// Swift code</span>
-<span class="kd">let</span> <span class="nv">nonNull</span> <span class="p">=</span> <span class="n">NonNullFlowWrapperKt</span><span class="p">.</span><span class="n">wrap</span><span class="p">(</span><span class="kc">self</span><span class="p">)</span> <span class="k">as</span><span class="p">!</span> <span class="n">NonNullFlowWrapper</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span>
-<span class="kd">let</span> <span class="nv">nullable</span> <span class="p">=</span> <span class="n">NullableFlowWrapperKt</span><span class="p">.</span><span class="n">wrap</span><span class="p">(</span><span class="kc">self</span><span class="p">)</span> <span class="k">as</span><span class="p">!</span> <span class="n">NullableFlowWrapper</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nv">nonNull</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">NonNullFlowWrapperKt</span><span class="p">.</span><span class="n">wrap</span><span class="p">(</span><span class="kc">self</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="p">!</span><span class="w"> </span><span class="n">NonNullFlowWrapper</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nv">nullable</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">NullableFlowWrapperKt</span><span class="p">.</span><span class="n">wrap</span><span class="p">(</span><span class="kc">self</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="p">!</span><span class="w"> </span><span class="n">NullableFlowWrapper</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span>
 <span class="p">...</span>
 </code></pre></div>
 <h3 id="combine-interop">Combine interop<a class="headerlink" href="#combine-interop" title="Permanent link">&para;</a></h3>

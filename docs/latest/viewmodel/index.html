@@ -778,24 +778,24 @@ check <a href="https://github.com/hoc081098/kmp-viewmodel/tree/master/sample">km
 <p>The below example is using <code>NonNullStateFlowWrapper.subscribe(scope:onValue:)</code> method
 to consume the <code>Flow</code>s in <code>Darwin</code> targets (Swift language).</p>
 <div class="highlight"><pre><span></span><code><span class="p">@</span><span class="n">MainActor</span>
-<span class="kd">class</span> <span class="nc">IosProductsViewModel</span><span class="p">:</span> <span class="n">ObservableObject</span> <span class="p">{</span>
-  <span class="kd">private</span> <span class="kd">let</span> <span class="nv">commonVm</span><span class="p">:</span> <span class="n">ProductsViewModel</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">IosProductsViewModel</span><span class="p">:</span><span class="w"> </span><span class="n">ObservableObject</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">commonVm</span><span class="p">:</span><span class="w"> </span><span class="n">ProductsViewModel</span>
 
-  <span class="p">@</span><span class="n">Published</span> <span class="kd">private</span><span class="p">(</span><span class="kr">set</span><span class="p">)</span> <span class="kd">var</span> <span class="nv">state</span><span class="p">:</span> <span class="n">ProductsState</span>
+<span class="w">  </span><span class="p">@</span><span class="n">Published</span><span class="w"> </span><span class="kd">private</span><span class="p">(</span><span class="kr">set</span><span class="p">)</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">state</span><span class="p">:</span><span class="w"> </span><span class="n">ProductsState</span>
 
-  <span class="kd">init</span><span class="p">(</span><span class="n">commonVm</span><span class="p">:</span> <span class="n">ProductsViewModel</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kc">self</span><span class="p">.</span><span class="n">commonVm</span> <span class="p">=</span> <span class="n">commonVm</span>
+<span class="w">  </span><span class="kd">init</span><span class="p">(</span><span class="n">commonVm</span><span class="p">:</span><span class="w"> </span><span class="n">ProductsViewModel</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kc">self</span><span class="p">.</span><span class="n">commonVm</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">commonVm</span>
 
-    <span class="kc">self</span><span class="p">.</span><span class="n">state</span> <span class="p">=</span> <span class="kc">self</span><span class="p">.</span><span class="n">commonVm</span><span class="p">.</span><span class="n">stateFlow</span><span class="p">.</span><span class="n">value</span>
-    <span class="kc">self</span><span class="p">.</span><span class="n">commonVm</span><span class="p">.</span><span class="n">stateFlow</span><span class="p">.</span><span class="n">subscribe</span><span class="p">(</span>
-      <span class="n">scope</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">commonVm</span><span class="p">.</span><span class="n">viewModelScope</span><span class="p">,</span>
-      <span class="n">onValue</span><span class="p">:</span> <span class="p">{</span> <span class="p">[</span><span class="kr">weak</span> <span class="kc">self</span><span class="p">]</span> <span class="k">in</span> <span class="kc">self</span><span class="p">?.</span><span class="n">state</span> <span class="p">=</span> <span class="nv">$0</span> <span class="p">}</span> <span class="c1">// use weak self to avoid retain cycle.</span>
-    <span class="p">)</span>
-  <span class="p">}</span>
+<span class="w">    </span><span class="kc">self</span><span class="p">.</span><span class="n">state</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">self</span><span class="p">.</span><span class="n">commonVm</span><span class="p">.</span><span class="n">stateFlow</span><span class="p">.</span><span class="n">value</span>
+<span class="w">    </span><span class="kc">self</span><span class="p">.</span><span class="n">commonVm</span><span class="p">.</span><span class="n">stateFlow</span><span class="p">.</span><span class="n">subscribe</span><span class="p">(</span>
+<span class="w">      </span><span class="n">scope</span><span class="p">:</span><span class="w"> </span><span class="kc">self</span><span class="p">.</span><span class="n">commonVm</span><span class="p">.</span><span class="n">viewModelScope</span><span class="p">,</span>
+<span class="w">      </span><span class="n">onValue</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">[</span><span class="kr">weak</span><span class="w"> </span><span class="kc">self</span><span class="p">]</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="kc">self</span><span class="p">?.</span><span class="n">state</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nv">$0</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="c1">// use weak self to avoid retain cycle.</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="kd">func</span> <span class="nf">dispatch</span><span class="p">(</span><span class="n">action</span><span class="p">:</span> <span class="n">ProductsAction</span><span class="p">)</span> <span class="p">{</span> <span class="kc">self</span><span class="p">.</span><span class="n">commonVm</span><span class="p">.</span><span class="n">dispatch</span><span class="p">(</span><span class="n">action</span><span class="p">:</span> <span class="n">action</span><span class="p">)</span> <span class="p">}</span>
+<span class="w">  </span><span class="kd">func</span><span class="w"> </span><span class="nf">dispatch</span><span class="p">(</span><span class="n">action</span><span class="p">:</span><span class="w"> </span><span class="n">ProductsAction</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kc">self</span><span class="p">.</span><span class="n">commonVm</span><span class="p">.</span><span class="n">dispatch</span><span class="p">(</span><span class="n">action</span><span class="p">:</span><span class="w"> </span><span class="n">action</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
 
-  <span class="kd">deinit</span> <span class="p">{</span> <span class="kc">self</span><span class="p">.</span><span class="n">commonVm</span><span class="p">.</span><span class="n">clear</span><span class="p">()</span> <span class="p">}</span>
+<span class="w">  </span><span class="kd">deinit</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kc">self</span><span class="p">.</span><span class="n">commonVm</span><span class="p">.</span><span class="n">clear</span><span class="p">()</span><span class="w"> </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
