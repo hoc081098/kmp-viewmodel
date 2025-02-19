@@ -87,7 +87,7 @@ jobs:
 
       - name: Deploy docs 🚀 to website
         if: ${{ contains(matrix.os, 'macos') }}
-        uses: JamesIves/github-pages-deploy-action@v4.6.9
+        uses: JamesIves/github-pages-deploy-action@v4.7.3
         with:
           branch: gh-pages # The branch the action should deploy to.
           folder: site # The folder the action should deploy.
