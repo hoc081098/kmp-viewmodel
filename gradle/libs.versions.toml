@@ -39,7 +39,7 @@ compose-rules-detekt = "0.4.26"
 androidx-lifecycle = "2.9.2"
 androidx-annotation = "1.9.1"
 androidx-activity = "1.10.1"
-androidx-navigation = "2.8.9"
+androidx-navigation = "2.9.3"
 android-gradle = "8.11.1"
 
 spotless = "7.0.2"
