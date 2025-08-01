@@ -4,7 +4,7 @@ kotlin = "2.0.21"
 java-target = "11"
 # the Java version that is used to run the Java and Kotlin compilers and various other tasks
 java-toolchain = "21"
-coroutines = "1.9.0"
+coroutines = "1.10.2"
 kotlinx-serialization-json = "1.7.3"
 kotlinx-collections-immutable = "0.3.8"
 
