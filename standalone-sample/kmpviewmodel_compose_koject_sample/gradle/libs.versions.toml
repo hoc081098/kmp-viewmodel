@@ -19,7 +19,7 @@ ksp = "2.0.21-1.0.28"
 
 flow-ext = "1.0.0"
 kotlinx-collections-immutable = "0.3.8"
-kotlinx-coroutines = "1.9.0"
+kotlinx-coroutines = "1.10.2"
 solivagant-navigation = "0.5.0"
 
 [libraries]
