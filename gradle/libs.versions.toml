@@ -49,7 +49,7 @@ kotlinx-kover = "0.9.1"
 dokka = "2.0.0"
 kotlinx-binary-compatibility-validator = "0.17.0"
 ksp = "2.0.21-1.0.28"
-poko = "0.17.2"
+poko = "0.18.1"
 
 vanniktech-maven-publish = "0.31.0"
 ktlint = "0.50.0"
