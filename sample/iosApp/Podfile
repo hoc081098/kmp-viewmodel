@@ -14,7 +14,7 @@ target 'iosApp-RxSwift' do
   pod 'Kingfisher', '~> 8.3.0'
   pod 'RxSwift', '~> 6.7.0'
   pod 'RxCocoa', '~> 6.7.0'
-  pod 'RxRelay', '~> 6.7.0'
+  pod 'RxRelay', '~> 6.9.0'
   pod 'NSObject+Rx', '~> 5.2.2'
   pod 'RxDataSources', '~> 5.0'
   pod 'MBProgressHUD', '~> 1.2.0'
